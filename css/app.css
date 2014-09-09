@@ -72,3 +72,12 @@ body {
 .navbar {
   height: 50px;
 }
+
+.on-the-road {
+  list-style-type: none;
+}
+
+.gci {
+  height: 30px;
+  width: 16px;
+}
