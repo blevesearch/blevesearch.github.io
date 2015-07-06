@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Query String Query -- Bleve</title>
+
+    
+
+    <link href="http://www.blevesearch.com//img/favicon.ico" rel="icon">
+
+    
+    <link href="http://www.blevesearch.com//css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="http://www.blevesearch.com//css/font-awesome.min.css">
+
+    
+    <link rel="stylesheet" href="http://www.blevesearch.com//css/prism.css"/>
+
+    
+    <link href="http://www.blevesearch.com//css/bleve.css" rel="stylesheet">
+
+    
+    
+    
+
+</head>
+
+<body>
+
+    <div class="container">
+        
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                
+                <div class="navbar-header page-scroll">
+                    <a href="/"><img class="logo" src="http://www.blevesearch.com//img/bleve-icon-placard-small.png"/></a>
+                    <a class="navbar-brand" href="/">Bleve</a>
+                </div>
+
+                           
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              
+                <ul class="nav navbar-nav navbar-right">
+                    
+                    <li  >
+                        <a href="/docs/Home/">Documentation</a>
+                    </li>
+                    
+                    <li  >
+                        <a href="/videos/">Videos</a>
+                    </li>
+                    
+                    <li  >
+                        <a href="/community/">Community</a>
+                    </li>
+                    
+                    <li  >
+                        <a href="/news/">News</a>
+                    </li>
+                    
+                    <li  >
+                        <a href="https://github.com/blevesearch/bleve">Code</a>
+                    </li>
+                    
+                  </ul>
+            </div>
+           
+            </div>
+            
+        </nav>
+
+<div class="row">
+    <div class="col-lg-3 well">
+
+    			<h3>Documentation</h3>
+		<ul class="docmenu">
+				
+				
+					
+					<li>
+						
+							User Guide
+						
+						<ul  class="docmenu">
+							
+								
+                					
+										<li><a href="/docs/Getting%20Started/">Getting Started</a></li>
+									
+		                    	
+		                    
+								
+                					
+										<li><a href="/docs/Terminology/">Terminology</a></li>
+									
+		                    	
+		                    
+								
+									<li>
+										
+											<a href="/docs/Text-Analysis/">Text Analysis</a>
+										
+										<ul  class="docmenu">
+											
+												
+													<li><a href="/docs/Analyzers/">Analyzers</a></li>
+												
+											
+												
+													<li><a href="/docs/Character-Filters/">Character Filters</a></li>
+												
+											
+												
+													<li><a href="/docs/Tokenizers/">Tokenizers</a></li>
+												
+											
+												
+													<li><a href="/docs/Token-Filters/">Token Filters</a></li>
+												
+											
+										</ul>
+									</li>
+								
+		                    
+								
+                					
+										<li><a href="/docs/Index-Mapping/">Introduction to Index Mappings</a></li>
+									
+		                    	
+		                    
+								
+									<li>
+										
+											<a href="/docs/Query/">Queries</a>
+										
+										<ul  class="docmenu">
+											
+												
+													<li class="active">Query String Query</li>
+												
+											
+										</ul>
+									</li>
+								
+		                    
+								
+									<li>
+										
+											<a href="/docs/Example-Applications/">Example Applications</a>
+										
+										<ul  class="docmenu">
+											
+												
+													<li><a href="/docs/Wiki-Search/">Wiki Search</a></li>
+												
+											
+										</ul>
+									</li>
+								
+		                    
+								
+                					
+										<li><a href="/docs/Utilties/">Command-line Utilities</a></li>
+									
+		                    	
+		                    
+								
+									<li>
+										
+											How do I ...?
+										
+										<ul  class="docmenu">
+											
+												
+													<li><a href="/docs/Disabling%20Sections%20of%20Documents/">Ignore/Disable Sections of Documents</a></li>
+												
+											
+												
+													<li><a href="/docs/Highlight%20Matches%20in%20Results/">Highlight Matches in Results</a></li>
+												
+											
+												
+													<li><a href="/docs/Result-Faceting/">Include Facets in Results</a></li>
+												
+											
+												
+													<li><a href="/docs/Pronunciation/">Pronounce Bleve</a></li>
+												
+											
+										</ul>
+									</li>
+								
+		                    
+								
+                					
+										<li><a href="/docs/Applications-using-bleve/">Applications Using Bleve</a></li>
+									
+		                    	
+		                    
+						</ul>
+					</li>
+					
+				
+					
+					<li>
+						
+							Developer Guide
+						
+						<ul  class="docmenu">
+							
+								
+                					
+										<li><a href="/docs/Building/">Building</a></li>
+									
+		                    	
+		                    
+								
+                					
+										<li><a href="/docs/Contributing/">Contributing</a></li>
+									
+		                    	
+		                    
+								
+                					
+										<li><a href="/docs/Package-Structure/">Package Structure</a></li>
+									
+		                    	
+		                    
+						</ul>
+					</li>
+					
+				
+		</ul>
+
+    </div>
+
+    <div class="col-lg-9 docmain">
+    	<h1>Query String Query</h1>
+
+		
+
+<p>The query language query allows humans to describe complex queries using a simple syntax.</p>
+
+<h3 id="terms:da355926c964f14ad0baf9b0b2a9527e">Terms</h3>
+
+<p>Plain terms without any other syntax are interpreted as a match query for the term in the default field.  The default field is <code>_all</code> unless overridden in the index mapping.</p>
+
+<p>Example: <code>water</code> will perform a <a href="/docs/Query/#match:8f767fbc41af8ff1ddcf4c60ed8c0fe9">Match Query</a> for the term <code>water</code>.</p>
+
+<h3 id="phrases:da355926c964f14ad0baf9b0b2a9527e">Phrases</h3>
+
+<p>Phrase queries can be accomplished by placing the phrase in quotes.</p>
+
+<p>Example: <code>&quot;light beer&quot;</code> will peform a <a href="/docs/Query/#match-phrase:8f767fbc41af8ff1ddcf4c60ed8c0fe9">Match Phrase Query</a> for the phrase <code>light beer</code>.</p>
+
+<h3 id="field-scoping:da355926c964f14ad0baf9b0b2a9527e">Field Scoping</h3>
+
+<p>You can qualify the field for these searches by prefixing them with the name of the field separated by a colon.</p>
+
+<p>Example: <code>description:water</code> will perform a <a href="/docs/Query/#match:8f767fbc41af8ff1ddcf4c60ed8c0fe9">Match Query</a> for the term <code>water</code>, in the <code>description</code> field.</p>
+
+<h3 id="required-optional-and-exclusion:da355926c964f14ad0baf9b0b2a9527e">Required, Optional, and Exclusion</h3>
+
+<p>When your query string includes multiple items, by default these are placed into the SHOULD clause of a <a href="/docs/Query/#boolean:8f767fbc41af8ff1ddcf4c60ed8c0fe9">Boolean Query</a>.</p>
+
+<p>You can change this by prefixing your items with a <code>+</code> or &lsquo;-&rsquo;.
+* &lsquo;+&rsquo; Prefixing with plus places that item in the MUST portion of the boolean query.
+* &lsquo;-&rsquo; Prefixing with a minus places that item in the MUST NOT portion of the boolean query.</p>
+
+<p>Example: <code>+description:water -light beer</code> will perform a <a href="/docs/Query/#boolean:8f767fbc41af8ff1ddcf4c60ed8c0fe9">Boolean Query</a> that MUST satisfy the Match Query for the term <code>water</code> in the <code>description</code> field, MUST NOT satisfy the Match Query for the term <code>light</code> in the default field, and SHOULD satisfy the Match Query for the term <code>beer</code> in the default field.  Result documents satisfying the SHOULD clause will score higher than those that do not.</p>
+
+<h3 id="boosting:da355926c964f14ad0baf9b0b2a9527e">Boosting</h3>
+
+<p>You can influence the relative importance of the clauses by suffixing clauses with the ^ operator followed by a number.</p>
+
+<p>Example: <code>description:water name:water^5</code> will perform Match queries for <code>water</code> in both the <code>name</code> and <code>description</code> fields, but documents having the term in the <code>name</code> field will score higher.</p>
+
+<h3 id="numeric-ranges:da355926c964f14ad0baf9b0b2a9527e">Numeric Ranges</h3>
+
+<p>You can perform numeric ranges by using the &gt;, &gt;=, &lt;, and &lt;= operators, followed by a numeric value.</p>
+
+<p>Example: <code>abv:&gt;10</code> will perform an <a href="/docs/Query/#numeric-range:8f767fbc41af8ff1ddcf4c60ed8c0fe9">Numeric Range Query</a> on the <code>abv</code> field for values greater than ten.</p>
+
+	</div>
+</div>
+
+
+      <hr>
+      
+      <footer>
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                      <li>
+                        <a href="mailto:info@blevesearch.com">
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                          </span>
+                        </a>
+                      </li>
+                      
+                      <li>
+                        <a href="https://twitter.com/blevesearch">
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                          </span>
+                        </a>
+                      </li>
+                      
+                      <li>
+                        <a href="https://github.com/blevesearch">
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                          </span>
+                        </a>
+                      </li>
+                      
+                    </ul>
+                    <p class="copyright">Site built with <img class="icon" src="/img/hugo.png"/> <a href="http://gohugo.io/">Hugo</a>.  Search powered by <img class="icon" src="/img/bleve-icon-placard-small.png"/> <a href="http://www.blevesearch.com/">Bleve</a>.</p>
+                    <p class="copyright text-muted">© <a href="http://couchbase.com/">Couchbase</a> 2015</p>
+                  </div>
+              </div>
+          </div>
+      </footer>
+    </div>
+
+    
+    <script src="http://www.blevesearch.com//js/jquery.min.js"></script>
+
+    
+    <script src="http://www.blevesearch.com//js/bootstrap.min.js"></script>
+
+    <script src="http://www.blevesearch.com//js/prism.js"></script>
+
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-54278444-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</body>
+
+</html>

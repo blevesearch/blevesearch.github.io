@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Introduction to Index Mappings -- Bleve</title>
+
+    
+
+    <link href="http://www.blevesearch.com//img/favicon.ico" rel="icon">
+
+    
+    <link href="http://www.blevesearch.com//css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="http://www.blevesearch.com//css/font-awesome.min.css">
+
+    
+    <link rel="stylesheet" href="http://www.blevesearch.com//css/prism.css"/>
+
+    
+    <link href="http://www.blevesearch.com//css/bleve.css" rel="stylesheet">
+
+    
+    
+    
+
+</head>
+
+<body>
+
+    <div class="container">
+        
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                
+                <div class="navbar-header page-scroll">
+                    <a href="/"><img class="logo" src="http://www.blevesearch.com//img/bleve-icon-placard-small.png"/></a>
+                    <a class="navbar-brand" href="/">Bleve</a>
+                </div>
+
+                           
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              
+                <ul class="nav navbar-nav navbar-right">
+                    
+                    <li  >
+                        <a href="/docs/Home/">Documentation</a>
+                    </li>
+                    
+                    <li  >
+                        <a href="/videos/">Videos</a>
+                    </li>
+                    
+                    <li  >
+                        <a href="/community/">Community</a>
+                    </li>
+                    
+                    <li  >
+                        <a href="/news/">News</a>
+                    </li>
+                    
+                    <li  >
+                        <a href="https://github.com/blevesearch/bleve">Code</a>
+                    </li>
+                    
+                  </ul>
+            </div>
+           
+            </div>
+            
+        </nav>
+
+<div class="row">
+    <div class="col-lg-3 well">
+
+    			<h3>Documentation</h3>
+		<ul class="docmenu">
+				
+				
+					
+					<li>
+						
+							User Guide
+						
+						<ul  class="docmenu">
+							
+								
+                					
+										<li><a href="/docs/Getting%20Started/">Getting Started</a></li>
+									
+		                    	
+		                    
+								
+                					
+										<li><a href="/docs/Terminology/">Terminology</a></li>
+									
+		                    	
+		                    
+								
+									<li>
+										
+											<a href="/docs/Text-Analysis/">Text Analysis</a>
+										
+										<ul  class="docmenu">
+											
+												
+													<li><a href="/docs/Analyzers/">Analyzers</a></li>
+												
+											
+												
+													<li><a href="/docs/Character-Filters/">Character Filters</a></li>
+												
+											
+												
+													<li><a href="/docs/Tokenizers/">Tokenizers</a></li>
+												
+											
+												
+													<li><a href="/docs/Token-Filters/">Token Filters</a></li>
+												
+											
+										</ul>
+									</li>
+								
+		                    
+								
+                					
+										<li class="active">Introduction to Index Mappings</li>
+									
+		                    	
+		                    
+								
+									<li>
+										
+											<a href="/docs/Query/">Queries</a>
+										
+										<ul  class="docmenu">
+											
+												
+													<li><a href="/docs/Query-String-Query/">Query String Query</a></li>
+												
+											
+										</ul>
+									</li>
+								
+		                    
+								
+									<li>
+										
+											<a href="/docs/Example-Applications/">Example Applications</a>
+										
+										<ul  class="docmenu">
+											
+												
+													<li><a href="/docs/Wiki-Search/">Wiki Search</a></li>
+												
+											
+										</ul>
+									</li>
+								
+		                    
+								
+                					
+										<li><a href="/docs/Utilties/">Command-line Utilities</a></li>
+									
+		                    	
+		                    
+								
+									<li>
+										
+											How do I ...?
+										
+										<ul  class="docmenu">
+											
+												
+													<li><a href="/docs/Disabling%20Sections%20of%20Documents/">Ignore/Disable Sections of Documents</a></li>
+												
+											
+												
+													<li><a href="/docs/Highlight%20Matches%20in%20Results/">Highlight Matches in Results</a></li>
+												
+											
+												
+													<li><a href="/docs/Result-Faceting/">Include Facets in Results</a></li>
+												
+											
+												
+													<li><a href="/docs/Pronunciation/">Pronounce Bleve</a></li>
+												
+											
+										</ul>
+									</li>
+								
+		                    
+								
+                					
+										<li><a href="/docs/Applications-using-bleve/">Applications Using Bleve</a></li>
+									
+		                    	
+		                    
+						</ul>
+					</li>
+					
+				
+					
+					<li>
+						
+							Developer Guide
+						
+						<ul  class="docmenu">
+							
+								
+                					
+										<li><a href="/docs/Building/">Building</a></li>
+									
+		                    	
+		                    
+								
+                					
+										<li><a href="/docs/Contributing/">Contributing</a></li>
+									
+		                    	
+		                    
+								
+                					
+										<li><a href="/docs/Package-Structure/">Package Structure</a></li>
+									
+		                    	
+		                    
+						</ul>
+					</li>
+					
+				
+		</ul>
+
+    </div>
+
+    <div class="col-lg-9 docmain">
+    	<h1>Introduction to Index Mappings</h1>
+
+		
+
+<p>In bleve, the IndexMapping describes how to your data model should be indexed.</p>
+
+<h2 id="default-indexmapping:fac957943db74e6a57605072a04b8308">Default IndexMapping</h2>
+
+<p>To get the default IndexMapping, simply call:</p>
+
+<pre><code class="language-go">indexMapping := bleve.NewIndexMapping()
+</code></pre>
+
+<p>IndexMappings contain DocumentMappings for each of the different types of documents you want to support.  Further, it contains a DefaultDocumentMapping that will be used for any type which does not have an explicit mapping.</p>
+
+<h2 id="document-type:fac957943db74e6a57605072a04b8308">Document Type</h2>
+
+<p>How does bleve know what type a document is?</p>
+
+<ol>
+<li>If your object implements the interface <code>bleve.Classifier</code> then bleve will use string returned by its <code>Type()</code> method.</li>
+<li>The IndexMapping has a setting called <code>TypeField</code>.  You can set this to any document path, and if the value at that path is a string, that value will be used as the typed field.  If you did not customize this setting the default is set to &ldquo;_type&rdquo;.</li>
+<li>If no type can be determined from 1 or 2, the type is set to the IndexMapping&rsquo;s <code>DefaultType</code>.  If you did not customize this setting the default is set to &ldquo;_default&rdquo;.</li>
+</ol>
+
+<h2 id="documentmappings:fac957943db74e6a57605072a04b8308">DocumentMappings</h2>
+
+<p>Now that we see how bleve will determine the type, we can provide a customized DocumentMapping for each type we&rsquo;re interested in.</p>
+
+<p>Let&rsquo;s say we have a document type called <code>blog</code>.  We can build a DocumentMapping for this type and configure the IndexMapping to use it:</p>
+
+<pre><code class="language-go">blogMapping := bleve.NewDocumentMapping()
+indexMapping.AddDocumentMapping(&quot;blog&quot;, blogMapping)
+</code></pre>
+
+<p>We can also set a catch-all mapping that will be used for any type that does not have an explicit mapping by setting the DefaultMapping field.</p>
+
+<h2 id="fieldmappings:fac957943db74e6a57605072a04b8308">FieldMappings</h2>
+
+<p>Documents are hierarchical and contain named fields.  These fields could be values or nested sub-documents.  We customize the behavior for a named field by setting a DocumentMapping for it.  Once we have a DocumentMapping for the named field, we can attach 0 or more FieldMappings to it.  The FieldMappings describe how we want the field to be interpreted and what we want inserted into the index.</p>
+
+<p>Let&rsquo;s say our blog documents have a string field <code>name</code> and we want to use the English analyzer for this field.</p>
+
+<pre><code class="language-go">nameFieldMapping := bleve.NewTextFieldMapping()
+nameFieldMapping.Analyzer = &quot;en&quot;
+blogMapping.AddFieldMappingsAt(&quot;name&quot;, nameFieldMapping)
+</code></pre>
+
+<p>Now let&rsquo;s say our blog documents have a nested structure describing the <code>author</code> field field <code>name</code> and <code>email</code>.  This time lets say we want index (default) but not store the author name.  And we want to exclude the email address from the <code>_all</code> field.</p>
+
+<pre><code class="language-go">author := bleve.NewDocumentMapping()
+authorNameFieldMapping := bleve.NewTextFieldMapping()
+authorNameFieldMapping.Store = false
+author.AddFieldMappingsAt(&quot;name&quot;, authorFieldNameMapping)
+authorEmailFieldMapping := bleve.NewTextFieldMapping()
+authorEmailFieldMapping.IncludeInAll = false
+author.AddFieldMappingsAt(&quot;email&quot;, authorEmailFieldMapping)
+blog.AddSubDocumentMapping(&quot;author&quot;, author)
+</code></pre>
+
+<p>This shows use of a few of the other flags in a FieldMapping.  Here is the list:</p>
+
+<ul>
+<li>Index - index this field, defaults to true</li>
+<li>Store - store this field, defaults to true</li>
+<li>IncludeTermVectors - include term vectors for this field, defaults to true</li>
+<li>IncludeInAll - includes this field in the compostie field named <code>_all</code>, defaults to true</li>
+</ul>
+
+<h2 id="text-field-specific-options:fac957943db74e6a57605072a04b8308">Text Field specific options</h2>
+
+<ul>
+<li>Analyzer - the named analyzer to use on this field</li>
+</ul>
+
+<p>There are multiple levels at which you can configure the Default Analyzer if an explicit one isn&rsquo;t specified.</p>
+
+<ol>
+<li>Each DocumentMapping has a field <code>DefaultAnalyzer</code>.  This means you can override the default analyzer for each sub-document.<br /></li>
+<li>The IndexMapping also has a <code>DefaultAnalyzer</code>.<br /></li>
+</ol>
+
+<p>The <code>DefaultAnalyzer</code> configured with the longest path match to a field will be used.</p>
+
+<h2 id="date-field-specific-options:fac957943db74e6a57605072a04b8308">Date Field specific options</h2>
+
+<ul>
+<li>DateFormat - the name of a DateTimeParser that will be used to parse a date stored as a string</li>
+</ul>
+
+<p>You can configure a DefaultDateTimeParser in the IndexMapping object.</p>
+
+	</div>
+</div>
+
+
+      <hr>
+      
+      <footer>
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                      <li>
+                        <a href="mailto:info@blevesearch.com">
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                          </span>
+                        </a>
+                      </li>
+                      
+                      <li>
+                        <a href="https://twitter.com/blevesearch">
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                          </span>
+                        </a>
+                      </li>
+                      
+                      <li>
+                        <a href="https://github.com/blevesearch">
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                          </span>
+                        </a>
+                      </li>
+                      
+                    </ul>
+                    <p class="copyright">Site built with <img class="icon" src="/img/hugo.png"/> <a href="http://gohugo.io/">Hugo</a>.  Search powered by <img class="icon" src="/img/bleve-icon-placard-small.png"/> <a href="http://www.blevesearch.com/">Bleve</a>.</p>
+                    <p class="copyright text-muted">© <a href="http://couchbase.com/">Couchbase</a> 2015</p>
+                  </div>
+              </div>
+          </div>
+      </footer>
+    </div>
+
+    
+    <script src="http://www.blevesearch.com//js/jquery.min.js"></script>
+
+    
+    <script src="http://www.blevesearch.com//js/bootstrap.min.js"></script>
+
+    <script src="http://www.blevesearch.com//js/prism.js"></script>
+
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-54278444-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</body>
+
+</html>

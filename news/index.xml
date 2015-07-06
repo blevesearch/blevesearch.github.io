@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>News on Bleve</title>
+    <link>http://www.blevesearch.com/news/</link>
+    <description>Recent content in News on Bleve</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© &lt;a href=&#34;http://couchbase.com/&#34;&gt;Couchbase&lt;/a&gt; 2015</copyright>
+    <lastBuildDate>Thu, 02 Jul 2015 10:25:38 -0400</lastBuildDate>
+    <atom:link href="http://www.blevesearch.com/news/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Site Migrated to Hugo</title>
+      <link>http://www.blevesearch.com/news/Site-Migrated-to-Hugo/</link>
+      <pubDate>Thu, 02 Jul 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/news/Site-Migrated-to-Hugo/</guid>
+      <description>
+
+&lt;p&gt;You may notice the site looks a little different today.  We&amp;rsquo;ve just launched a version of the site built with &lt;a href=&#34;http://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;.  The site is functional, but still also very much a work in progress.  Don&amp;rsquo;t hesitate to report any problems you find.&lt;/p&gt;
+
+&lt;h3 id=&#34;why-did-we-make-the-change:871bbe6ca1368764a58ff754bed0e978&#34;&gt;Why did we make the change?&lt;/h3&gt;
+
+&lt;p&gt;Our initial site was just a set of 3 static HTML files.  With so few files, it was reasonable to just copy/paste the headers/footers, etc.  But Bleve is growing, and as we continue to progress our site needs more pages.  Moving beyond just a few pages requires us to use some automation.  I&amp;rsquo;ve used Hugo to build small sites in the past and it&amp;rsquo;s worked great.  And we&amp;rsquo;re happy to support another Go project.&lt;/p&gt;
+
+&lt;h3 id=&#34;site-changes:871bbe6ca1368764a58ff754bed0e978&#34;&gt;Site Changes&lt;/h3&gt;
+
+&lt;p&gt;For the most part you&amp;rsquo;ll find the current site looks similar to the previous site.  The biggest change is that we&amp;rsquo;ve moved our documentation from the Github Wiki into the website itself.  Initially we liked the idea of using the wiki for documentation, particularly because it has such a low bar for users to contribute content.  But, with very little contribution actually happening, we feel there will be more benefits to bringing it into the website.&lt;/p&gt;
+
+&lt;h3 id=&#34;what-about-search:871bbe6ca1368764a58ff754bed0e978&#34;&gt;What about Search?&lt;/h3&gt;
+
+&lt;p&gt;Previously we offered an integrated github wiki search on the website, and as of today that is now missing.  However, stay tuned for future announcements!  Bleve site and documentation search will be back.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

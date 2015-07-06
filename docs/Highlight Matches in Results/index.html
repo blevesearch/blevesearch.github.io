@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Highlight Matches in Results -- Bleve</title>
+
+    
+
+    <link href="http://www.blevesearch.com//img/favicon.ico" rel="icon">
+
+    
+    <link href="http://www.blevesearch.com//css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="http://www.blevesearch.com//css/font-awesome.min.css">
+
+    
+    <link rel="stylesheet" href="http://www.blevesearch.com//css/prism.css"/>
+
+    
+    <link href="http://www.blevesearch.com//css/bleve.css" rel="stylesheet">
+
+    
+    
+    
+
+</head>
+
+<body>
+
+    <div class="container">
+        
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                
+                <div class="navbar-header page-scroll">
+                    <a href="/"><img class="logo" src="http://www.blevesearch.com//img/bleve-icon-placard-small.png"/></a>
+                    <a class="navbar-brand" href="/">Bleve</a>
+                </div>
+
+                           
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              
+                <ul class="nav navbar-nav navbar-right">
+                    
+                    <li  >
+                        <a href="/docs/Home/">Documentation</a>
+                    </li>
+                    
+                    <li  >
+                        <a href="/videos/">Videos</a>
+                    </li>
+                    
+                    <li  >
+                        <a href="/community/">Community</a>
+                    </li>
+                    
+                    <li  >
+                        <a href="/news/">News</a>
+                    </li>
+                    
+                    <li  >
+                        <a href="https://github.com/blevesearch/bleve">Code</a>
+                    </li>
+                    
+                  </ul>
+            </div>
+           
+            </div>
+            
+        </nav>
+
+<div class="row">
+    <div class="col-lg-3 well">
+
+    			<h3>Documentation</h3>
+		<ul class="docmenu">
+				
+				
+					
+					<li>
+						
+							User Guide
+						
+						<ul  class="docmenu">
+							
+								
+                					
+										<li><a href="/docs/Getting%20Started/">Getting Started</a></li>
+									
+		                    	
+		                    
+								
+                					
+										<li><a href="/docs/Terminology/">Terminology</a></li>
+									
+		                    	
+		                    
+								
+									<li>
+										
+											<a href="/docs/Text-Analysis/">Text Analysis</a>
+										
+										<ul  class="docmenu">
+											
+												
+													<li><a href="/docs/Analyzers/">Analyzers</a></li>
+												
+											
+												
+													<li><a href="/docs/Character-Filters/">Character Filters</a></li>
+												
+											
+												
+													<li><a href="/docs/Tokenizers/">Tokenizers</a></li>
+												
+											
+												
+													<li><a href="/docs/Token-Filters/">Token Filters</a></li>
+												
+											
+										</ul>
+									</li>
+								
+		                    
+								
+                					
+										<li><a href="/docs/Index-Mapping/">Introduction to Index Mappings</a></li>
+									
+		                    	
+		                    
+								
+									<li>
+										
+											<a href="/docs/Query/">Queries</a>
+										
+										<ul  class="docmenu">
+											
+												
+													<li><a href="/docs/Query-String-Query/">Query String Query</a></li>
+												
+											
+										</ul>
+									</li>
+								
+		                    
+								
+									<li>
+										
+											<a href="/docs/Example-Applications/">Example Applications</a>
+										
+										<ul  class="docmenu">
+											
+												
+													<li><a href="/docs/Wiki-Search/">Wiki Search</a></li>
+												
+											
+										</ul>
+									</li>
+								
+		                    
+								
+                					
+										<li><a href="/docs/Utilties/">Command-line Utilities</a></li>
+									
+		                    	
+		                    
+								
+									<li>
+										
+											How do I ...?
+										
+										<ul  class="docmenu">
+											
+												
+													<li><a href="/docs/Disabling%20Sections%20of%20Documents/">Ignore/Disable Sections of Documents</a></li>
+												
+											
+												
+													<li class="active">Highlight Matches in Results</li>
+												
+											
+												
+													<li><a href="/docs/Result-Faceting/">Include Facets in Results</a></li>
+												
+											
+												
+													<li><a href="/docs/Pronunciation/">Pronounce Bleve</a></li>
+												
+											
+										</ul>
+									</li>
+								
+		                    
+								
+                					
+										<li><a href="/docs/Applications-using-bleve/">Applications Using Bleve</a></li>
+									
+		                    	
+		                    
+						</ul>
+					</li>
+					
+				
+					
+					<li>
+						
+							Developer Guide
+						
+						<ul  class="docmenu">
+							
+								
+                					
+										<li><a href="/docs/Building/">Building</a></li>
+									
+		                    	
+		                    
+								
+                					
+										<li><a href="/docs/Contributing/">Contributing</a></li>
+									
+		                    	
+		                    
+								
+                					
+										<li><a href="/docs/Package-Structure/">Package Structure</a></li>
+									
+		                    	
+		                    
+						</ul>
+					</li>
+					
+				
+		</ul>
+
+    </div>
+
+    <div class="col-lg-9 docmain">
+    	<h1>Highlight Matches in Results</h1>
+
+		
+
+<p>One popular feature of search is the ability to highlight matching sections of a document in the search results.</p>
+
+<p><strong>Requirements</strong>
+* The field you want to highlight matches in must be both <strong>Stored</strong> and <strong>IncludeTermVectors</strong>.  It must be stored so that we have access to the original content to highlight, and it must include term vectors so that we know the byte offsets where each term occurred within the original contnent.</p>
+
+<p>Consider we already have the following search request:</p>
+
+<pre><code class="language-go">    query := bleve.NewQueryStringQuery(...)
+    searchRequest := bleve.NewSearchRequest(query)
+</code></pre>
+
+<p>We can highlight results with the default highlighter using:</p>
+
+<pre><code class="language-go">    searchRequest.Highlight = bleve.NewHighlight()
+</code></pre>
+
+<p>Or we can request use of a specific named highlighter with:</p>
+
+<pre><code class="language-go">    searchRequest.Highlight = bleve.NewHighlightWithStyle(highlighterName)
+</code></pre>
+
+<p>Without any other configuration, it will automatically try to highlight any fields which have matches.  Sometimes we&rsquo;re only interested in highlighting a specific field or set of fields.</p>
+
+<pre><code class="language-go">    searchRequest.Highlight.AddField(field)
+</code></pre>
+
+<h3 id="highlighters:8a6c01a638330ec98d137a89109c86d0">Highlighters</h3>
+
+<h4 id="html:8a6c01a638330ec98d137a89109c86d0">HTML</h4>
+
+<p>The HTML Result Match Highlighter is registered with the name <code>html</code>.</p>
+
+<p>By default it produces output that looks like:</p>
+
+<p><img src="/img/docs/highlight-html.png" alt="" />
+</p>
+
+<h4 id="ansi:8a6c01a638330ec98d137a89109c86d0">ANSI</h4>
+
+<p>The ANSI Result Match Highlighter is registered with the name <code>ansi</code>.</p>
+
+<p>By default it produces output that looks like:</p>
+
+<p><img src="/img/docs/highlight-ansi.png" alt="" />
+</p>
+
+	</div>
+</div>
+
+
+      <hr>
+      
+      <footer>
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                      <li>
+                        <a href="mailto:info@blevesearch.com">
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                          </span>
+                        </a>
+                      </li>
+                      
+                      <li>
+                        <a href="https://twitter.com/blevesearch">
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                          </span>
+                        </a>
+                      </li>
+                      
+                      <li>
+                        <a href="https://github.com/blevesearch">
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                          </span>
+                        </a>
+                      </li>
+                      
+                    </ul>
+                    <p class="copyright">Site built with <img class="icon" src="/img/hugo.png"/> <a href="http://gohugo.io/">Hugo</a>.  Search powered by <img class="icon" src="/img/bleve-icon-placard-small.png"/> <a href="http://www.blevesearch.com/">Bleve</a>.</p>
+                    <p class="copyright text-muted">© <a href="http://couchbase.com/">Couchbase</a> 2015</p>
+                  </div>
+              </div>
+          </div>
+      </footer>
+    </div>
+
+    
+    <script src="http://www.blevesearch.com//js/jquery.min.js"></script>
+
+    
+    <script src="http://www.blevesearch.com//js/bootstrap.min.js"></script>
+
+    <script src="http://www.blevesearch.com//js/prism.js"></script>
+
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-54278444-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</body>
+
+</html>

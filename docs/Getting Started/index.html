@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Getting Started -- Bleve</title>
+
+    
+
+    <link href="http://www.blevesearch.com//img/favicon.ico" rel="icon">
+
+    
+    <link href="http://www.blevesearch.com//css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="http://www.blevesearch.com//css/font-awesome.min.css">
+
+    
+    <link rel="stylesheet" href="http://www.blevesearch.com//css/prism.css"/>
+
+    
+    <link href="http://www.blevesearch.com//css/bleve.css" rel="stylesheet">
+
+    
+    
+    
+
+</head>
+
+<body>
+
+    <div class="container">
+        
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                
+                <div class="navbar-header page-scroll">
+                    <a href="/"><img class="logo" src="http://www.blevesearch.com//img/bleve-icon-placard-small.png"/></a>
+                    <a class="navbar-brand" href="/">Bleve</a>
+                </div>
+
+                           
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              
+                <ul class="nav navbar-nav navbar-right">
+                    
+                    <li  >
+                        <a href="/docs/Home/">Documentation</a>
+                    </li>
+                    
+                    <li  >
+                        <a href="/videos/">Videos</a>
+                    </li>
+                    
+                    <li  >
+                        <a href="/community/">Community</a>
+                    </li>
+                    
+                    <li  >
+                        <a href="/news/">News</a>
+                    </li>
+                    
+                    <li  >
+                        <a href="https://github.com/blevesearch/bleve">Code</a>
+                    </li>
+                    
+                  </ul>
+            </div>
+           
+            </div>
+            
+        </nav>
+
+<div class="row">
+    <div class="col-lg-3 well">
+
+    			<h3>Documentation</h3>
+		<ul class="docmenu">
+				
+				
+					
+					<li>
+						
+							User Guide
+						
+						<ul  class="docmenu">
+							
+								
+                					
+										<li class="active">Getting Started</li>
+									
+		                    	
+		                    
+								
+                					
+										<li><a href="/docs/Terminology/">Terminology</a></li>
+									
+		                    	
+		                    
+								
+									<li>
+										
+											<a href="/docs/Text-Analysis/">Text Analysis</a>
+										
+										<ul  class="docmenu">
+											
+												
+													<li><a href="/docs/Analyzers/">Analyzers</a></li>
+												
+											
+												
+													<li><a href="/docs/Character-Filters/">Character Filters</a></li>
+												
+											
+												
+													<li><a href="/docs/Tokenizers/">Tokenizers</a></li>
+												
+											
+												
+													<li><a href="/docs/Token-Filters/">Token Filters</a></li>
+												
+											
+										</ul>
+									</li>
+								
+		                    
+								
+                					
+										<li><a href="/docs/Index-Mapping/">Introduction to Index Mappings</a></li>
+									
+		                    	
+		                    
+								
+									<li>
+										
+											<a href="/docs/Query/">Queries</a>
+										
+										<ul  class="docmenu">
+											
+												
+													<li><a href="/docs/Query-String-Query/">Query String Query</a></li>
+												
+											
+										</ul>
+									</li>
+								
+		                    
+								
+									<li>
+										
+											<a href="/docs/Example-Applications/">Example Applications</a>
+										
+										<ul  class="docmenu">
+											
+												
+													<li><a href="/docs/Wiki-Search/">Wiki Search</a></li>
+												
+											
+										</ul>
+									</li>
+								
+		                    
+								
+                					
+										<li><a href="/docs/Utilties/">Command-line Utilities</a></li>
+									
+		                    	
+		                    
+								
+									<li>
+										
+											How do I ...?
+										
+										<ul  class="docmenu">
+											
+												
+													<li><a href="/docs/Disabling%20Sections%20of%20Documents/">Ignore/Disable Sections of Documents</a></li>
+												
+											
+												
+													<li><a href="/docs/Highlight%20Matches%20in%20Results/">Highlight Matches in Results</a></li>
+												
+											
+												
+													<li><a href="/docs/Result-Faceting/">Include Facets in Results</a></li>
+												
+											
+												
+													<li><a href="/docs/Pronunciation/">Pronounce Bleve</a></li>
+												
+											
+										</ul>
+									</li>
+								
+		                    
+								
+                					
+										<li><a href="/docs/Applications-using-bleve/">Applications Using Bleve</a></li>
+									
+		                    	
+		                    
+						</ul>
+					</li>
+					
+				
+					
+					<li>
+						
+							Developer Guide
+						
+						<ul  class="docmenu">
+							
+								
+                					
+										<li><a href="/docs/Building/">Building</a></li>
+									
+		                    	
+		                    
+								
+                					
+										<li><a href="/docs/Contributing/">Contributing</a></li>
+									
+		                    	
+		                    
+								
+                					
+										<li><a href="/docs/Package-Structure/">Package Structure</a></li>
+									
+		                    	
+		                    
+						</ul>
+					</li>
+					
+				
+		</ul>
+
+    </div>
+
+    <div class="col-lg-9 docmain">
+    	<h1>Getting Started</h1>
+
+		
+
+<p>The simplest way to get started with bleve is to use the standard go get operation:</p>
+
+<pre><code>go get github.com/blevesearch/bleve/... 
+</code></pre>
+
+<p>This will build a pure go version of bleve and install the command-line utilities.  Some of the more advanced functionality requires you have C/C++ libraries available.  See the <a href="/docs/Building/">Building</a> page for more details.</p>
+
+<h3 id="your-first-bleve-program:fea031cc8a84a77f907665d305d10e43">Your first bleve program</h3>
+
+<p>Create a new package, edit main.go and paste:</p>
+
+<pre><code class="language-go">package main
+
+import (
+    &quot;fmt&quot;
+
+    &quot;github.com/blevesearch/bleve&quot;
+)
+
+func main() {
+    // open a new index
+    mapping := bleve.NewIndexMapping()
+    index, err := bleve.New(&quot;example.bleve&quot;, mapping)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+
+    data := struct {
+        Name string
+    }{
+        Name: &quot;text&quot;,
+    }
+
+    // index some data
+    index.Index(&quot;id&quot;, data)
+
+    // search for some text
+    query := bleve.NewMatchQuery(&quot;text&quot;)
+    search := bleve.NewSearchRequest(query)
+    searchResults, err := index.Search(search)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    fmt.Println(searchResults)
+}
+</code></pre>
+
+<p>This should compile, run, and return one search hit for the item added.</p>
+
+	</div>
+</div>
+
+
+      <hr>
+      
+      <footer>
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                      <li>
+                        <a href="mailto:info@blevesearch.com">
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                          </span>
+                        </a>
+                      </li>
+                      
+                      <li>
+                        <a href="https://twitter.com/blevesearch">
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                          </span>
+                        </a>
+                      </li>
+                      
+                      <li>
+                        <a href="https://github.com/blevesearch">
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                          </span>
+                        </a>
+                      </li>
+                      
+                    </ul>
+                    <p class="copyright">Site built with <img class="icon" src="/img/hugo.png"/> <a href="http://gohugo.io/">Hugo</a>.  Search powered by <img class="icon" src="/img/bleve-icon-placard-small.png"/> <a href="http://www.blevesearch.com/">Bleve</a>.</p>
+                    <p class="copyright text-muted">© <a href="http://couchbase.com/">Couchbase</a> 2015</p>
+                  </div>
+              </div>
+          </div>
+      </footer>
+    </div>
+
+    
+    <script src="http://www.blevesearch.com//js/jquery.min.js"></script>
+
+    
+    <script src="http://www.blevesearch.com//js/bootstrap.min.js"></script>
+
+    <script src="http://www.blevesearch.com//js/prism.js"></script>
+
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-54278444-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</body>
+
+</html>

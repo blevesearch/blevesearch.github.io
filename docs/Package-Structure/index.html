@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Package Structure -- Bleve</title>
+
+    
+
+    <link href="http://www.blevesearch.com//img/favicon.ico" rel="icon">
+
+    
+    <link href="http://www.blevesearch.com//css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="http://www.blevesearch.com//css/font-awesome.min.css">
+
+    
+    <link rel="stylesheet" href="http://www.blevesearch.com//css/prism.css"/>
+
+    
+    <link href="http://www.blevesearch.com//css/bleve.css" rel="stylesheet">
+
+    
+    
+    
+
+</head>
+
+<body>
+
+    <div class="container">
+        
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                
+                <div class="navbar-header page-scroll">
+                    <a href="/"><img class="logo" src="http://www.blevesearch.com//img/bleve-icon-placard-small.png"/></a>
+                    <a class="navbar-brand" href="/">Bleve</a>
+                </div>
+
+                           
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              
+                <ul class="nav navbar-nav navbar-right">
+                    
+                    <li  >
+                        <a href="/docs/Home/">Documentation</a>
+                    </li>
+                    
+                    <li  >
+                        <a href="/videos/">Videos</a>
+                    </li>
+                    
+                    <li  >
+                        <a href="/community/">Community</a>
+                    </li>
+                    
+                    <li  >
+                        <a href="/news/">News</a>
+                    </li>
+                    
+                    <li  >
+                        <a href="https://github.com/blevesearch/bleve">Code</a>
+                    </li>
+                    
+                  </ul>
+            </div>
+           
+            </div>
+            
+        </nav>
+
+<div class="row">
+    <div class="col-lg-3 well">
+
+    			<h3>Documentation</h3>
+		<ul class="docmenu">
+				
+				
+					
+					<li>
+						
+							User Guide
+						
+						<ul  class="docmenu">
+							
+								
+                					
+										<li><a href="/docs/Getting%20Started/">Getting Started</a></li>
+									
+		                    	
+		                    
+								
+                					
+										<li><a href="/docs/Terminology/">Terminology</a></li>
+									
+		                    	
+		                    
+								
+									<li>
+										
+											<a href="/docs/Text-Analysis/">Text Analysis</a>
+										
+										<ul  class="docmenu">
+											
+												
+													<li><a href="/docs/Analyzers/">Analyzers</a></li>
+												
+											
+												
+													<li><a href="/docs/Character-Filters/">Character Filters</a></li>
+												
+											
+												
+													<li><a href="/docs/Tokenizers/">Tokenizers</a></li>
+												
+											
+												
+													<li><a href="/docs/Token-Filters/">Token Filters</a></li>
+												
+											
+										</ul>
+									</li>
+								
+		                    
+								
+                					
+										<li><a href="/docs/Index-Mapping/">Introduction to Index Mappings</a></li>
+									
+		                    	
+		                    
+								
+									<li>
+										
+											<a href="/docs/Query/">Queries</a>
+										
+										<ul  class="docmenu">
+											
+												
+													<li><a href="/docs/Query-String-Query/">Query String Query</a></li>
+												
+											
+										</ul>
+									</li>
+								
+		                    
+								
+									<li>
+										
+											<a href="/docs/Example-Applications/">Example Applications</a>
+										
+										<ul  class="docmenu">
+											
+												
+													<li><a href="/docs/Wiki-Search/">Wiki Search</a></li>
+												
+											
+										</ul>
+									</li>
+								
+		                    
+								
+                					
+										<li><a href="/docs/Utilties/">Command-line Utilities</a></li>
+									
+		                    	
+		                    
+								
+									<li>
+										
+											How do I ...?
+										
+										<ul  class="docmenu">
+											
+												
+													<li><a href="/docs/Disabling%20Sections%20of%20Documents/">Ignore/Disable Sections of Documents</a></li>
+												
+											
+												
+													<li><a href="/docs/Highlight%20Matches%20in%20Results/">Highlight Matches in Results</a></li>
+												
+											
+												
+													<li><a href="/docs/Result-Faceting/">Include Facets in Results</a></li>
+												
+											
+												
+													<li><a href="/docs/Pronunciation/">Pronounce Bleve</a></li>
+												
+											
+										</ul>
+									</li>
+								
+		                    
+								
+                					
+										<li><a href="/docs/Applications-using-bleve/">Applications Using Bleve</a></li>
+									
+		                    	
+		                    
+						</ul>
+					</li>
+					
+				
+					
+					<li>
+						
+							Developer Guide
+						
+						<ul  class="docmenu">
+							
+								
+                					
+										<li><a href="/docs/Building/">Building</a></li>
+									
+		                    	
+		                    
+								
+                					
+										<li><a href="/docs/Contributing/">Contributing</a></li>
+									
+		                    	
+		                    
+								
+                					
+										<li class="active">Package Structure</li>
+									
+		                    	
+		                    
+						</ul>
+					</li>
+					
+				
+		</ul>
+
+    </div>
+
+    <div class="col-lg-9 docmain">
+    	<h1>Package Structure</h1>
+
+		
+
+<p>bleve is organized into a large number of packages.</p>
+
+<h2 id="bleve:e80311509887e73e2307678fbd80d4dd">bleve</h2>
+
+<p>The top-level bleve package is designed to provide an easy to use wrapper around all of the lower-level packages.</p>
+
+<h2 id="analysis:e80311509887e73e2307678fbd80d4dd">Analysis</h2>
+
+<p>The analysis package contains all of the code related to analyzed text.  Generally this package is independent of everything else.  Should not depend on the index or search packages.</p>
+
+<h4 id="analyzers:e80311509887e73e2307678fbd80d4dd">Analyzers</h4>
+
+<p>The analyzers package contain pre-built analyzers to for general purpose usage.</p>
+
+<h4 id="bytearrayconverters:e80311509887e73e2307678fbd80d4dd">ByteArrayConverters</h4>
+
+<p>The byte array converters package contains utilities for interpreting byte arrays in common ways.</p>
+
+<h4 id="charfilters:e80311509887e73e2307678fbd80d4dd">CharFilters</h4>
+
+<p>The char filters package contains implementations of the CharFilter interface.</p>
+
+<h4 id="datetime-parsers:e80311509887e73e2307678fbd80d4dd">DateTime Parsers</h4>
+
+<p>The date time parsers package contains implementation of the DateTimeParser interface.</p>
+
+<h4 id="language:e80311509887e73e2307678fbd80d4dd">Language</h4>
+
+<p>The language package contains sub-packages for language specific analysis.</p>
+
+<h4 id="token-filters:e80311509887e73e2307678fbd80d4dd">Token Filters</h4>
+
+<p>The token filters package contains implementation of the TokenFilter interface.</p>
+
+<h4 id="token-maps:e80311509887e73e2307678fbd80d4dd">Token Maps</h4>
+
+<p>The token maps package supports maintaining word or token lists.</p>
+
+<h4 id="tokenizers:e80311509887e73e2307678fbd80d4dd">Tokenizers</h4>
+
+<p>The tokenizers package contains implementations of the Tokenizer interface.</p>
+
+<h2 id="document:e80311509887e73e2307678fbd80d4dd">Document</h2>
+
+<p>The document package contains the code related to bleve documents and fields.  Documents contain fields.  This is the unit of indexing within bleve.</p>
+
+<h2 id="index:e80311509887e73e2307678fbd80d4dd">Index</h2>
+
+<p>The index package contains all of the code related to putting bits on disk in such a way to facilitate searching later.</p>
+
+<h4 id="store:e80311509887e73e2307678fbd80d4dd">Store</h4>
+
+<p>The store package defines an general KV store interface.  This interface allows index implementations to plug in alternative KV stores easily.</p>
+
+<h4 id="upside-down:e80311509887e73e2307678fbd80d4dd">upside_down</h4>
+
+<p>The upside_down package is the inverted index implementation.  It can use any Store implementation.  This has all of the details around how individual rows are encoded.</p>
+
+<h2 id="http:e80311509887e73e2307678fbd80d4dd">HTTP</h2>
+
+<p>An optional set of HTTP handler which expose bleve functionality over HTTP/JSON.</p>
+
+<h2 id="registry:e80311509887e73e2307678fbd80d4dd">Registry</h2>
+
+<p>The registry package provides a convenient mechanism for applications to refer to search components through string names.  This also facilitates serializing index mappings and persisting them along with the index.</p>
+
+<h2 id="search:e80311509887e73e2307678fbd80d4dd">Search</h2>
+
+<p>The search package contains all of the code to implement search functionality.  Depends on the interfaces exposed by the Index package, but should not depend on any of its implementation details.</p>
+
+<h4 id="collectors:e80311509887e73e2307678fbd80d4dd">Collectors</h4>
+
+<p>The collectors package is responsible for collecting the desirable results out of all the results.  Typically the top N by some criteria.</p>
+
+<h4 id="facets:e80311509887e73e2307678fbd80d4dd">Facets</h4>
+
+<p>The facets package is responsible for building facet information from result sets.</p>
+
+<h4 id="highlight:e80311509887e73e2307678fbd80d4dd">Highlight</h4>
+
+<p>The highlight package is responsible for producing highlighted matching text in search results.</p>
+
+<h4 id="scorers:e80311509887e73e2307678fbd80d4dd">Scorers</h4>
+
+<p>The scorers package is responsible for scoring search result hits.  These results may be final or intermediate results.</p>
+
+<h4 id="searchers:e80311509887e73e2307678fbd80d4dd">Searchers</h4>
+
+<p>The searchers package contain the actual searcher implementations.</p>
+
+<h2 id="utils:e80311509887e73e2307678fbd80d4dd">Utils</h2>
+
+<p>This package contains all of the command-line utilities.</p>
+
+	</div>
+</div>
+
+
+      <hr>
+      
+      <footer>
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                      <li>
+                        <a href="mailto:info@blevesearch.com">
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                          </span>
+                        </a>
+                      </li>
+                      
+                      <li>
+                        <a href="https://twitter.com/blevesearch">
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                          </span>
+                        </a>
+                      </li>
+                      
+                      <li>
+                        <a href="https://github.com/blevesearch">
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                          </span>
+                        </a>
+                      </li>
+                      
+                    </ul>
+                    <p class="copyright">Site built with <img class="icon" src="/img/hugo.png"/> <a href="http://gohugo.io/">Hugo</a>.  Search powered by <img class="icon" src="/img/bleve-icon-placard-small.png"/> <a href="http://www.blevesearch.com/">Bleve</a>.</p>
+                    <p class="copyright text-muted">© <a href="http://couchbase.com/">Couchbase</a> 2015</p>
+                  </div>
+              </div>
+          </div>
+      </footer>
+    </div>
+
+    
+    <script src="http://www.blevesearch.com//js/jquery.min.js"></script>
+
+    
+    <script src="http://www.blevesearch.com//js/bootstrap.min.js"></script>
+
+    <script src="http://www.blevesearch.com//js/prism.js"></script>
+
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-54278444-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</body>
+
+</html>

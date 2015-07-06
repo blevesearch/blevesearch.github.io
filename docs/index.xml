@@ -1,0 +1,807 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docs on Bleve</title>
+    <link>http://www.blevesearch.com/docs/</link>
+    <description>Recent content in Docs on Bleve</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© &lt;a href=&#34;http://couchbase.com/&#34;&gt;Couchbase&lt;/a&gt; 2015</copyright>
+    <lastBuildDate>Tue, 23 Jun 2015 10:25:38 -0400</lastBuildDate>
+    <atom:link href="http://www.blevesearch.com/docs/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Analyzers</title>
+      <link>http://www.blevesearch.com/docs/Analyzers/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/Analyzers/</guid>
+      <description>
+
+&lt;h2 id=&#34;general-purpose-analyzers:aa66feb1a6a343065211b619ad078082&#34;&gt;General Purpose Analyzers&lt;/h2&gt;
+
+&lt;h3 id=&#34;keyword:aa66feb1a6a343065211b619ad078082&#34;&gt;Keyword&lt;/h3&gt;
+
+&lt;p&gt;The Keyword Analyzer does not perform any analysis on the input text.  It creates a single token representing the entire input.  This is useful for fields where you only want exact matches.  For example, a field containing keywords or tags that may contain spaces that another analyzer might interpret as token boundaries.&lt;/p&gt;
+
+&lt;h3 id=&#34;simple:aa66feb1a6a343065211b619ad078082&#34;&gt;Simple&lt;/h3&gt;
+
+&lt;p&gt;The simple analyzer performs only minimal analysis on the input.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Tokenizer - &lt;a href=&#34;http://www.blevesearch.com/docs/Tokenizers/#whitespace:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Whitespace&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Token Filters
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#lowercase:c38efc402d8771527a225c32b59be157&#34;&gt;Lowercase&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;standard:aa66feb1a6a343065211b619ad078082&#34;&gt;Standard&lt;/h3&gt;
+
+&lt;p&gt;The Standard Analyzer is like the Simple Analyzer but also adds English stop word removal.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Tokenizer - &lt;a href=&#34;http://www.blevesearch.com/docs/Tokenizers/#whitespace:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Whitespace&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Token Filters
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#lowercase:c38efc402d8771527a225c32b59be157&#34;&gt;Lowercase&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;English &lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#stop-token:c38efc402d8771527a225c32b59be157&#34;&gt;Stop Token&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;detect-language:aa66feb1a6a343065211b619ad078082&#34;&gt;Detect Language&lt;/h3&gt;
+
+&lt;p&gt;The Detect Language Analyzer is used to examine input text, use heuristics to determine a best guess at the language, and index the ISO 639 Language Code.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Tokenizer - &lt;a href=&#34;http://www.blevesearch.com/docs/Tokenizers/#single-token:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Single&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Token Filters
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#lowercase:c38efc402d8771527a225c32b59be157&#34;&gt;Lowercase&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#cld2:c38efc402d8771527a225c32b59be157&#34;&gt;CLD2&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;language-specific-analyzers:aa66feb1a6a343065211b619ad078082&#34;&gt;Language Specific Analyzers&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Danish&lt;/li&gt;
+&lt;li&gt;Dutch&lt;/li&gt;
+&lt;li&gt;English&lt;/li&gt;
+&lt;li&gt;Finnish&lt;/li&gt;
+&lt;li&gt;French&lt;/li&gt;
+&lt;li&gt;Hungarian&lt;/li&gt;
+&lt;li&gt;Italian&lt;/li&gt;
+&lt;li&gt;German&lt;/li&gt;
+&lt;li&gt;Norwegian&lt;/li&gt;
+&lt;li&gt;Persian&lt;/li&gt;
+&lt;li&gt;Portuguese&lt;/li&gt;
+&lt;li&gt;Romanian&lt;/li&gt;
+&lt;li&gt;Russian&lt;/li&gt;
+&lt;li&gt;Sorani&lt;/li&gt;
+&lt;li&gt;Spanish&lt;/li&gt;
+&lt;li&gt;Swedish&lt;/li&gt;
+&lt;li&gt;Thai&lt;/li&gt;
+&lt;li&gt;Turkish&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Applications Using Bleve</title>
+      <link>http://www.blevesearch.com/docs/Applications-using-bleve/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/Applications-using-bleve/</guid>
+      <description>
+
+&lt;p&gt;The following applications use bleve.  Add yours to the list!&lt;/p&gt;
+
+&lt;h2 id=&#34;cbft:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;cbft&lt;/h2&gt;
+
+&lt;p&gt;Full-text searches of Couchbase Server, powered by bleve.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/couchbaselabs/cbft&#34;&gt;https://github.com/couchbaselabs/cbft&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;docker-bleve-wiki-indexer:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;docker bleve wiki indexer&lt;/h2&gt;
+
+&lt;p&gt;Dockerizing the bleve library to search the bleve wiki.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/lgs/docker-bleve-wiki-indexer&#34;&gt;https://github.com/lgs/docker-bleve-wiki-indexer&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;goin:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;goin&lt;/h2&gt;
+
+&lt;p&gt;A full text search indexer for your files on disk.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://bitbucket.org/zaphar/goin&#34;&gt;https://bitbucket.org/zaphar/goin&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;tpb-search:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;tpb-search&lt;/h2&gt;
+
+&lt;p&gt;Locally index and search database dumps from &lt;a href=&#34;https://openbay.isohunt.to&#34;&gt;https://openbay.isohunt.to&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/peterhellberg/tpb-search&#34;&gt;https://github.com/peterhellberg/tpb-search&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Building</title>
+      <link>http://www.blevesearch.com/docs/Building/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/Building/</guid>
+      <description>
+
+&lt;p&gt;The core of bleve can be built without any C/C++ libraries.  This means you can get and use bleve with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;go get github.com/blevesearch/bleve/...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;However, some of the more advanced functionality depends on C/C++ libraries.  The code using these libraries can be enabled by specifying the correct build tag.&lt;/p&gt;
+
+&lt;p&gt;In general, bleve expects these libraries to be built and installed in the standard system locations.  If not, it is up to you to set the appropriate CGO_&amp;hellip; environment variables so that the libraries and headers can be found.&lt;/p&gt;
+
+&lt;h2 id=&#34;leveldb:140c58546f80295ba58ab4d2981832fc&#34;&gt;LevelDB&lt;/h2&gt;
+
+&lt;p&gt;Bleve supports using &lt;a href=&#34;https://code.google.com/p/leveldb/&#34;&gt;LevelDB&lt;/a&gt; as a KVStore implementation.  At this time, this is the fastest KVStore implementation available for bleve.  So if maximum performance is your goal, consider building with support for LevelDB.&lt;/p&gt;
+
+&lt;p&gt;To include support for the leveldb KVStore implementation include the build tag:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;-tags leveldb&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;icu:140c58546f80295ba58ab4d2981832fc&#34;&gt;ICU&lt;/h2&gt;
+
+&lt;p&gt;Bleve supports using the &lt;a href=&#34;http://site.icu-project.org/&#34;&gt;ICU&lt;/a&gt; project to tokenize words using their implementation of the standard for &lt;a href=&#34;http://www.unicode.org/reports/tr29/&#34;&gt;Unicode Text Segmentation at Word Boundaries&lt;/a&gt;.  Some of the language specific analyzers depend on this tokenizer.&lt;/p&gt;
+
+&lt;p&gt;NOTE: It is recommended to get the most recent version of ICU possible.  Older versions often included with distributions do not support language based tokenization.&lt;/p&gt;
+
+&lt;p&gt;To include support for the analysis components requiring ICU, include the build tag:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;-tags icu&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;libstemmer:140c58546f80295ba58ab4d2981832fc&#34;&gt;libstemmer&lt;/h2&gt;
+
+&lt;p&gt;Bleve supports using the &lt;a href=&#34;http://snowball.tartarus.org/download.php&#34;&gt;libstemmer&lt;/a&gt; library to stem words for many languages.  Many of the language specific analyzers depend on this library.&lt;/p&gt;
+
+&lt;p&gt;To include support for the analysis components requiring libstemmer, include the build tag:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;-tags libstemmer&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;cld2:140c58546f80295ba58ab4d2981832fc&#34;&gt;cld2&lt;/h2&gt;
+
+&lt;p&gt;Bleve supports using the &lt;a href=&#34;https://code.google.com/p/cld2/&#34;&gt;cld2&lt;/a&gt; library to determine the language of a sample of text.  This is implemented as a token filter which will return the result as a ISO 639 language code.&lt;/p&gt;
+
+&lt;p&gt;To include support for the detect_lang token filter, include the build tag:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;-tags cld2&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;short-cut-to-include-all-the-optional-dependencies:140c58546f80295ba58ab4d2981832fc&#34;&gt;Short-cut to include all the optional dependencies&lt;/h2&gt;
+
+&lt;p&gt;Building with multiple build tags can be cumbersome:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;-tags &#39;leveldb icu libstemmer cld2&#39;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;As a shortcut you can instead use:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;-tags full&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;platform-specific-instructions:140c58546f80295ba58ab4d2981832fc&#34;&gt;Platform Specific Instructions&lt;/h2&gt;
+
+&lt;p&gt;The following sections are user-contributed instructions for satisfying all the dependencies on particular platforms.&lt;/p&gt;
+
+&lt;h3 id=&#34;ubuntu-14-04-lts-trusty-tahr:140c58546f80295ba58ab4d2981832fc&#34;&gt;Ubuntu 14.04 LTS (Trusty Tahr)&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo apt-get install libleveldb-dev libstemmer-dev libicu-dev svn build-essential
+$ go get -u -v  github.com/blevesearch/bleve
+$ cd $GOPATH/src/github.com/blevesearch/bleve/analysis/token_filters/cld2
+$ svn co http://cld2.googlecode.com/svn/trunk cld2-read-only
+$ cd cld2-read-only/internal/
+$ ./compile_libs.sh
+$ sudo cp *.so /usr/local/lib
+$ go get -u -v -tags full github.com/blevesearch/bleve
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;os-x-hacky-but-similar-to-ubuntu-14-04:140c58546f80295ba58ab4d2981832fc&#34;&gt;OS X (hacky, but similar to Ubuntu 14.04)&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew install leveldb icu4c svn # etc?
+$ export CGO_LDFLAGS=-L/usr/local/opt/icu4c/lib
+$  export CGO_CFLAGS=-I/usr/local/opt/icu4c/include
+$ go get -u -v  github.com/blevesearch/bleve
+$ cd $GOPATH/src/github.com/blevesearch/bleve/analysis/token_filters/cld2
+$ svn co http://cld2.googlecode.com/svn/trunk cld2-read-only
+$ cd cld2-read-only/internal/
+# if you feel gutsy run:
+$ perl -p -i -e &#39;s/soname=/install_name,/&#39; compile_libs.sh
+# otherwise, just change soname= to install_name, in the two spots in compile_libs.sh
+$ ./compile_libs.sh
+$ sudo cp *.so /usr/local/lib
+$ go get -u -v -tags full github.com/blevesearch/bleve
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Character Filters</title>
+      <link>http://www.blevesearch.com/docs/Character-Filters/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/Character-Filters/</guid>
+      <description>
+
+&lt;h3 id=&#34;regular-expression:332c3eea69ab462e14d779b7c7983cd1&#34;&gt;Regular Expression&lt;/h3&gt;
+
+&lt;p&gt;The regular expression character filter is configured with a regular expression and a replacement array of bytes.  All sequences of characters matching the regular expression are replaced with the replacement bytes.&lt;/p&gt;
+
+&lt;p&gt;Typically, characters that are undesirable for indexing are replaced with whitespace.  This allows the original byte offsets in the original input to remain unaffected.&lt;/p&gt;
+
+&lt;h3 id=&#34;html:332c3eea69ab462e14d779b7c7983cd1&#34;&gt;HTML&lt;/h3&gt;
+
+&lt;p&gt;The html character filter attempts to identify HTML tags from the input text and replace them with spaces.  The current implementation is an instance of the Regular Expression character filter.&lt;/p&gt;
+
+&lt;h3 id=&#34;zero-width-non-joiner:332c3eea69ab462e14d779b7c7983cd1&#34;&gt;Zero-width Non-Joiner&lt;/h3&gt;
+
+&lt;p&gt;The zero-width non-joiner character filter replaces zero-width non-joiner characters with a space.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Command-line Utilities</title>
+      <link>http://www.blevesearch.com/docs/Utilties/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/Utilties/</guid>
+      <description>
+
+&lt;p&gt;bleve comes with a few helpful command-line utilities:&lt;/p&gt;
+
+&lt;h3 id=&#34;bleve-create:a6debf56f15ff81007f2e6c0a00c5c55&#34;&gt;bleve_create&lt;/h3&gt;
+
+&lt;p&gt;The bleve_create command allows you to create a new bleve index from the command line.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;-index - path to the index to create&lt;/li&gt;
+&lt;li&gt;-mapping - path to a JSON serialized index mapping to be used for this index&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;bleve-dump:a6debf56f15ff81007f2e6c0a00c5c55&#34;&gt;bleve_dump&lt;/h3&gt;
+
+&lt;p&gt;The bleve_dump utility allows you to dump out part of all of a bleve index.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;-docID - dump all the rows pertaining to the single specified document&lt;/li&gt;
+&lt;li&gt;-fields - dump the field names and field ids in the index&lt;/li&gt;
+&lt;li&gt;-index - path to the index to dump&lt;/li&gt;
+&lt;li&gt;-mapping - print a JSON serialization of the index mapping&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If none of these alternate modes have been specified it will dump all rows in the index.&lt;/p&gt;
+
+&lt;h3 id=&#34;bleve-index:a6debf56f15ff81007f2e6c0a00c5c55&#34;&gt;bleve_index&lt;/h3&gt;
+
+&lt;p&gt;The bleve_index utility takes one or more files or directories and adds them to the specified index.&lt;/p&gt;
+
+&lt;p&gt;Document IDs are generated based on the filename.  By default the direction portion and extension are stripped off.  For example, indexing &lt;code&gt;../data/file.json&lt;/code&gt; would index the contents with the document ID &lt;code&gt;file&lt;/code&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;-index - the path to the index&lt;/li&gt;
+&lt;li&gt;-keepDir - keep the directory portion of the file name&lt;/li&gt;
+&lt;li&gt;-keepExt - keep the extension portion of the file name&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;bleve-query:a6debf56f15ff81007f2e6c0a00c5c55&#34;&gt;bleve_query&lt;/h3&gt;
+
+&lt;p&gt;The bleve_query command allows you to run queries on a bleve index.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;-explain - include scoring explanation in the output&lt;/li&gt;
+&lt;li&gt;-highlight - highlight matching portions of results&lt;/li&gt;
+&lt;li&gt;-index - path to the index to query&lt;/li&gt;
+&lt;li&gt;-limit - limit the results to the first &lt;code&gt;limit&lt;/code&gt; number of matches&lt;/li&gt;
+&lt;li&gt;-skip - skip the first &lt;code&gt;skip&lt;/code&gt; number of matches&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;bleve-registry:a6debf56f15ff81007f2e6c0a00c5c55&#34;&gt;bleve_registry&lt;/h3&gt;
+
+&lt;p&gt;The bleve_registry command lets you inspect which named components were compiled into this version of bleve.  As bleve allows for optionally including or excluding a number of components, this can be a helpful way to see what you have available.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Contributing</title>
+      <link>http://www.blevesearch.com/docs/Contributing/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/Contributing/</guid>
+      <description>&lt;p&gt;As bleve is a Couchbase project we must require contributors accept the &lt;a href=&#34;http://review.couchbase.org/static/individual_agreement.html&#34;&gt;Couchbase Contributor License Agreement&lt;/a&gt;.  To sign this agreement log into the Couchbase &lt;a href=&#34;http://review.couchbase.org/&#34;&gt;code review tool&lt;/a&gt;.  The bleve project does not use this code review tool but it is still used to track acceptance of the contributor license agreements.&lt;/p&gt;
+
+&lt;p&gt;All types of contributions are welcome, but please keep the following in mind:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;If you&amp;rsquo;re planning a large change, you should really discuss it on the &lt;a href=&#34;https://groups.google.com/forum/#!forum/bleve&#34;&gt;google group&lt;/a&gt; first.  This helps avoid duplicate effort and spending time on something that may not be merged.&lt;/li&gt;
+&lt;li&gt;Existing tests should continue to pass, new tests for the contribution are nice to have.&lt;/li&gt;
+&lt;li&gt;All code should have gone through &lt;code&gt;go fmt&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;All code should pass &lt;code&gt;go vet&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Documentation</title>
+      <link>http://www.blevesearch.com/docs/Home/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/Home/</guid>
+      <description>&lt;p&gt;The Bleve documentation has been divided up into two sections, a User Guide and a Developer Guide.  The User Guide is for developers interested in &lt;em&gt;using&lt;/em&gt; Bleve.  The Developer Guide is for developers interested in contributing to the Bleve project.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Example Applications</title>
+      <link>http://www.blevesearch.com/docs/Example-Applications/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/Example-Applications/</guid>
+      <description>
+
+&lt;h2 id=&#34;wiki-indexer:041bbca8e3b6a99527383bbff440fe95&#34;&gt;Wiki Indexer&lt;/h2&gt;
+
+&lt;p&gt;The &lt;a href=&#34;http://www.blevesearch.com/docs/Wiki-Search/&#34;&gt;bleve-wiki-indexer&lt;/a&gt; maintains a searchable bleve index of all these wiki pages.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/blevesearch/bleve-wiki-indexer&#34;&gt;Source Code&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://wikisearch.blevesearch.com/search/&#34;&gt;Try it out, live&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;beer-search:041bbca8e3b6a99527383bbff440fe95&#34;&gt;Beer Search&lt;/h2&gt;
+
+&lt;p&gt;The &lt;a href=&#34;https://github.com/blevesearch/beer-search&#34;&gt;beer-search&lt;/a&gt; application shows many of bleve&amp;rsquo;s features by allowing you to index and search beers and breweries.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/blevesearch/beer-search&#34;&gt;Source Code&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;bleve-explorer:041bbca8e3b6a99527383bbff440fe95&#34;&gt;Bleve Explorer&lt;/h2&gt;
+
+&lt;p&gt;The &lt;a href=&#34;https://github.com/blevesearch/bleve-explorer&#34;&gt;bleve-explorer&lt;/a&gt; application shows how to integrate bleve functionality with an HTTP/REST/JSON interface.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/blevesearch/bleve-explorer&#34;&gt;Source Code&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=DfbRTXE5n4Y&#34;&gt;Video Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;See also: &lt;a href=&#34;https://github.com/blevesearch/bleve/wiki/Applications-using-bleve&#34;&gt;other applications using bleve&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Getting Started</title>
+      <link>http://www.blevesearch.com/docs/Getting%20Started/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/Getting%20Started/</guid>
+      <description>
+
+&lt;p&gt;The simplest way to get started with bleve is to use the standard go get operation:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;go get github.com/blevesearch/bleve/... 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will build a pure go version of bleve and install the command-line utilities.  Some of the more advanced functionality requires you have C/C++ libraries available.  See the &lt;a href=&#34;http://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt; page for more details.&lt;/p&gt;
+
+&lt;h3 id=&#34;your-first-bleve-program:fea031cc8a84a77f907665d305d10e43&#34;&gt;Your first bleve program&lt;/h3&gt;
+
+&lt;p&gt;Create a new package, edit main.go and paste:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
+
+import (
+    &amp;quot;fmt&amp;quot;
+
+    &amp;quot;github.com/blevesearch/bleve&amp;quot;
+)
+
+func main() {
+    // open a new index
+    mapping := bleve.NewIndexMapping()
+    index, err := bleve.New(&amp;quot;example.bleve&amp;quot;, mapping)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+
+    data := struct {
+        Name string
+    }{
+        Name: &amp;quot;text&amp;quot;,
+    }
+
+    // index some data
+    index.Index(&amp;quot;id&amp;quot;, data)
+
+    // search for some text
+    query := bleve.NewMatchQuery(&amp;quot;text&amp;quot;)
+    search := bleve.NewSearchRequest(query)
+    searchResults, err := index.Search(search)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    fmt.Println(searchResults)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This should compile, run, and return one search hit for the item added.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Highlight Matches in Results</title>
+      <link>http://www.blevesearch.com/docs/Highlight%20Matches%20in%20Results/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/Highlight%20Matches%20in%20Results/</guid>
+      <description>
+
+&lt;p&gt;One popular feature of search is the ability to highlight matching sections of a document in the search results.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Requirements&lt;/strong&gt;
+* The field you want to highlight matches in must be both &lt;strong&gt;Stored&lt;/strong&gt; and &lt;strong&gt;IncludeTermVectors&lt;/strong&gt;.  It must be stored so that we have access to the original content to highlight, and it must include term vectors so that we know the byte offsets where each term occurred within the original contnent.&lt;/p&gt;
+
+&lt;p&gt;Consider we already have the following search request:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;    query := bleve.NewQueryStringQuery(...)
+    searchRequest := bleve.NewSearchRequest(query)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We can highlight results with the default highlighter using:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;    searchRequest.Highlight = bleve.NewHighlight()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Or we can request use of a specific named highlighter with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;    searchRequest.Highlight = bleve.NewHighlightWithStyle(highlighterName)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Without any other configuration, it will automatically try to highlight any fields which have matches.  Sometimes we&amp;rsquo;re only interested in highlighting a specific field or set of fields.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;    searchRequest.Highlight.AddField(field)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;highlighters:8a6c01a638330ec98d137a89109c86d0&#34;&gt;Highlighters&lt;/h3&gt;
+
+&lt;h4 id=&#34;html:8a6c01a638330ec98d137a89109c86d0&#34;&gt;HTML&lt;/h4&gt;
+
+&lt;p&gt;The HTML Result Match Highlighter is registered with the name &lt;code&gt;html&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;By default it produces output that looks like:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://www.blevesearch.com/img/docs/highlight-html.png&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;h4 id=&#34;ansi:8a6c01a638330ec98d137a89109c86d0&#34;&gt;ANSI&lt;/h4&gt;
+
+&lt;p&gt;The ANSI Result Match Highlighter is registered with the name &lt;code&gt;ansi&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;By default it produces output that looks like:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://www.blevesearch.com/img/docs/highlight-ansi.png&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Ignore/Disable Sections of Documents</title>
+      <link>http://www.blevesearch.com/docs/Disabling%20Sections%20of%20Documents/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/Disabling%20Sections%20of%20Documents/</guid>
+      <description>&lt;p&gt;Sometimes documents contains sections of content you simply want to ignore.  Let&amp;rsquo;s imagine we have the following structure:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;type Person struct {
+    Name string
+    Addr Address
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And, we&amp;rsquo;ve decided we don&amp;rsquo;t want to index or store any of the address data.  We can accomplish this by using the following DocumentMapping.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;addressMapping := bleve.NewDocumentDisabledMapping()
+personMapping := bleve.NewDocumentMapping()
+personMapping.AddSubDocumentMapping(&amp;quot;Addr&amp;quot;, addressMapping)
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Include Facets in Results</title>
+      <link>http://www.blevesearch.com/docs/Result-Faceting/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/Result-Faceting/</guid>
+      <description>
+
+&lt;p&gt;Facets allow you to include aggregated information about the documents matching your query.&lt;/p&gt;
+
+&lt;h3 id=&#34;terms-facet:8e50022d01ca401f0717d155b0a98a62&#34;&gt;Terms Facet&lt;/h3&gt;
+
+&lt;p&gt;In the beer-sample dataset each beer is assigned a style.  This would be a common field to produce a facet on since it has low cardinality and can be helpful in refining your search.  To start, each facet requires a name and a size.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;    stylesFacet := bleve.NewFacetRequest(&amp;quot;style&amp;quot;, 3)
+    searchRequest.AddFacet(&amp;quot;styles&amp;quot;, stylesFacet)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here we have named the facet &lt;code&gt;styles&lt;/code&gt; and requested the result to include the top 3 categories or buckets in the facet.  We have set the field to &lt;code&gt;style&lt;/code&gt; which corresponds to the name we used when mapping the data.&lt;/p&gt;
+
+&lt;p&gt;Without providing any other configuration options this will produce what is known as a Terms Facet.  That means each term indexed for this field is treated as a unique bucket.  For each result document, we include the document in the appropriate bucket, as determined by the configured field.  (For the results to make the most sense, this type of facet is normally used for fields indexed as a single term)&lt;/p&gt;
+
+&lt;h3 id=&#34;numeric-range-facet:8e50022d01ca401f0717d155b0a98a62&#34;&gt;Numeric Range Facet&lt;/h3&gt;
+
+&lt;p&gt;In the beer-sample dataset each beer has a numeric &lt;code&gt;abv&lt;/code&gt; or alcohol by volume field.  With numeric range facets we can defined buckets to be bounded by numeric ranges.  In this example we define 3 buckets which cover all numeric values, corresponding to low, medium, and high alcohol content.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;    var lowToMidAbv = 3.5
+    var midToHighAbv = 9.0
+    abvFacet := bleve.NewFacetRequest(&amp;quot;abv&amp;quot;, 3)
+    abvFacet.AddNumericRange(&amp;quot;low&amp;quot;, nil, &amp;amp;lowToMidAbv)
+    abvFacet.AddNumericRange(&amp;quot;medium&amp;quot;, &amp;amp;lowToMidAbv, &amp;amp;midToHighAbv)
+    abvFacet.AddNumericRange(&amp;quot;high&amp;quot;, &amp;amp;midToHighAbv, nil)
+    searchRequest.AddFacet(&amp;quot;abv&amp;quot;, abvFacet)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;datetime-range-facet:8e50022d01ca401f0717d155b0a98a62&#34;&gt;DateTime Range Facet&lt;/h3&gt;
+
+&lt;p&gt;In the beer-sample dataset each beer and brewery has a date &lt;code&gt;updated&lt;/code&gt; describing when the document was updated.  With date range facets we can defined buckets to be bounded by date ranges.  In this example we define 2 buckets which cover all date values, corresponding to those updated this year, and those updated prior to that.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;    var cutOffDate = time.Now().Add(-365*24*time.Hour)
+    updatedFacet := bleve.NewFacetRequest(&amp;quot;updated&amp;quot;, 2)
+    updatedFacet.AddDateTimeRange(&amp;quot;old&amp;quot;, time.Unix(0, 0), cutOffDate)
+    updatedFacet.AddDateTimeRange(&amp;quot;new&amp;quot;, cutOffDate, time.Unix(999999999, 999999999))
+    searchRequest.AddFacet(&amp;quot;updated&amp;quot;, updatedFacet)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;facet-results:8e50022d01ca401f0717d155b0a98a62&#34;&gt;Facet Results&lt;/h3&gt;
+
+&lt;p&gt;For each facet you build, a FacetResult is returned containing the following:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Field - the name of the field the facet was built on&lt;/li&gt;
+&lt;li&gt;Total - the total number of values encountered (if each document had one term, this should match the total number of documents in the search result)&lt;/li&gt;
+&lt;li&gt;Missing - the number of documents which do not have any value for this field&lt;/li&gt;
+&lt;li&gt;Other - the number of documents for which a value exists, but it was not in the top N number of facet buckets requested&lt;/li&gt;
+&lt;li&gt;Array of Facets - each Facet contains the count indicating the number of items in this facet range/bucket
+
+&lt;ul&gt;
+&lt;li&gt;Term - Terms Facets include the name of the term&lt;/li&gt;
+&lt;li&gt;Numeric Range - Numeric Range Facets include the range for this bucket&lt;/li&gt;
+&lt;li&gt;DateTime Range - DateTime Range Facets include the datetime range for this bucket&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Introduction to Index Mappings</title>
+      <link>http://www.blevesearch.com/docs/Index-Mapping/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/Index-Mapping/</guid>
+      <description>
+
+&lt;p&gt;In bleve, the IndexMapping describes how to your data model should be indexed.&lt;/p&gt;
+
+&lt;h2 id=&#34;default-indexmapping:fac957943db74e6a57605072a04b8308&#34;&gt;Default IndexMapping&lt;/h2&gt;
+
+&lt;p&gt;To get the default IndexMapping, simply call:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;indexMapping := bleve.NewIndexMapping()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;IndexMappings contain DocumentMappings for each of the different types of documents you want to support.  Further, it contains a DefaultDocumentMapping that will be used for any type which does not have an explicit mapping.&lt;/p&gt;
+
+&lt;h2 id=&#34;document-type:fac957943db74e6a57605072a04b8308&#34;&gt;Document Type&lt;/h2&gt;
+
+&lt;p&gt;How does bleve know what type a document is?&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;If your object implements the interface &lt;code&gt;bleve.Classifier&lt;/code&gt; then bleve will use string returned by its &lt;code&gt;Type()&lt;/code&gt; method.&lt;/li&gt;
+&lt;li&gt;The IndexMapping has a setting called &lt;code&gt;TypeField&lt;/code&gt;.  You can set this to any document path, and if the value at that path is a string, that value will be used as the typed field.  If you did not customize this setting the default is set to &amp;ldquo;_type&amp;rdquo;.&lt;/li&gt;
+&lt;li&gt;If no type can be determined from 1 or 2, the type is set to the IndexMapping&amp;rsquo;s &lt;code&gt;DefaultType&lt;/code&gt;.  If you did not customize this setting the default is set to &amp;ldquo;_default&amp;rdquo;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;documentmappings:fac957943db74e6a57605072a04b8308&#34;&gt;DocumentMappings&lt;/h2&gt;
+
+&lt;p&gt;Now that we see how bleve will determine the type, we can provide a customized DocumentMapping for each type we&amp;rsquo;re interested in.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s say we have a document type called &lt;code&gt;blog&lt;/code&gt;.  We can build a DocumentMapping for this type and configure the IndexMapping to use it:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;blogMapping := bleve.NewDocumentMapping()
+indexMapping.AddDocumentMapping(&amp;quot;blog&amp;quot;, blogMapping)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We can also set a catch-all mapping that will be used for any type that does not have an explicit mapping by setting the DefaultMapping field.&lt;/p&gt;
+
+&lt;h2 id=&#34;fieldmappings:fac957943db74e6a57605072a04b8308&#34;&gt;FieldMappings&lt;/h2&gt;
+
+&lt;p&gt;Documents are hierarchical and contain named fields.  These fields could be values or nested sub-documents.  We customize the behavior for a named field by setting a DocumentMapping for it.  Once we have a DocumentMapping for the named field, we can attach 0 or more FieldMappings to it.  The FieldMappings describe how we want the field to be interpreted and what we want inserted into the index.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s say our blog documents have a string field &lt;code&gt;name&lt;/code&gt; and we want to use the English analyzer for this field.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;nameFieldMapping := bleve.NewTextFieldMapping()
+nameFieldMapping.Analyzer = &amp;quot;en&amp;quot;
+blogMapping.AddFieldMappingsAt(&amp;quot;name&amp;quot;, nameFieldMapping)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now let&amp;rsquo;s say our blog documents have a nested structure describing the &lt;code&gt;author&lt;/code&gt; field field &lt;code&gt;name&lt;/code&gt; and &lt;code&gt;email&lt;/code&gt;.  This time lets say we want index (default) but not store the author name.  And we want to exclude the email address from the &lt;code&gt;_all&lt;/code&gt; field.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;author := bleve.NewDocumentMapping()
+authorNameFieldMapping := bleve.NewTextFieldMapping()
+authorNameFieldMapping.Store = false
+author.AddFieldMappingsAt(&amp;quot;name&amp;quot;, authorFieldNameMapping)
+authorEmailFieldMapping := bleve.NewTextFieldMapping()
+authorEmailFieldMapping.IncludeInAll = false
+author.AddFieldMappingsAt(&amp;quot;email&amp;quot;, authorEmailFieldMapping)
+blog.AddSubDocumentMapping(&amp;quot;author&amp;quot;, author)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This shows use of a few of the other flags in a FieldMapping.  Here is the list:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Index - index this field, defaults to true&lt;/li&gt;
+&lt;li&gt;Store - store this field, defaults to true&lt;/li&gt;
+&lt;li&gt;IncludeTermVectors - include term vectors for this field, defaults to true&lt;/li&gt;
+&lt;li&gt;IncludeInAll - includes this field in the compostie field named &lt;code&gt;_all&lt;/code&gt;, defaults to true&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;text-field-specific-options:fac957943db74e6a57605072a04b8308&#34;&gt;Text Field specific options&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Analyzer - the named analyzer to use on this field&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;There are multiple levels at which you can configure the Default Analyzer if an explicit one isn&amp;rsquo;t specified.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Each DocumentMapping has a field &lt;code&gt;DefaultAnalyzer&lt;/code&gt;.  This means you can override the default analyzer for each sub-document.&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;The IndexMapping also has a &lt;code&gt;DefaultAnalyzer&lt;/code&gt;.&lt;br /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The &lt;code&gt;DefaultAnalyzer&lt;/code&gt; configured with the longest path match to a field will be used.&lt;/p&gt;
+
+&lt;h2 id=&#34;date-field-specific-options:fac957943db74e6a57605072a04b8308&#34;&gt;Date Field specific options&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;DateFormat - the name of a DateTimeParser that will be used to parse a date stored as a string&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You can configure a DefaultDateTimeParser in the IndexMapping object.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Package Structure</title>
+      <link>http://www.blevesearch.com/docs/Package-Structure/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/Package-Structure/</guid>
+      <description>
+
+&lt;p&gt;bleve is organized into a large number of packages.&lt;/p&gt;
+
+&lt;h2 id=&#34;bleve:e80311509887e73e2307678fbd80d4dd&#34;&gt;bleve&lt;/h2&gt;
+
+&lt;p&gt;The top-level bleve package is designed to provide an easy to use wrapper around all of the lower-level packages.&lt;/p&gt;
+
+&lt;h2 id=&#34;analysis:e80311509887e73e2307678fbd80d4dd&#34;&gt;Analysis&lt;/h2&gt;
+
+&lt;p&gt;The analysis package contains all of the code related to analyzed text.  Generally this package is independent of everything else.  Should not depend on the index or search packages.&lt;/p&gt;
+
+&lt;h4 id=&#34;analyzers:e80311509887e73e2307678fbd80d4dd&#34;&gt;Analyzers&lt;/h4&gt;
+
+&lt;p&gt;The analyzers package contain pre-built analyzers to for general purpose usage.&lt;/p&gt;
+
+&lt;h4 id=&#34;bytearrayconverters:e80311509887e73e2307678fbd80d4dd&#34;&gt;ByteArrayConverters&lt;/h4&gt;
+
+&lt;p&gt;The byte array converters package contains utilities for interpreting byte arrays in common ways.&lt;/p&gt;
+
+&lt;h4 id=&#34;charfilters:e80311509887e73e2307678fbd80d4dd&#34;&gt;CharFilters&lt;/h4&gt;
+
+&lt;p&gt;The char filters package contains implementations of the CharFilter interface.&lt;/p&gt;
+
+&lt;h4 id=&#34;datetime-parsers:e80311509887e73e2307678fbd80d4dd&#34;&gt;DateTime Parsers&lt;/h4&gt;
+
+&lt;p&gt;The date time parsers package contains implementation of the DateTimeParser interface.&lt;/p&gt;
+
+&lt;h4 id=&#34;language:e80311509887e73e2307678fbd80d4dd&#34;&gt;Language&lt;/h4&gt;
+
+&lt;p&gt;The language package contains sub-packages for language specific analysis.&lt;/p&gt;
+
+&lt;h4 id=&#34;token-filters:e80311509887e73e2307678fbd80d4dd&#34;&gt;Token Filters&lt;/h4&gt;
+
+&lt;p&gt;The token filters package contains implementation of the TokenFilter interface.&lt;/p&gt;
+
+&lt;h4 id=&#34;token-maps:e80311509887e73e2307678fbd80d4dd&#34;&gt;Token Maps&lt;/h4&gt;
+
+&lt;p&gt;The token maps package supports maintaining word or token lists.&lt;/p&gt;
+
+&lt;h4 id=&#34;tokenizers:e80311509887e73e2307678fbd80d4dd&#34;&gt;Tokenizers&lt;/h4&gt;
+
+&lt;p&gt;The tokenizers package contains implementations of the Tokenizer interface.&lt;/p&gt;
+
+&lt;h2 id=&#34;document:e80311509887e73e2307678fbd80d4dd&#34;&gt;Document&lt;/h2&gt;
+
+&lt;p&gt;The document package contains the code related to bleve documents and fields.  Documents contain fields.  This is the unit of indexing within bleve.&lt;/p&gt;
+
+&lt;h2 id=&#34;index:e80311509887e73e2307678fbd80d4dd&#34;&gt;Index&lt;/h2&gt;
+
+&lt;p&gt;The index package contains all of the code related to putting bits on disk in such a way to facilitate searching later.&lt;/p&gt;
+
+&lt;h4 id=&#34;store:e80311509887e73e2307678fbd80d4dd&#34;&gt;Store&lt;/h4&gt;
+
+&lt;p&gt;The store package defines an general KV store interface.  This interface allows index implementations to plug in alternative KV stores easily.&lt;/p&gt;
+
+&lt;h4 id=&#34;upside-down:e80311509887e73e2307678fbd80d4dd&#34;&gt;upside_down&lt;/h4&gt;
+
+&lt;p&gt;The upside_down package is the inverted index implementation.  It can use any Store implementation.  This has all of the details around how individual rows are encoded.&lt;/p&gt;
+
+&lt;h2 id=&#34;http:e80311509887e73e2307678fbd80d4dd&#34;&gt;HTTP&lt;/h2&gt;
+
+&lt;p&gt;An optional set of HTTP handler which expose bleve functionality over HTTP/JSON.&lt;/p&gt;
+
+&lt;h2 id=&#34;registry:e80311509887e73e2307678fbd80d4dd&#34;&gt;Registry&lt;/h2&gt;
+
+&lt;p&gt;The registry package provides a convenient mechanism for applications to refer to search components through string names.  This also facilitates serializing index mappings and persisting them along with the index.&lt;/p&gt;
+
+&lt;h2 id=&#34;search:e80311509887e73e2307678fbd80d4dd&#34;&gt;Search&lt;/h2&gt;
+
+&lt;p&gt;The search package contains all of the code to implement search functionality.  Depends on the interfaces exposed by the Index package, but should not depend on any of its implementation details.&lt;/p&gt;
+
+&lt;h4 id=&#34;collectors:e80311509887e73e2307678fbd80d4dd&#34;&gt;Collectors&lt;/h4&gt;
+
+&lt;p&gt;The collectors package is responsible for collecting the desirable results out of all the results.  Typically the top N by some criteria.&lt;/p&gt;
+
+&lt;h4 id=&#34;facets:e80311509887e73e2307678fbd80d4dd&#34;&gt;Facets&lt;/h4&gt;
+
+&lt;p&gt;The facets package is responsible for building facet information from result sets.&lt;/p&gt;
+
+&lt;h4 id=&#34;highlight:e80311509887e73e2307678fbd80d4dd&#34;&gt;Highlight&lt;/h4&gt;
+
+&lt;p&gt;The highlight package is responsible for producing highlighted matching text in search results.&lt;/p&gt;
+
+&lt;h4 id=&#34;scorers:e80311509887e73e2307678fbd80d4dd&#34;&gt;Scorers&lt;/h4&gt;
+
+&lt;p&gt;The scorers package is responsible for scoring search result hits.  These results may be final or intermediate results.&lt;/p&gt;
+
+&lt;h4 id=&#34;searchers:e80311509887e73e2307678fbd80d4dd&#34;&gt;Searchers&lt;/h4&gt;
+
+&lt;p&gt;The searchers package contain the actual searcher implementations.&lt;/p&gt;
+
+&lt;h2 id=&#34;utils:e80311509887e73e2307678fbd80d4dd&#34;&gt;Utils&lt;/h2&gt;
+
+&lt;p&gt;This package contains all of the command-line utilities.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Pronounce Bleve</title>
+      <link>http://www.blevesearch.com/docs/Pronunciation/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/Pronunciation/</guid>
+      <description>&lt;p&gt;I pronounce bleve as &lt;code&gt;blev-ee&lt;/code&gt;.  This corresponds with its definition as an acronym for &lt;a href=&#34;http://en.wikipedia.org/wiki/Boiling_liquid_expanding_vapor_explosion&#34;&gt;boiling liquid expanding vapor explosion&lt;/a&gt; which was the inspiration for the name and logo.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

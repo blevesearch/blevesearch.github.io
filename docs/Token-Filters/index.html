@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Token Filters -- Bleve</title>
+
+    
+
+    <link href="http://www.blevesearch.com//img/favicon.ico" rel="icon">
+
+    
+    <link href="http://www.blevesearch.com//css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="http://www.blevesearch.com//css/font-awesome.min.css">
+
+    
+    <link rel="stylesheet" href="http://www.blevesearch.com//css/prism.css"/>
+
+    
+    <link href="http://www.blevesearch.com//css/bleve.css" rel="stylesheet">
+
+    
+    
+    
+
+</head>
+
+<body>
+
+    <div class="container">
+        
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                
+                <div class="navbar-header page-scroll">
+                    <a href="/"><img class="logo" src="http://www.blevesearch.com//img/bleve-icon-placard-small.png"/></a>
+                    <a class="navbar-brand" href="/">Bleve</a>
+                </div>
+
+                           
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              
+                <ul class="nav navbar-nav navbar-right">
+                    
+                    <li  >
+                        <a href="/docs/Home/">Documentation</a>
+                    </li>
+                    
+                    <li  >
+                        <a href="/videos/">Videos</a>
+                    </li>
+                    
+                    <li  >
+                        <a href="/community/">Community</a>
+                    </li>
+                    
+                    <li  >
+                        <a href="/news/">News</a>
+                    </li>
+                    
+                    <li  >
+                        <a href="https://github.com/blevesearch/bleve">Code</a>
+                    </li>
+                    
+                  </ul>
+            </div>
+           
+            </div>
+            
+        </nav>
+
+<div class="row">
+    <div class="col-lg-3 well">
+
+    			<h3>Documentation</h3>
+		<ul class="docmenu">
+				
+				
+					
+					<li>
+						
+							User Guide
+						
+						<ul  class="docmenu">
+							
+								
+                					
+										<li><a href="/docs/Getting%20Started/">Getting Started</a></li>
+									
+		                    	
+		                    
+								
+                					
+										<li><a href="/docs/Terminology/">Terminology</a></li>
+									
+		                    	
+		                    
+								
+									<li>
+										
+											<a href="/docs/Text-Analysis/">Text Analysis</a>
+										
+										<ul  class="docmenu">
+											
+												
+													<li><a href="/docs/Analyzers/">Analyzers</a></li>
+												
+											
+												
+													<li><a href="/docs/Character-Filters/">Character Filters</a></li>
+												
+											
+												
+													<li><a href="/docs/Tokenizers/">Tokenizers</a></li>
+												
+											
+												
+													<li class="active">Token Filters</li>
+												
+											
+										</ul>
+									</li>
+								
+		                    
+								
+                					
+										<li><a href="/docs/Index-Mapping/">Introduction to Index Mappings</a></li>
+									
+		                    	
+		                    
+								
+									<li>
+										
+											<a href="/docs/Query/">Queries</a>
+										
+										<ul  class="docmenu">
+											
+												
+													<li><a href="/docs/Query-String-Query/">Query String Query</a></li>
+												
+											
+										</ul>
+									</li>
+								
+		                    
+								
+									<li>
+										
+											<a href="/docs/Example-Applications/">Example Applications</a>
+										
+										<ul  class="docmenu">
+											
+												
+													<li><a href="/docs/Wiki-Search/">Wiki Search</a></li>
+												
+											
+										</ul>
+									</li>
+								
+		                    
+								
+                					
+										<li><a href="/docs/Utilties/">Command-line Utilities</a></li>
+									
+		                    	
+		                    
+								
+									<li>
+										
+											How do I ...?
+										
+										<ul  class="docmenu">
+											
+												
+													<li><a href="/docs/Disabling%20Sections%20of%20Documents/">Ignore/Disable Sections of Documents</a></li>
+												
+											
+												
+													<li><a href="/docs/Highlight%20Matches%20in%20Results/">Highlight Matches in Results</a></li>
+												
+											
+												
+													<li><a href="/docs/Result-Faceting/">Include Facets in Results</a></li>
+												
+											
+												
+													<li><a href="/docs/Pronunciation/">Pronounce Bleve</a></li>
+												
+											
+										</ul>
+									</li>
+								
+		                    
+								
+                					
+										<li><a href="/docs/Applications-using-bleve/">Applications Using Bleve</a></li>
+									
+		                    	
+		                    
+						</ul>
+					</li>
+					
+				
+					
+					<li>
+						
+							Developer Guide
+						
+						<ul  class="docmenu">
+							
+								
+                					
+										<li><a href="/docs/Building/">Building</a></li>
+									
+		                    	
+		                    
+								
+                					
+										<li><a href="/docs/Contributing/">Contributing</a></li>
+									
+		                    	
+		                    
+								
+                					
+										<li><a href="/docs/Package-Structure/">Package Structure</a></li>
+									
+		                    	
+		                    
+						</ul>
+					</li>
+					
+				
+		</ul>
+
+    </div>
+
+    <div class="col-lg-9 docmain">
+    	<h1>Token Filters</h1>
+
+		
+
+<h3 id="apostrophe:c38efc402d8771527a225c32b59be157">Apostrophe</h3>
+
+<p>The Apostrophe Token Filter removes all characters after an apostrophe.</p>
+
+<h3 id="cld2:c38efc402d8771527a225c32b59be157">CLD2</h3>
+
+<p>The CLD2 Token Filter will take the text from each token and pass it to the <a href="https://code.google.com/p/cld2/">Compact Language Detection 2</a> library.  Each token is replaced with a new token corresponding to the ISO 639 language code detected.  Input text should already be converted to lower case.</p>
+
+<h3 id="edge-n-gram:c38efc402d8771527a225c32b59be157">Edge n-gram</h3>
+
+<p>The edge n-gram token filter will compute n-grams just like the n-gram token filter, but all the computed n-grams are rooted at one side (either the front or the back).</p>
+
+<h3 id="elision:c38efc402d8771527a225c32b59be157">Elision</h3>
+
+<p>The elision filter identifies and removes articles prefixing a term and separated by an apostrophe.</p>
+
+<p>For example, in French <code>l'avion</code> becomes <code>avion</code>.</p>
+
+<p>The elision filter is configured with a reference to a token map containing the articles.</p>
+
+<h3 id="keyword-marker:c38efc402d8771527a225c32b59be157">Keyword Marker</h3>
+
+<p>The keyword marker filter will identify keywords and mark them as such.  Keywords are then ignored by any downstream stemmer.</p>
+
+<p>The keyword marker filter is configured with a token map containing the keywords.</p>
+
+<h3 id="length:c38efc402d8771527a225c32b59be157">Length</h3>
+
+<p>The length filter identifies tokens which are either too long or too short.  There are two parameters, the minimum token length and the maximum token length.  Tokens that are either too long or too short are removed from the token stream.</p>
+
+<h3 id="lowercase:c38efc402d8771527a225c32b59be157">Lowercase</h3>
+
+<p>The Lowercase Token Filter will examine each input token and map all Unicode letters to their lower case.</p>
+
+<h3 id="n-gram:c38efc402d8771527a225c32b59be157">n-gram</h3>
+
+<p>The n-gram token filter computes n-grams from each input token.  There are two parameters, the minimum and maximum n-gram length.</p>
+
+<h3 id="stemmer:c38efc402d8771527a225c32b59be157">Stemmer</h3>
+
+<p>The stemmer token filter takes input terms and applies a <a href="http://en.wikipedia.org/wiki/Stemming">stemming</a> process to them.</p>
+
+<p>This implementation uses <a href="http://snowball.tartarus.org/">libstemmer</a>.</p>
+
+<p>The supported languages are:</p>
+
+<ul>
+<li>Danish</li>
+<li>Dutch</li>
+<li>English</li>
+<li>Finnish</li>
+<li>French</li>
+<li>German</li>
+<li>Hungarian</li>
+<li>Italian</li>
+<li>Norwegian</li>
+<li>Porter</li>
+<li>Portuguese</li>
+<li>Romanian</li>
+<li>Russian</li>
+<li>Spanish</li>
+<li>Swedish</li>
+<li>Turkish</li>
+</ul>
+
+<h3 id="stop-token:c38efc402d8771527a225c32b59be157">Stop Token</h3>
+
+<p>The Stop Token Filter is configured with a map of tokens that should be removed from the token stream.</p>
+
+<h3 id="truncate-token:c38efc402d8771527a225c32b59be157">Truncate Token</h3>
+
+<p>The truncate token filter truncates each input token to a maximum token length.</p>
+
+<h3 id="unicode-normalize:c38efc402d8771527a225c32b59be157">Unicode Normalize</h3>
+
+<p>The Unicode normalization filter converts the input terms into the specified <a href="http://unicode.org/reports/tr15/">Unicode Normalization Form</a>.</p>
+
+<p>The supported forms are:</p>
+
+<ul>
+<li>nfc</li>
+<li>nfd</li>
+<li>nfkc</li>
+<li>nfkd</li>
+</ul>
+
+	</div>
+</div>
+
+
+      <hr>
+      
+      <footer>
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                      <li>
+                        <a href="mailto:info@blevesearch.com">
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                          </span>
+                        </a>
+                      </li>
+                      
+                      <li>
+                        <a href="https://twitter.com/blevesearch">
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                          </span>
+                        </a>
+                      </li>
+                      
+                      <li>
+                        <a href="https://github.com/blevesearch">
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                          </span>
+                        </a>
+                      </li>
+                      
+                    </ul>
+                    <p class="copyright">Site built with <img class="icon" src="/img/hugo.png"/> <a href="http://gohugo.io/">Hugo</a>.  Search powered by <img class="icon" src="/img/bleve-icon-placard-small.png"/> <a href="http://www.blevesearch.com/">Bleve</a>.</p>
+                    <p class="copyright text-muted">© <a href="http://couchbase.com/">Couchbase</a> 2015</p>
+                  </div>
+              </div>
+          </div>
+      </footer>
+    </div>
+
+    
+    <script src="http://www.blevesearch.com//js/jquery.min.js"></script>
+
+    
+    <script src="http://www.blevesearch.com//js/bootstrap.min.js"></script>
+
+    <script src="http://www.blevesearch.com//js/prism.js"></script>
+
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-54278444-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</body>
+
+</html>

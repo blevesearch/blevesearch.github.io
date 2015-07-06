@@ -1,64 +1,83 @@
-
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="en-us">
+
+<head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="favicon.ico">
 
-    <title>bleve - modern text indexing for Go</title>
+    <title>Bleve -- Bleve</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="http://www.blevesearch.com/index.xml" rel="alternate" type="application/rss+xml" title="Bleve" />
+    <link href="http://www.blevesearch.com/index.xml" rel="feed" type="application/rss+xml" title="Bleve" />
+    
 
-    <!-- Prism CSS -->
-    <link rel="stylesheet" href="css/prism.css"/>
+    <link href="http://www.blevesearch.com//img/favicon.ico" rel="icon">
 
-    <!-- Custom styles for this template -->
-    <link href="css/app.css" rel="stylesheet">
+    
+    <link href="http://www.blevesearch.com//css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
+    <link rel="stylesheet" href="http://www.blevesearch.com//css/font-awesome.min.css">
 
-  <body>
+    
+    <link rel="stylesheet" href="http://www.blevesearch.com//css/prism.css"/>
 
-    <a href="https://github.com/blevesearch/bleve"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+    
+    <link href="http://www.blevesearch.com//css/bleve.css" rel="stylesheet">
 
-    <div class="container">  
+    
+    
+    
 
-      <div class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <a href="/"><img class="logo" src="img/bleve-icon-placard-small.png"/></a>
-            <a class="navbar-brand" href="/">bleve</a>
-          </div>
-          <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="docs.html">Documentation</a></li>
-              <li><a href="discuss.html">Discussion</a></li>
-              <li>
-                <form action="http://wikisearch.blevesearch.com/search/" class="navbar-form searchbox" role="search">
-                    <div class="input-group col-lg-12 col-lg-offset-1">
-                        <input type="text" class="form-control" placeholder="search wiki using bleve" name="q">
-                        <input type="hidden" name="p" value="1"/>
-                        <div class="input-group-btn">
-                            <button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                        </div>
-                    </div>
-                </form>
-              </li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div><!--/.container-fluid -->
+</head>
+
+<body>
+
+    <div class="container">
+        
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                
+                <div class="navbar-header page-scroll">
+                    <a href="/"><img class="logo" src="http://www.blevesearch.com//img/bleve-icon-placard-small.png"/></a>
+                    <a class="navbar-brand" href="/">Bleve</a>
+                </div>
+
+                           
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              
+                <ul class="nav navbar-nav navbar-right">
+                    
+                    <li  >
+                        <a href="/docs/Home/">Documentation</a>
+                    </li>
+                    
+                    <li  >
+                        <a href="/videos/">Videos</a>
+                    </li>
+                    
+                    <li  >
+                        <a href="/community/">Community</a>
+                    </li>
+                    
+                    <li  >
+                        <a href="/news/">News</a>
+                    </li>
+                    
+                    <li  >
+                        <a href="https://github.com/blevesearch/bleve">Code</a>
+                    </li>
+                    
+                  </ul>
+            </div>
+           
+            </div>
+            
+        </nav>
 
       <div class="row marketing">
         <div class="col-lg-6">
@@ -80,8 +99,8 @@ func main() {
         </div>
 
         <div class="col-lg-6">
-          <h1>bleve<h1>
-          <h3>modern text indexing for Go</h3>
+          <h1>Bleve<h1>
+          <h3>full-text search and indexing for Go</h3>
           <ul>
             <li>Simple top-level API</li>
             <li>Index any object in your data model</li>
@@ -91,20 +110,28 @@ func main() {
         </div>
 
         <div class="col-lg-6">
-          <h3>bleve on the road</h3>
+          <h3>Upcoming Events <small>(<a href="/events/">See All</a>)</small></h3>
           <ul>
-            <li class="on-the-road"><a href="https://fosdem.org/2015/schedule/track/go/" target="_blank" title="FOSDEM 2015 Go devroom"><img width="125" src="img/fosdem-2015.jpg" alt="FOSDEM 2015 Go devroom" /></a></li>
-            <li class="on-the-road">
-              <a href="http://www.gophercon.in/" target="_blank" title="GOPHERCON INDIA 2015, The First-Ever Go Conference in India @Banglore">
-                <img src="img/gophercon-india-speaking-125px.png" alt="GOPHERCON INDIA 2015, The First-Ever Go Conference in India @Banglore" />
-              </a>
-              <br/>
-              <a href="https://sourcegraph.com/blog/live/gopherconindia/113241457917">transcript</a>
-            </li>
+            
+              
+                <li class="on-the-road">
+                  <a href="http://www.blevesearch.com/events/gopherCon2015/">
+                    <img src="/img/events/gc2015.png"/>
+                  </a>
+                </li>
+              
+            
+              
+            
+              
+            
           </ul>
         </div>
+
+        
       </div>
 
+      <hr/>
 
       <div class="row marketing">
         <div class="col-lg-6">
@@ -148,29 +175,80 @@ func main() {
         </div>
       </div>
 
-      <div class="footer">
-        <p>&copy; Couchbase 2015</p>
+      <hr/>
+
+      <div class="row marketing">
+        <div class="col-lg-12">
+          <h3>Latest News</h3>
+          <ul>
+            
+               <li><a href="http://www.blevesearch.com/news/Site-Migrated-to-Hugo/">Site Migrated to Hugo - 2015-07-02</a></li>
+            
+          </ul>
+        </div>
       </div>
 
-    </div> <!-- /container -->
+      <hr>
+      
+      <footer>
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                      <li>
+                        <a href="mailto:info@blevesearch.com">
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                          </span>
+                        </a>
+                      </li>
+                      
+                      <li>
+                        <a href="https://twitter.com/blevesearch">
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                          </span>
+                        </a>
+                      </li>
+                      
+                      <li>
+                        <a href="https://github.com/blevesearch">
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                          </span>
+                        </a>
+                      </li>
+                      
+                    </ul>
+                    <p class="copyright">Site built with <img class="icon" src="/img/hugo.png"/> <a href="http://gohugo.io/">Hugo</a>.  Search powered by <img class="icon" src="/img/bleve-icon-placard-small.png"/> <a href="http://www.blevesearch.com/">Bleve</a>.</p>
+                    <p class="copyright text-muted">© <a href="http://couchbase.com/">Couchbase</a> 2015</p>
+                  </div>
+              </div>
+          </div>
+      </footer>
+    </div>
 
+    
+    <script src="http://www.blevesearch.com//js/jquery.min.js"></script>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <!-- Latest compiled and minified JavaScript -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/prism.js"></script>
+    
+    <script src="http://www.blevesearch.com//js/bootstrap.min.js"></script>
+
+    <script src="http://www.blevesearch.com//js/prism.js"></script>
+
+    
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
   ga('create', 'UA-54278444-1', 'auto');
   ga('send', 'pageview');
-
 </script>
-  </body>
+
+</body>
+
 </html>

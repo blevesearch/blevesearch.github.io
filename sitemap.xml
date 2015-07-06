@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://www.blevesearch.com/</loc>
+    <lastmod>2015-07-10T10:25:38-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/events/gopherCon2015/</loc>
+    <lastmod>2015-07-10T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/news/Site-Migrated-to-Hugo/</loc>
+    <lastmod>2015-07-02T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/videos/</loc>
+    <lastmod>2015-06-25T12:25:45-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/Applications-using-bleve/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/Building/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/Analyzers/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/community/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/Character-Filters/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/Contributing/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/Disabling%20Sections%20of%20Documents/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/Example-Applications/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/Getting%20Started/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/Highlight%20Matches%20in%20Results/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/Index-Mapping/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/Pronunciation/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/Package-Structure/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/Home/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/Query-String-Query/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/Query/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/Result-Faceting/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/Terminology/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/Text-Analysis/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/Token-Filters/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/Tokenizers/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/Utilties/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/Wiki-Search/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/events/gopherConIndia2015/</loc>
+    <lastmod>2015-02-20T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/events/fosdem2015/</loc>
+    <lastmod>2015-02-01T10:25:38-04:00</lastmod>
+  </url>
+  
+</urlset>
