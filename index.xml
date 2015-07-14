@@ -7,52 +7,13 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© &lt;a href=&#34;http://couchbase.com/&#34;&gt;Couchbase&lt;/a&gt; 2015</copyright>
-    <lastBuildDate>Fri, 10 Jul 2015 10:25:38 -0400</lastBuildDate>
+    <lastBuildDate>Tue, 14 Jul 2015 10:25:38 -0400</lastBuildDate>
     <atom:link href="http://www.blevesearch.com/index.xml" rel="self" type="application/rss+xml" />
-    
-    <item>
-      <title>GopherCon Lightning Talk</title>
-      <link>http://www.blevesearch.com/events/gopherCon2015/</link>
-      <pubDate>Fri, 10 Jul 2015 10:25:38 -0400</pubDate>
-      
-      <guid>http://www.blevesearch.com/events/gopherCon2015/</guid>
-      <description>&lt;p&gt;The GopherCon lightning talk was a success!  It was great to meet so many Bleve users at GopherCon.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/blevesearch/gophercon15/blob/master/bleve-gophercon15.pdf&#34;&gt;Slides&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Video: Coming Soon&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Site Migrated to Hugo</title>
-      <link>http://www.blevesearch.com/news/Site-Migrated-to-Hugo/</link>
-      <pubDate>Thu, 02 Jul 2015 10:25:38 -0400</pubDate>
-      
-      <guid>http://www.blevesearch.com/news/Site-Migrated-to-Hugo/</guid>
-      <description>
-
-&lt;p&gt;You may notice the site looks a little different today.  We&amp;rsquo;ve just launched a version of the site built with &lt;a href=&#34;http://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;.  The site is functional, but still also very much a work in progress.  Don&amp;rsquo;t hesitate to report any problems you find.&lt;/p&gt;
-
-&lt;h3 id=&#34;why-did-we-make-the-change:871bbe6ca1368764a58ff754bed0e978&#34;&gt;Why did we make the change?&lt;/h3&gt;
-
-&lt;p&gt;Our initial site was just a set of 3 static HTML files.  With so few files, it was reasonable to just copy/paste the headers/footers, etc.  But Bleve is growing, and as we continue to progress our site needs more pages.  Moving beyond just a few pages requires us to use some automation.  I&amp;rsquo;ve used Hugo to build small sites in the past and it&amp;rsquo;s worked great.  And we&amp;rsquo;re happy to support another Go project.&lt;/p&gt;
-
-&lt;h3 id=&#34;site-changes:871bbe6ca1368764a58ff754bed0e978&#34;&gt;Site Changes&lt;/h3&gt;
-
-&lt;p&gt;For the most part you&amp;rsquo;ll find the current site looks similar to the previous site.  The biggest change is that we&amp;rsquo;ve moved our documentation from the Github Wiki into the website itself.  Initially we liked the idea of using the wiki for documentation, particularly because it has such a low bar for users to contribute content.  But, with very little contribution actually happening, we feel there will be more benefits to bringing it into the website.&lt;/p&gt;
-
-&lt;h3 id=&#34;what-about-search:871bbe6ca1368764a58ff754bed0e978&#34;&gt;What about Search?&lt;/h3&gt;
-
-&lt;p&gt;Previously we offered an integrated github wiki search on the website, and as of today that is now missing.  However, stay tuned for future announcements!  Bleve site and documentation search will be back.&lt;/p&gt;
-</description>
-    </item>
     
     <item>
       <title>Site Search is Back!</title>
       <link>http://www.blevesearch.com/news/Site-Search/</link>
-      <pubDate>Thu, 02 Jul 2015 10:25:38 -0400</pubDate>
+      <pubDate>Tue, 14 Jul 2015 10:25:38 -0400</pubDate>
       
       <guid>http://www.blevesearch.com/news/Site-Search/</guid>
       <description>
@@ -178,6 +139,45 @@ cp $GOPATH/src/github.com/blevesearch/hugoidx/search.js static/js/
 &lt;/ol&gt;
 
 &lt;p&gt;Having problems with these instructions?  Let us know via &lt;a href=&#34;mailto:info@blevesearch.com&#34;&gt;email&lt;/a&gt; or the &lt;a href=&#34;https://groups.google.com/forum/#!forum/bleve&#34;&gt;Google Group&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>GopherCon Lightning Talk</title>
+      <link>http://www.blevesearch.com/events/gopherCon2015/</link>
+      <pubDate>Fri, 10 Jul 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/events/gopherCon2015/</guid>
+      <description>&lt;p&gt;The GopherCon lightning talk was a success!  It was great to meet so many Bleve users at GopherCon.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/blevesearch/gophercon15/blob/master/bleve-gophercon15.pdf&#34;&gt;Slides&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Video: Coming Soon&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Site Migrated to Hugo</title>
+      <link>http://www.blevesearch.com/news/Site-Migrated-to-Hugo/</link>
+      <pubDate>Thu, 02 Jul 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/news/Site-Migrated-to-Hugo/</guid>
+      <description>
+
+&lt;p&gt;You may notice the site looks a little different today.  We&amp;rsquo;ve just launched a version of the site built with &lt;a href=&#34;http://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;.  The site is functional, but still also very much a work in progress.  Don&amp;rsquo;t hesitate to report any problems you find.&lt;/p&gt;
+
+&lt;h3 id=&#34;why-did-we-make-the-change:871bbe6ca1368764a58ff754bed0e978&#34;&gt;Why did we make the change?&lt;/h3&gt;
+
+&lt;p&gt;Our initial site was just a set of 3 static HTML files.  With so few files, it was reasonable to just copy/paste the headers/footers, etc.  But Bleve is growing, and as we continue to progress our site needs more pages.  Moving beyond just a few pages requires us to use some automation.  I&amp;rsquo;ve used Hugo to build small sites in the past and it&amp;rsquo;s worked great.  And we&amp;rsquo;re happy to support another Go project.&lt;/p&gt;
+
+&lt;h3 id=&#34;site-changes:871bbe6ca1368764a58ff754bed0e978&#34;&gt;Site Changes&lt;/h3&gt;
+
+&lt;p&gt;For the most part you&amp;rsquo;ll find the current site looks similar to the previous site.  The biggest change is that we&amp;rsquo;ve moved our documentation from the Github Wiki into the website itself.  Initially we liked the idea of using the wiki for documentation, particularly because it has such a low bar for users to contribute content.  But, with very little contribution actually happening, we feel there will be more benefits to bringing it into the website.&lt;/p&gt;
+
+&lt;h3 id=&#34;what-about-search:871bbe6ca1368764a58ff754bed0e978&#34;&gt;What about Search?&lt;/h3&gt;
+
+&lt;p&gt;Previously we offered an integrated github wiki search on the website, and as of today that is now missing.  However, stay tuned for future announcements!  Bleve site and documentation search will be back.&lt;/p&gt;
 </description>
     </item>
     
@@ -308,76 +308,6 @@ cp $GOPATH/src/github.com/blevesearch/hugoidx/search.js static/js/
     </item>
     
     <item>
-      <title>Applications Using Bleve</title>
-      <link>http://www.blevesearch.com/docs/Applications-using-bleve/</link>
-      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
-      
-      <guid>http://www.blevesearch.com/docs/Applications-using-bleve/</guid>
-      <description>
-
-&lt;p&gt;The following applications use bleve.  Add yours to the list!&lt;/p&gt;
-
-&lt;h2 id=&#34;cbft:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;cbft&lt;/h2&gt;
-
-&lt;p&gt;Full-text searches of Couchbase Server, powered by bleve.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/couchbaselabs/cbft&#34;&gt;https://github.com/couchbaselabs/cbft&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;docker-bleve-wiki-indexer:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;docker bleve wiki indexer&lt;/h2&gt;
-
-&lt;p&gt;Dockerizing the bleve library to search the bleve wiki.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/lgs/docker-bleve-wiki-indexer&#34;&gt;https://github.com/lgs/docker-bleve-wiki-indexer&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;goin:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;goin&lt;/h2&gt;
-
-&lt;p&gt;A full text search indexer for your files on disk.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://bitbucket.org/zaphar/goin&#34;&gt;https://bitbucket.org/zaphar/goin&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;tpb-search:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;tpb-search&lt;/h2&gt;
-
-&lt;p&gt;Locally index and search database dumps from &lt;a href=&#34;https://openbay.isohunt.to&#34;&gt;https://openbay.isohunt.to&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/peterhellberg/tpb-search&#34;&gt;https://github.com/peterhellberg/tpb-search&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Community</title>
-      <link>http://www.blevesearch.com/community/</link>
-      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
-      
-      <guid>http://www.blevesearch.com/community/</guid>
-      <description>
-
-&lt;h3 id=&#34;twitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Twitter&lt;/h3&gt;
-
-&lt;p&gt;Follow @blevesearch on &lt;a href=&#34;https://twitter.com/blevesearch&#34;&gt;twitter&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;irc:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;IRC&lt;/h3&gt;
-
-&lt;p&gt;Join the #bleve channel on &lt;a href=&#34;https://freenode.net/&#34;&gt;freenode&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;google-group:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Google Group&lt;/h3&gt;
-
-&lt;p&gt;Discuss use and development of bleve is in &lt;a href=&#34;https://groups.google.com/forum/#!forum/bleve&#34;&gt;this google group&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;gitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Gitter&lt;/h3&gt;
-
-&lt;p&gt;Join the conversation on &lt;a href=&#34;https://gitter.im/blevesearch/bleve&#34;&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Building</title>
       <link>http://www.blevesearch.com/docs/Building/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
@@ -474,6 +404,76 @@ $ go get -u -v -tags full github.com/blevesearch/bleve
     </item>
     
     <item>
+      <title>Community</title>
+      <link>http://www.blevesearch.com/community/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/community/</guid>
+      <description>
+
+&lt;h3 id=&#34;twitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Twitter&lt;/h3&gt;
+
+&lt;p&gt;Follow @blevesearch on &lt;a href=&#34;https://twitter.com/blevesearch&#34;&gt;twitter&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;irc:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;IRC&lt;/h3&gt;
+
+&lt;p&gt;Join the #bleve channel on &lt;a href=&#34;https://freenode.net/&#34;&gt;freenode&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;google-group:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Google Group&lt;/h3&gt;
+
+&lt;p&gt;Discuss use and development of bleve is in &lt;a href=&#34;https://groups.google.com/forum/#!forum/bleve&#34;&gt;this google group&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;gitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Gitter&lt;/h3&gt;
+
+&lt;p&gt;Join the conversation on &lt;a href=&#34;https://gitter.im/blevesearch/bleve&#34;&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Applications Using Bleve</title>
+      <link>http://www.blevesearch.com/docs/Applications-using-bleve/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/Applications-using-bleve/</guid>
+      <description>
+
+&lt;p&gt;The following applications use bleve.  Add yours to the list!&lt;/p&gt;
+
+&lt;h2 id=&#34;cbft:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;cbft&lt;/h2&gt;
+
+&lt;p&gt;Full-text searches of Couchbase Server, powered by bleve.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/couchbaselabs/cbft&#34;&gt;https://github.com/couchbaselabs/cbft&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;docker-bleve-wiki-indexer:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;docker bleve wiki indexer&lt;/h2&gt;
+
+&lt;p&gt;Dockerizing the bleve library to search the bleve wiki.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/lgs/docker-bleve-wiki-indexer&#34;&gt;https://github.com/lgs/docker-bleve-wiki-indexer&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;goin:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;goin&lt;/h2&gt;
+
+&lt;p&gt;A full text search indexer for your files on disk.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://bitbucket.org/zaphar/goin&#34;&gt;https://bitbucket.org/zaphar/goin&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;tpb-search:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;tpb-search&lt;/h2&gt;
+
+&lt;p&gt;Locally index and search database dumps from &lt;a href=&#34;https://openbay.isohunt.to&#34;&gt;https://openbay.isohunt.to&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/peterhellberg/tpb-search&#34;&gt;https://github.com/peterhellberg/tpb-search&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Character Filters</title>
       <link>http://www.blevesearch.com/docs/Character-Filters/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
@@ -540,46 +540,6 @@ personMapping.AddSubDocumentMapping(&amp;quot;Addr&amp;quot;, addressMapping)
     </item>
     
     <item>
-      <title>Example Applications</title>
-      <link>http://www.blevesearch.com/docs/Example-Applications/</link>
-      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
-      
-      <guid>http://www.blevesearch.com/docs/Example-Applications/</guid>
-      <description>
-
-&lt;h2 id=&#34;wiki-indexer:041bbca8e3b6a99527383bbff440fe95&#34;&gt;Wiki Indexer&lt;/h2&gt;
-
-&lt;p&gt;The &lt;a href=&#34;http://www.blevesearch.com/docs/Wiki-Search/&#34;&gt;bleve-wiki-indexer&lt;/a&gt; maintains a searchable bleve index of all these wiki pages.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/blevesearch/bleve-wiki-indexer&#34;&gt;Source Code&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://wikisearch.blevesearch.com/search/&#34;&gt;Try it out, live&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;beer-search:041bbca8e3b6a99527383bbff440fe95&#34;&gt;Beer Search&lt;/h2&gt;
-
-&lt;p&gt;The &lt;a href=&#34;https://github.com/blevesearch/beer-search&#34;&gt;beer-search&lt;/a&gt; application shows many of bleve&amp;rsquo;s features by allowing you to index and search beers and breweries.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/blevesearch/beer-search&#34;&gt;Source Code&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;bleve-explorer:041bbca8e3b6a99527383bbff440fe95&#34;&gt;Bleve Explorer&lt;/h2&gt;
-
-&lt;p&gt;The &lt;a href=&#34;https://github.com/blevesearch/bleve-explorer&#34;&gt;bleve-explorer&lt;/a&gt; application shows how to integrate bleve functionality with an HTTP/REST/JSON interface.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/blevesearch/bleve-explorer&#34;&gt;Source Code&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=DfbRTXE5n4Y&#34;&gt;Video Introduction&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;See also: &lt;a href=&#34;https://github.com/blevesearch/bleve/wiki/Applications-using-bleve&#34;&gt;other applications using bleve&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Getting Started</title>
       <link>http://www.blevesearch.com/docs/Getting%20Started/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
@@ -637,6 +597,46 @@ func main() {
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This should compile, run, and return one search hit for the item added.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Example Applications</title>
+      <link>http://www.blevesearch.com/docs/Example-Applications/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/Example-Applications/</guid>
+      <description>
+
+&lt;h2 id=&#34;wiki-indexer:041bbca8e3b6a99527383bbff440fe95&#34;&gt;Wiki Indexer&lt;/h2&gt;
+
+&lt;p&gt;The &lt;a href=&#34;http://www.blevesearch.com/docs/Wiki-Search/&#34;&gt;bleve-wiki-indexer&lt;/a&gt; maintains a searchable bleve index of all these wiki pages.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/blevesearch/bleve-wiki-indexer&#34;&gt;Source Code&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://wikisearch.blevesearch.com/search/&#34;&gt;Try it out, live&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;beer-search:041bbca8e3b6a99527383bbff440fe95&#34;&gt;Beer Search&lt;/h2&gt;
+
+&lt;p&gt;The &lt;a href=&#34;https://github.com/blevesearch/beer-search&#34;&gt;beer-search&lt;/a&gt; application shows many of bleve&amp;rsquo;s features by allowing you to index and search beers and breweries.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/blevesearch/beer-search&#34;&gt;Source Code&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;bleve-explorer:041bbca8e3b6a99527383bbff440fe95&#34;&gt;Bleve Explorer&lt;/h2&gt;
+
+&lt;p&gt;The &lt;a href=&#34;https://github.com/blevesearch/bleve-explorer&#34;&gt;bleve-explorer&lt;/a&gt; application shows how to integrate bleve functionality with an HTTP/REST/JSON interface.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/blevesearch/bleve-explorer&#34;&gt;Source Code&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=DfbRTXE5n4Y&#34;&gt;Video Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;See also: &lt;a href=&#34;https://github.com/blevesearch/bleve/wiki/Applications-using-bleve&#34;&gt;other applications using bleve&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
