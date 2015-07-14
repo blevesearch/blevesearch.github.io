@@ -34,5 +34,137 @@
 </description>
     </item>
     
+    <item>
+      <title>Site Search is Back!</title>
+      <link>http://www.blevesearch.com/news/Site-Search/</link>
+      <pubDate>Thu, 02 Jul 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/news/Site-Search/</guid>
+      <description>
+
+&lt;p&gt;We recently re-launched the Bleve website using Hugo, and we temporarily lost the ability to search the site.  Today, we bring back search, and show you how you can add search to your Hugo site.&lt;/p&gt;
+
+&lt;p&gt;At a high level, there are three steps to adding search to your site.  First, you must build the index.  Second, you must host the index.  Third, you add a search page to your site.&lt;/p&gt;
+
+&lt;h3 id=&#34;building-the-index:0bce37434e78e28d05902c6ccb8f2171&#34;&gt;Building the Index&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Install &lt;strong&gt;hugoidx&lt;/strong&gt; - this is the command we will use build the search index.  Anytime you update your content and regenerate your site husing the &lt;code&gt;hugo&lt;/code&gt; command, you&amp;rsquo;ll also want to rebuild your search index.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;go get github.com/blevesearch/hugoidx
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;code&gt;cd &amp;lt;your hugo site&amp;gt;&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;code&gt;hugoidx&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;You should now have a file named &lt;code&gt;search.bleve&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;hosting-the-index:0bce37434e78e28d05902c6ccb8f2171&#34;&gt;Hosting the Index&lt;/h3&gt;
+
+&lt;p&gt;In order to host the index we need to run a small Go program that is available on the internet.  To simplify this process, we have built a reusable application called &lt;code&gt;bleve-hosted&lt;/code&gt;.  You can use this application safely answer queries to the index (read-only operations).&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Install &lt;code&gt;bleve-hosted&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;go get github.com/blevesearch/bleve-hosted
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;code&gt;cd $GOPATH/src/github.com/blevesearch/bleve-hosted&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;code&gt;bleve-hosted&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Test that its working:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl http://localhost:8080/api/test.bleve/_search -d &#39;{&amp;quot;query&amp;quot;:{&amp;quot;query&amp;quot;:&amp;quot;bleve&amp;quot;}}&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The resulting JSON should include &amp;ldquo;total_hits&amp;rdquo;: 1&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Copy the &lt;code&gt;search.bleve&lt;/code&gt; index you generated earlier into your &lt;code&gt;indexes/&lt;/code&gt; folder.  (This can really be anywhere, it will always look for an &lt;code&gt;indexes/&lt;/code&gt; folder relative to the current working directly when you launch &lt;code&gt;bleve-hosted&lt;/code&gt;.)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Restart &lt;code&gt;bleve-hosted&lt;/code&gt; and optionally configure your server to keep this process running long term (init-scripts, etc)&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;add-search-to-your-site:0bce37434e78e28d05902c6ccb8f2171&#34;&gt;Add Search to your Site&lt;/h3&gt;
+
+&lt;p&gt;Finally, we&amp;rsquo;re ready to add a search page to our site.  Several files were downloaded as a part of the &lt;code&gt;hugoidx&lt;/code&gt; package to help you get started.  Feel free to customize these files to best adapt them to your site.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;cd &amp;lt;your hugo site&amp;gt;&lt;/code&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Copy the main search page&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cp $GOPATH/src/github.com/blevesearch/hugoidx/search.md content/
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Copy support JavaScript files:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mkdir -p static/js/
+cp $GOPATH/src/github.com/blevesearch/hugoidx/handlebars.js static/js/
+cp $GOPATH/src/github.com/blevesearch/hugoidx/search.js static/js/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;handlebars.js is used to render search results using a simple template syntax.  search.js is our custom code to bind everything together.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;If your site is not already using jQuery:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cp $GOPATH/src/github.com/blevesearch/hugoidx/jquery.min.js static/js/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;jQuery is used to make AJAX requests from the browser to &lt;code&gt;bleve-hosted&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Update your layout to include these javascript files.  For many sites this will be in a file like &lt;code&gt;layouts/partial/footer.html&lt;/code&gt; or &lt;code&gt;themes/&amp;lt;your theme&amp;gt;/layouts/partials/footer.html&lt;/code&gt;.  In the section where javascript files are being included you&amp;rsquo;ll want to add:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;script src=&amp;quot;/js/jquery.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script src=&amp;quot;/js/handlebars.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script src=&amp;quot;/js/search.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Finally, we need to update search.js to point to the correct URL for &lt;code&gt;bleve-hosted&lt;/code&gt;.  On line 2 of &lt;code&gt;static/js/search.js&lt;/code&gt; modify the value:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var searchURL = &#39;http://&amp;lt;your server&amp;gt;:8080/api/search.bleve/_search&#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;try-it-out:0bce37434e78e28d05902c6ccb8f2171&#34;&gt;Try it Out&lt;/h3&gt;
+
+&lt;p&gt;Now, you&amp;rsquo;re ready to regenerate your site and try it out.  If you open your browser to:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    http://localhost:1313/search
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You should see the standard search box.  If you type in your query, the page should reload and display search results below.  If you run into problems, it may be helpful to view the javascript console.&lt;/p&gt;
+
+&lt;h3 id=&#34;finishing-touches:0bce37434e78e28d05902c6ccb8f2171&#34;&gt;Finishing Touches&lt;/h3&gt;
+
+&lt;p&gt;Now let&amp;rsquo;s also add search to the navigation bar.  For our site, we modified the partial &lt;code&gt;navbar.html&lt;/code&gt; to include:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    &amp;lt;div class=&amp;quot;dropdown pull-right&amp;quot;&amp;gt;
+      &amp;lt;form class=&amp;quot;navbar-form&amp;quot; role=&amp;quot;search&amp;quot; action=&amp;quot;/search&amp;quot;&amp;gt;
+        &amp;lt;div class=&amp;quot;input-group&amp;quot;&amp;gt;
+            &amp;lt;input type=&amp;quot;text&amp;quot; class=&amp;quot;form-control&amp;quot; placeholder=&amp;quot;Search&amp;quot; name=&amp;quot;q&amp;quot; id=&amp;quot;srch-term&amp;quot;&amp;gt;
+            &amp;lt;div class=&amp;quot;input-group-btn&amp;quot;&amp;gt;
+                &amp;lt;button class=&amp;quot;btn btn-default&amp;quot; type=&amp;quot;submit&amp;quot;&amp;gt;&amp;lt;i class=&amp;quot;glyphicon glyphicon-search&amp;quot;&amp;gt;&amp;lt;/i&amp;gt;&amp;lt;/button&amp;gt;
+            &amp;lt;/div&amp;gt;
+        &amp;lt;/div&amp;gt;
+      &amp;lt;/form&amp;gt;
+    &amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;future:0bce37434e78e28d05902c6ccb8f2171&#34;&gt;Future&lt;/h3&gt;
+
+&lt;p&gt;Is this perfect? No, not really, there are a still a lot of rough edges we&amp;rsquo;d like to smooth out.  Here are some of our ideas for the future:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Enable running &lt;code&gt;bleve-hosted&lt;/code&gt; in Google App Engine.  This lowers the bar for hosting your index.&lt;/li&gt;
+&lt;li&gt;Streamline the addition of search to your site.  The manual copying of multiple files and editing paths is error prone.  Perhaps additional sub-commands of &lt;code&gt;hugoidx&lt;/code&gt; could assist with this.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Having problems with these instructions?  Let us know via &lt;a href=&#34;mailto:info@blevesearch.com&#34;&gt;email&lt;/a&gt; or the &lt;a href=&#34;https://groups.google.com/forum/#!forum/bleve&#34;&gt;Google Group&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
   </channel>
 </rss>

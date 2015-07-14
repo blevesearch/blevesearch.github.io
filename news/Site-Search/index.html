@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Site Search is Back! -- Bleve</title>
+
+    
+
+    <link href="http://www.blevesearch.com//img/favicon.ico" rel="icon">
+
+    
+    <link href="http://www.blevesearch.com//css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="http://www.blevesearch.com//css/font-awesome.min.css">
+
+    
+    <link rel="stylesheet" href="http://www.blevesearch.com//css/prism.css"/>
+
+    
+    <link href="http://www.blevesearch.com//css/bleve.css" rel="stylesheet">
+
+    
+    
+    
+
+</head>
+
+<body>
+
+    <div class="container">
+        
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                
+                <div class="navbar-header page-scroll">
+                    <a href="/"><img class="logo" src="http://www.blevesearch.com//img/bleve-icon-placard-small.png"/></a>
+                    <a class="navbar-brand" href="/">Bleve</a>
+                </div>
+
+                           
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              
+                <ul class="nav navbar-nav navbar-right">
+                    
+                    <li  >
+                        <a href="/docs/Home/">Documentation</a>
+                    </li>
+                    
+                    <li  >
+                        <a href="/videos/">Videos</a>
+                    </li>
+                    
+                    <li  >
+                        <a href="/community/">Community</a>
+                    </li>
+                    
+                    <li  >
+                        <a href="/news/">News</a>
+                    </li>
+                    
+                    <li  >
+                        <a href="https://github.com/blevesearch/bleve">Code</a>
+                    </li>
+                    
+
+        <div class="dropdown pull-right">
+          <form class="navbar-form" role="search" action="/search">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search" name="q" id="srch-term">
+                <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                </div>
+            </div>
+          </form>
+        </div>
+
+                  </ul>
+            </div>
+           
+
+            </div>
+            
+        </nav>
+
+<h1>Site Search is Back!</h1>
+
+
+
+<p>We recently re-launched the Bleve website using Hugo, and we temporarily lost the ability to search the site.  Today, we bring back search, and show you how you can add search to your Hugo site.</p>
+
+<p>At a high level, there are three steps to adding search to your site.  First, you must build the index.  Second, you must host the index.  Third, you add a search page to your site.</p>
+
+<h3 id="building-the-index:0bce37434e78e28d05902c6ccb8f2171">Building the Index</h3>
+
+<ol>
+<li><p>Install <strong>hugoidx</strong> - this is the command we will use build the search index.  Anytime you update your content and regenerate your site husing the <code>hugo</code> command, you&rsquo;ll also want to rebuild your search index.</p>
+
+<pre><code>go get github.com/blevesearch/hugoidx
+</code></pre></li>
+
+<li><p><code>cd &lt;your hugo site&gt;</code></p></li>
+
+<li><p><code>hugoidx</code></p>
+
+<p>You should now have a file named <code>search.bleve</code>.</p></li>
+</ol>
+
+<h3 id="hosting-the-index:0bce37434e78e28d05902c6ccb8f2171">Hosting the Index</h3>
+
+<p>In order to host the index we need to run a small Go program that is available on the internet.  To simplify this process, we have built a reusable application called <code>bleve-hosted</code>.  You can use this application safely answer queries to the index (read-only operations).</p>
+
+<ol>
+<li><p>Install <code>bleve-hosted</code></p>
+
+<pre><code>go get github.com/blevesearch/bleve-hosted
+</code></pre></li>
+
+<li><p><code>cd $GOPATH/src/github.com/blevesearch/bleve-hosted</code></p></li>
+
+<li><p><code>bleve-hosted</code></p></li>
+
+<li><p>Test that its working:</p>
+
+<pre><code>curl http://localhost:8080/api/test.bleve/_search -d '{&quot;query&quot;:{&quot;query&quot;:&quot;bleve&quot;}}'
+</code></pre>
+
+<p>The resulting JSON should include &ldquo;total_hits&rdquo;: 1</p></li>
+
+<li><p>Copy the <code>search.bleve</code> index you generated earlier into your <code>indexes/</code> folder.  (This can really be anywhere, it will always look for an <code>indexes/</code> folder relative to the current working directly when you launch <code>bleve-hosted</code>.)</p></li>
+
+<li><p>Restart <code>bleve-hosted</code> and optionally configure your server to keep this process running long term (init-scripts, etc)</p></li>
+</ol>
+
+<h3 id="add-search-to-your-site:0bce37434e78e28d05902c6ccb8f2171">Add Search to your Site</h3>
+
+<p>Finally, we&rsquo;re ready to add a search page to our site.  Several files were downloaded as a part of the <code>hugoidx</code> package to help you get started.  Feel free to customize these files to best adapt them to your site.</p>
+
+<ol>
+<li><code>cd &lt;your hugo site&gt;</code></li>
+
+<li><p>Copy the main search page</p>
+
+<pre><code>cp $GOPATH/src/github.com/blevesearch/hugoidx/search.md content/
+</code></pre></li>
+
+<li><p>Copy support JavaScript files:</p>
+
+<pre><code>mkdir -p static/js/
+cp $GOPATH/src/github.com/blevesearch/hugoidx/handlebars.js static/js/
+cp $GOPATH/src/github.com/blevesearch/hugoidx/search.js static/js/
+</code></pre>
+
+<p>handlebars.js is used to render search results using a simple template syntax.  search.js is our custom code to bind everything together.</p></li>
+
+<li><p>If your site is not already using jQuery:</p>
+
+<pre><code>cp $GOPATH/src/github.com/blevesearch/hugoidx/jquery.min.js static/js/
+</code></pre>
+
+<p>jQuery is used to make AJAX requests from the browser to <code>bleve-hosted</code>.</p></li>
+
+<li><p>Update your layout to include these javascript files.  For many sites this will be in a file like <code>layouts/partial/footer.html</code> or <code>themes/&lt;your theme&gt;/layouts/partials/footer.html</code>.  In the section where javascript files are being included you&rsquo;ll want to add:</p>
+
+<pre><code>&lt;script src=&quot;/js/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;/js/handlebars.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;/js/search.js&quot;&gt;&lt;/script&gt;
+</code></pre></li>
+
+<li><p>Finally, we need to update search.js to point to the correct URL for <code>bleve-hosted</code>.  On line 2 of <code>static/js/search.js</code> modify the value:</p>
+
+<pre><code>var searchURL = 'http://&lt;your server&gt;:8080/api/search.bleve/_search'
+</code></pre></li>
+</ol>
+
+<h3 id="try-it-out:0bce37434e78e28d05902c6ccb8f2171">Try it Out</h3>
+
+<p>Now, you&rsquo;re ready to regenerate your site and try it out.  If you open your browser to:</p>
+
+<pre><code>    http://localhost:1313/search
+</code></pre>
+
+<p>You should see the standard search box.  If you type in your query, the page should reload and display search results below.  If you run into problems, it may be helpful to view the javascript console.</p>
+
+<h3 id="finishing-touches:0bce37434e78e28d05902c6ccb8f2171">Finishing Touches</h3>
+
+<p>Now let&rsquo;s also add search to the navigation bar.  For our site, we modified the partial <code>navbar.html</code> to include:</p>
+
+<pre><code>    &lt;div class=&quot;dropdown pull-right&quot;&gt;
+      &lt;form class=&quot;navbar-form&quot; role=&quot;search&quot; action=&quot;/search&quot;&gt;
+        &lt;div class=&quot;input-group&quot;&gt;
+            &lt;input type=&quot;text&quot; class=&quot;form-control&quot; placeholder=&quot;Search&quot; name=&quot;q&quot; id=&quot;srch-term&quot;&gt;
+            &lt;div class=&quot;input-group-btn&quot;&gt;
+                &lt;button class=&quot;btn btn-default&quot; type=&quot;submit&quot;&gt;&lt;i class=&quot;glyphicon glyphicon-search&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/form&gt;
+    &lt;/div&gt;
+</code></pre>
+
+<h3 id="future:0bce37434e78e28d05902c6ccb8f2171">Future</h3>
+
+<p>Is this perfect? No, not really, there are a still a lot of rough edges we&rsquo;d like to smooth out.  Here are some of our ideas for the future:</p>
+
+<ol>
+<li>Enable running <code>bleve-hosted</code> in Google App Engine.  This lowers the bar for hosting your index.</li>
+<li>Streamline the addition of search to your site.  The manual copying of multiple files and editing paths is error prone.  Perhaps additional sub-commands of <code>hugoidx</code> could assist with this.</li>
+</ol>
+
+<p>Having problems with these instructions?  Let us know via <a href="mailto:info@blevesearch.com">email</a> or the <a href="https://groups.google.com/forum/#!forum/bleve">Google Group</a>.</p>
+
+
+      <hr>
+      
+      <footer>
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                      <li>
+                        <a href="mailto:info@blevesearch.com">
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                          </span>
+                        </a>
+                      </li>
+                      
+                      <li>
+                        <a href="https://twitter.com/blevesearch">
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                          </span>
+                        </a>
+                      </li>
+                      
+                      <li>
+                        <a href="https://github.com/blevesearch">
+                          <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                          </span>
+                        </a>
+                      </li>
+                      
+                    </ul>
+                    <p class="copyright">Site built with <img class="icon" src="/img/hugo.png"/> <a href="http://gohugo.io/">Hugo</a>.  Search powered by <img class="icon" src="/img/bleve-icon-placard-small.png"/> <a href="http://www.blevesearch.com/">Bleve</a>.</p>
+                    <p class="copyright text-muted">© <a href="http://couchbase.com/">Couchbase</a> 2015</p>
+                  </div>
+              </div>
+          </div>
+      </footer>
+    </div>
+
+    
+    <script src="http://www.blevesearch.com//js/jquery.min.js"></script>
+
+    
+    <script src="http://www.blevesearch.com//js/bootstrap.min.js"></script>
+
+    <script src="http://www.blevesearch.com//js/prism.js"></script>
+
+    <script src="/js/handlebars.js"></script>
+    <script src="/js/search.js"></script>
+
+    
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-54278444-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</body>
+
+</html>
+

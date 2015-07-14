@@ -18,18 +18,13 @@
   </url>
   
   <url>
+    <loc>http://www.blevesearch.com/news/Site-Search/</loc>
+    <lastmod>2015-07-02T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.blevesearch.com/videos/</loc>
     <lastmod>2015-06-25T12:25:45-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.blevesearch.com/docs/Applications-using-bleve/</loc>
-    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.blevesearch.com/docs/Building/</loc>
-    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
@@ -38,7 +33,17 @@
   </url>
   
   <url>
+    <loc>http://www.blevesearch.com/docs/Applications-using-bleve/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.blevesearch.com/community/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/Building/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
@@ -73,7 +78,7 @@
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/docs/Index-Mapping/</loc>
+    <loc>http://www.blevesearch.com/docs/Home/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
@@ -88,12 +93,12 @@
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/docs/Home/</loc>
+    <loc>http://www.blevesearch.com/docs/Query-String-Query/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/docs/Query-String-Query/</loc>
+    <loc>http://www.blevesearch.com/docs/Index-Mapping/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
@@ -108,11 +113,6 @@
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/docs/Terminology/</loc>
-    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://www.blevesearch.com/docs/Text-Analysis/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
@@ -123,7 +123,17 @@
   </url>
   
   <url>
+    <loc>http://www.blevesearch.com/docs/Terminology/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.blevesearch.com/docs/Tokenizers/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/Wiki-Search/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
@@ -133,8 +143,8 @@
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/docs/Wiki-Search/</loc>
-    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+    <loc>http://www.blevesearch.com/search/</loc>
+    <lastmod>2015-06-11T16:03:09-04:00</lastmod>
   </url>
   
   <url>

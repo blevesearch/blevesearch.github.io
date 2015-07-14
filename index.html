@@ -72,9 +72,22 @@
                         <a href="https://github.com/blevesearch/bleve">Code</a>
                     </li>
                     
+
+        <div class="dropdown pull-right">
+          <form class="navbar-form" role="search" action="/search">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search" name="q" id="srch-term">
+                <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                </div>
+            </div>
+          </form>
+        </div>
+
                   </ul>
             </div>
            
+
             </div>
             
         </nav>
@@ -113,12 +126,6 @@ func main() {
           <h3>Upcoming Events <small>(<a href="/events/">See All</a>)</small></h3>
           <ul>
             
-              
-                <li class="on-the-road">
-                  <a href="http://www.blevesearch.com/events/gopherCon2015/">
-                    <img src="/img/events/gc2015.png"/>
-                  </a>
-                </li>
               
             
               
@@ -184,6 +191,8 @@ func main() {
             
                <li><a href="http://www.blevesearch.com/news/Site-Migrated-to-Hugo/">Site Migrated to Hugo - 2015-07-02</a></li>
             
+               <li><a href="http://www.blevesearch.com/news/Site-Search/">Site Search is Back! - 2015-07-02</a></li>
+            
           </ul>
         </div>
       </div>
@@ -238,6 +247,9 @@ func main() {
     <script src="http://www.blevesearch.com//js/bootstrap.min.js"></script>
 
     <script src="http://www.blevesearch.com//js/prism.js"></script>
+
+    <script src="/js/handlebars.js"></script>
+    <script src="/js/search.js"></script>
 
     
 <script>
