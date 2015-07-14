@@ -25,7 +25,7 @@
 &lt;h3 id=&#34;building-the-index:0bce37434e78e28d05902c6ccb8f2171&#34;&gt;Building the Index&lt;/h3&gt;
 
 &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Install &lt;strong&gt;hugoidx&lt;/strong&gt; - this is the command we will use build the search index.  Anytime you update your content and regenerate your site husing the &lt;code&gt;hugo&lt;/code&gt; command, you&amp;rsquo;ll also want to rebuild your search index.&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;Install &lt;strong&gt;hugoidx&lt;/strong&gt; - this is the command we will use build the search index.  Anytime you update your content and regenerate your site using the &lt;code&gt;hugo&lt;/code&gt; command, you&amp;rsquo;ll also want to rebuild your search index.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;go get github.com/blevesearch/hugoidx
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
@@ -70,7 +70,7 @@
 &lt;ol&gt;
 &lt;li&gt;&lt;code&gt;cd &amp;lt;your hugo site&amp;gt;&lt;/code&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;Copy the main search page&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;Copy the main search page:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;cp $GOPATH/src/github.com/blevesearch/hugoidx/search.md content/
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
@@ -82,7 +82,8 @@ cp $GOPATH/src/github.com/blevesearch/hugoidx/handlebars.js static/js/
 cp $GOPATH/src/github.com/blevesearch/hugoidx/search.js static/js/
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;handlebars.js is used to render search results using a simple template syntax.  search.js is our custom code to bind everything together.&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;handlebars.js is used to render search results using a simple template syntax.&lt;br /&gt;
+search.js is our custom code to bind everything together.&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;If your site is not already using jQuery:&lt;/p&gt;
 
@@ -115,7 +116,7 @@ cp $GOPATH/src/github.com/blevesearch/hugoidx/search.js static/js/
 
 &lt;h3 id=&#34;finishing-touches:0bce37434e78e28d05902c6ccb8f2171&#34;&gt;Finishing Touches&lt;/h3&gt;
 
-&lt;p&gt;Now let&amp;rsquo;s also add search to the navigation bar.  For our site, we modified the partial &lt;code&gt;navbar.html&lt;/code&gt; to include:&lt;/p&gt;
+&lt;p&gt;Now let&amp;rsquo;s also add search to the navigation bar.  For our site, we modified the partial &lt;code&gt;navbar.html&lt;/code&gt; to include the following inside the navigation unordered-list:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;    &amp;lt;div class=&amp;quot;dropdown pull-right&amp;quot;&amp;gt;
       &amp;lt;form class=&amp;quot;navbar-form&amp;quot; role=&amp;quot;search&amp;quot; action=&amp;quot;/search&amp;quot;&amp;gt;
@@ -136,6 +137,7 @@ cp $GOPATH/src/github.com/blevesearch/hugoidx/search.js static/js/
 &lt;ol&gt;
 &lt;li&gt;Enable running &lt;code&gt;bleve-hosted&lt;/code&gt; in Google App Engine.  This lowers the bar for hosting your index.&lt;/li&gt;
 &lt;li&gt;Streamline the addition of search to your site.  The manual copying of multiple files and editing paths is error prone.  Perhaps additional sub-commands of &lt;code&gt;hugoidx&lt;/code&gt; could assist with this.&lt;/li&gt;
+&lt;li&gt;Document worklfow for keeping your site AND your search index up to date.&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;Having problems with these instructions?  Let us know via &lt;a href=&#34;mailto:info@blevesearch.com&#34;&gt;email&lt;/a&gt; or the &lt;a href=&#34;https://groups.google.com/forum/#!forum/bleve&#34;&gt;Google Group&lt;/a&gt;.&lt;/p&gt;

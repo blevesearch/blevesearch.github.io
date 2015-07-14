@@ -70,16 +70,16 @@
                     </li>
                     
 
-        <div class="dropdown pull-right">
-          <form class="navbar-form" role="search" action="/search">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search" name="q" id="srch-term">
-                <div class="input-group-btn">
-                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                </div>
-            </div>
-          </form>
-        </div>
+                    <div class="dropdown pull-right">
+                      <form class="navbar-form" role="search" action="/search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search" name="q" id="srch-term">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                            </div>
+                        </div>
+                      </form>
+                    </div>
 
                   </ul>
             </div>
@@ -100,7 +100,7 @@
 <h3 id="building-the-index:0bce37434e78e28d05902c6ccb8f2171">Building the Index</h3>
 
 <ol>
-<li><p>Install <strong>hugoidx</strong> - this is the command we will use build the search index.  Anytime you update your content and regenerate your site husing the <code>hugo</code> command, you&rsquo;ll also want to rebuild your search index.</p>
+<li><p>Install <strong>hugoidx</strong> - this is the command we will use build the search index.  Anytime you update your content and regenerate your site using the <code>hugo</code> command, you&rsquo;ll also want to rebuild your search index.</p>
 
 <pre><code>go get github.com/blevesearch/hugoidx
 </code></pre></li>
@@ -145,7 +145,7 @@
 <ol>
 <li><code>cd &lt;your hugo site&gt;</code></li>
 
-<li><p>Copy the main search page</p>
+<li><p>Copy the main search page:</p>
 
 <pre><code>cp $GOPATH/src/github.com/blevesearch/hugoidx/search.md content/
 </code></pre></li>
@@ -157,7 +157,8 @@ cp $GOPATH/src/github.com/blevesearch/hugoidx/handlebars.js static/js/
 cp $GOPATH/src/github.com/blevesearch/hugoidx/search.js static/js/
 </code></pre>
 
-<p>handlebars.js is used to render search results using a simple template syntax.  search.js is our custom code to bind everything together.</p></li>
+<p>handlebars.js is used to render search results using a simple template syntax.<br />
+search.js is our custom code to bind everything together.</p></li>
 
 <li><p>If your site is not already using jQuery:</p>
 
@@ -190,7 +191,7 @@ cp $GOPATH/src/github.com/blevesearch/hugoidx/search.js static/js/
 
 <h3 id="finishing-touches:0bce37434e78e28d05902c6ccb8f2171">Finishing Touches</h3>
 
-<p>Now let&rsquo;s also add search to the navigation bar.  For our site, we modified the partial <code>navbar.html</code> to include:</p>
+<p>Now let&rsquo;s also add search to the navigation bar.  For our site, we modified the partial <code>navbar.html</code> to include the following inside the navigation unordered-list:</p>
 
 <pre><code>    &lt;div class=&quot;dropdown pull-right&quot;&gt;
       &lt;form class=&quot;navbar-form&quot; role=&quot;search&quot; action=&quot;/search&quot;&gt;
@@ -211,6 +212,7 @@ cp $GOPATH/src/github.com/blevesearch/hugoidx/search.js static/js/
 <ol>
 <li>Enable running <code>bleve-hosted</code> in Google App Engine.  This lowers the bar for hosting your index.</li>
 <li>Streamline the addition of search to your site.  The manual copying of multiple files and editing paths is error prone.  Perhaps additional sub-commands of <code>hugoidx</code> could assist with this.</li>
+<li>Document worklfow for keeping your site AND your search index up to date.</li>
 </ol>
 
 <p>Having problems with these instructions?  Let us know via <a href="mailto:info@blevesearch.com">email</a> or the <a href="https://groups.google.com/forum/#!forum/bleve">Google Group</a>.</p>
