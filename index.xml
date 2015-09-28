@@ -21,6 +21,215 @@
     </item>
     
     <item>
+      <title>Deferred Cleanup, Checking Errors, and Potential Problems</title>
+      <link>http://www.blevesearch.com/news/Deferred-Cleanup,-Checking-Errors,-and-Potential-Problems/</link>
+      <pubDate>Mon, 28 Sep 2015 10:40:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/news/Deferred-Cleanup,-Checking-Errors,-and-Potential-Problems/</guid>
+      <description>
+
+&lt;p&gt;The &lt;em&gt;defer&lt;/em&gt; statement in Go is frequently used to ensure that once a resource has been acquired, it will be properly cleaned up.  In its simplest form it works exactly as you expect.  But, as you move to more advanced usages there are some things to watch out for.  I&amp;rsquo;d like to share one that I recently ran into while writing Bleve test cases.&lt;/p&gt;
+
+&lt;h3 id=&#34;basics:ffe76477ce26feb5927595f82ec07acf&#34;&gt;Basics&lt;/h3&gt;
+
+&lt;p&gt;The power of the &lt;em&gt;defer&lt;/em&gt; statement in Go is that it lets you put the acquisition and cleanup of a resource side by side.  When you read code later, it&amp;rsquo;s easy to see that the correct behavior is guaranteed.  Let&amp;rsquo;s take a look at a simple example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func main() {
+	r, err := Open(&amp;quot;a&amp;quot;)
+	if err != nil {
+		log.Fatalf(&amp;quot;error opening &#39;a&#39;\n&amp;quot;)
+	}
+	defer r.Close()
+}
+
+type Resource struct {
+	name string
+}
+
+func Open(name string) (*Resource, error) {
+	return &amp;amp;Resource{name}, nil
+}
+
+func (r *Resource) Close() error {
+	log.Printf(&amp;quot;closing %s\n&amp;quot;, r.name)
+	return nil
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://play.golang.org/p/fYB2alVcIw&#34;&gt;Run this in the Go Playground&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The main function shows some very common behavior.  Open a resource, check for an error, then &lt;em&gt;defer&lt;/em&gt; Closing the resource.  When we run this, we get the expected behavior:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;2009/11/10 23:00:00 closing a
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;opening-another-resource-reusing-the-variable:ffe76477ce26feb5927595f82ec07acf&#34;&gt;Opening another Resource, Reusing the Variable&lt;/h3&gt;
+
+&lt;p&gt;Let&amp;rsquo;s make the example a bit more complex.  Now, after closing the resource, we will open another one (with a different name).  Can we reuse the same variable?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func main() {
+	r, err := Open(&amp;quot;a&amp;quot;)
+	if err != nil {
+		log.Fatalf(&amp;quot;error opening &#39;a&#39;\n&amp;quot;)
+	}
+	defer r.Close()
+
+	r, err = Open(&amp;quot;b&amp;quot;)
+	if err != nil {
+		log.Fatalf(&amp;quot;error opening &#39;b&#39;\n&amp;quot;)
+	}
+	defer r.Close()
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://play.golang.org/p/Bal_y0nv4U&#34;&gt;Run this in the Go Playground&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;When I was new to Go and first encountered this code I wasn&amp;rsquo;t sure if this would work.  I knew that &lt;em&gt;defer&lt;/em&gt; would not execute until the end of main, but would it close &amp;lsquo;a&amp;rsquo; AND &amp;lsquo;b&amp;rsquo;?  Or would it close &amp;lsquo;b&amp;rsquo; twice?  If we run it we see:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;2009/11/10 23:00:00 closing b
+2009/11/10 23:00:00 closing a
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So, it does work, this is the expected output.  Some of you may be wondering, but &lt;em&gt;why&lt;/em&gt; does it work?  As the Go blog &lt;a href=&#34;http://blog.golang.org/defer-panic-and-recover&#34;&gt;Defer, Panic, and Recover&lt;/a&gt; explains,&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;A deferred function&amp;rsquo;s arguments are evaluated when the defer statement is evaluated.&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In our case, the method receiver &amp;lsquo;r&amp;rsquo; for the Close() method behaves just like an argument.  So the &amp;lsquo;r&amp;rsquo; is evaluated at the time the defer statement is evaluated, and &lt;em&gt;NOT&lt;/em&gt; when the statement is executed.  In Bleve code we saw this pattern occur frequently in test cases.  We would acquire a resource, take some action, close the resource, check the state of things, then repeat the process.&lt;/p&gt;
+
+&lt;h3 id=&#34;errcheck:ffe76477ce26feb5927595f82ec07acf&#34;&gt;errcheck?&lt;/h3&gt;
+
+&lt;p&gt;Last February I had the amazing opportunity to attend &lt;a href=&#34;http://www.gophercon.in/&#34;&gt;GopherCon India&lt;/a&gt;.  One of the many things I learned while there was of a tool called &lt;a href=&#34;https://github.com/kisielk/errcheck&#34;&gt;errcheck&lt;/a&gt;.  The idea of the tool is simple, it looks at your Go code and identifies places where you&amp;rsquo;re not checking a returned error.  This seemed like such an obvious thing to do, so I ran it on the entire Bleve codebase.  We found several clear cases where an error was returned, and we would not propagate the error back to the caller.&lt;/p&gt;
+
+&lt;p&gt;But what happens if we run &lt;em&gt;errcheck&lt;/em&gt; on the code we just wrote above?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;github.com/mschoch/defertest/main.go:10:15	defer r.Close()
+github.com/mschoch/defertest/main.go:16:15	defer r.Close()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The Close() method returns an error.  Although it&amp;rsquo;s not used in this contrived example, I coded it that way on purpose as that is very common in the real world.  Does checking this error matter?  If closing the first resource results in an error, should you try to close the second one?  In the abstract these are interesting philosophical questions, but let&amp;rsquo;s assume we do want to check the errors.  How would we do it?  My first attempt looked like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func main() {
+	r, err := Open(&amp;quot;a&amp;quot;)
+	if err != nil {
+		log.Fatalf(&amp;quot;error opening &#39;a&#39;\n&amp;quot;)
+	}
+	defer func() {
+		err := r.Close()
+		if err != nil {
+			log.Fatal(err)
+		}
+	}()
+
+	r, err = Open(&amp;quot;b&amp;quot;)
+	if err != nil {
+		log.Fatalf(&amp;quot;error opening &#39;b&#39;\n&amp;quot;)
+	}
+	defer func() {
+		err := r.Close()
+		if err != nil {
+			log.Fatal(err)
+		}
+	}()
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://play.golang.org/p/_MPUl6zWjF&#34;&gt;Run this in the Go Playground&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I added an anonymous function which invokes r.Close(), checks the error, and if its non-nil we exit the program through log.Fatal().  It seems like such a simple change, but we&amp;rsquo;ve introduced a severe bug into the code.  In our case we can see it clearly since we&amp;rsquo;re printing out the name of the resource being closed:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;2009/11/10 23:00:00 closing b
+2009/11/10 23:00:00 closing b
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Oops!  We&amp;rsquo;re now closing the &amp;lsquo;b&amp;rsquo; resource twice, and never closing the &amp;lsquo;a&amp;rsquo; resource.  This is a severe problem, closing &amp;lsquo;b&amp;rsquo; a second time may not be well defined behavior, and not closing &amp;lsquo;a&amp;rsquo; may leak resources.&lt;/p&gt;
+
+&lt;p&gt;Where did we go wrong?  Remember the rule we were given was:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;A deferred function&amp;rsquo;s arguments are evaluated when the defer statement is evaluated.&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;And in our new code, the deferred function has no arguments, and no method receiver.  We&amp;rsquo;re now relying the anonymous function referring to &amp;lsquo;r&amp;rsquo;.  The Go spec says:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&amp;rdquo;&amp;hellip;they may refer to variables defined in a surrounding function. Those variables are then shared between the surrounding function and the function literal, and they survive as long as they are accessible.&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;So, now it&amp;rsquo;s fairly clear what happened.  At the time the &lt;em&gt;defer&lt;/em&gt; statement was evaluated, the arguments were evaluated, but there were none.  Then at the end of the function, the deferred function is executed, and &lt;em&gt;now&lt;/em&gt; as the anonymous functions are executed, &amp;lsquo;r&amp;rsquo; is evaluated, and in both cases it refers to &amp;lsquo;b&amp;rsquo;.&lt;/p&gt;
+
+&lt;h3 id=&#34;the-fix:ffe76477ce26feb5927595f82ec07acf&#34;&gt;The Fix&lt;/h3&gt;
+
+&lt;p&gt;Option 1, we can rewrite the &lt;em&gt;defer&lt;/em&gt; statement to pass &amp;lsquo;r&amp;rsquo; as an argument:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func main() {
+	r, err := Open(&amp;quot;a&amp;quot;)
+	if err != nil {
+		log.Fatalf(&amp;quot;error opening &#39;a&#39;\n&amp;quot;)
+	}
+	defer func(r *Resource) {
+		err := r.Close()
+		if err != nil {
+			log.Fatal(err)
+		}
+	}(r)
+
+	r, err = Open(&amp;quot;b&amp;quot;)
+	if err != nil {
+		log.Fatalf(&amp;quot;error opening &#39;b&#39;\n&amp;quot;)
+	}
+	defer func(r *Resource) {
+		err := r.Close()
+		if err != nil {
+			log.Fatal(err)
+		}
+	}(r)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This does give the correct output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;2009/11/10 23:00:00 closing b
+2009/11/10 23:00:00 closing a
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But, to be honest, it&amp;rsquo;s rather verbose.  In many cases it may just be simpler to use a different variable name.  Option 2, use a new variable for the second resource:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func main() {
+	r, err := Open(&amp;quot;a&amp;quot;)
+	if err != nil {
+		log.Fatalf(&amp;quot;error opening &#39;a&#39;\n&amp;quot;)
+	}
+	defer func() {
+		err := r.Close()
+		if err != nil {
+			log.Fatal(err)
+		}
+	}()
+
+	r2, err := Open(&amp;quot;b&amp;quot;)
+	if err != nil {
+		log.Fatalf(&amp;quot;error opening &#39;b&#39;\n&amp;quot;)
+	}
+	defer func() {
+		err := r2.Close()
+		if err != nil {
+			log.Fatal(err)
+		}
+	}()
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As I mentioned earlier, in Bleve this pattern only seems to arise in test cases.  I suspect in real code you&amp;rsquo;d be more likely to already be using more descriptive identifiers.&lt;/p&gt;
+
+&lt;h3 id=&#34;summary:ffe76477ce26feb5927595f82ec07acf&#34;&gt;Summary&lt;/h3&gt;
+
+&lt;p&gt;To me the lesson here is that we had a simple pattern for deferred cleanup that worked.  I even explicitly took the time to verify that it cleaned up the correct resources when I reused variables.  Then I took the seemingly natural step to make sure we check all the returned errors.  But, I was a bit careless and overlooked that the deferred anonymous function can have significantly different behavior.  It wasn&amp;rsquo;t until I observed problems that I went back to recheck my assumptions and track down the problem.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Faster Tokenization with Ragel generated FSM</title>
       <link>http://www.blevesearch.com/news/Faster-Tokenization-with-Ragel-generated-FSM/</link>
       <pubDate>Tue, 08 Sep 2015 10:40:38 -0400</pubDate>
@@ -449,156 +658,6 @@ search.js is our custom code to bind everything together.&lt;/p&gt;&lt;/li&gt;
     </item>
     
     <item>
-      <title>Applications Using Bleve</title>
-      <link>http://www.blevesearch.com/docs/Applications-using-bleve/</link>
-      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
-      
-      <guid>http://www.blevesearch.com/docs/Applications-using-bleve/</guid>
-      <description>
-
-&lt;p&gt;The following applications use bleve.  Add yours to the list!&lt;/p&gt;
-
-&lt;h2 id=&#34;cbft:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;cbft&lt;/h2&gt;
-
-&lt;p&gt;Full-text searches of Couchbase Server, powered by bleve.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/couchbaselabs/cbft&#34;&gt;https://github.com/couchbaselabs/cbft&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;docker-bleve-wiki-indexer:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;docker bleve wiki indexer&lt;/h2&gt;
-
-&lt;p&gt;Dockerizing the bleve library to search the bleve wiki.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/lgs/docker-bleve-wiki-indexer&#34;&gt;https://github.com/lgs/docker-bleve-wiki-indexer&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;goin:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;goin&lt;/h2&gt;
-
-&lt;p&gt;A full text search indexer for your files on disk.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://bitbucket.org/zaphar/goin&#34;&gt;https://bitbucket.org/zaphar/goin&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;tpb-search:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;tpb-search&lt;/h2&gt;
-
-&lt;p&gt;Locally index and search database dumps from &lt;a href=&#34;https://openbay.isohunt.to&#34;&gt;https://openbay.isohunt.to&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/peterhellberg/tpb-search&#34;&gt;https://github.com/peterhellberg/tpb-search&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Community</title>
-      <link>http://www.blevesearch.com/community/</link>
-      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
-      
-      <guid>http://www.blevesearch.com/community/</guid>
-      <description>
-
-&lt;h3 id=&#34;twitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Twitter&lt;/h3&gt;
-
-&lt;p&gt;Follow @blevesearch on &lt;a href=&#34;https://twitter.com/blevesearch&#34;&gt;twitter&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;irc:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;IRC&lt;/h3&gt;
-
-&lt;p&gt;Join the #bleve channel on &lt;a href=&#34;https://freenode.net/&#34;&gt;freenode&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;google-group:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Google Group&lt;/h3&gt;
-
-&lt;p&gt;Discuss use and development of bleve is in &lt;a href=&#34;https://groups.google.com/forum/#!forum/bleve&#34;&gt;this google group&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;gitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Gitter&lt;/h3&gt;
-
-&lt;p&gt;Join the conversation on &lt;a href=&#34;https://gitter.im/blevesearch/bleve&#34;&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Analyzers</title>
-      <link>http://www.blevesearch.com/docs/Analyzers/</link>
-      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
-      
-      <guid>http://www.blevesearch.com/docs/Analyzers/</guid>
-      <description>
-
-&lt;h2 id=&#34;general-purpose-analyzers:aa66feb1a6a343065211b619ad078082&#34;&gt;General Purpose Analyzers&lt;/h2&gt;
-
-&lt;h3 id=&#34;keyword:aa66feb1a6a343065211b619ad078082&#34;&gt;Keyword&lt;/h3&gt;
-
-&lt;p&gt;The Keyword Analyzer does not perform any analysis on the input text.  It creates a single token representing the entire input.  This is useful for fields where you only want exact matches.  For example, a field containing keywords or tags that may contain spaces that another analyzer might interpret as token boundaries.&lt;/p&gt;
-
-&lt;h3 id=&#34;simple:aa66feb1a6a343065211b619ad078082&#34;&gt;Simple&lt;/h3&gt;
-
-&lt;p&gt;The simple analyzer performs only minimal analysis on the input.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Tokenizer - &lt;a href=&#34;http://www.blevesearch.com/docs/Tokenizers/#whitespace:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Whitespace&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Token Filters
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#lowercase:c38efc402d8771527a225c32b59be157&#34;&gt;Lowercase&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;standard:aa66feb1a6a343065211b619ad078082&#34;&gt;Standard&lt;/h3&gt;
-
-&lt;p&gt;The Standard Analyzer is like the Simple Analyzer but also adds English stop word removal.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Tokenizer - &lt;a href=&#34;http://www.blevesearch.com/docs/Tokenizers/#whitespace:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Whitespace&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Token Filters
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#lowercase:c38efc402d8771527a225c32b59be157&#34;&gt;Lowercase&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;English &lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#stop-token:c38efc402d8771527a225c32b59be157&#34;&gt;Stop Token&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;detect-language:aa66feb1a6a343065211b619ad078082&#34;&gt;Detect Language&lt;/h3&gt;
-
-&lt;p&gt;The Detect Language Analyzer is used to examine input text, use heuristics to determine a best guess at the language, and index the ISO 639 Language Code.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Tokenizer - &lt;a href=&#34;http://www.blevesearch.com/docs/Tokenizers/#single-token:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Single&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Token Filters
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#lowercase:c38efc402d8771527a225c32b59be157&#34;&gt;Lowercase&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#cld2:c38efc402d8771527a225c32b59be157&#34;&gt;CLD2&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;language-specific-analyzers:aa66feb1a6a343065211b619ad078082&#34;&gt;Language Specific Analyzers&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Danish&lt;/li&gt;
-&lt;li&gt;Dutch&lt;/li&gt;
-&lt;li&gt;English&lt;/li&gt;
-&lt;li&gt;Finnish&lt;/li&gt;
-&lt;li&gt;French&lt;/li&gt;
-&lt;li&gt;Hungarian&lt;/li&gt;
-&lt;li&gt;Italian&lt;/li&gt;
-&lt;li&gt;German&lt;/li&gt;
-&lt;li&gt;Norwegian&lt;/li&gt;
-&lt;li&gt;Persian&lt;/li&gt;
-&lt;li&gt;Portuguese&lt;/li&gt;
-&lt;li&gt;Romanian&lt;/li&gt;
-&lt;li&gt;Russian&lt;/li&gt;
-&lt;li&gt;Sorani&lt;/li&gt;
-&lt;li&gt;Spanish&lt;/li&gt;
-&lt;li&gt;Swedish&lt;/li&gt;
-&lt;li&gt;Thai&lt;/li&gt;
-&lt;li&gt;Turkish&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Building</title>
       <link>http://www.blevesearch.com/docs/Building/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
@@ -695,6 +754,156 @@ $ go get -u -v -tags full github.com/blevesearch/bleve
     </item>
     
     <item>
+      <title>Applications Using Bleve</title>
+      <link>http://www.blevesearch.com/docs/Applications-using-bleve/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/Applications-using-bleve/</guid>
+      <description>
+
+&lt;p&gt;The following applications use bleve.  Add yours to the list!&lt;/p&gt;
+
+&lt;h2 id=&#34;cbft:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;cbft&lt;/h2&gt;
+
+&lt;p&gt;Full-text searches of Couchbase Server, powered by bleve.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/couchbaselabs/cbft&#34;&gt;https://github.com/couchbaselabs/cbft&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;docker-bleve-wiki-indexer:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;docker bleve wiki indexer&lt;/h2&gt;
+
+&lt;p&gt;Dockerizing the bleve library to search the bleve wiki.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/lgs/docker-bleve-wiki-indexer&#34;&gt;https://github.com/lgs/docker-bleve-wiki-indexer&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;goin:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;goin&lt;/h2&gt;
+
+&lt;p&gt;A full text search indexer for your files on disk.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://bitbucket.org/zaphar/goin&#34;&gt;https://bitbucket.org/zaphar/goin&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;tpb-search:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;tpb-search&lt;/h2&gt;
+
+&lt;p&gt;Locally index and search database dumps from &lt;a href=&#34;https://openbay.isohunt.to&#34;&gt;https://openbay.isohunt.to&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/peterhellberg/tpb-search&#34;&gt;https://github.com/peterhellberg/tpb-search&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Analyzers</title>
+      <link>http://www.blevesearch.com/docs/Analyzers/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/Analyzers/</guid>
+      <description>
+
+&lt;h2 id=&#34;general-purpose-analyzers:aa66feb1a6a343065211b619ad078082&#34;&gt;General Purpose Analyzers&lt;/h2&gt;
+
+&lt;h3 id=&#34;keyword:aa66feb1a6a343065211b619ad078082&#34;&gt;Keyword&lt;/h3&gt;
+
+&lt;p&gt;The Keyword Analyzer does not perform any analysis on the input text.  It creates a single token representing the entire input.  This is useful for fields where you only want exact matches.  For example, a field containing keywords or tags that may contain spaces that another analyzer might interpret as token boundaries.&lt;/p&gt;
+
+&lt;h3 id=&#34;simple:aa66feb1a6a343065211b619ad078082&#34;&gt;Simple&lt;/h3&gt;
+
+&lt;p&gt;The simple analyzer performs only minimal analysis on the input.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Tokenizer - &lt;a href=&#34;http://www.blevesearch.com/docs/Tokenizers/#whitespace:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Whitespace&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Token Filters
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#lowercase:c38efc402d8771527a225c32b59be157&#34;&gt;Lowercase&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;standard:aa66feb1a6a343065211b619ad078082&#34;&gt;Standard&lt;/h3&gt;
+
+&lt;p&gt;The Standard Analyzer is like the Simple Analyzer but also adds English stop word removal.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Tokenizer - &lt;a href=&#34;http://www.blevesearch.com/docs/Tokenizers/#whitespace:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Whitespace&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Token Filters
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#lowercase:c38efc402d8771527a225c32b59be157&#34;&gt;Lowercase&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;English &lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#stop-token:c38efc402d8771527a225c32b59be157&#34;&gt;Stop Token&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;detect-language:aa66feb1a6a343065211b619ad078082&#34;&gt;Detect Language&lt;/h3&gt;
+
+&lt;p&gt;The Detect Language Analyzer is used to examine input text, use heuristics to determine a best guess at the language, and index the ISO 639 Language Code.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Tokenizer - &lt;a href=&#34;http://www.blevesearch.com/docs/Tokenizers/#single-token:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Single&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Token Filters
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#lowercase:c38efc402d8771527a225c32b59be157&#34;&gt;Lowercase&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#cld2:c38efc402d8771527a225c32b59be157&#34;&gt;CLD2&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;language-specific-analyzers:aa66feb1a6a343065211b619ad078082&#34;&gt;Language Specific Analyzers&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Danish&lt;/li&gt;
+&lt;li&gt;Dutch&lt;/li&gt;
+&lt;li&gt;English&lt;/li&gt;
+&lt;li&gt;Finnish&lt;/li&gt;
+&lt;li&gt;French&lt;/li&gt;
+&lt;li&gt;Hungarian&lt;/li&gt;
+&lt;li&gt;Italian&lt;/li&gt;
+&lt;li&gt;German&lt;/li&gt;
+&lt;li&gt;Norwegian&lt;/li&gt;
+&lt;li&gt;Persian&lt;/li&gt;
+&lt;li&gt;Portuguese&lt;/li&gt;
+&lt;li&gt;Romanian&lt;/li&gt;
+&lt;li&gt;Russian&lt;/li&gt;
+&lt;li&gt;Sorani&lt;/li&gt;
+&lt;li&gt;Spanish&lt;/li&gt;
+&lt;li&gt;Swedish&lt;/li&gt;
+&lt;li&gt;Thai&lt;/li&gt;
+&lt;li&gt;Turkish&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Community</title>
+      <link>http://www.blevesearch.com/community/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/community/</guid>
+      <description>
+
+&lt;h3 id=&#34;twitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Twitter&lt;/h3&gt;
+
+&lt;p&gt;Follow @blevesearch on &lt;a href=&#34;https://twitter.com/blevesearch&#34;&gt;twitter&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;irc:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;IRC&lt;/h3&gt;
+
+&lt;p&gt;Join the #bleve channel on &lt;a href=&#34;https://freenode.net/&#34;&gt;freenode&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;google-group:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Google Group&lt;/h3&gt;
+
+&lt;p&gt;Discuss use and development of bleve is in &lt;a href=&#34;https://groups.google.com/forum/#!forum/bleve&#34;&gt;this google group&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;gitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Gitter&lt;/h3&gt;
+
+&lt;p&gt;Join the conversation on &lt;a href=&#34;https://gitter.im/blevesearch/bleve&#34;&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Character Filters</title>
       <link>http://www.blevesearch.com/docs/Character-Filters/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
@@ -715,6 +924,25 @@ $ go get -u -v -tags full github.com/blevesearch/bleve
 &lt;h3 id=&#34;zero-width-non-joiner:332c3eea69ab462e14d779b7c7983cd1&#34;&gt;Zero-width Non-Joiner&lt;/h3&gt;
 
 &lt;p&gt;The zero-width non-joiner character filter replaces zero-width non-joiner characters with a space.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Contributing</title>
+      <link>http://www.blevesearch.com/docs/Contributing/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/Contributing/</guid>
+      <description>&lt;p&gt;As bleve is a Couchbase project we must require contributors accept the &lt;a href=&#34;http://review.couchbase.org/static/individual_agreement.html&#34;&gt;Couchbase Contributor License Agreement&lt;/a&gt;.  To sign this agreement log into the Couchbase &lt;a href=&#34;http://review.couchbase.org/&#34;&gt;code review tool&lt;/a&gt;.  The bleve project does not use this code review tool but it is still used to track acceptance of the contributor license agreements.&lt;/p&gt;
+
+&lt;p&gt;All types of contributions are welcome, but please keep the following in mind:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;If you&amp;rsquo;re planning a large change, you should really discuss it on the &lt;a href=&#34;https://groups.google.com/forum/#!forum/bleve&#34;&gt;google group&lt;/a&gt; first.  This helps avoid duplicate effort and spending time on something that may not be merged.&lt;/li&gt;
+&lt;li&gt;Existing tests should continue to pass, new tests for the contribution are nice to have.&lt;/li&gt;
+&lt;li&gt;All code should have gone through &lt;code&gt;go fmt&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;All code should pass &lt;code&gt;go vet&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
 </description>
     </item>
     
@@ -778,79 +1006,6 @@ personMapping.AddSubDocumentMapping(&amp;quot;Addr&amp;quot;, addressMapping)
 &lt;hr /&gt;
 
 &lt;p&gt;See also: &lt;a href=&#34;https://github.com/blevesearch/bleve/wiki/Applications-using-bleve&#34;&gt;other applications using bleve&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Contributing</title>
-      <link>http://www.blevesearch.com/docs/Contributing/</link>
-      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
-      
-      <guid>http://www.blevesearch.com/docs/Contributing/</guid>
-      <description>&lt;p&gt;As bleve is a Couchbase project we must require contributors accept the &lt;a href=&#34;http://review.couchbase.org/static/individual_agreement.html&#34;&gt;Couchbase Contributor License Agreement&lt;/a&gt;.  To sign this agreement log into the Couchbase &lt;a href=&#34;http://review.couchbase.org/&#34;&gt;code review tool&lt;/a&gt;.  The bleve project does not use this code review tool but it is still used to track acceptance of the contributor license agreements.&lt;/p&gt;
-
-&lt;p&gt;All types of contributions are welcome, but please keep the following in mind:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;If you&amp;rsquo;re planning a large change, you should really discuss it on the &lt;a href=&#34;https://groups.google.com/forum/#!forum/bleve&#34;&gt;google group&lt;/a&gt; first.  This helps avoid duplicate effort and spending time on something that may not be merged.&lt;/li&gt;
-&lt;li&gt;Existing tests should continue to pass, new tests for the contribution are nice to have.&lt;/li&gt;
-&lt;li&gt;All code should have gone through &lt;code&gt;go fmt&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;All code should pass &lt;code&gt;go vet&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Highlight Matches in Results</title>
-      <link>http://www.blevesearch.com/docs/Highlight%20Matches%20in%20Results/</link>
-      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
-      
-      <guid>http://www.blevesearch.com/docs/Highlight%20Matches%20in%20Results/</guid>
-      <description>
-
-&lt;p&gt;One popular feature of search is the ability to highlight matching sections of a document in the search results.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Requirements&lt;/strong&gt;
-* The field you want to highlight matches in must be both &lt;strong&gt;Stored&lt;/strong&gt; and &lt;strong&gt;IncludeTermVectors&lt;/strong&gt;.  It must be stored so that we have access to the original content to highlight, and it must include term vectors so that we know the byte offsets where each term occurred within the original contnent.&lt;/p&gt;
-
-&lt;p&gt;Consider we already have the following search request:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;    query := bleve.NewQueryStringQuery(...)
-    searchRequest := bleve.NewSearchRequest(query)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We can highlight results with the default highlighter using:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;    searchRequest.Highlight = bleve.NewHighlight()
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Or we can request use of a specific named highlighter with:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;    searchRequest.Highlight = bleve.NewHighlightWithStyle(highlighterName)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Without any other configuration, it will automatically try to highlight any fields which have matches.  Sometimes we&amp;rsquo;re only interested in highlighting a specific field or set of fields.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;    searchRequest.Highlight.AddField(field)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;highlighters:8a6c01a638330ec98d137a89109c86d0&#34;&gt;Highlighters&lt;/h3&gt;
-
-&lt;h4 id=&#34;html:8a6c01a638330ec98d137a89109c86d0&#34;&gt;HTML&lt;/h4&gt;
-
-&lt;p&gt;The HTML Result Match Highlighter is registered with the name &lt;code&gt;html&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;By default it produces output that looks like:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://www.blevesearch.com/img/docs/highlight-html.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&#34;ansi:8a6c01a638330ec98d137a89109c86d0&#34;&gt;ANSI&lt;/h4&gt;
-
-&lt;p&gt;The ANSI Result Match Highlighter is registered with the name &lt;code&gt;ansi&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;By default it produces output that looks like:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://www.blevesearch.com/img/docs/highlight-ansi.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 </description>
     </item>
     

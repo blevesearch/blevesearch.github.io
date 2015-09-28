@@ -7,8 +7,217 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© &lt;a href=&#34;http://couchbase.com/&#34;&gt;Couchbase&lt;/a&gt; 2015</copyright>
-    <lastBuildDate>Tue, 08 Sep 2015 10:40:38 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 28 Sep 2015 10:40:38 -0400</lastBuildDate>
     <atom:link href="http://www.blevesearch.com/news/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Deferred Cleanup, Checking Errors, and Potential Problems</title>
+      <link>http://www.blevesearch.com/news/Deferred-Cleanup,-Checking-Errors,-and-Potential-Problems/</link>
+      <pubDate>Mon, 28 Sep 2015 10:40:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/news/Deferred-Cleanup,-Checking-Errors,-and-Potential-Problems/</guid>
+      <description>
+
+&lt;p&gt;The &lt;em&gt;defer&lt;/em&gt; statement in Go is frequently used to ensure that once a resource has been acquired, it will be properly cleaned up.  In its simplest form it works exactly as you expect.  But, as you move to more advanced usages there are some things to watch out for.  I&amp;rsquo;d like to share one that I recently ran into while writing Bleve test cases.&lt;/p&gt;
+
+&lt;h3 id=&#34;basics:ffe76477ce26feb5927595f82ec07acf&#34;&gt;Basics&lt;/h3&gt;
+
+&lt;p&gt;The power of the &lt;em&gt;defer&lt;/em&gt; statement in Go is that it lets you put the acquisition and cleanup of a resource side by side.  When you read code later, it&amp;rsquo;s easy to see that the correct behavior is guaranteed.  Let&amp;rsquo;s take a look at a simple example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func main() {
+	r, err := Open(&amp;quot;a&amp;quot;)
+	if err != nil {
+		log.Fatalf(&amp;quot;error opening &#39;a&#39;\n&amp;quot;)
+	}
+	defer r.Close()
+}
+
+type Resource struct {
+	name string
+}
+
+func Open(name string) (*Resource, error) {
+	return &amp;amp;Resource{name}, nil
+}
+
+func (r *Resource) Close() error {
+	log.Printf(&amp;quot;closing %s\n&amp;quot;, r.name)
+	return nil
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://play.golang.org/p/fYB2alVcIw&#34;&gt;Run this in the Go Playground&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The main function shows some very common behavior.  Open a resource, check for an error, then &lt;em&gt;defer&lt;/em&gt; Closing the resource.  When we run this, we get the expected behavior:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;2009/11/10 23:00:00 closing a
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;opening-another-resource-reusing-the-variable:ffe76477ce26feb5927595f82ec07acf&#34;&gt;Opening another Resource, Reusing the Variable&lt;/h3&gt;
+
+&lt;p&gt;Let&amp;rsquo;s make the example a bit more complex.  Now, after closing the resource, we will open another one (with a different name).  Can we reuse the same variable?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func main() {
+	r, err := Open(&amp;quot;a&amp;quot;)
+	if err != nil {
+		log.Fatalf(&amp;quot;error opening &#39;a&#39;\n&amp;quot;)
+	}
+	defer r.Close()
+
+	r, err = Open(&amp;quot;b&amp;quot;)
+	if err != nil {
+		log.Fatalf(&amp;quot;error opening &#39;b&#39;\n&amp;quot;)
+	}
+	defer r.Close()
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://play.golang.org/p/Bal_y0nv4U&#34;&gt;Run this in the Go Playground&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;When I was new to Go and first encountered this code I wasn&amp;rsquo;t sure if this would work.  I knew that &lt;em&gt;defer&lt;/em&gt; would not execute until the end of main, but would it close &amp;lsquo;a&amp;rsquo; AND &amp;lsquo;b&amp;rsquo;?  Or would it close &amp;lsquo;b&amp;rsquo; twice?  If we run it we see:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;2009/11/10 23:00:00 closing b
+2009/11/10 23:00:00 closing a
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So, it does work, this is the expected output.  Some of you may be wondering, but &lt;em&gt;why&lt;/em&gt; does it work?  As the Go blog &lt;a href=&#34;http://blog.golang.org/defer-panic-and-recover&#34;&gt;Defer, Panic, and Recover&lt;/a&gt; explains,&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;A deferred function&amp;rsquo;s arguments are evaluated when the defer statement is evaluated.&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In our case, the method receiver &amp;lsquo;r&amp;rsquo; for the Close() method behaves just like an argument.  So the &amp;lsquo;r&amp;rsquo; is evaluated at the time the defer statement is evaluated, and &lt;em&gt;NOT&lt;/em&gt; when the statement is executed.  In Bleve code we saw this pattern occur frequently in test cases.  We would acquire a resource, take some action, close the resource, check the state of things, then repeat the process.&lt;/p&gt;
+
+&lt;h3 id=&#34;errcheck:ffe76477ce26feb5927595f82ec07acf&#34;&gt;errcheck?&lt;/h3&gt;
+
+&lt;p&gt;Last February I had the amazing opportunity to attend &lt;a href=&#34;http://www.gophercon.in/&#34;&gt;GopherCon India&lt;/a&gt;.  One of the many things I learned while there was of a tool called &lt;a href=&#34;https://github.com/kisielk/errcheck&#34;&gt;errcheck&lt;/a&gt;.  The idea of the tool is simple, it looks at your Go code and identifies places where you&amp;rsquo;re not checking a returned error.  This seemed like such an obvious thing to do, so I ran it on the entire Bleve codebase.  We found several clear cases where an error was returned, and we would not propagate the error back to the caller.&lt;/p&gt;
+
+&lt;p&gt;But what happens if we run &lt;em&gt;errcheck&lt;/em&gt; on the code we just wrote above?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;github.com/mschoch/defertest/main.go:10:15	defer r.Close()
+github.com/mschoch/defertest/main.go:16:15	defer r.Close()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The Close() method returns an error.  Although it&amp;rsquo;s not used in this contrived example, I coded it that way on purpose as that is very common in the real world.  Does checking this error matter?  If closing the first resource results in an error, should you try to close the second one?  In the abstract these are interesting philosophical questions, but let&amp;rsquo;s assume we do want to check the errors.  How would we do it?  My first attempt looked like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func main() {
+	r, err := Open(&amp;quot;a&amp;quot;)
+	if err != nil {
+		log.Fatalf(&amp;quot;error opening &#39;a&#39;\n&amp;quot;)
+	}
+	defer func() {
+		err := r.Close()
+		if err != nil {
+			log.Fatal(err)
+		}
+	}()
+
+	r, err = Open(&amp;quot;b&amp;quot;)
+	if err != nil {
+		log.Fatalf(&amp;quot;error opening &#39;b&#39;\n&amp;quot;)
+	}
+	defer func() {
+		err := r.Close()
+		if err != nil {
+			log.Fatal(err)
+		}
+	}()
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://play.golang.org/p/_MPUl6zWjF&#34;&gt;Run this in the Go Playground&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I added an anonymous function which invokes r.Close(), checks the error, and if its non-nil we exit the program through log.Fatal().  It seems like such a simple change, but we&amp;rsquo;ve introduced a severe bug into the code.  In our case we can see it clearly since we&amp;rsquo;re printing out the name of the resource being closed:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;2009/11/10 23:00:00 closing b
+2009/11/10 23:00:00 closing b
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Oops!  We&amp;rsquo;re now closing the &amp;lsquo;b&amp;rsquo; resource twice, and never closing the &amp;lsquo;a&amp;rsquo; resource.  This is a severe problem, closing &amp;lsquo;b&amp;rsquo; a second time may not be well defined behavior, and not closing &amp;lsquo;a&amp;rsquo; may leak resources.&lt;/p&gt;
+
+&lt;p&gt;Where did we go wrong?  Remember the rule we were given was:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&amp;ldquo;A deferred function&amp;rsquo;s arguments are evaluated when the defer statement is evaluated.&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;And in our new code, the deferred function has no arguments, and no method receiver.  We&amp;rsquo;re now relying the anonymous function referring to &amp;lsquo;r&amp;rsquo;.  The Go spec says:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&amp;rdquo;&amp;hellip;they may refer to variables defined in a surrounding function. Those variables are then shared between the surrounding function and the function literal, and they survive as long as they are accessible.&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;So, now it&amp;rsquo;s fairly clear what happened.  At the time the &lt;em&gt;defer&lt;/em&gt; statement was evaluated, the arguments were evaluated, but there were none.  Then at the end of the function, the deferred function is executed, and &lt;em&gt;now&lt;/em&gt; as the anonymous functions are executed, &amp;lsquo;r&amp;rsquo; is evaluated, and in both cases it refers to &amp;lsquo;b&amp;rsquo;.&lt;/p&gt;
+
+&lt;h3 id=&#34;the-fix:ffe76477ce26feb5927595f82ec07acf&#34;&gt;The Fix&lt;/h3&gt;
+
+&lt;p&gt;Option 1, we can rewrite the &lt;em&gt;defer&lt;/em&gt; statement to pass &amp;lsquo;r&amp;rsquo; as an argument:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func main() {
+	r, err := Open(&amp;quot;a&amp;quot;)
+	if err != nil {
+		log.Fatalf(&amp;quot;error opening &#39;a&#39;\n&amp;quot;)
+	}
+	defer func(r *Resource) {
+		err := r.Close()
+		if err != nil {
+			log.Fatal(err)
+		}
+	}(r)
+
+	r, err = Open(&amp;quot;b&amp;quot;)
+	if err != nil {
+		log.Fatalf(&amp;quot;error opening &#39;b&#39;\n&amp;quot;)
+	}
+	defer func(r *Resource) {
+		err := r.Close()
+		if err != nil {
+			log.Fatal(err)
+		}
+	}(r)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This does give the correct output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;2009/11/10 23:00:00 closing b
+2009/11/10 23:00:00 closing a
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But, to be honest, it&amp;rsquo;s rather verbose.  In many cases it may just be simpler to use a different variable name.  Option 2, use a new variable for the second resource:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;func main() {
+	r, err := Open(&amp;quot;a&amp;quot;)
+	if err != nil {
+		log.Fatalf(&amp;quot;error opening &#39;a&#39;\n&amp;quot;)
+	}
+	defer func() {
+		err := r.Close()
+		if err != nil {
+			log.Fatal(err)
+		}
+	}()
+
+	r2, err := Open(&amp;quot;b&amp;quot;)
+	if err != nil {
+		log.Fatalf(&amp;quot;error opening &#39;b&#39;\n&amp;quot;)
+	}
+	defer func() {
+		err := r2.Close()
+		if err != nil {
+			log.Fatal(err)
+		}
+	}()
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;As I mentioned earlier, in Bleve this pattern only seems to arise in test cases.  I suspect in real code you&amp;rsquo;d be more likely to already be using more descriptive identifiers.&lt;/p&gt;
+
+&lt;h3 id=&#34;summary:ffe76477ce26feb5927595f82ec07acf&#34;&gt;Summary&lt;/h3&gt;
+
+&lt;p&gt;To me the lesson here is that we had a simple pattern for deferred cleanup that worked.  I even explicitly took the time to verify that it cleaned up the correct resources when I reused variables.  Then I took the seemingly natural step to make sure we check all the returned errors.  But, I was a bit careless and overlooked that the deferred anonymous function can have significantly different behavior.  It wasn&amp;rsquo;t until I observed problems that I went back to recheck my assumptions and track down the problem.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Faster Tokenization with Ragel generated FSM</title>
