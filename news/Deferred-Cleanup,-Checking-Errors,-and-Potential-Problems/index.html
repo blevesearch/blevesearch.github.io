@@ -288,6 +288,34 @@ github.com/mschoch/defertest/main.go:16:15	defer r.Close()
 }
 </code></pre>
 
+<p><strong>UPDATE: 2015-09-29</strong></p>
+
+<p>Users <a href="https://www.reddit.com/r/golang/comments/3mqxar/deferred_cleanup_checking_errors_and_potential/">discussing this on Reddit</a> proposed a third option.  Create a named cleanup function and use the existing io.Closer interface:</p>
+
+<pre><code>func main() {
+	r, err := Open(&quot;a&quot;)
+	if err != nil {
+		log.Fatalf(&quot;error opening 'a'\n&quot;)
+	}
+	defer Close(r)
+
+	r, err = Open(&quot;b&quot;)
+	if err != nil {
+		log.Fatalf(&quot;error opening 'b'\n&quot;)
+	}
+	defer Close(r)
+}
+
+func Close(c io.Closer) {
+	err := c.Close()
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+</code></pre>
+
+<p><a href="http://play.golang.org/p/ZjlavK1r6N">Run this in the Go Playground</a></p>
+
 <p>As I mentioned earlier, in Bleve this pattern only seems to arise in test cases.  I suspect in real code you&rsquo;d be more likely to already be using more descriptive identifiers.</p>
 
 <h3 id="summary:ffe76477ce26feb5927595f82ec07acf">Summary</h3>
