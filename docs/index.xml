@@ -7,8 +7,135 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© &lt;a href=&#34;http://couchbase.com/&#34;&gt;Couchbase&lt;/a&gt; 2015</copyright>
-    <lastBuildDate>Tue, 23 Jun 2015 10:25:38 -0400</lastBuildDate>
+    <lastBuildDate>Fri, 09 Oct 2015 00:00:00 +0100</lastBuildDate>
     <atom:link href="http://www.blevesearch.com/docs/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Index Structure</title>
+      <link>http://www.blevesearch.com/docs/Index-Structure/</link>
+      <pubDate>Fri, 09 Oct 2015 00:00:00 +0100</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/Index-Structure/</guid>
+      <description>
+
+&lt;p&gt;Bleve default index, called &amp;ldquo;upside_down&amp;rdquo; is stored in a single key/value store
+table. The store must be able to enumerate its entries starting at a given key,
+in lexicographic byte order.&lt;/p&gt;
+
+&lt;p&gt;Index key and values are handled as byte arrays and are called rows (see &lt;code&gt;index/upside_down/row.go&lt;/code&gt; for details). To store different row types in a single table, bleve prefixes their keys with a single byte, for instance the term frequency keys start with a &amp;rsquo;t&amp;rsquo;. The following sections describe the data structures stored in the index with pseudo-Go code for value layout.&lt;/p&gt;
+
+&lt;h3 id=&#34;version-row:c0e4a9c5fa2f1af4fb6097ff3abb8877&#34;&gt;Version Row&lt;/h3&gt;
+
+&lt;p&gt;Key: &lt;code&gt;&amp;quot;v&amp;quot;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Value:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;struct {
+	Version uint8
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Only one version row exists in the index and is used to check version compatibility&lt;/p&gt;
+
+&lt;h3 id=&#34;field-rows:c0e4a9c5fa2f1af4fb6097ff3abb8877&#34;&gt;Field Rows&lt;/h3&gt;
+
+&lt;p&gt;Key: (&lt;code&gt;&amp;quot;f&amp;quot;&lt;/code&gt;, &lt;code&gt;fieldIndex&lt;/code&gt;)&lt;/p&gt;
+
+&lt;p&gt;Value:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;struct {
+	Name string
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;They map field qualified names to internal integer indices. The field names are only used or displayed at API level, bleve uses the indices everywhere internally.&lt;/p&gt;
+
+&lt;h3 id=&#34;dictionary-rows:c0e4a9c5fa2f1af4fb6097ff3abb8877&#34;&gt;Dictionary Rows&lt;/h3&gt;
+
+&lt;p&gt;Key: (&lt;code&gt;&amp;quot;d&amp;quot;&lt;/code&gt;, &lt;code&gt;fieldIndex&lt;/code&gt;, &lt;code&gt;term&lt;/code&gt;)&lt;/p&gt;
+
+&lt;p&gt;Value:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;struct {
+	Count uint64
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Dictionary rows index (field, term) pairs and count the number of documents containing them. Range queries over terms of a given field, which includes prefix queries, are implemented by seeking over dictionary rows first.&lt;/p&gt;
+
+&lt;h3 id=&#34;term-frequency-rows:c0e4a9c5fa2f1af4fb6097ff3abb8877&#34;&gt;Term Frequency Rows&lt;/h3&gt;
+
+&lt;p&gt;Key: (&lt;code&gt;&amp;quot;t&amp;quot;&lt;/code&gt;, &lt;code&gt;fieldIndex&lt;/code&gt;, &lt;code&gt;term&lt;/code&gt;, &lt;code&gt;docId&lt;/code&gt;)&lt;/p&gt;
+
+&lt;p&gt;Value:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;type TermFrequencyRow struct {
+	Freq    uint64
+	Norm    float32
+	Vectors []struct{
+		Field          uint16
+		ArrayPositions []uint64
+		Pos            uint64
+		Start          uint64
+		End            uint64
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Term frequency rows store statistics about a term in a document field. Applications using result highlighting or phrase search must also record term locations by setting &lt;code&gt;IncludeTermVectors&lt;/code&gt; in the field mapping. Term locations are used to retrieve the term origin in the source document or measure terms proximity.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Freq&lt;/code&gt; is the number of occurrences of the term in the field.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Norm&lt;/code&gt; is 1/sqrt(number of tokens in the field). This factor helps balancing scores of shorter documents which have lower term frequencies.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Vectors&lt;/code&gt; is filled if &lt;code&gt;IncludeTermVectors&lt;/code&gt; is set in the field mapping. Each element describes a single occurrence of the term in the source document. &lt;code&gt;Field&lt;/code&gt; is the field index, and is the same as in the row key except for composite fields where it references the source field (composite fields like &lt;code&gt;_all&lt;/code&gt; are made of the union of other fields). Because documents are structured as trees and intermediate elements can be arrays or slices, the field index is sometimes not enough to resolve a value. The indices of the value or some of its ancestors into those arrays or slices are also required. They are stored in &lt;code&gt;ArrayPositions&lt;/code&gt;. &lt;code&gt;Pos&lt;/code&gt; tells the entry is the &lt;code&gt;Pos&lt;/code&gt;-th occurrence of the term in the field (starting at 1). &lt;code&gt;Start&lt;/code&gt; and &lt;code&gt;End&lt;/code&gt; are the byte offsets of the source of the term in the field value.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;back-index-rows:c0e4a9c5fa2f1af4fb6097ff3abb8877&#34;&gt;Back Index Rows&lt;/h3&gt;
+
+&lt;p&gt;Key: (&lt;code&gt;&amp;quot;b&amp;quot;&lt;/code&gt;, &lt;code&gt;docId&lt;/code&gt;)&lt;/p&gt;
+
+&lt;p&gt;Value:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;struct {
+    Indexed []struct{
+		Term []byte
+		Field uint32
+	},
+	Stored []struct{
+		Field uint32
+		ArrayPositions []uint64
+	},
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Back index rows describe the indexed and stored terms of a document. &lt;code&gt;Field&lt;/code&gt; is the field index and &lt;code&gt;ArrayPositions&lt;/code&gt; is explained in Term frequency rows section.&lt;/p&gt;
+
+&lt;h3 id=&#34;stored-rows:c0e4a9c5fa2f1af4fb6097ff3abb8877&#34;&gt;Stored Rows&lt;/h3&gt;
+
+&lt;p&gt;Key: (&lt;code&gt;&amp;quot;s&amp;quot;&lt;/code&gt;, &lt;code&gt;docId&lt;/code&gt;, &lt;code&gt;fieldId&lt;/code&gt;, &lt;code&gt;arrayPositions&lt;/code&gt;)&lt;/p&gt;
+
+&lt;p&gt;Value:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;struct {
+	Value []byte
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Stored rows contains the values of document fields which mapping had the &lt;code&gt;Store&lt;/code&gt; property. &lt;code&gt;arrayPositions&lt;/code&gt; meaning is described in Term frequency rows section.&lt;/p&gt;
+
+&lt;h3 id=&#34;internal-rows:c0e4a9c5fa2f1af4fb6097ff3abb8877&#34;&gt;Internal Rows&lt;/h3&gt;
+
+&lt;p&gt;Key: (&lt;code&gt;&amp;quot;i&amp;quot;&lt;/code&gt;, &lt;code&gt;key&lt;/code&gt;)&lt;/p&gt;
+
+&lt;p&gt;Value:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;struct {
+    Value []byte
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Internal rows are used to store arbitrary data in the index.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Analyzers</title>
@@ -796,16 +923,6 @@ blog.AddSubDocumentMapping(&amp;quot;author&amp;quot;, author)
 &lt;h2 id=&#34;utils:e80311509887e73e2307678fbd80d4dd&#34;&gt;Utils&lt;/h2&gt;
 
 &lt;p&gt;This package contains all of the command-line utilities.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Pronounce Bleve</title>
-      <link>http://www.blevesearch.com/docs/Pronunciation/</link>
-      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
-      
-      <guid>http://www.blevesearch.com/docs/Pronunciation/</guid>
-      <description>&lt;p&gt;I pronounce bleve as &lt;code&gt;blev-ee&lt;/code&gt;.  This corresponds with its definition as an acronym for &lt;a href=&#34;http://en.wikipedia.org/wiki/Boiling_liquid_expanding_vapor_explosion&#34;&gt;boiling liquid expanding vapor explosion&lt;/a&gt; which was the inspiration for the name and logo.&lt;/p&gt;
 </description>
     </item>
     

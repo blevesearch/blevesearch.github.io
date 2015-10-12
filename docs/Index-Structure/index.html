@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Building -- Bleve</title>
+    <title>Index Structure -- Bleve</title>
 
     
 
@@ -230,7 +230,7 @@
 							
 								
                 					
-										<li class="active">Building</li>
+										<li><a href="/docs/Building/">Building</a></li>
 									
 		                    	
 		                    
@@ -248,7 +248,7 @@
 		                    
 								
                 					
-										<li><a href="/docs/Index-Structure/">Index Structure</a></li>
+										<li class="active">Index Structure</li>
 									
 		                    	
 		                    
@@ -261,95 +261,126 @@
     </div>
 
     <div class="col-lg-9 docmain">
-    	<h1>Building</h1>
+    	<h1>Index Structure</h1>
 
 		
 
-<p>The core of bleve can be built without any C/C++ libraries.  This means you can get and use bleve with:</p>
+<p>Bleve default index, called &ldquo;upside_down&rdquo; is stored in a single key/value store
+table. The store must be able to enumerate its entries starting at a given key,
+in lexicographic byte order.</p>
 
-<pre><code>go get github.com/blevesearch/bleve/...
+<p>Index key and values are handled as byte arrays and are called rows (see <code>index/upside_down/row.go</code> for details). To store different row types in a single table, bleve prefixes their keys with a single byte, for instance the term frequency keys start with a &rsquo;t&rsquo;. The following sections describe the data structures stored in the index with pseudo-Go code for value layout.</p>
+
+<h3 id="version-row:c0e4a9c5fa2f1af4fb6097ff3abb8877">Version Row</h3>
+
+<p>Key: <code>&quot;v&quot;</code></p>
+
+<p>Value:</p>
+
+<pre><code>struct {
+	Version uint8
+}
 </code></pre>
 
-<p>However, some of the more advanced functionality depends on C/C++ libraries.  The code using these libraries can be enabled by specifying the correct build tag.</p>
+<p>Only one version row exists in the index and is used to check version compatibility</p>
 
-<p>In general, bleve expects these libraries to be built and installed in the standard system locations.  If not, it is up to you to set the appropriate CGO_&hellip; environment variables so that the libraries and headers can be found.</p>
+<h3 id="field-rows:c0e4a9c5fa2f1af4fb6097ff3abb8877">Field Rows</h3>
 
-<h2 id="leveldb:140c58546f80295ba58ab4d2981832fc">LevelDB</h2>
+<p>Key: (<code>&quot;f&quot;</code>, <code>fieldIndex</code>)</p>
 
-<p>Bleve supports using <a href="https://code.google.com/p/leveldb/">LevelDB</a> as a KVStore implementation.  At this time, this is the fastest KVStore implementation available for bleve.  So if maximum performance is your goal, consider building with support for LevelDB.</p>
+<p>Value:</p>
 
-<p>To include support for the leveldb KVStore implementation include the build tag:</p>
-
-<p><code>-tags leveldb</code></p>
-
-<h2 id="icu:140c58546f80295ba58ab4d2981832fc">ICU</h2>
-
-<p>Bleve supports using the <a href="http://site.icu-project.org/">ICU</a> project to tokenize words using their implementation of the standard for <a href="http://www.unicode.org/reports/tr29/">Unicode Text Segmentation at Word Boundaries</a>.  Some of the language specific analyzers depend on this tokenizer.</p>
-
-<p>NOTE: It is recommended to get the most recent version of ICU possible.  Older versions often included with distributions do not support language based tokenization.</p>
-
-<p>To include support for the analysis components requiring ICU, include the build tag:</p>
-
-<p><code>-tags icu</code></p>
-
-<h2 id="libstemmer:140c58546f80295ba58ab4d2981832fc">libstemmer</h2>
-
-<p>Bleve supports using the <a href="http://snowball.tartarus.org/download.php">libstemmer</a> library to stem words for many languages.  Many of the language specific analyzers depend on this library.</p>
-
-<p>To include support for the analysis components requiring libstemmer, include the build tag:</p>
-
-<p><code>-tags libstemmer</code></p>
-
-<h2 id="cld2:140c58546f80295ba58ab4d2981832fc">cld2</h2>
-
-<p>Bleve supports using the <a href="https://code.google.com/p/cld2/">cld2</a> library to determine the language of a sample of text.  This is implemented as a token filter which will return the result as a ISO 639 language code.</p>
-
-<p>To include support for the detect_lang token filter, include the build tag:</p>
-
-<p><code>-tags cld2</code></p>
-
-<h2 id="short-cut-to-include-all-the-optional-dependencies:140c58546f80295ba58ab4d2981832fc">Short-cut to include all the optional dependencies</h2>
-
-<p>Building with multiple build tags can be cumbersome:</p>
-
-<p><code>-tags 'leveldb icu libstemmer cld2'</code></p>
-
-<p>As a shortcut you can instead use:</p>
-
-<p><code>-tags full</code></p>
-
-<h2 id="platform-specific-instructions:140c58546f80295ba58ab4d2981832fc">Platform Specific Instructions</h2>
-
-<p>The following sections are user-contributed instructions for satisfying all the dependencies on particular platforms.</p>
-
-<h3 id="ubuntu-14-04-lts-trusty-tahr:140c58546f80295ba58ab4d2981832fc">Ubuntu 14.04 LTS (Trusty Tahr)</h3>
-
-<pre><code>$ sudo apt-get install libleveldb-dev libstemmer-dev libicu-dev svn build-essential
-$ go get -u -v  github.com/blevesearch/bleve
-$ cd $GOPATH/src/github.com/blevesearch/bleve/analysis/token_filters/cld2
-$ svn co http://cld2.googlecode.com/svn/trunk cld2-read-only
-$ cd cld2-read-only/internal/
-$ ./compile_libs.sh
-$ sudo cp *.so /usr/local/lib
-$ go get -u -v -tags full github.com/blevesearch/bleve
+<pre><code>struct {
+	Name string
+}
 </code></pre>
 
-<h3 id="os-x-hacky-but-similar-to-ubuntu-14-04:140c58546f80295ba58ab4d2981832fc">OS X (hacky, but similar to Ubuntu 14.04)</h3>
+<p>They map field qualified names to internal integer indices. The field names are only used or displayed at API level, bleve uses the indices everywhere internally.</p>
 
-<pre><code>$ brew install leveldb icu4c svn # etc?
-$ export CGO_LDFLAGS=-L/usr/local/opt/icu4c/lib
-$  export CGO_CFLAGS=-I/usr/local/opt/icu4c/include
-$ go get -u -v  github.com/blevesearch/bleve
-$ cd $GOPATH/src/github.com/blevesearch/bleve/analysis/token_filters/cld2
-$ svn co http://cld2.googlecode.com/svn/trunk cld2-read-only
-$ cd cld2-read-only/internal/
-# if you feel gutsy run:
-$ perl -p -i -e 's/soname=/install_name,/' compile_libs.sh
-# otherwise, just change soname= to install_name, in the two spots in compile_libs.sh
-$ ./compile_libs.sh
-$ sudo cp *.so /usr/local/lib
-$ go get -u -v -tags full github.com/blevesearch/bleve
+<h3 id="dictionary-rows:c0e4a9c5fa2f1af4fb6097ff3abb8877">Dictionary Rows</h3>
+
+<p>Key: (<code>&quot;d&quot;</code>, <code>fieldIndex</code>, <code>term</code>)</p>
+
+<p>Value:</p>
+
+<pre><code>struct {
+	Count uint64
+}
 </code></pre>
+
+<p>Dictionary rows index (field, term) pairs and count the number of documents containing them. Range queries over terms of a given field, which includes prefix queries, are implemented by seeking over dictionary rows first.</p>
+
+<h3 id="term-frequency-rows:c0e4a9c5fa2f1af4fb6097ff3abb8877">Term Frequency Rows</h3>
+
+<p>Key: (<code>&quot;t&quot;</code>, <code>fieldIndex</code>, <code>term</code>, <code>docId</code>)</p>
+
+<p>Value:</p>
+
+<pre><code>type TermFrequencyRow struct {
+	Freq    uint64
+	Norm    float32
+	Vectors []struct{
+		Field          uint16
+		ArrayPositions []uint64
+		Pos            uint64
+		Start          uint64
+		End            uint64
+	}
+}
+</code></pre>
+
+<p>Term frequency rows store statistics about a term in a document field. Applications using result highlighting or phrase search must also record term locations by setting <code>IncludeTermVectors</code> in the field mapping. Term locations are used to retrieve the term origin in the source document or measure terms proximity.</p>
+
+<ul>
+<li><code>Freq</code> is the number of occurrences of the term in the field.</li>
+<li><code>Norm</code> is 1/sqrt(number of tokens in the field). This factor helps balancing scores of shorter documents which have lower term frequencies.</li>
+<li><code>Vectors</code> is filled if <code>IncludeTermVectors</code> is set in the field mapping. Each element describes a single occurrence of the term in the source document. <code>Field</code> is the field index, and is the same as in the row key except for composite fields where it references the source field (composite fields like <code>_all</code> are made of the union of other fields). Because documents are structured as trees and intermediate elements can be arrays or slices, the field index is sometimes not enough to resolve a value. The indices of the value or some of its ancestors into those arrays or slices are also required. They are stored in <code>ArrayPositions</code>. <code>Pos</code> tells the entry is the <code>Pos</code>-th occurrence of the term in the field (starting at 1). <code>Start</code> and <code>End</code> are the byte offsets of the source of the term in the field value.</li>
+</ul>
+
+<h3 id="back-index-rows:c0e4a9c5fa2f1af4fb6097ff3abb8877">Back Index Rows</h3>
+
+<p>Key: (<code>&quot;b&quot;</code>, <code>docId</code>)</p>
+
+<p>Value:</p>
+
+<pre><code>struct {
+    Indexed []struct{
+		Term []byte
+		Field uint32
+	},
+	Stored []struct{
+		Field uint32
+		ArrayPositions []uint64
+	},
+</code></pre>
+
+<p>Back index rows describe the indexed and stored terms of a document. <code>Field</code> is the field index and <code>ArrayPositions</code> is explained in Term frequency rows section.</p>
+
+<h3 id="stored-rows:c0e4a9c5fa2f1af4fb6097ff3abb8877">Stored Rows</h3>
+
+<p>Key: (<code>&quot;s&quot;</code>, <code>docId</code>, <code>fieldId</code>, <code>arrayPositions</code>)</p>
+
+<p>Value:</p>
+
+<pre><code>struct {
+	Value []byte
+}
+</code></pre>
+
+<p>Stored rows contains the values of document fields which mapping had the <code>Store</code> property. <code>arrayPositions</code> meaning is described in Term frequency rows section.</p>
+
+<h3 id="internal-rows:c0e4a9c5fa2f1af4fb6097ff3abb8877">Internal Rows</h3>
+
+<p>Key: (<code>&quot;i&quot;</code>, <code>key</code>)</p>
+
+<p>Value:</p>
+
+<pre><code>struct {
+    Value []byte
+}
+</code></pre>
+
+<p>Internal rows are used to store arbitrary data in the index.</p>
 
 	</div>
 </div>

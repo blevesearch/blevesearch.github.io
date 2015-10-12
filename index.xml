@@ -21,6 +21,133 @@
     </item>
     
     <item>
+      <title>Index Structure</title>
+      <link>http://www.blevesearch.com/docs/Index-Structure/</link>
+      <pubDate>Fri, 09 Oct 2015 00:00:00 +0100</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/Index-Structure/</guid>
+      <description>
+
+&lt;p&gt;Bleve default index, called &amp;ldquo;upside_down&amp;rdquo; is stored in a single key/value store
+table. The store must be able to enumerate its entries starting at a given key,
+in lexicographic byte order.&lt;/p&gt;
+
+&lt;p&gt;Index key and values are handled as byte arrays and are called rows (see &lt;code&gt;index/upside_down/row.go&lt;/code&gt; for details). To store different row types in a single table, bleve prefixes their keys with a single byte, for instance the term frequency keys start with a &amp;rsquo;t&amp;rsquo;. The following sections describe the data structures stored in the index with pseudo-Go code for value layout.&lt;/p&gt;
+
+&lt;h3 id=&#34;version-row:c0e4a9c5fa2f1af4fb6097ff3abb8877&#34;&gt;Version Row&lt;/h3&gt;
+
+&lt;p&gt;Key: &lt;code&gt;&amp;quot;v&amp;quot;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Value:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;struct {
+	Version uint8
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Only one version row exists in the index and is used to check version compatibility&lt;/p&gt;
+
+&lt;h3 id=&#34;field-rows:c0e4a9c5fa2f1af4fb6097ff3abb8877&#34;&gt;Field Rows&lt;/h3&gt;
+
+&lt;p&gt;Key: (&lt;code&gt;&amp;quot;f&amp;quot;&lt;/code&gt;, &lt;code&gt;fieldIndex&lt;/code&gt;)&lt;/p&gt;
+
+&lt;p&gt;Value:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;struct {
+	Name string
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;They map field qualified names to internal integer indices. The field names are only used or displayed at API level, bleve uses the indices everywhere internally.&lt;/p&gt;
+
+&lt;h3 id=&#34;dictionary-rows:c0e4a9c5fa2f1af4fb6097ff3abb8877&#34;&gt;Dictionary Rows&lt;/h3&gt;
+
+&lt;p&gt;Key: (&lt;code&gt;&amp;quot;d&amp;quot;&lt;/code&gt;, &lt;code&gt;fieldIndex&lt;/code&gt;, &lt;code&gt;term&lt;/code&gt;)&lt;/p&gt;
+
+&lt;p&gt;Value:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;struct {
+	Count uint64
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Dictionary rows index (field, term) pairs and count the number of documents containing them. Range queries over terms of a given field, which includes prefix queries, are implemented by seeking over dictionary rows first.&lt;/p&gt;
+
+&lt;h3 id=&#34;term-frequency-rows:c0e4a9c5fa2f1af4fb6097ff3abb8877&#34;&gt;Term Frequency Rows&lt;/h3&gt;
+
+&lt;p&gt;Key: (&lt;code&gt;&amp;quot;t&amp;quot;&lt;/code&gt;, &lt;code&gt;fieldIndex&lt;/code&gt;, &lt;code&gt;term&lt;/code&gt;, &lt;code&gt;docId&lt;/code&gt;)&lt;/p&gt;
+
+&lt;p&gt;Value:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;type TermFrequencyRow struct {
+	Freq    uint64
+	Norm    float32
+	Vectors []struct{
+		Field          uint16
+		ArrayPositions []uint64
+		Pos            uint64
+		Start          uint64
+		End            uint64
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Term frequency rows store statistics about a term in a document field. Applications using result highlighting or phrase search must also record term locations by setting &lt;code&gt;IncludeTermVectors&lt;/code&gt; in the field mapping. Term locations are used to retrieve the term origin in the source document or measure terms proximity.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Freq&lt;/code&gt; is the number of occurrences of the term in the field.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Norm&lt;/code&gt; is 1/sqrt(number of tokens in the field). This factor helps balancing scores of shorter documents which have lower term frequencies.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Vectors&lt;/code&gt; is filled if &lt;code&gt;IncludeTermVectors&lt;/code&gt; is set in the field mapping. Each element describes a single occurrence of the term in the source document. &lt;code&gt;Field&lt;/code&gt; is the field index, and is the same as in the row key except for composite fields where it references the source field (composite fields like &lt;code&gt;_all&lt;/code&gt; are made of the union of other fields). Because documents are structured as trees and intermediate elements can be arrays or slices, the field index is sometimes not enough to resolve a value. The indices of the value or some of its ancestors into those arrays or slices are also required. They are stored in &lt;code&gt;ArrayPositions&lt;/code&gt;. &lt;code&gt;Pos&lt;/code&gt; tells the entry is the &lt;code&gt;Pos&lt;/code&gt;-th occurrence of the term in the field (starting at 1). &lt;code&gt;Start&lt;/code&gt; and &lt;code&gt;End&lt;/code&gt; are the byte offsets of the source of the term in the field value.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;back-index-rows:c0e4a9c5fa2f1af4fb6097ff3abb8877&#34;&gt;Back Index Rows&lt;/h3&gt;
+
+&lt;p&gt;Key: (&lt;code&gt;&amp;quot;b&amp;quot;&lt;/code&gt;, &lt;code&gt;docId&lt;/code&gt;)&lt;/p&gt;
+
+&lt;p&gt;Value:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;struct {
+    Indexed []struct{
+		Term []byte
+		Field uint32
+	},
+	Stored []struct{
+		Field uint32
+		ArrayPositions []uint64
+	},
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Back index rows describe the indexed and stored terms of a document. &lt;code&gt;Field&lt;/code&gt; is the field index and &lt;code&gt;ArrayPositions&lt;/code&gt; is explained in Term frequency rows section.&lt;/p&gt;
+
+&lt;h3 id=&#34;stored-rows:c0e4a9c5fa2f1af4fb6097ff3abb8877&#34;&gt;Stored Rows&lt;/h3&gt;
+
+&lt;p&gt;Key: (&lt;code&gt;&amp;quot;s&amp;quot;&lt;/code&gt;, &lt;code&gt;docId&lt;/code&gt;, &lt;code&gt;fieldId&lt;/code&gt;, &lt;code&gt;arrayPositions&lt;/code&gt;)&lt;/p&gt;
+
+&lt;p&gt;Value:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;struct {
+	Value []byte
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Stored rows contains the values of document fields which mapping had the &lt;code&gt;Store&lt;/code&gt; property. &lt;code&gt;arrayPositions&lt;/code&gt; meaning is described in Term frequency rows section.&lt;/p&gt;
+
+&lt;h3 id=&#34;internal-rows:c0e4a9c5fa2f1af4fb6097ff3abb8877&#34;&gt;Internal Rows&lt;/h3&gt;
+
+&lt;p&gt;Key: (&lt;code&gt;&amp;quot;i&amp;quot;&lt;/code&gt;, &lt;code&gt;key&lt;/code&gt;)&lt;/p&gt;
+
+&lt;p&gt;Value:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;struct {
+    Value []byte
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Internal rows are used to store arbitrary data in the index.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Deferred Cleanup, Checking Errors, and Potential Problems</title>
       <link>http://www.blevesearch.com/news/Deferred-Cleanup,-Checking-Errors,-and-Potential-Problems/</link>
       <pubDate>Mon, 28 Sep 2015 10:40:38 -0400</pubDate>
@@ -686,32 +813,6 @@ search.js is our custom code to bind everything together.&lt;/p&gt;&lt;/li&gt;
     </item>
     
     <item>
-      <title>Community</title>
-      <link>http://www.blevesearch.com/community/</link>
-      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
-      
-      <guid>http://www.blevesearch.com/community/</guid>
-      <description>
-
-&lt;h3 id=&#34;twitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Twitter&lt;/h3&gt;
-
-&lt;p&gt;Follow @blevesearch on &lt;a href=&#34;https://twitter.com/blevesearch&#34;&gt;twitter&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;irc:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;IRC&lt;/h3&gt;
-
-&lt;p&gt;Join the #bleve channel on &lt;a href=&#34;https://freenode.net/&#34;&gt;freenode&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;google-group:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Google Group&lt;/h3&gt;
-
-&lt;p&gt;Discuss use and development of bleve is in &lt;a href=&#34;https://groups.google.com/forum/#!forum/bleve&#34;&gt;this google group&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;gitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Gitter&lt;/h3&gt;
-
-&lt;p&gt;Join the conversation on &lt;a href=&#34;https://gitter.im/blevesearch/bleve&#34;&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Building</title>
       <link>http://www.blevesearch.com/docs/Building/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
@@ -808,49 +909,6 @@ $ go get -u -v -tags full github.com/blevesearch/bleve
     </item>
     
     <item>
-      <title>Character Filters</title>
-      <link>http://www.blevesearch.com/docs/Character-Filters/</link>
-      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
-      
-      <guid>http://www.blevesearch.com/docs/Character-Filters/</guid>
-      <description>
-
-&lt;h3 id=&#34;regular-expression:332c3eea69ab462e14d779b7c7983cd1&#34;&gt;Regular Expression&lt;/h3&gt;
-
-&lt;p&gt;The regular expression character filter is configured with a regular expression and a replacement array of bytes.  All sequences of characters matching the regular expression are replaced with the replacement bytes.&lt;/p&gt;
-
-&lt;p&gt;Typically, characters that are undesirable for indexing are replaced with whitespace.  This allows the original byte offsets in the original input to remain unaffected.&lt;/p&gt;
-
-&lt;h3 id=&#34;html:332c3eea69ab462e14d779b7c7983cd1&#34;&gt;HTML&lt;/h3&gt;
-
-&lt;p&gt;The html character filter attempts to identify HTML tags from the input text and replace them with spaces.  The current implementation is an instance of the Regular Expression character filter.&lt;/p&gt;
-
-&lt;h3 id=&#34;zero-width-non-joiner:332c3eea69ab462e14d779b7c7983cd1&#34;&gt;Zero-width Non-Joiner&lt;/h3&gt;
-
-&lt;p&gt;The zero-width non-joiner character filter replaces zero-width non-joiner characters with a space.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Contributing</title>
-      <link>http://www.blevesearch.com/docs/Contributing/</link>
-      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
-      
-      <guid>http://www.blevesearch.com/docs/Contributing/</guid>
-      <description>&lt;p&gt;As bleve is a Couchbase project we must require contributors accept the &lt;a href=&#34;http://review.couchbase.org/static/individual_agreement.html&#34;&gt;Couchbase Contributor License Agreement&lt;/a&gt;.  To sign this agreement log into the Couchbase &lt;a href=&#34;http://review.couchbase.org/&#34;&gt;code review tool&lt;/a&gt;.  The bleve project does not use this code review tool but it is still used to track acceptance of the contributor license agreements.&lt;/p&gt;
-
-&lt;p&gt;All types of contributions are welcome, but please keep the following in mind:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;If you&amp;rsquo;re planning a large change, you should really discuss it on the &lt;a href=&#34;https://groups.google.com/forum/#!forum/bleve&#34;&gt;google group&lt;/a&gt; first.  This helps avoid duplicate effort and spending time on something that may not be merged.&lt;/li&gt;
-&lt;li&gt;Existing tests should continue to pass, new tests for the contribution are nice to have.&lt;/li&gt;
-&lt;li&gt;All code should have gone through &lt;code&gt;go fmt&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;All code should pass &lt;code&gt;go vet&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Analyzers</title>
       <link>http://www.blevesearch.com/docs/Analyzers/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
@@ -931,6 +989,108 @@ $ go get -u -v -tags full github.com/blevesearch/bleve
     </item>
     
     <item>
+      <title>Applications Using Bleve</title>
+      <link>http://www.blevesearch.com/docs/Applications-using-bleve/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/Applications-using-bleve/</guid>
+      <description>
+
+&lt;p&gt;The following applications use bleve.  Add yours to the list!&lt;/p&gt;
+
+&lt;h2 id=&#34;caddy:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;Caddy&lt;/h2&gt;
+
+&lt;p&gt;Caddy is an alternative web server that is easy to configure and use.  Caddy uses Bleve to automatically index your site and expose a search page and JSON endpoint.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://caddyserver.com/docs/search&#34;&gt;https://caddyserver.com/docs/search&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;cbft:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;cbft&lt;/h2&gt;
+
+&lt;p&gt;Full-text searches of Couchbase Server, powered by bleve.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/couchbaselabs/cbft&#34;&gt;https://github.com/couchbaselabs/cbft&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;docker-bleve-wiki-indexer:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;docker bleve wiki indexer&lt;/h2&gt;
+
+&lt;p&gt;Dockerizing the bleve library to search the bleve wiki.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/lgs/docker-bleve-wiki-indexer&#34;&gt;https://github.com/lgs/docker-bleve-wiki-indexer&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;goin:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;goin&lt;/h2&gt;
+
+&lt;p&gt;A full text search indexer for your files on disk.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://bitbucket.org/zaphar/goin&#34;&gt;https://bitbucket.org/zaphar/goin&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;tpb-search:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;tpb-search&lt;/h2&gt;
+
+&lt;p&gt;Locally index and search database dumps from &lt;a href=&#34;https://openbay.isohunt.to&#34;&gt;https://openbay.isohunt.to&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/peterhellberg/tpb-search&#34;&gt;https://github.com/peterhellberg/tpb-search&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Community</title>
+      <link>http://www.blevesearch.com/community/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/community/</guid>
+      <description>
+
+&lt;h3 id=&#34;twitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Twitter&lt;/h3&gt;
+
+&lt;p&gt;Follow @blevesearch on &lt;a href=&#34;https://twitter.com/blevesearch&#34;&gt;twitter&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;irc:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;IRC&lt;/h3&gt;
+
+&lt;p&gt;Join the #bleve channel on &lt;a href=&#34;https://freenode.net/&#34;&gt;freenode&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;google-group:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Google Group&lt;/h3&gt;
+
+&lt;p&gt;Discuss use and development of bleve is in &lt;a href=&#34;https://groups.google.com/forum/#!forum/bleve&#34;&gt;this google group&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;gitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Gitter&lt;/h3&gt;
+
+&lt;p&gt;Join the conversation on &lt;a href=&#34;https://gitter.im/blevesearch/bleve&#34;&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Character Filters</title>
+      <link>http://www.blevesearch.com/docs/Character-Filters/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/Character-Filters/</guid>
+      <description>
+
+&lt;h3 id=&#34;regular-expression:332c3eea69ab462e14d779b7c7983cd1&#34;&gt;Regular Expression&lt;/h3&gt;
+
+&lt;p&gt;The regular expression character filter is configured with a regular expression and a replacement array of bytes.  All sequences of characters matching the regular expression are replaced with the replacement bytes.&lt;/p&gt;
+
+&lt;p&gt;Typically, characters that are undesirable for indexing are replaced with whitespace.  This allows the original byte offsets in the original input to remain unaffected.&lt;/p&gt;
+
+&lt;h3 id=&#34;html:332c3eea69ab462e14d779b7c7983cd1&#34;&gt;HTML&lt;/h3&gt;
+
+&lt;p&gt;The html character filter attempts to identify HTML tags from the input text and replace them with spaces.  The current implementation is an instance of the Regular Expression character filter.&lt;/p&gt;
+
+&lt;h3 id=&#34;zero-width-non-joiner:332c3eea69ab462e14d779b7c7983cd1&#34;&gt;Zero-width Non-Joiner&lt;/h3&gt;
+
+&lt;p&gt;The zero-width non-joiner character filter replaces zero-width non-joiner characters with a space.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Ignore/Disable Sections of Documents</title>
       <link>http://www.blevesearch.com/docs/Disabling%20Sections%20of%20Documents/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
@@ -954,103 +1114,21 @@ personMapping.AddSubDocumentMapping(&amp;quot;Addr&amp;quot;, addressMapping)
     </item>
     
     <item>
-      <title>Getting Started</title>
-      <link>http://www.blevesearch.com/docs/Getting%20Started/</link>
+      <title>Contributing</title>
+      <link>http://www.blevesearch.com/docs/Contributing/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/docs/Getting%20Started/</guid>
-      <description>
+      <guid>http://www.blevesearch.com/docs/Contributing/</guid>
+      <description>&lt;p&gt;As bleve is a Couchbase project we must require contributors accept the &lt;a href=&#34;http://review.couchbase.org/static/individual_agreement.html&#34;&gt;Couchbase Contributor License Agreement&lt;/a&gt;.  To sign this agreement log into the Couchbase &lt;a href=&#34;http://review.couchbase.org/&#34;&gt;code review tool&lt;/a&gt;.  The bleve project does not use this code review tool but it is still used to track acceptance of the contributor license agreements.&lt;/p&gt;
 
-&lt;p&gt;The simplest way to get started with bleve is to use the standard go get operation:&lt;/p&gt;
+&lt;p&gt;All types of contributions are welcome, but please keep the following in mind:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;go get github.com/blevesearch/bleve/... 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This will build a pure go version of bleve and install the command-line utilities.  Some of the more advanced functionality requires you have C/C++ libraries available.  See the &lt;a href=&#34;http://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt; page for more details.&lt;/p&gt;
-
-&lt;h3 id=&#34;your-first-bleve-program:fea031cc8a84a77f907665d305d10e43&#34;&gt;Your first bleve program&lt;/h3&gt;
-
-&lt;p&gt;Create a new package, edit main.go and paste:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
-
-import (
-    &amp;quot;fmt&amp;quot;
-
-    &amp;quot;github.com/blevesearch/bleve&amp;quot;
-)
-
-func main() {
-    // open a new index
-    mapping := bleve.NewIndexMapping()
-    index, err := bleve.New(&amp;quot;example.bleve&amp;quot;, mapping)
-    if err != nil {
-        fmt.Println(err)
-        return
-    }
-
-    data := struct {
-        Name string
-    }{
-        Name: &amp;quot;text&amp;quot;,
-    }
-
-    // index some data
-    index.Index(&amp;quot;id&amp;quot;, data)
-
-    // search for some text
-    query := bleve.NewMatchQuery(&amp;quot;text&amp;quot;)
-    search := bleve.NewSearchRequest(query)
-    searchResults, err := index.Search(search)
-    if err != nil {
-        fmt.Println(err)
-        return
-    }
-    fmt.Println(searchResults)
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This should compile, run, and return one search hit for the item added.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Example Applications</title>
-      <link>http://www.blevesearch.com/docs/Example-Applications/</link>
-      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
-      
-      <guid>http://www.blevesearch.com/docs/Example-Applications/</guid>
-      <description>
-
-&lt;h2 id=&#34;wiki-indexer:041bbca8e3b6a99527383bbff440fe95&#34;&gt;Wiki Indexer&lt;/h2&gt;
-
-&lt;p&gt;The &lt;a href=&#34;http://www.blevesearch.com/docs/Wiki-Search/&#34;&gt;bleve-wiki-indexer&lt;/a&gt; maintains a searchable bleve index of all these wiki pages.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/blevesearch/bleve-wiki-indexer&#34;&gt;Source Code&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://wikisearch.blevesearch.com/search/&#34;&gt;Try it out, live&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;beer-search:041bbca8e3b6a99527383bbff440fe95&#34;&gt;Beer Search&lt;/h2&gt;
-
-&lt;p&gt;The &lt;a href=&#34;https://github.com/blevesearch/beer-search&#34;&gt;beer-search&lt;/a&gt; application shows many of bleve&amp;rsquo;s features by allowing you to index and search beers and breweries.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/blevesearch/beer-search&#34;&gt;Source Code&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;bleve-explorer:041bbca8e3b6a99527383bbff440fe95&#34;&gt;Bleve Explorer&lt;/h2&gt;
-
-&lt;p&gt;The &lt;a href=&#34;https://github.com/blevesearch/bleve-explorer&#34;&gt;bleve-explorer&lt;/a&gt; application shows how to integrate bleve functionality with an HTTP/REST/JSON interface.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/blevesearch/bleve-explorer&#34;&gt;Source Code&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=DfbRTXE5n4Y&#34;&gt;Video Introduction&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;See also: &lt;a href=&#34;https://github.com/blevesearch/bleve/wiki/Applications-using-bleve&#34;&gt;other applications using bleve&lt;/a&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;If you&amp;rsquo;re planning a large change, you should really discuss it on the &lt;a href=&#34;https://groups.google.com/forum/#!forum/bleve&#34;&gt;google group&lt;/a&gt; first.  This helps avoid duplicate effort and spending time on something that may not be merged.&lt;/li&gt;
+&lt;li&gt;Existing tests should continue to pass, new tests for the contribution are nice to have.&lt;/li&gt;
+&lt;li&gt;All code should have gone through &lt;code&gt;go fmt&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;All code should pass &lt;code&gt;go vet&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
 </description>
     </item>
     
