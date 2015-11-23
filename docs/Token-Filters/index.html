@@ -265,7 +265,31 @@
 
 		
 
+<p>Analyzers reference Token Filters by name. Use existing ones or create variants with <code>IndexMapping.AddCustomTokenFilter</code>:</p>
+
+<pre><code>var m *IndexMapping = index.Mapping()
+err := m.AddCustomTokenFilter(&quot;color_stop_filter&quot;, map[string]interface{}{
+    &quot;type&quot;: stop_tokens_filter.Name,
+    &quot;tokens&quot;: []interface{
+        &quot;red&quot;,
+        &quot;green&quot;,
+        &quot;blue&quot;,
+    },
+})
+if err != nil {
+    log.Fatal(err)
+}
+</code></pre>
+
+<p>creates a new Stop Token Filter named &ldquo;color_stop_filter&rdquo;, which removes all &ldquo;red&rdquo;, &ldquo;green&rdquo; or &ldquo;blue&rdquo; tokens. Once registered, this filter can be referenced by a custom Analyzer.</p>
+
 <h3 id="apostrophe:c38efc402d8771527a225c32b59be157">Apostrophe</h3>
+
+<p>Configuration:</p>
+
+<ul>
+<li><code>type</code>: <code>apostrophe_filter.Name</code></li>
+</ul>
 
 <p>The Apostrophe Token Filter removes all characters after an apostrophe.</p>
 
@@ -331,6 +355,13 @@
 </ul>
 
 <h3 id="stop-token:c38efc402d8771527a225c32b59be157">Stop Token</h3>
+
+<p>Configuration:</p>
+
+<ul>
+<li><code>type</code>: <code>stop_tokens_filter.Name</code></li>
+<li><code>stop_token_map</code> (string): the name of the token map identifying tokens to remove.</li>
+</ul>
 
 <p>The Stop Token Filter is configured with a map of tokens that should be removed from the token stream.</p>
 
