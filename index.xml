@@ -922,32 +922,6 @@ $ go get -u -v -tags full github.com/blevesearch/bleve
     </item>
     
     <item>
-      <title>Community</title>
-      <link>http://www.blevesearch.com/community/</link>
-      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
-      
-      <guid>http://www.blevesearch.com/community/</guid>
-      <description>
-
-&lt;h3 id=&#34;twitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Twitter&lt;/h3&gt;
-
-&lt;p&gt;Follow @blevesearch on &lt;a href=&#34;https://twitter.com/blevesearch&#34;&gt;twitter&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;irc:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;IRC&lt;/h3&gt;
-
-&lt;p&gt;Join the #bleve channel on &lt;a href=&#34;https://freenode.net/&#34;&gt;freenode&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;google-group:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Google Group&lt;/h3&gt;
-
-&lt;p&gt;Discuss use and development of bleve is in &lt;a href=&#34;https://groups.google.com/forum/#!forum/bleve&#34;&gt;this google group&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;gitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Gitter&lt;/h3&gt;
-
-&lt;p&gt;Join the conversation on &lt;a href=&#34;https://gitter.im/blevesearch/bleve&#34;&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Applications Using Bleve</title>
       <link>http://www.blevesearch.com/docs/Applications-using-bleve/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
@@ -1008,30 +982,6 @@ $ go get -u -v -tags full github.com/blevesearch/bleve
     </item>
     
     <item>
-      <title>Character Filters</title>
-      <link>http://www.blevesearch.com/docs/Character-Filters/</link>
-      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
-      
-      <guid>http://www.blevesearch.com/docs/Character-Filters/</guid>
-      <description>
-
-&lt;h3 id=&#34;regular-expression:332c3eea69ab462e14d779b7c7983cd1&#34;&gt;Regular Expression&lt;/h3&gt;
-
-&lt;p&gt;The regular expression character filter is configured with a regular expression and a replacement array of bytes.  All sequences of characters matching the regular expression are replaced with the replacement bytes.&lt;/p&gt;
-
-&lt;p&gt;Typically, characters that are undesirable for indexing are replaced with whitespace.  This allows the original byte offsets in the original input to remain unaffected.&lt;/p&gt;
-
-&lt;h3 id=&#34;html:332c3eea69ab462e14d779b7c7983cd1&#34;&gt;HTML&lt;/h3&gt;
-
-&lt;p&gt;The html character filter attempts to identify HTML tags from the input text and replace them with spaces.  The current implementation is an instance of the Regular Expression character filter.&lt;/p&gt;
-
-&lt;h3 id=&#34;zero-width-non-joiner:332c3eea69ab462e14d779b7c7983cd1&#34;&gt;Zero-width Non-Joiner&lt;/h3&gt;
-
-&lt;p&gt;The zero-width non-joiner character filter replaces zero-width non-joiner characters with a space.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Analyzers</title>
       <link>http://www.blevesearch.com/docs/Analyzers/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
@@ -1050,7 +1000,7 @@ $ go get -u -v -tags full github.com/blevesearch/bleve
 &lt;p&gt;The simple analyzer performs only minimal analysis on the input.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Tokenizer - &lt;a href=&#34;http://www.blevesearch.com/docs/Tokenizers/#whitespace:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Whitespace&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Tokenizer - &lt;a href=&#34;http://www.blevesearch.com/docs/Tokenizers/#unicode:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Unicode&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Token Filters
 
 &lt;ul&gt;
@@ -1063,7 +1013,7 @@ $ go get -u -v -tags full github.com/blevesearch/bleve
 &lt;p&gt;The Standard Analyzer is like the Simple Analyzer but also adds English stop word removal.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Tokenizer - &lt;a href=&#34;http://www.blevesearch.com/docs/Tokenizers/#whitespace:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Whitespace&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Tokenizer - &lt;a href=&#34;http://www.blevesearch.com/docs/Tokenizers/#unicode:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Unicode&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Token Filters
 
 &lt;ul&gt;
@@ -1112,6 +1062,75 @@ $ go get -u -v -tags full github.com/blevesearch/bleve
     </item>
     
     <item>
+      <title>Community</title>
+      <link>http://www.blevesearch.com/community/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/community/</guid>
+      <description>
+
+&lt;h3 id=&#34;twitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Twitter&lt;/h3&gt;
+
+&lt;p&gt;Follow @blevesearch on &lt;a href=&#34;https://twitter.com/blevesearch&#34;&gt;twitter&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;irc:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;IRC&lt;/h3&gt;
+
+&lt;p&gt;Join the #bleve channel on &lt;a href=&#34;https://freenode.net/&#34;&gt;freenode&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;google-group:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Google Group&lt;/h3&gt;
+
+&lt;p&gt;Discuss use and development of bleve is in &lt;a href=&#34;https://groups.google.com/forum/#!forum/bleve&#34;&gt;this google group&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;gitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Gitter&lt;/h3&gt;
+
+&lt;p&gt;Join the conversation on &lt;a href=&#34;https://gitter.im/blevesearch/bleve&#34;&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Character Filters</title>
+      <link>http://www.blevesearch.com/docs/Character-Filters/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/Character-Filters/</guid>
+      <description>
+
+&lt;h3 id=&#34;regular-expression:332c3eea69ab462e14d779b7c7983cd1&#34;&gt;Regular Expression&lt;/h3&gt;
+
+&lt;p&gt;The regular expression character filter is configured with a regular expression and a replacement array of bytes.  All sequences of characters matching the regular expression are replaced with the replacement bytes.&lt;/p&gt;
+
+&lt;p&gt;Typically, characters that are undesirable for indexing are replaced with whitespace.  This allows the original byte offsets in the original input to remain unaffected.&lt;/p&gt;
+
+&lt;h3 id=&#34;html:332c3eea69ab462e14d779b7c7983cd1&#34;&gt;HTML&lt;/h3&gt;
+
+&lt;p&gt;The html character filter attempts to identify HTML tags from the input text and replace them with spaces.  The current implementation is an instance of the Regular Expression character filter.&lt;/p&gt;
+
+&lt;h3 id=&#34;zero-width-non-joiner:332c3eea69ab462e14d779b7c7983cd1&#34;&gt;Zero-width Non-Joiner&lt;/h3&gt;
+
+&lt;p&gt;The zero-width non-joiner character filter replaces zero-width non-joiner characters with a space.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Contributing</title>
+      <link>http://www.blevesearch.com/docs/Contributing/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/Contributing/</guid>
+      <description>&lt;p&gt;As bleve is a Couchbase project we must require contributors accept the &lt;a href=&#34;http://review.couchbase.org/static/individual_agreement.html&#34;&gt;Couchbase Contributor License Agreement&lt;/a&gt;.  To sign this agreement log into the Couchbase &lt;a href=&#34;http://review.couchbase.org/&#34;&gt;code review tool&lt;/a&gt;.  The bleve project does not use this code review tool but it is still used to track acceptance of the contributor license agreements.&lt;/p&gt;
+
+&lt;p&gt;All types of contributions are welcome, but please keep the following in mind:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;If you&amp;rsquo;re planning a large change, you should really discuss it on the &lt;a href=&#34;https://groups.google.com/forum/#!forum/bleve&#34;&gt;google group&lt;/a&gt; first.  This helps avoid duplicate effort and spending time on something that may not be merged.&lt;/li&gt;
+&lt;li&gt;Existing tests should continue to pass, new tests for the contribution are nice to have.&lt;/li&gt;
+&lt;li&gt;All code should have gone through &lt;code&gt;go fmt&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;All code should pass &lt;code&gt;go vet&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Ignore/Disable Sections of Documents</title>
       <link>http://www.blevesearch.com/docs/Disabling%20Sections%20of%20Documents/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
@@ -1131,46 +1150,6 @@ $ go get -u -v -tags full github.com/blevesearch/bleve
 personMapping := bleve.NewDocumentMapping()
 personMapping.AddSubDocumentMapping(&amp;quot;Addr&amp;quot;, addressMapping)
 &lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Example Applications</title>
-      <link>http://www.blevesearch.com/docs/Example-Applications/</link>
-      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
-      
-      <guid>http://www.blevesearch.com/docs/Example-Applications/</guid>
-      <description>
-
-&lt;h2 id=&#34;wiki-indexer:041bbca8e3b6a99527383bbff440fe95&#34;&gt;Wiki Indexer&lt;/h2&gt;
-
-&lt;p&gt;The &lt;a href=&#34;http://www.blevesearch.com/docs/Wiki-Search/&#34;&gt;bleve-wiki-indexer&lt;/a&gt; maintains a searchable bleve index of all these wiki pages.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/blevesearch/bleve-wiki-indexer&#34;&gt;Source Code&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://wikisearch.blevesearch.com/search/&#34;&gt;Try it out, live&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;beer-search:041bbca8e3b6a99527383bbff440fe95&#34;&gt;Beer Search&lt;/h2&gt;
-
-&lt;p&gt;The &lt;a href=&#34;https://github.com/blevesearch/beer-search&#34;&gt;beer-search&lt;/a&gt; application shows many of bleve&amp;rsquo;s features by allowing you to index and search beers and breweries.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/blevesearch/beer-search&#34;&gt;Source Code&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;bleve-explorer:041bbca8e3b6a99527383bbff440fe95&#34;&gt;Bleve Explorer&lt;/h2&gt;
-
-&lt;p&gt;The &lt;a href=&#34;https://github.com/blevesearch/bleve-explorer&#34;&gt;bleve-explorer&lt;/a&gt; application shows how to integrate bleve functionality with an HTTP/REST/JSON interface.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/blevesearch/bleve-explorer&#34;&gt;Source Code&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=DfbRTXE5n4Y&#34;&gt;Video Introduction&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;See also: &lt;a href=&#34;https://github.com/blevesearch/bleve/wiki/Applications-using-bleve&#34;&gt;other applications using bleve&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     

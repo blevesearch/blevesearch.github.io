@@ -279,7 +279,10 @@
 
 <h3 id="whitespace:7d5ef314ed49959990583aa48ce5f86b">Whitespace</h3>
 
-<p>The Whitespace Tokenizer is an instance of the Regular Expression Tokenizer.  It uses the regular expression <code>\w+</code>.  For many western languages this may work well as a simple tokenizer.</p>
+<p>The Whitespace Tokenizer is an instance of the Regular Expression Tokenizer.  It matches tokens using the regular expression:</p>
+
+<pre><code>\p{Han}|\p{Hangul}|\p{Hiragana}|\p{Katakana}|[^\p{Z}\p{P}\p{C}\p{Han}\p{Hangul}\p{Hiragana}\p{Katakana}]+
+</code></pre>
 
 <h3 id="unicode:7d5ef314ed49959990583aa48ce5f86b">Unicode</h3>
 
