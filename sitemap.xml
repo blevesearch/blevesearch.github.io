@@ -2,222 +2,222 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>http://www.blevesearch.com/</loc>
     <lastmod>2015-11-09T10:25:38-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:1313/events/dotGo2015/</loc>
+    <loc>http://www.blevesearch.com/events/dotGo2015/</loc>
     <lastmod>2015-11-09T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/docs/Index-Structure/</loc>
+    <loc>http://www.blevesearch.com/docs/Index-Structure/</loc>
     <lastmod>2015-10-09T00:00:00+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/news/Deferred-Cleanup,-Checking-Errors,-and-Potential-Problems/</loc>
+    <loc>http://www.blevesearch.com/news/Deferred-Cleanup,-Checking-Errors,-and-Potential-Problems/</loc>
     <lastmod>2015-09-28T10:40:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/news/Faster-Tokenization-with-Ragel-generated-FSM/</loc>
+    <loc>http://www.blevesearch.com/news/Faster-Tokenization-with-Ragel-generated-FSM/</loc>
     <lastmod>2015-09-08T10:40:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/news/Site-Search/</loc>
+    <loc>http://www.blevesearch.com/news/Site-Search/</loc>
     <lastmod>2015-07-14T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/events/gopherCon2015/</loc>
+    <loc>http://www.blevesearch.com/events/gopherCon2015/</loc>
     <lastmod>2015-07-10T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/news/Site-Migrated-to-Hugo/</loc>
+    <loc>http://www.blevesearch.com/news/Site-Migrated-to-Hugo/</loc>
     <lastmod>2015-07-02T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/videos/</loc>
+    <loc>http://www.blevesearch.com/videos/</loc>
     <lastmod>2015-06-25T12:25:45-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/docs/Analyzers/</loc>
+    <loc>http://www.blevesearch.com/community/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/community/</loc>
+    <loc>http://www.blevesearch.com/docs/Building/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/docs/Building/</loc>
+    <loc>http://www.blevesearch.com/docs/Applications-using-bleve/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/docs/Applications-using-bleve/</loc>
+    <loc>http://www.blevesearch.com/docs/Analyzers/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/docs/Character-Filters/</loc>
+    <loc>http://www.blevesearch.com/docs/Character-Filters/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/docs/Contributing/</loc>
+    <loc>http://www.blevesearch.com/docs/Disabling%20Sections%20of%20Documents/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/docs/Disabling%20Sections%20of%20Documents/</loc>
+    <loc>http://www.blevesearch.com/docs/Contributing/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/docs/Example-Applications/</loc>
+    <loc>http://www.blevesearch.com/docs/Example-Applications/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/docs/Getting%20Started/</loc>
+    <loc>http://www.blevesearch.com/docs/Getting%20Started/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/docs/Highlight%20Matches%20in%20Results/</loc>
+    <loc>http://www.blevesearch.com/docs/Highlight%20Matches%20in%20Results/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/docs/Home/</loc>
+    <loc>http://www.blevesearch.com/docs/Home/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/docs/Index-Mapping/</loc>
+    <loc>http://www.blevesearch.com/docs/Index-Mapping/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/docs/Package-Structure/</loc>
+    <loc>http://www.blevesearch.com/docs/Query-String-Query/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/docs/Pronunciation/</loc>
+    <loc>http://www.blevesearch.com/docs/Package-Structure/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/docs/Query-String-Query/</loc>
+    <loc>http://www.blevesearch.com/docs/Pronunciation/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/docs/Query/</loc>
+    <loc>http://www.blevesearch.com/docs/Query/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/docs/Terminology/</loc>
+    <loc>http://www.blevesearch.com/docs/Result-Faceting/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/docs/Result-Faceting/</loc>
+    <loc>http://www.blevesearch.com/docs/Token-Filters/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/docs/Text-Analysis/</loc>
+    <loc>http://www.blevesearch.com/docs/Terminology/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/docs/Token-Filters/</loc>
+    <loc>http://www.blevesearch.com/docs/Tokenizers/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/docs/Tokenizers/</loc>
+    <loc>http://www.blevesearch.com/docs/Text-Analysis/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/docs/bleve/</loc>
+    <loc>http://www.blevesearch.com/docs/bleve/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/search/</loc>
+    <loc>http://www.blevesearch.com/search/</loc>
     <lastmod>2015-06-11T16:03:09-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/events/gopherConIndia2015/</loc>
+    <loc>http://www.blevesearch.com/events/gopherConIndia2015/</loc>
     <lastmod>2015-02-20T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/events/fosdem2015/</loc>
+    <loc>http://www.blevesearch.com/events/fosdem2015/</loc>
     <lastmod>2015-02-01T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/docs/bleve_count/</loc>
+    <loc>http://www.blevesearch.com/docs/bleve_bulk/</loc>
   </url>
   
   <url>
-    <loc>http://localhost:1313/docs/bleve_bulk/</loc>
+    <loc>http://www.blevesearch.com/docs/bleve_count/</loc>
   </url>
   
   <url>
-    <loc>http://localhost:1313/docs/bleve_create/</loc>
+    <loc>http://www.blevesearch.com/docs/bleve_create/</loc>
   </url>
   
   <url>
-    <loc>http://localhost:1313/docs/bleve_dictionary/</loc>
+    <loc>http://www.blevesearch.com/docs/bleve_dictionary/</loc>
   </url>
   
   <url>
-    <loc>http://localhost:1313/docs/bleve_dump/</loc>
+    <loc>http://www.blevesearch.com/docs/bleve_dump_fields/</loc>
   </url>
   
   <url>
-    <loc>http://localhost:1313/docs/bleve_dump_doc/</loc>
+    <loc>http://www.blevesearch.com/docs/bleve_dump/</loc>
   </url>
   
   <url>
-    <loc>http://localhost:1313/docs/bleve_dump_fields/</loc>
+    <loc>http://www.blevesearch.com/docs/bleve_dump_doc/</loc>
   </url>
   
   <url>
-    <loc>http://localhost:1313/docs/bleve_fields/</loc>
+    <loc>http://www.blevesearch.com/docs/bleve_fields/</loc>
   </url>
   
   <url>
-    <loc>http://localhost:1313/docs/bleve_index/</loc>
+    <loc>http://www.blevesearch.com/docs/bleve_index/</loc>
   </url>
   
   <url>
-    <loc>http://localhost:1313/docs/bleve_mapping/</loc>
+    <loc>http://www.blevesearch.com/docs/bleve_query/</loc>
   </url>
   
   <url>
-    <loc>http://localhost:1313/docs/bleve_query/</loc>
+    <loc>http://www.blevesearch.com/docs/bleve_mapping/</loc>
   </url>
   
   <url>
-    <loc>http://localhost:1313/docs/bleve_registry/</loc>
+    <loc>http://www.blevesearch.com/docs/bleve_registry/</loc>
   </url>
   
 </urlset>
