@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Docs on Bleve</title>
-    <link>http://www.blevesearch.com/docs/</link>
+    <link>http://localhost:1313/docs/</link>
     <description>Recent content in Docs on Bleve</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© &lt;a href=&#34;http://couchbase.com/&#34;&gt;Couchbase&lt;/a&gt; 2015</copyright>
     <lastBuildDate>Fri, 09 Oct 2015 00:00:00 +0100</lastBuildDate>
-    <atom:link href="http://www.blevesearch.com/docs/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/docs/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Index Structure</title>
-      <link>http://www.blevesearch.com/docs/Index-Structure/</link>
+      <link>http://localhost:1313/docs/Index-Structure/</link>
       <pubDate>Fri, 09 Oct 2015 00:00:00 +0100</pubDate>
       
-      <guid>http://www.blevesearch.com/docs/Index-Structure/</guid>
+      <guid>http://localhost:1313/docs/Index-Structure/</guid>
       <description>
 
 &lt;p&gt;Bleve default index, called &amp;ldquo;upside_down&amp;rdquo; is stored in a single key/value store
@@ -139,10 +139,10 @@ in lexicographic byte order.&lt;/p&gt;
     
     <item>
       <title>Analyzers</title>
-      <link>http://www.blevesearch.com/docs/Analyzers/</link>
+      <link>http://localhost:1313/docs/Analyzers/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/docs/Analyzers/</guid>
+      <guid>http://localhost:1313/docs/Analyzers/</guid>
       <description>
 
 &lt;h2 id=&#34;general-purpose-analyzers:aa66feb1a6a343065211b619ad078082&#34;&gt;General Purpose Analyzers&lt;/h2&gt;
@@ -156,11 +156,11 @@ in lexicographic byte order.&lt;/p&gt;
 &lt;p&gt;The simple analyzer performs only minimal analysis on the input.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Tokenizer - &lt;a href=&#34;http://www.blevesearch.com/docs/Tokenizers/#unicode:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Unicode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Tokenizer - &lt;a href=&#34;http://localhost:1313/docs/Tokenizers/#unicode:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Unicode&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Token Filters
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#lowercase:c38efc402d8771527a225c32b59be157&#34;&gt;Lowercase&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/docs/Token-Filters/#lowercase:c38efc402d8771527a225c32b59be157&#34;&gt;Lowercase&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -169,12 +169,12 @@ in lexicographic byte order.&lt;/p&gt;
 &lt;p&gt;The Standard Analyzer is like the Simple Analyzer but also adds English stop word removal.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Tokenizer - &lt;a href=&#34;http://www.blevesearch.com/docs/Tokenizers/#unicode:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Unicode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Tokenizer - &lt;a href=&#34;http://localhost:1313/docs/Tokenizers/#unicode:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Unicode&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Token Filters
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#lowercase:c38efc402d8771527a225c32b59be157&#34;&gt;Lowercase&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;English &lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#stop-token:c38efc402d8771527a225c32b59be157&#34;&gt;Stop Token&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/docs/Token-Filters/#lowercase:c38efc402d8771527a225c32b59be157&#34;&gt;Lowercase&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;English &lt;a href=&#34;http://localhost:1313/docs/Token-Filters/#stop-token:c38efc402d8771527a225c32b59be157&#34;&gt;Stop Token&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -183,12 +183,12 @@ in lexicographic byte order.&lt;/p&gt;
 &lt;p&gt;The Detect Language Analyzer is used to examine input text, use heuristics to determine a best guess at the language, and index the ISO 639 Language Code.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Tokenizer - &lt;a href=&#34;http://www.blevesearch.com/docs/Tokenizers/#single-token:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Single&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Tokenizer - &lt;a href=&#34;http://localhost:1313/docs/Tokenizers/#single-token:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Single&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Token Filters
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#lowercase:c38efc402d8771527a225c32b59be157&#34;&gt;Lowercase&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#cld2:c38efc402d8771527a225c32b59be157&#34;&gt;CLD2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/docs/Token-Filters/#lowercase:c38efc402d8771527a225c32b59be157&#34;&gt;Lowercase&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/docs/Token-Filters/#cld2:c38efc402d8771527a225c32b59be157&#34;&gt;CLD2&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -219,10 +219,10 @@ in lexicographic byte order.&lt;/p&gt;
     
     <item>
       <title>Applications Using Bleve</title>
-      <link>http://www.blevesearch.com/docs/Applications-using-bleve/</link>
+      <link>http://localhost:1313/docs/Applications-using-bleve/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/docs/Applications-using-bleve/</guid>
+      <guid>http://localhost:1313/docs/Applications-using-bleve/</guid>
       <description>
 
 &lt;p&gt;The following applications use bleve.  Add yours to the list!&lt;/p&gt;
@@ -279,10 +279,10 @@ in lexicographic byte order.&lt;/p&gt;
     
     <item>
       <title>Building</title>
-      <link>http://www.blevesearch.com/docs/Building/</link>
+      <link>http://localhost:1313/docs/Building/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/docs/Building/</guid>
+      <guid>http://localhost:1313/docs/Building/</guid>
       <description>
 
 &lt;p&gt;The core of bleve can be built without any C/C++ libraries.  This means you can get and use bleve with:&lt;/p&gt;
@@ -375,10 +375,10 @@ $ go get -u -v -tags full github.com/blevesearch/bleve
     
     <item>
       <title>Character Filters</title>
-      <link>http://www.blevesearch.com/docs/Character-Filters/</link>
+      <link>http://localhost:1313/docs/Character-Filters/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/docs/Character-Filters/</guid>
+      <guid>http://localhost:1313/docs/Character-Filters/</guid>
       <description>
 
 &lt;h3 id=&#34;regular-expression:332c3eea69ab462e14d779b7c7983cd1&#34;&gt;Regular Expression&lt;/h3&gt;
@@ -399,10 +399,10 @@ $ go get -u -v -tags full github.com/blevesearch/bleve
     
     <item>
       <title>Command-line Utility</title>
-      <link>http://www.blevesearch.com/docs/bleve/</link>
+      <link>http://localhost:1313/docs/bleve/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/docs/bleve/</guid>
+      <guid>http://localhost:1313/docs/bleve/</guid>
       <description>
 
 &lt;h2 id=&#34;bleve:901bef76d75505723a0bdc33b9d82adb&#34;&gt;bleve&lt;/h2&gt;
@@ -416,26 +416,26 @@ $ go get -u -v -tags full github.com/blevesearch/bleve
 &lt;h3 id=&#34;see-also:901bef76d75505723a0bdc33b9d82adb&#34;&gt;SEE ALSO&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/bleve_bulk/&#34;&gt;bleve bulk&lt;/a&gt;  - bulk loads from newline delimited JSON files&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/bleve_count/&#34;&gt;bleve count&lt;/a&gt;     - counts the number documents in the index&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/bleve_create/&#34;&gt;bleve create&lt;/a&gt;    - creates a new index&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/bleve_dictionary/&#34;&gt;bleve dictionary&lt;/a&gt;    - prints the term dictionary for the specified field in the index&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/bleve_dump/&#34;&gt;bleve dump&lt;/a&gt;  - dumps the contents of the index&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/bleve_fields/&#34;&gt;bleve fields&lt;/a&gt;    - lists the fields in this index&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/bleve_index/&#34;&gt;bleve index&lt;/a&gt;     - adds the files to the index&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/bleve_mapping/&#34;&gt;bleve mapping&lt;/a&gt;   - prints the mapping used for this index&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/bleve_query/&#34;&gt;bleve query&lt;/a&gt;     - queries the index&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/bleve_registry/&#34;&gt;bleve registry&lt;/a&gt;     - registry lists the bleve components compiled into this executable&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/docs/bleve_bulk/&#34;&gt;bleve bulk&lt;/a&gt;  - bulk loads from newline delimited JSON files&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/docs/bleve_count/&#34;&gt;bleve count&lt;/a&gt;     - counts the number documents in the index&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/docs/bleve_create/&#34;&gt;bleve create&lt;/a&gt;    - creates a new index&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/docs/bleve_dictionary/&#34;&gt;bleve dictionary&lt;/a&gt;    - prints the term dictionary for the specified field in the index&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/docs/bleve_dump/&#34;&gt;bleve dump&lt;/a&gt;  - dumps the contents of the index&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/docs/bleve_fields/&#34;&gt;bleve fields&lt;/a&gt;    - lists the fields in this index&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/docs/bleve_index/&#34;&gt;bleve index&lt;/a&gt;     - adds the files to the index&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/docs/bleve_mapping/&#34;&gt;bleve mapping&lt;/a&gt;   - prints the mapping used for this index&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/docs/bleve_query/&#34;&gt;bleve query&lt;/a&gt;     - queries the index&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://localhost:1313/docs/bleve_registry/&#34;&gt;bleve registry&lt;/a&gt;     - registry lists the bleve components compiled into this executable&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
     
     <item>
       <title>Contributing</title>
-      <link>http://www.blevesearch.com/docs/Contributing/</link>
+      <link>http://localhost:1313/docs/Contributing/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/docs/Contributing/</guid>
+      <guid>http://localhost:1313/docs/Contributing/</guid>
       <description>&lt;p&gt;As bleve is a Couchbase project we must require contributors accept the &lt;a href=&#34;http://review.couchbase.org/static/individual_agreement.html&#34;&gt;Couchbase Contributor License Agreement&lt;/a&gt;.  To sign this agreement log into the Couchbase &lt;a href=&#34;http://review.couchbase.org/&#34;&gt;code review tool&lt;/a&gt;.  The bleve project does not use this code review tool but it is still used to track acceptance of the contributor license agreements.&lt;/p&gt;
 
 &lt;p&gt;All types of contributions are welcome, but please keep the following in mind:&lt;/p&gt;
@@ -451,30 +451,21 @@ $ go get -u -v -tags full github.com/blevesearch/bleve
     
     <item>
       <title>Documentation</title>
-      <link>http://www.blevesearch.com/docs/Home/</link>
+      <link>http://localhost:1313/docs/Home/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/docs/Home/</guid>
+      <guid>http://localhost:1313/docs/Home/</guid>
       <description>&lt;p&gt;The Bleve documentation has been divided up into two sections, a User Guide and a Developer Guide.  The User Guide is for developers interested in &lt;em&gt;using&lt;/em&gt; Bleve.  The Developer Guide is for developers interested in contributing to the Bleve project.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Example Applications</title>
-      <link>http://www.blevesearch.com/docs/Example-Applications/</link>
+      <link>http://localhost:1313/docs/Example-Applications/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/docs/Example-Applications/</guid>
+      <guid>http://localhost:1313/docs/Example-Applications/</guid>
       <description>
-
-&lt;h2 id=&#34;wiki-indexer:041bbca8e3b6a99527383bbff440fe95&#34;&gt;Wiki Indexer&lt;/h2&gt;
-
-&lt;p&gt;The &lt;a href=&#34;http://www.blevesearch.com/docs/Wiki-Search/&#34;&gt;bleve-wiki-indexer&lt;/a&gt; maintains a searchable bleve index of all these wiki pages.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/blevesearch/bleve-wiki-indexer&#34;&gt;Source Code&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://wikisearch.blevesearch.com/search/&#34;&gt;Try it out, live&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 
 &lt;h2 id=&#34;beer-search:041bbca8e3b6a99527383bbff440fe95&#34;&gt;Beer Search&lt;/h2&gt;
 
@@ -501,10 +492,10 @@ $ go get -u -v -tags full github.com/blevesearch/bleve
     
     <item>
       <title>Getting Started</title>
-      <link>http://www.blevesearch.com/docs/Getting%20Started/</link>
+      <link>http://localhost:1313/docs/Getting%20Started/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/docs/Getting%20Started/</guid>
+      <guid>http://localhost:1313/docs/Getting%20Started/</guid>
       <description>
 
 &lt;p&gt;The simplest way to get started with bleve is to use the standard go get operation:&lt;/p&gt;
@@ -512,7 +503,7 @@ $ go get -u -v -tags full github.com/blevesearch/bleve
 &lt;pre&gt;&lt;code&gt;go get github.com/blevesearch/bleve/... 
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;This will build a pure go version of bleve and install the command-line utilities.  Some of the more advanced functionality requires you have C/C++ libraries available.  See the &lt;a href=&#34;http://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt; page for more details.&lt;/p&gt;
+&lt;p&gt;This will build a pure go version of bleve and install the command-line utilities.  Some of the more advanced functionality requires you have C/C++ libraries available.  See the &lt;a href=&#34;http://localhost:1313/docs/Building/&#34;&gt;Building&lt;/a&gt; page for more details.&lt;/p&gt;
 
 &lt;h3 id=&#34;your-first-bleve-program:fea031cc8a84a77f907665d305d10e43&#34;&gt;Your first bleve program&lt;/h3&gt;
 
@@ -562,10 +553,10 @@ func main() {
     
     <item>
       <title>Highlight Matches in Results</title>
-      <link>http://www.blevesearch.com/docs/Highlight%20Matches%20in%20Results/</link>
+      <link>http://localhost:1313/docs/Highlight%20Matches%20in%20Results/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/docs/Highlight%20Matches%20in%20Results/</guid>
+      <guid>http://localhost:1313/docs/Highlight%20Matches%20in%20Results/</guid>
       <description>
 
 &lt;p&gt;One popular feature of search is the ability to highlight matching sections of a document in the search results.&lt;/p&gt;
@@ -602,7 +593,7 @@ func main() {
 
 &lt;p&gt;By default it produces output that looks like:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://www.blevesearch.com/img/docs/highlight-html.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/docs/highlight-html.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&#34;ansi:8a6c01a638330ec98d137a89109c86d0&#34;&gt;ANSI&lt;/h4&gt;
 
@@ -610,16 +601,16 @@ func main() {
 
 &lt;p&gt;By default it produces output that looks like:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://www.blevesearch.com/img/docs/highlight-ansi.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/docs/highlight-ansi.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Ignore/Disable Sections of Documents</title>
-      <link>http://www.blevesearch.com/docs/Disabling%20Sections%20of%20Documents/</link>
+      <link>http://localhost:1313/docs/Disabling%20Sections%20of%20Documents/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/docs/Disabling%20Sections%20of%20Documents/</guid>
+      <guid>http://localhost:1313/docs/Disabling%20Sections%20of%20Documents/</guid>
       <description>&lt;p&gt;Sometimes documents contains sections of content you simply want to ignore.  Let&amp;rsquo;s imagine we have the following structure:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;type Person struct {
@@ -639,10 +630,10 @@ personMapping.AddSubDocumentMapping(&amp;quot;Addr&amp;quot;, addressMapping)
     
     <item>
       <title>Include Facets in Results</title>
-      <link>http://www.blevesearch.com/docs/Result-Faceting/</link>
+      <link>http://localhost:1313/docs/Result-Faceting/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/docs/Result-Faceting/</guid>
+      <guid>http://localhost:1313/docs/Result-Faceting/</guid>
       <description>
 
 &lt;p&gt;Facets allow you to include aggregated information about the documents matching your query.&lt;/p&gt;
@@ -705,10 +696,10 @@ personMapping.AddSubDocumentMapping(&amp;quot;Addr&amp;quot;, addressMapping)
     
     <item>
       <title>Introduction to Index Mappings</title>
-      <link>http://www.blevesearch.com/docs/Index-Mapping/</link>
+      <link>http://localhost:1313/docs/Index-Mapping/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/docs/Index-Mapping/</guid>
+      <guid>http://localhost:1313/docs/Index-Mapping/</guid>
       <description>
 
 &lt;p&gt;In bleve, the IndexMapping describes how to your data model should be indexed.&lt;/p&gt;
@@ -803,10 +794,10 @@ blog.AddSubDocumentMapping(&amp;quot;author&amp;quot;, author)
     
     <item>
       <title>Package Structure</title>
-      <link>http://www.blevesearch.com/docs/Package-Structure/</link>
+      <link>http://localhost:1313/docs/Package-Structure/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/docs/Package-Structure/</guid>
+      <guid>http://localhost:1313/docs/Package-Structure/</guid>
       <description>
 
 &lt;p&gt;bleve is organized into a large number of packages.&lt;/p&gt;
