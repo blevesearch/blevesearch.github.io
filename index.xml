@@ -826,128 +826,6 @@ search.js is our custom code to bind everything together.&lt;/p&gt;&lt;/li&gt;
     </item>
     
     <item>
-      <title>Community</title>
-      <link>http://www.blevesearch.com/community/</link>
-      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
-      
-      <guid>http://www.blevesearch.com/community/</guid>
-      <description>
-
-&lt;h3 id=&#34;twitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Twitter&lt;/h3&gt;
-
-&lt;p&gt;Follow @blevesearch on &lt;a href=&#34;https://twitter.com/blevesearch&#34;&gt;twitter&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;irc:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;IRC&lt;/h3&gt;
-
-&lt;p&gt;Join the #bleve channel on &lt;a href=&#34;https://freenode.net/&#34;&gt;freenode&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;google-group:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Google Group&lt;/h3&gt;
-
-&lt;p&gt;Discuss use and development of bleve is in &lt;a href=&#34;https://groups.google.com/forum/#!forum/bleve&#34;&gt;this google group&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;gitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Gitter&lt;/h3&gt;
-
-&lt;p&gt;Join the conversation on &lt;a href=&#34;https://gitter.im/blevesearch/bleve&#34;&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Building</title>
-      <link>http://www.blevesearch.com/docs/Building/</link>
-      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
-      
-      <guid>http://www.blevesearch.com/docs/Building/</guid>
-      <description>
-
-&lt;p&gt;The core of bleve can be built without any C/C++ libraries.  This means you can get and use bleve with:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;go get github.com/blevesearch/bleve/...
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;However, some of the more advanced functionality depends on C/C++ libraries.  The code using these libraries can be enabled by specifying the correct build tag.&lt;/p&gt;
-
-&lt;p&gt;In general, bleve expects these libraries to be built and installed in the standard system locations.  If not, it is up to you to set the appropriate CGO_&amp;hellip; environment variables so that the libraries and headers can be found.&lt;/p&gt;
-
-&lt;h2 id=&#34;leveldb:140c58546f80295ba58ab4d2981832fc&#34;&gt;LevelDB&lt;/h2&gt;
-
-&lt;p&gt;Bleve supports using &lt;a href=&#34;https://code.google.com/p/leveldb/&#34;&gt;LevelDB&lt;/a&gt; as a KVStore implementation.  At this time, this is the fastest KVStore implementation available for bleve.  So if maximum performance is your goal, consider building with support for LevelDB.&lt;/p&gt;
-
-&lt;p&gt;To include support for the leveldb KVStore implementation include the build tag:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;-tags leveldb&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;icu:140c58546f80295ba58ab4d2981832fc&#34;&gt;ICU&lt;/h2&gt;
-
-&lt;p&gt;Bleve supports using the &lt;a href=&#34;http://site.icu-project.org/&#34;&gt;ICU&lt;/a&gt; project to tokenize words using their implementation of the standard for &lt;a href=&#34;http://www.unicode.org/reports/tr29/&#34;&gt;Unicode Text Segmentation at Word Boundaries&lt;/a&gt;.  Some of the language specific analyzers depend on this tokenizer.&lt;/p&gt;
-
-&lt;p&gt;NOTE: It is recommended to get the most recent version of ICU possible.  Older versions often included with distributions do not support language based tokenization.&lt;/p&gt;
-
-&lt;p&gt;To include support for the analysis components requiring ICU, include the build tag:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;-tags icu&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;libstemmer:140c58546f80295ba58ab4d2981832fc&#34;&gt;libstemmer&lt;/h2&gt;
-
-&lt;p&gt;Bleve supports using the &lt;a href=&#34;http://snowball.tartarus.org/download.php&#34;&gt;libstemmer&lt;/a&gt; library to stem words for many languages.  Many of the language specific analyzers depend on this library.&lt;/p&gt;
-
-&lt;p&gt;To include support for the analysis components requiring libstemmer, include the build tag:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;-tags libstemmer&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;cld2:140c58546f80295ba58ab4d2981832fc&#34;&gt;cld2&lt;/h2&gt;
-
-&lt;p&gt;Bleve supports using the &lt;a href=&#34;https://code.google.com/p/cld2/&#34;&gt;cld2&lt;/a&gt; library to determine the language of a sample of text.  This is implemented as a token filter which will return the result as a ISO 639 language code.&lt;/p&gt;
-
-&lt;p&gt;To include support for the detect_lang token filter, include the build tag:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;-tags cld2&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;short-cut-to-include-all-the-optional-dependencies:140c58546f80295ba58ab4d2981832fc&#34;&gt;Short-cut to include all the optional dependencies&lt;/h2&gt;
-
-&lt;p&gt;Building with multiple build tags can be cumbersome:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;-tags &#39;leveldb icu libstemmer cld2&#39;&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;As a shortcut you can instead use:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;-tags full&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;platform-specific-instructions:140c58546f80295ba58ab4d2981832fc&#34;&gt;Platform Specific Instructions&lt;/h2&gt;
-
-&lt;p&gt;The following sections are user-contributed instructions for satisfying all the dependencies on particular platforms.&lt;/p&gt;
-
-&lt;h3 id=&#34;ubuntu-14-04-lts-trusty-tahr:140c58546f80295ba58ab4d2981832fc&#34;&gt;Ubuntu 14.04 LTS (Trusty Tahr)&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;$ sudo apt-get install libleveldb-dev libstemmer-dev libicu-dev svn build-essential
-$ go get -u -v  github.com/blevesearch/bleve
-$ cd $GOPATH/src/github.com/blevesearch/bleve/analysis/token_filters/cld2
-$ svn co http://cld2.googlecode.com/svn/trunk cld2-read-only
-$ cd cld2-read-only/internal/
-$ ./compile_libs.sh
-$ sudo cp *.so /usr/local/lib
-$ go get -u -v -tags full github.com/blevesearch/bleve
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;os-x-hacky-but-similar-to-ubuntu-14-04:140c58546f80295ba58ab4d2981832fc&#34;&gt;OS X (hacky, but similar to Ubuntu 14.04)&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;$ brew install leveldb icu4c svn # etc?
-$ export CGO_LDFLAGS=-L/usr/local/opt/icu4c/lib
-$  export CGO_CFLAGS=-I/usr/local/opt/icu4c/include
-$ go get -u -v  github.com/blevesearch/bleve
-$ cd $GOPATH/src/github.com/blevesearch/bleve/analysis/token_filters/cld2
-$ svn co http://cld2.googlecode.com/svn/trunk cld2-read-only
-$ cd cld2-read-only/internal/
-# if you feel gutsy run:
-$ perl -p -i -e &#39;s/soname=/install_name,/&#39; compile_libs.sh
-# otherwise, just change soname= to install_name, in the two spots in compile_libs.sh
-$ ./compile_libs.sh
-$ sudo cp *.so /usr/local/lib
-$ go get -u -v -tags full github.com/blevesearch/bleve
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Analyzers</title>
       <link>http://www.blevesearch.com/docs/Analyzers/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
@@ -1084,6 +962,128 @@ $ go get -u -v -tags full github.com/blevesearch/bleve
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/ekanite/ekanite&#34;&gt;https://github.com/ekanite/ekanite&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Community</title>
+      <link>http://www.blevesearch.com/community/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/community/</guid>
+      <description>
+
+&lt;h3 id=&#34;twitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Twitter&lt;/h3&gt;
+
+&lt;p&gt;Follow @blevesearch on &lt;a href=&#34;https://twitter.com/blevesearch&#34;&gt;twitter&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;irc:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;IRC&lt;/h3&gt;
+
+&lt;p&gt;Join the #bleve channel on &lt;a href=&#34;https://freenode.net/&#34;&gt;freenode&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;google-group:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Google Group&lt;/h3&gt;
+
+&lt;p&gt;Discuss use and development of bleve is in &lt;a href=&#34;https://groups.google.com/forum/#!forum/bleve&#34;&gt;this google group&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;gitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Gitter&lt;/h3&gt;
+
+&lt;p&gt;Join the conversation on &lt;a href=&#34;https://gitter.im/blevesearch/bleve&#34;&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Building</title>
+      <link>http://www.blevesearch.com/docs/Building/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/Building/</guid>
+      <description>
+
+&lt;p&gt;The core of bleve can be built without any C/C++ libraries.  This means you can get and use bleve with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;go get github.com/blevesearch/bleve/...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;However, some of the more advanced functionality depends on C/C++ libraries.  The code using these libraries can be enabled by specifying the correct build tag.&lt;/p&gt;
+
+&lt;p&gt;In general, bleve expects these libraries to be built and installed in the standard system locations.  If not, it is up to you to set the appropriate CGO_&amp;hellip; environment variables so that the libraries and headers can be found.&lt;/p&gt;
+
+&lt;h2 id=&#34;leveldb:140c58546f80295ba58ab4d2981832fc&#34;&gt;LevelDB&lt;/h2&gt;
+
+&lt;p&gt;Bleve supports using &lt;a href=&#34;https://code.google.com/p/leveldb/&#34;&gt;LevelDB&lt;/a&gt; as a KVStore implementation.  At this time, this is the fastest KVStore implementation available for bleve.  So if maximum performance is your goal, consider building with support for LevelDB.&lt;/p&gt;
+
+&lt;p&gt;To include support for the leveldb KVStore implementation include the build tag:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;-tags leveldb&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;icu:140c58546f80295ba58ab4d2981832fc&#34;&gt;ICU&lt;/h2&gt;
+
+&lt;p&gt;Bleve supports using the &lt;a href=&#34;http://site.icu-project.org/&#34;&gt;ICU&lt;/a&gt; project to tokenize words using their implementation of the standard for &lt;a href=&#34;http://www.unicode.org/reports/tr29/&#34;&gt;Unicode Text Segmentation at Word Boundaries&lt;/a&gt;.  Some of the language specific analyzers depend on this tokenizer.&lt;/p&gt;
+
+&lt;p&gt;NOTE: It is recommended to get the most recent version of ICU possible.  Older versions often included with distributions do not support language based tokenization.&lt;/p&gt;
+
+&lt;p&gt;To include support for the analysis components requiring ICU, include the build tag:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;-tags icu&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;libstemmer:140c58546f80295ba58ab4d2981832fc&#34;&gt;libstemmer&lt;/h2&gt;
+
+&lt;p&gt;Bleve supports using the &lt;a href=&#34;http://snowball.tartarus.org/download.php&#34;&gt;libstemmer&lt;/a&gt; library to stem words for many languages.  Many of the language specific analyzers depend on this library.&lt;/p&gt;
+
+&lt;p&gt;To include support for the analysis components requiring libstemmer, include the build tag:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;-tags libstemmer&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;cld2:140c58546f80295ba58ab4d2981832fc&#34;&gt;cld2&lt;/h2&gt;
+
+&lt;p&gt;Bleve supports using the &lt;a href=&#34;https://code.google.com/p/cld2/&#34;&gt;cld2&lt;/a&gt; library to determine the language of a sample of text.  This is implemented as a token filter which will return the result as a ISO 639 language code.&lt;/p&gt;
+
+&lt;p&gt;To include support for the detect_lang token filter, include the build tag:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;-tags cld2&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;short-cut-to-include-all-the-optional-dependencies:140c58546f80295ba58ab4d2981832fc&#34;&gt;Short-cut to include all the optional dependencies&lt;/h2&gt;
+
+&lt;p&gt;Building with multiple build tags can be cumbersome:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;-tags &#39;leveldb icu libstemmer cld2&#39;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;As a shortcut you can instead use:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;-tags full&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;platform-specific-instructions:140c58546f80295ba58ab4d2981832fc&#34;&gt;Platform Specific Instructions&lt;/h2&gt;
+
+&lt;p&gt;The following sections are user-contributed instructions for satisfying all the dependencies on particular platforms.&lt;/p&gt;
+
+&lt;h3 id=&#34;ubuntu-14-04-lts-trusty-tahr:140c58546f80295ba58ab4d2981832fc&#34;&gt;Ubuntu 14.04 LTS (Trusty Tahr)&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo apt-get install libleveldb-dev libstemmer-dev libicu-dev svn build-essential
+$ go get -u -v  github.com/blevesearch/bleve
+$ cd $GOPATH/src/github.com/blevesearch/bleve/analysis/token_filters/cld2
+$ svn co http://cld2.googlecode.com/svn/trunk cld2-read-only
+$ cd cld2-read-only/internal/
+$ ./compile_libs.sh
+$ sudo cp *.so /usr/local/lib
+$ go get -u -v -tags full github.com/blevesearch/bleve
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;os-x-hacky-but-similar-to-ubuntu-14-04:140c58546f80295ba58ab4d2981832fc&#34;&gt;OS X (hacky, but similar to Ubuntu 14.04)&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew install leveldb icu4c svn # etc?
+$ export CGO_LDFLAGS=-L/usr/local/opt/icu4c/lib
+$  export CGO_CFLAGS=-I/usr/local/opt/icu4c/include
+$ go get -u -v  github.com/blevesearch/bleve
+$ cd $GOPATH/src/github.com/blevesearch/bleve/analysis/token_filters/cld2
+$ svn co http://cld2.googlecode.com/svn/trunk cld2-read-only
+$ cd cld2-read-only/internal/
+# if you feel gutsy run:
+$ perl -p -i -e &#39;s/soname=/install_name,/&#39; compile_libs.sh
+# otherwise, just change soname= to install_name, in the two spots in compile_libs.sh
+$ ./compile_libs.sh
+$ sudo cp *.so /usr/local/lib
+$ go get -u -v -tags full github.com/blevesearch/bleve
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     

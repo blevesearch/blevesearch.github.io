@@ -262,10 +262,10 @@
 
 <p>The simplest way to get started with bleve is to use the standard go get operation:</p>
 
-<pre><code>go get github.com/blevesearch/bleve/... 
+<pre><code>go get github.com/blevesearch/bleve/...
 </code></pre>
 
-<p>This will build a pure go version of bleve and install the command-line utilities.  Some of the more advanced functionality requires you have C/C++ libraries available.  See the <a href="/docs/Building/">Building</a> page for more details.</p>
+<p>This will build a pure Go version of bleve and install the command-line utility.</p>
 
 <h3 id="your-first-bleve-program:fea031cc8a84a77f907665d305d10e43">Your first bleve program</h3>
 
@@ -274,38 +274,38 @@
 <pre><code class="language-go">package main
 
 import (
-    &quot;fmt&quot;
+	&quot;fmt&quot;
 
-    &quot;github.com/blevesearch/bleve&quot;
+	&quot;github.com/blevesearch/bleve&quot;
 )
 
 func main() {
-    // open a new index
-    mapping := bleve.NewIndexMapping()
-    index, err := bleve.New(&quot;example.bleve&quot;, mapping)
-    if err != nil {
-        fmt.Println(err)
-        return
-    }
+	// open a new index
+	mapping := bleve.NewIndexMapping()
+	index, err := bleve.New(&quot;example.bleve&quot;, mapping)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 
-    data := struct {
-        Name string
-    }{
-        Name: &quot;text&quot;,
-    }
+	data := struct {
+		Name string
+	}{
+		Name: &quot;text&quot;,
+	}
 
-    // index some data
-    index.Index(&quot;id&quot;, data)
+	// index some data
+	index.Index(&quot;id&quot;, data)
 
-    // search for some text
-    query := bleve.NewMatchQuery(&quot;text&quot;)
-    search := bleve.NewSearchRequest(query)
-    searchResults, err := index.Search(search)
-    if err != nil {
-        fmt.Println(err)
-        return
-    }
-    fmt.Println(searchResults)
+	// search for some text
+	query := bleve.NewMatchQuery(&quot;text&quot;)
+	search := bleve.NewSearchRequest(query)
+	searchResults, err := index.Search(search)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(searchResults)
 }
 </code></pre>
 
