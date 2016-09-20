@@ -948,66 +948,6 @@ $ go get -u -v -tags full github.com/blevesearch/bleve
     </item>
     
     <item>
-      <title>Applications Using Bleve</title>
-      <link>http://www.blevesearch.com/docs/Applications-using-bleve/</link>
-      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
-      
-      <guid>http://www.blevesearch.com/docs/Applications-using-bleve/</guid>
-      <description>
-
-&lt;p&gt;The following applications use bleve.  Add yours to the list!&lt;/p&gt;
-
-&lt;h2 id=&#34;caddy:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;Caddy&lt;/h2&gt;
-
-&lt;p&gt;Caddy is an alternative web server that is easy to configure and use.  Caddy uses Bleve to automatically index your site and expose a search page and JSON endpoint.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://caddyserver.com/docs/search&#34;&gt;https://caddyserver.com/docs/search&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;cbft:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;cbft&lt;/h2&gt;
-
-&lt;p&gt;Full-text searches of Couchbase Server, powered by bleve.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/couchbaselabs/cbft&#34;&gt;https://github.com/couchbaselabs/cbft&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;docker-bleve-wiki-indexer:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;docker bleve wiki indexer&lt;/h2&gt;
-
-&lt;p&gt;Dockerizing the bleve library to search the bleve wiki.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/lgs/docker-bleve-wiki-indexer&#34;&gt;https://github.com/lgs/docker-bleve-wiki-indexer&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;goin:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;goin&lt;/h2&gt;
-
-&lt;p&gt;A full text search indexer for your files on disk.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://bitbucket.org/zaphar/goin&#34;&gt;https://bitbucket.org/zaphar/goin&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;tpb-search:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;tpb-search&lt;/h2&gt;
-
-&lt;p&gt;Locally index and search database dumps from &lt;a href=&#34;https://openbay.isohunt.to&#34;&gt;https://openbay.isohunt.to&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/peterhellberg/tpb-search&#34;&gt;https://github.com/peterhellberg/tpb-search&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;ekanite:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;Ekanite&lt;/h2&gt;
-
-&lt;p&gt;A Syslog server with built-in search for received log messages.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/ekanite/ekanite&#34;&gt;https://github.com/ekanite/ekanite&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Analyzers</title>
       <link>http://www.blevesearch.com/docs/Analyzers/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
@@ -1088,6 +1028,66 @@ $ go get -u -v -tags full github.com/blevesearch/bleve
     </item>
     
     <item>
+      <title>Applications Using Bleve</title>
+      <link>http://www.blevesearch.com/docs/Applications-using-bleve/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/Applications-using-bleve/</guid>
+      <description>
+
+&lt;p&gt;The following applications use bleve.  Add yours to the list!&lt;/p&gt;
+
+&lt;h2 id=&#34;caddy:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;Caddy&lt;/h2&gt;
+
+&lt;p&gt;Caddy is an alternative web server that is easy to configure and use.  Caddy uses Bleve to automatically index your site and expose a search page and JSON endpoint.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://caddyserver.com/docs/search&#34;&gt;https://caddyserver.com/docs/search&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;cbft:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;cbft&lt;/h2&gt;
+
+&lt;p&gt;Full-text searches of Couchbase Server, powered by bleve.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/couchbaselabs/cbft&#34;&gt;https://github.com/couchbaselabs/cbft&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;docker-bleve-wiki-indexer:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;docker bleve wiki indexer&lt;/h2&gt;
+
+&lt;p&gt;Dockerizing the bleve library to search the bleve wiki.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/lgs/docker-bleve-wiki-indexer&#34;&gt;https://github.com/lgs/docker-bleve-wiki-indexer&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;goin:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;goin&lt;/h2&gt;
+
+&lt;p&gt;A full text search indexer for your files on disk.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://bitbucket.org/zaphar/goin&#34;&gt;https://bitbucket.org/zaphar/goin&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;tpb-search:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;tpb-search&lt;/h2&gt;
+
+&lt;p&gt;Locally index and search database dumps from &lt;a href=&#34;https://openbay.isohunt.to&#34;&gt;https://openbay.isohunt.to&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/peterhellberg/tpb-search&#34;&gt;https://github.com/peterhellberg/tpb-search&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;ekanite:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;Ekanite&lt;/h2&gt;
+
+&lt;p&gt;A Syslog server with built-in search for received log messages.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/ekanite/ekanite&#34;&gt;https://github.com/ekanite/ekanite&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Character Filters</title>
       <link>http://www.blevesearch.com/docs/Character-Filters/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
@@ -1112,6 +1112,25 @@ $ go get -u -v -tags full github.com/blevesearch/bleve
     </item>
     
     <item>
+      <title>Contributing</title>
+      <link>http://www.blevesearch.com/docs/Contributing/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/Contributing/</guid>
+      <description>&lt;p&gt;As bleve is a Couchbase project we must require contributors accept the &lt;a href=&#34;http://review.couchbase.org/static/individual_agreement.html&#34;&gt;Couchbase Contributor License Agreement&lt;/a&gt;.  To sign this agreement log into the Couchbase &lt;a href=&#34;http://review.couchbase.org/&#34;&gt;code review tool&lt;/a&gt;.  The bleve project does not use this code review tool but it is still used to track acceptance of the contributor license agreements.&lt;/p&gt;
+
+&lt;p&gt;All types of contributions are welcome, but please keep the following in mind:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;If you&amp;rsquo;re planning a large change, you should really discuss it on the &lt;a href=&#34;https://groups.google.com/forum/#!forum/bleve&#34;&gt;google group&lt;/a&gt; first.  This helps avoid duplicate effort and spending time on something that may not be merged.&lt;/li&gt;
+&lt;li&gt;Existing tests should continue to pass, new tests for the contribution are nice to have.&lt;/li&gt;
+&lt;li&gt;All code should have gone through &lt;code&gt;go fmt&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;All code should pass &lt;code&gt;go vet&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Ignore/Disable Sections of Documents</title>
       <link>http://www.blevesearch.com/docs/Disabling%20Sections%20of%20Documents/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
@@ -1131,25 +1150,6 @@ $ go get -u -v -tags full github.com/blevesearch/bleve
 personMapping := bleve.NewDocumentMapping()
 personMapping.AddSubDocumentMapping(&amp;quot;Addr&amp;quot;, addressMapping)
 &lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Contributing</title>
-      <link>http://www.blevesearch.com/docs/Contributing/</link>
-      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
-      
-      <guid>http://www.blevesearch.com/docs/Contributing/</guid>
-      <description>&lt;p&gt;As bleve is a Couchbase project we must require contributors accept the &lt;a href=&#34;http://review.couchbase.org/static/individual_agreement.html&#34;&gt;Couchbase Contributor License Agreement&lt;/a&gt;.  To sign this agreement log into the Couchbase &lt;a href=&#34;http://review.couchbase.org/&#34;&gt;code review tool&lt;/a&gt;.  The bleve project does not use this code review tool but it is still used to track acceptance of the contributor license agreements.&lt;/p&gt;
-
-&lt;p&gt;All types of contributions are welcome, but please keep the following in mind:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;If you&amp;rsquo;re planning a large change, you should really discuss it on the &lt;a href=&#34;https://groups.google.com/forum/#!forum/bleve&#34;&gt;google group&lt;/a&gt; first.  This helps avoid duplicate effort and spending time on something that may not be merged.&lt;/li&gt;
-&lt;li&gt;Existing tests should continue to pass, new tests for the contribution are nice to have.&lt;/li&gt;
-&lt;li&gt;All code should have gone through &lt;code&gt;go fmt&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;All code should pass &lt;code&gt;go vet&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
 </description>
     </item>
     
