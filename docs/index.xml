@@ -398,64 +398,35 @@ $ go get -u -v -tags full github.com/blevesearch/bleve
     </item>
     
     <item>
-      <title>Command-line Utilities</title>
-      <link>http://www.blevesearch.com/docs/Utilties/</link>
+      <title>Command-line Utility</title>
+      <link>http://www.blevesearch.com/docs/bleve/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/docs/Utilties/</guid>
+      <guid>http://www.blevesearch.com/docs/bleve/</guid>
       <description>
 
-&lt;p&gt;bleve comes with a few helpful command-line utilities:&lt;/p&gt;
+&lt;h2 id=&#34;bleve:901bef76d75505723a0bdc33b9d82adb&#34;&gt;bleve&lt;/h2&gt;
 
-&lt;h3 id=&#34;bleve-create:a6debf56f15ff81007f2e6c0a00c5c55&#34;&gt;bleve_create&lt;/h3&gt;
+&lt;p&gt;command-line tool to interact with a bleve index&lt;/p&gt;
 
-&lt;p&gt;The bleve_create command allows you to create a new bleve index from the command line.&lt;/p&gt;
+&lt;h3 id=&#34;synopsis:901bef76d75505723a0bdc33b9d82adb&#34;&gt;Synopsis&lt;/h3&gt;
 
-&lt;ul&gt;
-&lt;li&gt;-index - path to the index to create&lt;/li&gt;
-&lt;li&gt;-mapping - path to a JSON serialized index mapping to be used for this index&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;Bleve is a command-line tool to interact with a bleve index.&lt;/p&gt;
 
-&lt;h3 id=&#34;bleve-dump:a6debf56f15ff81007f2e6c0a00c5c55&#34;&gt;bleve_dump&lt;/h3&gt;
-
-&lt;p&gt;The bleve_dump utility allows you to dump out part of all of a bleve index.&lt;/p&gt;
+&lt;h3 id=&#34;see-also:901bef76d75505723a0bdc33b9d82adb&#34;&gt;SEE ALSO&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;-docID - dump all the rows pertaining to the single specified document&lt;/li&gt;
-&lt;li&gt;-fields - dump the field names and field ids in the index&lt;/li&gt;
-&lt;li&gt;-index - path to the index to dump&lt;/li&gt;
-&lt;li&gt;-mapping - print a JSON serialization of the index mapping&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/bleve_bulk/&#34;&gt;bleve bulk&lt;/a&gt;  - bulk loads from newline delimited JSON files&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/bleve_count/&#34;&gt;bleve count&lt;/a&gt;     - counts the number documents in the index&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/bleve_create/&#34;&gt;bleve create&lt;/a&gt;    - creates a new index&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/bleve_dictionary/&#34;&gt;bleve dictionary&lt;/a&gt;    - prints the term dictionary for the specified field in the index&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/bleve_dump/&#34;&gt;bleve dump&lt;/a&gt;  - dumps the contents of the index&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/bleve_fields/&#34;&gt;bleve fields&lt;/a&gt;    - lists the fields in this index&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/bleve_index/&#34;&gt;bleve index&lt;/a&gt;     - adds the files to the index&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/bleve_mapping/&#34;&gt;bleve mapping&lt;/a&gt;   - prints the mapping used for this index&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/bleve_query/&#34;&gt;bleve query&lt;/a&gt;     - queries the index&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/bleve_registry/&#34;&gt;bleve registry&lt;/a&gt;     - registry lists the bleve components compiled into this executable&lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;p&gt;If none of these alternate modes have been specified it will dump all rows in the index.&lt;/p&gt;
-
-&lt;h3 id=&#34;bleve-index:a6debf56f15ff81007f2e6c0a00c5c55&#34;&gt;bleve_index&lt;/h3&gt;
-
-&lt;p&gt;The bleve_index utility takes one or more files or directories and adds them to the specified index.&lt;/p&gt;
-
-&lt;p&gt;Document IDs are generated based on the filename.  By default the direction portion and extension are stripped off.  For example, indexing &lt;code&gt;../data/file.json&lt;/code&gt; would index the contents with the document ID &lt;code&gt;file&lt;/code&gt;.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;-index - the path to the index&lt;/li&gt;
-&lt;li&gt;-keepDir - keep the directory portion of the file name&lt;/li&gt;
-&lt;li&gt;-keepExt - keep the extension portion of the file name&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;bleve-query:a6debf56f15ff81007f2e6c0a00c5c55&#34;&gt;bleve_query&lt;/h3&gt;
-
-&lt;p&gt;The bleve_query command allows you to run queries on a bleve index.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;-explain - include scoring explanation in the output&lt;/li&gt;
-&lt;li&gt;-highlight - highlight matching portions of results&lt;/li&gt;
-&lt;li&gt;-index - path to the index to query&lt;/li&gt;
-&lt;li&gt;-limit - limit the results to the first &lt;code&gt;limit&lt;/code&gt; number of matches&lt;/li&gt;
-&lt;li&gt;-skip - skip the first &lt;code&gt;skip&lt;/code&gt; number of matches&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;bleve-registry:a6debf56f15ff81007f2e6c0a00c5c55&#34;&gt;bleve_registry&lt;/h3&gt;
-
-&lt;p&gt;The bleve_registry command lets you inspect which named components were compiled into this version of bleve.  As bleve allows for optionally including or excluding a number of components, this can be a helpful way to see what you have available.&lt;/p&gt;
 </description>
     </item>
     

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Query String Query -- Bleve</title>
+    <title>bleve dump fields -- Bleve</title>
 
     
 
@@ -160,7 +160,7 @@
 										<ul  class="docmenu">
 											
 												
-													<li class="active">Query String Query</li>
+													<li><a href="/docs/Query-String-Query/">Query String Query</a></li>
 												
 											
 										</ul>
@@ -265,51 +265,24 @@
     </div>
 
     <div class="col-lg-9 docmain">
-    	<h1>Query String Query</h1>
+    	<h1>bleve dump fields</h1>
 
 		
 
-<p>The query language query allows humans to describe complex queries using a simple syntax.</p>
+<p>dump only the field rows</p>
 
-<h3 id="terms:da355926c964f14ad0baf9b0b2a9527e">Terms</h3>
+<h3 id="synopsis:77b511fb9ea1a8ad5c813184bb0b1493">Synopsis</h3>
 
-<p>Plain terms without any other syntax are interpreted as a match query for the term in the default field.  The default field is <code>_all</code> unless overridden in the index mapping.</p>
+<p>The fields sub-command of dump will only dump the field rows.</p>
 
-<p>Example: <code>water</code> will perform a <a href="/docs/Query/#match:8f767fbc41af8ff1ddcf4c60ed8c0fe9">Match Query</a> for the term <code>water</code>.</p>
+<pre><code>bleve dump fields [index path]
+</code></pre>
 
-<h3 id="phrases:da355926c964f14ad0baf9b0b2a9527e">Phrases</h3>
+<h3 id="see-also:77b511fb9ea1a8ad5c813184bb0b1493">SEE ALSO</h3>
 
-<p>Phrase queries can be accomplished by placing the phrase in quotes.</p>
-
-<p>Example: <code>&quot;light beer&quot;</code> will peform a <a href="/docs/Query/#match-phrase:8f767fbc41af8ff1ddcf4c60ed8c0fe9">Match Phrase Query</a> for the phrase <code>light beer</code>.</p>
-
-<h3 id="field-scoping:da355926c964f14ad0baf9b0b2a9527e">Field Scoping</h3>
-
-<p>You can qualify the field for these searches by prefixing them with the name of the field separated by a colon.</p>
-
-<p>Example: <code>description:water</code> will perform a <a href="/docs/Query/#match:8f767fbc41af8ff1ddcf4c60ed8c0fe9">Match Query</a> for the term <code>water</code>, in the <code>description</code> field.</p>
-
-<h3 id="required-optional-and-exclusion:da355926c964f14ad0baf9b0b2a9527e">Required, Optional, and Exclusion</h3>
-
-<p>When your query string includes multiple items, by default these are placed into the SHOULD clause of a <a href="/docs/Query/#boolean:8f767fbc41af8ff1ddcf4c60ed8c0fe9">Boolean Query</a>.</p>
-
-<p>You can change this by prefixing your items with a <code>+</code> or &lsquo;-&rsquo;.
-* &lsquo;+&rsquo; Prefixing with plus places that item in the MUST portion of the boolean query.
-* &lsquo;-&rsquo; Prefixing with a minus places that item in the MUST NOT portion of the boolean query.</p>
-
-<p>Example: <code>+description:water -light beer</code> will perform a <a href="/docs/Query/#boolean:8f767fbc41af8ff1ddcf4c60ed8c0fe9">Boolean Query</a> that MUST satisfy the Match Query for the term <code>water</code> in the <code>description</code> field, MUST NOT satisfy the Match Query for the term <code>light</code> in the default field, and SHOULD satisfy the Match Query for the term <code>beer</code> in the default field.  Result documents satisfying the SHOULD clause will score higher than those that do not.</p>
-
-<h3 id="boosting:da355926c964f14ad0baf9b0b2a9527e">Boosting</h3>
-
-<p>You can influence the relative importance of the clauses by suffixing clauses with the ^ operator followed by a number.</p>
-
-<p>Example: <code>description:water name:water^5</code> will perform Match queries for <code>water</code> in both the <code>name</code> and <code>description</code> fields, but documents having the term in the <code>name</code> field will score higher.</p>
-
-<h3 id="numeric-ranges:da355926c964f14ad0baf9b0b2a9527e">Numeric Ranges</h3>
-
-<p>You can perform numeric ranges by using the &gt;, &gt;=, &lt;, and &lt;= operators, followed by a numeric value.</p>
-
-<p>Example: <code>abv:&gt;10</code> will perform an <a href="/docs/Query/#numeric-range:8f767fbc41af8ff1ddcf4c60ed8c0fe9">Numeric Range Query</a> on the <code>abv</code> field for values greater than ten.</p>
+<ul>
+<li><a href="/docs/bleve_dump/">bleve dump</a>  - dumps the contents of the index</li>
+</ul>
 
 	</div>
 </div>
