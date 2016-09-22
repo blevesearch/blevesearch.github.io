@@ -169,6 +169,18 @@
 		                    
 								
                 					
+										<li><a href="/docs/Sorting/">Sorting</a></li>
+									
+		                    	
+		                    
+								
+                					
+										<li><a href="/docs/IndexAlias/">Index Aliases</a></li>
+									
+		                    	
+		                    
+								
+                					
 										<li><a href="/docs/Example-Applications/">Example Applications</a></li>
 									
 		                    	
@@ -231,6 +243,12 @@
 		                    
 								
                 					
+										<li><a href="/docs/Blevex/">Using blevex packages</a></li>
+									
+		                    	
+		                    
+								
+                					
 										<li><a href="/docs/Contributing/">Contributing</a></li>
 									
 		                    	
@@ -260,62 +278,13 @@
 
 		
 
-<p>The core of bleve can be built without any C/C++ libraries.  This means you can get and use bleve with:</p>
-
-<pre><code>go get github.com/blevesearch/bleve/...
-</code></pre>
-
-<p>However, some of the more advanced functionality depends on C/C++ libraries.  The code using these libraries can be enabled by specifying the correct build tag.</p>
+<p>Some of the <a href="/docs/Blevex/">blevex</a> packages require C/C++ libraries.</p>
 
 <p>In general, bleve expects these libraries to be built and installed in the standard system locations.  If not, it is up to you to set the appropriate CGO_&hellip; environment variables so that the libraries and headers can be found.</p>
 
-<h2 id="leveldb:140c58546f80295ba58ab4d2981832fc">LevelDB</h2>
-
-<p>Bleve supports using <a href="https://code.google.com/p/leveldb/">LevelDB</a> as a KVStore implementation.  At this time, this is the fastest KVStore implementation available for bleve.  So if maximum performance is your goal, consider building with support for LevelDB.</p>
-
-<p>To include support for the leveldb KVStore implementation include the build tag:</p>
-
-<p><code>-tags leveldb</code></p>
-
-<h2 id="icu:140c58546f80295ba58ab4d2981832fc">ICU</h2>
-
-<p>Bleve supports using the <a href="http://site.icu-project.org/">ICU</a> project to tokenize words using their implementation of the standard for <a href="http://www.unicode.org/reports/tr29/">Unicode Text Segmentation at Word Boundaries</a>.  Some of the language specific analyzers depend on this tokenizer.</p>
-
-<p>NOTE: It is recommended to get the most recent version of ICU possible.  Older versions often included with distributions do not support language based tokenization.</p>
-
-<p>To include support for the analysis components requiring ICU, include the build tag:</p>
-
-<p><code>-tags icu</code></p>
-
-<h2 id="libstemmer:140c58546f80295ba58ab4d2981832fc">libstemmer</h2>
-
-<p>Bleve supports using the <a href="http://snowball.tartarus.org/download.php">libstemmer</a> library to stem words for many languages.  Many of the language specific analyzers depend on this library.</p>
-
-<p>To include support for the analysis components requiring libstemmer, include the build tag:</p>
-
-<p><code>-tags libstemmer</code></p>
-
-<h2 id="cld2:140c58546f80295ba58ab4d2981832fc">cld2</h2>
-
-<p>Bleve supports using the <a href="https://code.google.com/p/cld2/">cld2</a> library to determine the language of a sample of text.  This is implemented as a token filter which will return the result as a ISO 639 language code.</p>
-
-<p>To include support for the detect_lang token filter, include the build tag:</p>
-
-<p><code>-tags cld2</code></p>
-
-<h2 id="short-cut-to-include-all-the-optional-dependencies:140c58546f80295ba58ab4d2981832fc">Short-cut to include all the optional dependencies</h2>
-
-<p>Building with multiple build tags can be cumbersome:</p>
-
-<p><code>-tags 'leveldb icu libstemmer cld2'</code></p>
-
-<p>As a shortcut you can instead use:</p>
-
-<p><code>-tags full</code></p>
-
 <h2 id="platform-specific-instructions:140c58546f80295ba58ab4d2981832fc">Platform Specific Instructions</h2>
 
-<p>The following sections are user-contributed instructions for satisfying all the dependencies on particular platforms.</p>
+<p>The following sections are user-contributed instructions for satisfying dependencies on particular platforms.</p>
 
 <h3 id="ubuntu-14-04-lts-trusty-tahr:140c58546f80295ba58ab4d2981832fc">Ubuntu 14.04 LTS (Trusty Tahr)</h3>
 

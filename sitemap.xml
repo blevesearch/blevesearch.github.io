@@ -18,6 +18,21 @@
   </url>
   
   <url>
+    <loc>http://www.blevesearch.com/docs/Blevex/</loc>
+    <lastmod>2016-09-21T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/IndexAlias/</loc>
+    <lastmod>2016-09-21T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/Sorting/</loc>
+    <lastmod>2016-09-21T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.blevesearch.com/events/dotGo2015/</loc>
     <lastmod>2015-11-09T10:25:38-04:00</lastmod>
   </url>
@@ -73,22 +88,22 @@
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/docs/Character-Filters/</loc>
-    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://www.blevesearch.com/docs/Building/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/docs/Disabling%20Sections%20of%20Documents/</loc>
+    <loc>http://www.blevesearch.com/docs/Contributing/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/docs/Contributing/</loc>
+    <loc>http://www.blevesearch.com/docs/Character-Filters/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/Disabling%20Sections%20of%20Documents/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
@@ -118,17 +133,12 @@
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/docs/Package-Structure/</loc>
-    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.blevesearch.com/docs/Query/</loc>
-    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://www.blevesearch.com/docs/Pronunciation/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/Package-Structure/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
@@ -138,7 +148,7 @@
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/docs/Result-Faceting/</loc>
+    <loc>http://www.blevesearch.com/docs/Query/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
@@ -148,7 +158,7 @@
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/docs/Tokenizers/</loc>
+    <loc>http://www.blevesearch.com/docs/Result-Faceting/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
@@ -158,12 +168,17 @@
   </url>
   
   <url>
+    <loc>http://www.blevesearch.com/docs/Token-Filters/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.blevesearch.com/docs/bleve/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/docs/Token-Filters/</loc>
+    <loc>http://www.blevesearch.com/docs/Tokenizers/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
@@ -187,11 +202,11 @@
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/docs/bleve_count/</loc>
+    <loc>http://www.blevesearch.com/docs/bleve_create/</loc>
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/docs/bleve_create/</loc>
+    <loc>http://www.blevesearch.com/docs/bleve_count/</loc>
   </url>
   
   <url>
@@ -203,6 +218,10 @@
   </url>
   
   <url>
+    <loc>http://www.blevesearch.com/docs/bleve_index/</loc>
+  </url>
+  
+  <url>
     <loc>http://www.blevesearch.com/docs/bleve_dump_doc/</loc>
   </url>
   
@@ -211,23 +230,19 @@
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/docs/bleve_dump_fields/</loc>
-  </url>
-  
-  <url>
-    <loc>http://www.blevesearch.com/docs/bleve_index/</loc>
-  </url>
-  
-  <url>
     <loc>http://www.blevesearch.com/docs/bleve_mapping/</loc>
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/docs/bleve_query/</loc>
+    <loc>http://www.blevesearch.com/docs/bleve_dump_fields/</loc>
   </url>
   
   <url>
     <loc>http://www.blevesearch.com/docs/bleve_registry/</loc>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/bleve_query/</loc>
   </url>
   
 </urlset>

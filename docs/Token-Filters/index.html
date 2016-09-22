@@ -169,6 +169,18 @@
 		                    
 								
                 					
+										<li><a href="/docs/Sorting/">Sorting</a></li>
+									
+		                    	
+		                    
+								
+                					
+										<li><a href="/docs/IndexAlias/">Index Aliases</a></li>
+									
+		                    	
+		                    
+								
+                					
 										<li><a href="/docs/Example-Applications/">Example Applications</a></li>
 									
 		                    	
@@ -231,6 +243,12 @@
 		                    
 								
                 					
+										<li><a href="/docs/Blevex/">Using blevex packages</a></li>
+									
+		                    	
+		                    
+								
+                					
 										<li><a href="/docs/Contributing/">Contributing</a></li>
 									
 		                    	
@@ -288,9 +306,17 @@ if err != nil {
 
 <p>The Apostrophe Token Filter removes all characters after an apostrophe.</p>
 
+<h3 id="camel-case:c38efc402d8771527a225c32b59be157">Camel Case</h3>
+
+<p>The Camel Case Filter splits a token written in camel case into the set of tokens comprising it.  For example, the token <code>camelCase</code> would produce <code>camel</code> and <code>Case</code>.</p>
+
 <h3 id="cld2:c38efc402d8771527a225c32b59be157">CLD2</h3>
 
 <p>The CLD2 Token Filter will take the text from each token and pass it to the <a href="https://code.google.com/p/cld2/">Compact Language Detection 2</a> library.  Each token is replaced with a new token corresponding to the ISO 639 language code detected.  Input text should already be converted to lower case.</p>
+
+<h3 id="compound-word-dictionary:c38efc402d8771527a225c32b59be157">Compound Word Dictionary</h3>
+
+<p>The compound word dictionary filter lets you supply a dictionary of words that combine to form compound words and lets you index them individually.</p>
 
 <h3 id="edge-n-gram:c38efc402d8771527a225c32b59be157">Edge n-gram</h3>
 
@@ -321,6 +347,14 @@ if err != nil {
 <h3 id="n-gram:c38efc402d8771527a225c32b59be157">n-gram</h3>
 
 <p>The n-gram token filter computes n-grams from each input token.  There are two parameters, the minimum and maximum n-gram length.</p>
+
+<h3 id="porter-stemmer:c38efc402d8771527a225c32b59be157">Porter Stemmer</h3>
+
+<p>The porter stemmer filter applies the Porter Stemming Algorithm to the input tokens.</p>
+
+<h3 id="shingle:c38efc402d8771527a225c32b59be157">Shingle</h3>
+
+<p>The Shingle filter computes multi-token shingles from the input token stream.  For example, the token stream <code>the quick brown fox</code> when configured with a shingle minimum and maximum length of 2 would produce the tokens <code>the quick</code>, <code>quick brown</code> and <code>brown fox</code>.</p>
 
 <h3 id="stemmer:c38efc402d8771527a225c32b59be157">Stemmer</h3>
 

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Text Analysis -- Bleve</title>
+    <title>Sorting -- Bleve</title>
 
     
 
@@ -122,7 +122,7 @@
 								
 									<li>
 										
-											Text Analysis
+											<a href="/docs/Text-Analysis/">Text Analysis</a>
 										
 										<ul  class="docmenu">
 											
@@ -169,7 +169,7 @@
 		                    
 								
                 					
-										<li><a href="/docs/Sorting/">Sorting</a></li>
+										<li class="active">Sorting</li>
 									
 		                    	
 		                    
@@ -274,34 +274,49 @@
     </div>
 
     <div class="col-lg-9 docmain">
-    	<h1>Text Analysis</h1>
+    	<h1>Sorting</h1>
 
 		
 
-<p><strong>Text Analysis</strong> is the process of transforming input text into a series of analyzed terms.  Analysis is done at index time to transform input documents into index terms.  Analysis is also done at query time to transform query input into the index terms we will search form.</p>
+<p>Bleve now gives you the ability to customize the order of your search results.</p>
 
-<h3 id="example:f8abd7808bc79089bc9f621ff9690416">Example</h3>
+<p>The default behavior is to sort results by relevance, with the highest scoring results first.</p>
 
-<p>Let&rsquo;s imagine we have a document containing the text, &ldquo;watery light beer&rdquo;.
-And let&rsquo;s imagine a user searches for &ldquo;watered down&rdquo;.</p>
+<h3 id="simple-api:fe8eddd7d5918bd09eccd8eff0078748">Simple API</h3>
 
-<p>There is no exact match in this case, but if we want this query to match this document we can accomplish this by choosing the right analyzer.  In this case we would want to use an analyzer that can stem English words.</p>
+<p>The simple API adds a <code>SortBy()</code> method to the SearchRequest.  Here is an example which sorts by the field <code>age</code>.</p>
 
-<p>By doing this, the index entry for the document will contain the terms: &ldquo;water&rdquo;, &ldquo;light&rdquo;, &ldquo;beer&rdquo;.
-And the query will search for terms: &ldquo;water&rdquo;, &ldquo;down&rdquo;.</p>
+<pre><code class="language-go">searchRequest.SortBy([]string{&quot;age&quot;})
+</code></pre>
 
-<p>Now we see that the terms will match and the user will get search results.</p>
+<p>The argument is an array of strings.  Each string refers to the name of a field.  The names of fields can be prefixed with the <code>-</code> character, which will cause that field to be reversed (descending order).  Items will first be sorted by the first field.  Any items with the same value for that field, are then also sorted by the next field, and so on.  All fields in the sort order <strong>MUST</strong> be indexed.</p>
 
-<p>Stemming is just one way in which the text can be transformed, the key here is that choosing the right analyzer is essential to getting high quality search results.</p>
-
-<h3 id="text-analysis-in-bleve:f8abd7808bc79089bc9f621ff9690416">Text Analysis in bleve</h3>
-
-<p><a href="/docs/Analyzers/">Analyzers</a> are used to transform input text into a stream of tokens for indexing.  In bleve, Analyzers are built up from modular components.</p>
+<p>There are two special fields defined for use:</p>
 
 <ul>
-<li><a href="/docs/Character-Filters/">Character Filters</a> strip out undesirable characters from the input.</li>
-<li><a href="/docs/Tokenizers/">Tokenizers</a> split input strings into a token stream.  Typically you&rsquo;re trying to create a token for each word.</li>
-<li><a href="/docs/Token-Filters/">Token Filters</a> are chained together to perform additional post processing on the token stream.</li>
+<li><code>_id</code> - refers to the document identifier</li>
+<li><code>_score</code> - refers to the relevance score computed by Bleve</li>
+</ul>
+
+<p>Here is a more complex example:</p>
+
+<pre><code class="language-go">searchRequest.SortBy([]string{&quot;age&quot;, &quot;-_score&quot;, &quot;_id})
+</code></pre>
+
+<p>This will first sort results by the &ldquo;age&rdquo; field.  If two documents have the same value for this field, they will then be sorted by the score descending, finally, if documents have the same age and score, they will be sorted by document ID ascending.</p>
+
+<h3 id="advanced-api:fe8eddd7d5918bd09eccd8eff0078748">Advanced API</h3>
+
+<p>The simple API works for most cases, but there are some which require the advanced API.  In these cases you must import the bleve <code>search</code> sub-package, and build a <code>search.SortOrder</code> object.  This is a slice of <code>search.SearchSort</code> objects.  Today there are three implementations available, SortField, SortScore, and SortDocID.</p>
+
+<p>By building these structures manually, you can avoid ambiguities and limitations of the simple API.</p>
+
+<ul>
+<li>Sort by fields which happen to start with <code>-</code></li>
+<li>Sort by fields which happen to conflict with <code>_id</code> or <code>_score</code></li>
+<li>Control whether documents missing a field value should sort first or last</li>
+<li>Control which value for multi-value fields should be used for sorting</li>
+<li>Force handling field values as a particular type (defaults to auto)</li>
 </ul>
 
 	</div>

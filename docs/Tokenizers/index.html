@@ -169,6 +169,18 @@
 		                    
 								
                 					
+										<li><a href="/docs/Sorting/">Sorting</a></li>
+									
+		                    	
+		                    
+								
+                					
+										<li><a href="/docs/IndexAlias/">Index Aliases</a></li>
+									
+		                    	
+		                    
+								
+                					
 										<li><a href="/docs/Example-Applications/">Example Applications</a></li>
 									
 		                    	
@@ -231,6 +243,12 @@
 		                    
 								
                 					
+										<li><a href="/docs/Blevex/">Using blevex packages</a></li>
+									
+		                    	
+		                    
+								
+                					
 										<li><a href="/docs/Contributing/">Contributing</a></li>
 									
 		                    	
@@ -264,16 +282,17 @@
 
 <p>The Single Token Tokenizer will return the entire input bytes as a single token.</p>
 
+<h3 id="letter:7d5ef314ed49959990583aa48ce5f86b">Letter</h3>
+
+<p>The letter tokenizer is a tokenizer that simply identifies tokens as sequences of Unicode runes that are part of the Letter category.</p>
+
 <h3 id="regular-expression:7d5ef314ed49959990583aa48ce5f86b">Regular Expression</h3>
 
 <p>The Regular Expression Tokenizer will tokenize input using a configurable regular expression.  The regular expression should match token text.  See the Whitespace Tokenizer for an example of its usage.</p>
 
 <h3 id="whitespace:7d5ef314ed49959990583aa48ce5f86b">Whitespace</h3>
 
-<p>The Whitespace Tokenizer is an instance of the Regular Expression Tokenizer.  It matches tokens using the regular expression:</p>
-
-<pre><code>\p{Han}|\p{Hangul}|\p{Hiragana}|\p{Katakana}|[^\p{Z}\p{P}\p{C}\p{Han}\p{Hangul}\p{Hiragana}\p{Katakana}]+
-</code></pre>
+<p>The Whitespace Tokenizer is tokenizer which simply identifies tokens as sequences of Unicode runes that are NOT part of the Space category.</p>
 
 <h3 id="unicode:7d5ef314ed49959990583aa48ce5f86b">Unicode</h3>
 
@@ -284,6 +303,10 @@
 <p>The ICU tokenizer uses the ICU library to tokenize the input using <a href="http://www.unicode.org/reports/tr29/">Unicode Text Segmentation</a> on word boundaries.</p>
 
 <p><strong>NOTE:</strong> This tokenizer requires bleve be built with the optional ICU package.  See the page on <a href="/docs/Building/">Building</a>.</p>
+
+<h3 id="exception:7d5ef314ed49959990583aa48ce5f86b">Exception</h3>
+
+<p>The exception tokenizer allows you to define exceptions.  Exceptions are sections of the input stream which match regular expressions.  These sections are left intact as single tokens.  Any input not matching these regular expressions is passed to the child tokenizer.</p>
 
 	</div>
 </div>

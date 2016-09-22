@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Text Analysis -- Bleve</title>
+    <title>Index Aliases -- Bleve</title>
 
     
 
@@ -122,7 +122,7 @@
 								
 									<li>
 										
-											Text Analysis
+											<a href="/docs/Text-Analysis/">Text Analysis</a>
 										
 										<ul  class="docmenu">
 											
@@ -175,7 +175,7 @@
 		                    
 								
                 					
-										<li><a href="/docs/IndexAlias/">Index Aliases</a></li>
+										<li class="active">Index Aliases</li>
 									
 		                    	
 		                    
@@ -274,35 +274,45 @@
     </div>
 
     <div class="col-lg-9 docmain">
-    	<h1>Text Analysis</h1>
+    	<h1>Index Aliases</h1>
 
 		
 
-<p><strong>Text Analysis</strong> is the process of transforming input text into a series of analyzed terms.  Analysis is done at index time to transform input documents into index terms.  Analysis is also done at query time to transform query input into the index terms we will search form.</p>
+<p>Bleve has a powerful feature called an <code>IndexAlias</code>.  The IndexAlias can be used to search an index, with the additional ability to atomically switch the underlying physical index.  IndexAliases can also be search to search across multiple indexes at the same time and correctly merge the results.</p>
 
-<h3 id="example:f8abd7808bc79089bc9f621ff9690416">Example</h3>
+<h3 id="indexalias-interface:6dfd36eb1af3597f02acd82624b49c37">IndexAlias Interface</h3>
 
-<p>Let&rsquo;s imagine we have a document containing the text, &ldquo;watery light beer&rdquo;.
-And let&rsquo;s imagine a user searches for &ldquo;watered down&rdquo;.</p>
+<p>First, its useful to note that thanks to Go interfaces, an IndexAlias is also an Index.  This means that in general you work with an IndexAlias just as you would work with an Index.  The alias concept also adds 3 methods:  Add(), Remove(), and Swap()</p>
 
-<p>There is no exact match in this case, but if we want this query to match this document we can accomplish this by choosing the right analyzer.  In this case we would want to use an analyzer that can stem English words.</p>
+<p>Add, will add one or more indexes to the alias.
+Remove will remove one or more indexes from the alias.
+Swap will atomically add/remove the provided indexes.  (all other ops, like search will see the alias before or after all adds/removes are done)</p>
 
-<p>By doing this, the index entry for the document will contain the terms: &ldquo;water&rdquo;, &ldquo;light&rdquo;, &ldquo;beer&rdquo;.
-And the query will search for terms: &ldquo;water&rdquo;, &ldquo;down&rdquo;.</p>
+<h3 id="switching-indexes-with-zero-downtime:6dfd36eb1af3597f02acd82624b49c37">Switching Indexes with Zero Downtime</h3>
 
-<p>Now we see that the terms will match and the user will get search results.</p>
+<ol>
+<li>Create a new Index</li>
+<li>Create an IndexAlias pointing to the Index</li>
+<li>Write your application to query the IndexAlias</li>
+<li>&hellip;At some later time, create a new Index</li>
+<li>Call Swap() on the IndexAlias passing in the new Index</li>
+</ol>
 
-<p>Stemming is just one way in which the text can be transformed, the key here is that choosing the right analyzer is essential to getting high quality search results.</p>
+<p>Your application will safely switch to searching the new index.</p>
 
-<h3 id="text-analysis-in-bleve:f8abd7808bc79089bc9f621ff9690416">Text Analysis in bleve</h3>
+<h3 id="searching-across-multiple-indexes:6dfd36eb1af3597f02acd82624b49c37">Searching Across Multiple Indexes</h3>
 
-<p><a href="/docs/Analyzers/">Analyzers</a> are used to transform input text into a stream of tokens for indexing.  In bleve, Analyzers are built up from modular components.</p>
+<ol>
+<li>Create more than one Index</li>
+<li>Create the IndexAlias pointing to these indexes</li>
+<li>Writer your application to invoke Search() on the IndexAlias</li>
+</ol>
 
-<ul>
-<li><a href="/docs/Character-Filters/">Character Filters</a> strip out undesirable characters from the input.</li>
-<li><a href="/docs/Tokenizers/">Tokenizers</a> split input strings into a token stream.  Typically you&rsquo;re trying to create a token for each word.</li>
-<li><a href="/docs/Token-Filters/">Token Filters</a> are chained together to perform additional post processing on the token stream.</li>
-</ul>
+<p>Your application will search across all the underlying indexes at the same time, and the results will be merged together into a single result.</p>
+
+<h4 id="limitations:6dfd36eb1af3597f02acd82624b49c37">Limitations</h4>
+
+<p>When and IndexAlias points to multiple indexes not all operations are supported.  Only operations which can be invoked on all the child indexes and have their responses aggregated are supported.  Operations that are not supported return <code>bleve.ErrorAliasMulti</code>.</p>
 
 	</div>
 </div>

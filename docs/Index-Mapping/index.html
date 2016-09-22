@@ -169,6 +169,18 @@
 		                    
 								
                 					
+										<li><a href="/docs/Sorting/">Sorting</a></li>
+									
+		                    	
+		                    
+								
+                					
+										<li><a href="/docs/IndexAlias/">Index Aliases</a></li>
+									
+		                    	
+		                    
+								
+                					
 										<li><a href="/docs/Example-Applications/">Example Applications</a></li>
 									
 		                    	
@@ -226,6 +238,12 @@
 								
                 					
 										<li><a href="/docs/Building/">Building</a></li>
+									
+		                    	
+		                    
+								
+                					
+										<li><a href="/docs/Blevex/">Using blevex packages</a></li>
 									
 		                    	
 		                    
@@ -334,8 +352,8 @@ blog.AddSubDocumentMapping(&quot;author&quot;, author)
 <p>There are multiple levels at which you can configure the Default Analyzer if an explicit one isn&rsquo;t specified.</p>
 
 <ol>
-<li>Each DocumentMapping has a field <code>DefaultAnalyzer</code>.  This means you can override the default analyzer for each sub-document.<br /></li>
-<li>The IndexMapping also has a <code>DefaultAnalyzer</code>.<br /></li>
+<li>Each DocumentMapping has a field <code>DefaultAnalyzer</code>.  This means you can override the default analyzer for each sub-document.</li>
+<li>The IndexMapping also has a <code>DefaultAnalyzer</code>.</li>
 </ol>
 
 <p>The <code>DefaultAnalyzer</code> configured with the longest path match to a field will be used.</p>
@@ -347,6 +365,16 @@ blog.AddSubDocumentMapping(&quot;author&quot;, author)
 </ul>
 
 <p>You can configure a DefaultDateTimeParser in the IndexMapping object.</p>
+
+<h2 id="understanding-default-type-vs-default-mapping:fac957943db74e6a57605072a04b8308">Understanding Default Type vs Default Mapping</h2>
+
+<p>When Bleve cannot figure out which type a particular document is, it is automatically assigned the DefaultType.</p>
+
+<p>Once, Bleve has determined the type, it looks for a DocumentMapping matching this type name.  If there is no explicitly configured DocumentMapping for this type, then the DefaultMapping is used.</p>
+
+<p>The DefaultType will default to &ldquo;_default&rdquo;, and the DefaultMapping will default to an empty default DocumentMapping.</p>
+
+<p>Consider an example from the beer-search sample application.  The mapping describes two types &ldquo;beer&rdquo; and &ldquo;brewery&rdquo;.  For each of these an explicit DocumentMapping is provided.  If you attempt to index a document where the type field is missing, it will be assigned the type &ldquo;_default&rdquo;.  Then Bleve looks to see if there is a mapping configured for &ldquo;_default&rdquo;.  There is not, so then Bleve proceeds to use the DefaultMapping.</p>
 
 	</div>
 </div>

@@ -32,6 +32,186 @@ the &lt;a href=&#34;https://www.meetup.com/Zurich-Gophers/events/233262687/&#34;
     </item>
     
     <item>
+      <title>Using blevex packages</title>
+      <link>http://www.blevesearch.com/docs/Blevex/</link>
+      <pubDate>Wed, 21 Sep 2016 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/Blevex/</guid>
+      <description>
+
+&lt;p&gt;The &lt;a href=&#34;https://github.com/blevesearch/blevex&#34;&gt;blevex&lt;/a&gt; repository contains optional add-ons to bleve which cannot be a part of the main repository for the following reasons:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;C dependency&lt;/li&gt;
+&lt;li&gt;Does not fully satisfy interface contracts&lt;/li&gt;
+&lt;li&gt;Experimental in nature&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;using-blevex-packages:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;Using blevex packages&lt;/h3&gt;
+
+&lt;p&gt;Bleve does not directly import any of the sub-packages with the blevex repository.  If your application would like to use one of these packages, they can either import the package directly, or import the bleve config package, which then adds the ability to include blevex packages through common build-tags.&lt;/p&gt;
+
+&lt;p&gt;For example, if your application adds:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;import(
+  _ &amp;quot;github.com/blevesearch/bleve/config&amp;quot;
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then when you build your application, it will automatically recognize a common set of build tags, which currently includes:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;cellar&lt;/li&gt;
+&lt;li&gt;cld2&lt;/li&gt;
+&lt;li&gt;cznicb&lt;/li&gt;
+&lt;li&gt;forestdb&lt;/li&gt;
+&lt;li&gt;icu&lt;/li&gt;
+&lt;li&gt;kagome&lt;/li&gt;
+&lt;li&gt;leveldb&lt;/li&gt;
+&lt;li&gt;libstemmer&lt;/li&gt;
+&lt;li&gt;rocksdb&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;kv-stores:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;KV Stores&lt;/h3&gt;
+
+&lt;h4 id=&#34;cellar:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;cellar&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/couchbaselabs/cellar&#34;&gt;Cellar&lt;/a&gt; is an experimental KVStore implementation.&lt;/p&gt;
+
+&lt;h4 id=&#34;cznicb:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;cznicb&lt;/h4&gt;
+
+&lt;p&gt;Bleve supports using &lt;a href=&#34;https://github.com/cznic/b&#34;&gt;cznic/b&lt;/a&gt; as a KVStore implementation.  Although this implementation is pure Go, it does not offer reader isolation, so it does not fully satisfy the bleve interface requirements.  Under certain restrictions it can still be used safely.&lt;/p&gt;
+
+&lt;h4 id=&#34;forestdb:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;forestdb&lt;/h4&gt;
+
+&lt;p&gt;Bleve supports using &lt;a href=&#34;https://github.com/couchbase/forestdb&#34;&gt;ForestDB&lt;/a&gt; as a KVStore implementation.  This requires a C/C++ dependency, please see &lt;a href=&#34;http://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4 id=&#34;leveldb:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;leveldb&lt;/h4&gt;
+
+&lt;p&gt;Bleve supports using &lt;a href=&#34;https://code.google.com/p/leveldb/&#34;&gt;LevelDB&lt;/a&gt; as a KVStore implementation.  This requires a C/C++ dependency, please see &lt;a href=&#34;http://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4 id=&#34;rocksdb:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;rocksdb&lt;/h4&gt;
+
+&lt;p&gt;Bleve supports using &lt;a href=&#34;https://github.com/facebook/rocksdb&#34;&gt;RocksDB&lt;/a&gt; as a KVStore implementation.  This requires a C/C++ dependency, please see &lt;a href=&#34;http://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;tokenizers:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;Tokenizers&lt;/h3&gt;
+
+&lt;h4 id=&#34;icu:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;ICU&lt;/h4&gt;
+
+&lt;p&gt;Bleve supports using the &lt;a href=&#34;http://site.icu-project.org/&#34;&gt;ICU&lt;/a&gt; project to tokenize words.  For most languages Bleve&amp;rsquo;s built-in unicode segmentation will work fine.  However, languages which require dictionary-based segmentation may still require this library.  This requires a C/C++ dependency, please see &lt;a href=&#34;http://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;NOTE: It is recommended to get the most recent version of ICU possible.  Older versions often included with distributions do not support language based tokenization.&lt;/p&gt;
+
+&lt;h3 id=&#34;token-filters:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;Token Filters&lt;/h3&gt;
+
+&lt;h4 id=&#34;detect-lang:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;detect_lang&lt;/h4&gt;
+
+&lt;p&gt;Bleve supports using the &lt;a href=&#34;https://code.google.com/p/cld2/&#34;&gt;cld2&lt;/a&gt; library to determine the language of a sample of text.  This is implemented as a token filter which will return the result as a ISO 639 language code.  This requires a C/C++ dependency, please see &lt;a href=&#34;http://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4 id=&#34;stemmer-filter:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;stemmer_filter&lt;/h4&gt;
+
+&lt;p&gt;Bleve supports using the &lt;a href=&#34;http://snowball.tartarus.org/download.php&#34;&gt;libstemmer&lt;/a&gt; library to stem words for many languages.  Many of the language specific analyzers depend on this library.  This requires a C/C++ dependency, please see &lt;a href=&#34;http://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Index Aliases</title>
+      <link>http://www.blevesearch.com/docs/IndexAlias/</link>
+      <pubDate>Wed, 21 Sep 2016 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/IndexAlias/</guid>
+      <description>
+
+&lt;p&gt;Bleve has a powerful feature called an &lt;code&gt;IndexAlias&lt;/code&gt;.  The IndexAlias can be used to search an index, with the additional ability to atomically switch the underlying physical index.  IndexAliases can also be search to search across multiple indexes at the same time and correctly merge the results.&lt;/p&gt;
+
+&lt;h3 id=&#34;indexalias-interface:6dfd36eb1af3597f02acd82624b49c37&#34;&gt;IndexAlias Interface&lt;/h3&gt;
+
+&lt;p&gt;First, its useful to note that thanks to Go interfaces, an IndexAlias is also an Index.  This means that in general you work with an IndexAlias just as you would work with an Index.  The alias concept also adds 3 methods:  Add(), Remove(), and Swap()&lt;/p&gt;
+
+&lt;p&gt;Add, will add one or more indexes to the alias.
+Remove will remove one or more indexes from the alias.
+Swap will atomically add/remove the provided indexes.  (all other ops, like search will see the alias before or after all adds/removes are done)&lt;/p&gt;
+
+&lt;h3 id=&#34;switching-indexes-with-zero-downtime:6dfd36eb1af3597f02acd82624b49c37&#34;&gt;Switching Indexes with Zero Downtime&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Create a new Index&lt;/li&gt;
+&lt;li&gt;Create an IndexAlias pointing to the Index&lt;/li&gt;
+&lt;li&gt;Write your application to query the IndexAlias&lt;/li&gt;
+&lt;li&gt;&amp;hellip;At some later time, create a new Index&lt;/li&gt;
+&lt;li&gt;Call Swap() on the IndexAlias passing in the new Index&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Your application will safely switch to searching the new index.&lt;/p&gt;
+
+&lt;h3 id=&#34;searching-across-multiple-indexes:6dfd36eb1af3597f02acd82624b49c37&#34;&gt;Searching Across Multiple Indexes&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Create more than one Index&lt;/li&gt;
+&lt;li&gt;Create the IndexAlias pointing to these indexes&lt;/li&gt;
+&lt;li&gt;Writer your application to invoke Search() on the IndexAlias&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Your application will search across all the underlying indexes at the same time, and the results will be merged together into a single result.&lt;/p&gt;
+
+&lt;h4 id=&#34;limitations:6dfd36eb1af3597f02acd82624b49c37&#34;&gt;Limitations&lt;/h4&gt;
+
+&lt;p&gt;When and IndexAlias points to multiple indexes not all operations are supported.  Only operations which can be invoked on all the child indexes and have their responses aggregated are supported.  Operations that are not supported return &lt;code&gt;bleve.ErrorAliasMulti&lt;/code&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Sorting</title>
+      <link>http://www.blevesearch.com/docs/Sorting/</link>
+      <pubDate>Wed, 21 Sep 2016 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/Sorting/</guid>
+      <description>
+
+&lt;p&gt;Bleve now gives you the ability to customize the order of your search results.&lt;/p&gt;
+
+&lt;p&gt;The default behavior is to sort results by relevance, with the highest scoring results first.&lt;/p&gt;
+
+&lt;h3 id=&#34;simple-api:fe8eddd7d5918bd09eccd8eff0078748&#34;&gt;Simple API&lt;/h3&gt;
+
+&lt;p&gt;The simple API adds a &lt;code&gt;SortBy()&lt;/code&gt; method to the SearchRequest.  Here is an example which sorts by the field &lt;code&gt;age&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;searchRequest.SortBy([]string{&amp;quot;age&amp;quot;})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The argument is an array of strings.  Each string refers to the name of a field.  The names of fields can be prefixed with the &lt;code&gt;-&lt;/code&gt; character, which will cause that field to be reversed (descending order).  Items will first be sorted by the first field.  Any items with the same value for that field, are then also sorted by the next field, and so on.  All fields in the sort order &lt;strong&gt;MUST&lt;/strong&gt; be indexed.&lt;/p&gt;
+
+&lt;p&gt;There are two special fields defined for use:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;_id&lt;/code&gt; - refers to the document identifier&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;_score&lt;/code&gt; - refers to the relevance score computed by Bleve&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here is a more complex example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;searchRequest.SortBy([]string{&amp;quot;age&amp;quot;, &amp;quot;-_score&amp;quot;, &amp;quot;_id})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will first sort results by the &amp;ldquo;age&amp;rdquo; field.  If two documents have the same value for this field, they will then be sorted by the score descending, finally, if documents have the same age and score, they will be sorted by document ID ascending.&lt;/p&gt;
+
+&lt;h3 id=&#34;advanced-api:fe8eddd7d5918bd09eccd8eff0078748&#34;&gt;Advanced API&lt;/h3&gt;
+
+&lt;p&gt;The simple API works for most cases, but there are some which require the advanced API.  In these cases you must import the bleve &lt;code&gt;search&lt;/code&gt; sub-package, and build a &lt;code&gt;search.SortOrder&lt;/code&gt; object.  This is a slice of &lt;code&gt;search.SearchSort&lt;/code&gt; objects.  Today there are three implementations available, SortField, SortScore, and SortDocID.&lt;/p&gt;
+
+&lt;p&gt;By building these structures manually, you can avoid ambiguities and limitations of the simple API.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Sort by fields which happen to start with &lt;code&gt;-&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Sort by fields which happen to conflict with &lt;code&gt;_id&lt;/code&gt; or &lt;code&gt;_score&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Control whether documents missing a field value should sort first or last&lt;/li&gt;
+&lt;li&gt;Control which value for multi-value fields should be used for sorting&lt;/li&gt;
+&lt;li&gt;Force handling field values as a particular type (defaults to auto)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>dotGo</title>
       <link>http://www.blevesearch.com/events/dotGo2015/</link>
       <pubDate>Mon, 09 Nov 2015 10:25:38 -0400</pubDate>
@@ -949,186 +1129,6 @@ search.js is our custom code to bind everything together.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;Thai&lt;/li&gt;
 &lt;li&gt;Turkish&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Applications Using Bleve</title>
-      <link>http://www.blevesearch.com/docs/Applications-using-bleve/</link>
-      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
-      
-      <guid>http://www.blevesearch.com/docs/Applications-using-bleve/</guid>
-      <description>
-
-&lt;p&gt;The following applications use bleve.  Add yours to the list!&lt;/p&gt;
-
-&lt;h2 id=&#34;caddy:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;Caddy&lt;/h2&gt;
-
-&lt;p&gt;Caddy is an alternative web server that is easy to configure and use.  Caddy uses Bleve to automatically index your site and expose a search page and JSON endpoint.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://caddyserver.com/docs/search&#34;&gt;https://caddyserver.com/docs/search&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;cbft:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;cbft&lt;/h2&gt;
-
-&lt;p&gt;Full-text searches of Couchbase Server, powered by bleve.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/couchbaselabs/cbft&#34;&gt;https://github.com/couchbaselabs/cbft&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;docker-bleve-wiki-indexer:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;docker bleve wiki indexer&lt;/h2&gt;
-
-&lt;p&gt;Dockerizing the bleve library to search the bleve wiki.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/lgs/docker-bleve-wiki-indexer&#34;&gt;https://github.com/lgs/docker-bleve-wiki-indexer&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;goin:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;goin&lt;/h2&gt;
-
-&lt;p&gt;A full text search indexer for your files on disk.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://bitbucket.org/zaphar/goin&#34;&gt;https://bitbucket.org/zaphar/goin&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;tpb-search:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;tpb-search&lt;/h2&gt;
-
-&lt;p&gt;Locally index and search database dumps from &lt;a href=&#34;https://openbay.isohunt.to&#34;&gt;https://openbay.isohunt.to&lt;/a&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/peterhellberg/tpb-search&#34;&gt;https://github.com/peterhellberg/tpb-search&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;ekanite:640b2c4c13c05d4abaa6d9659bc2b04d&#34;&gt;Ekanite&lt;/h2&gt;
-
-&lt;p&gt;A Syslog server with built-in search for received log messages.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/ekanite/ekanite&#34;&gt;https://github.com/ekanite/ekanite&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Character Filters</title>
-      <link>http://www.blevesearch.com/docs/Character-Filters/</link>
-      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
-      
-      <guid>http://www.blevesearch.com/docs/Character-Filters/</guid>
-      <description>
-
-&lt;h3 id=&#34;regular-expression:332c3eea69ab462e14d779b7c7983cd1&#34;&gt;Regular Expression&lt;/h3&gt;
-
-&lt;p&gt;The regular expression character filter is configured with a regular expression and a replacement array of bytes.  All sequences of characters matching the regular expression are replaced with the replacement bytes.&lt;/p&gt;
-
-&lt;p&gt;Typically, characters that are undesirable for indexing are replaced with whitespace.  This allows the original byte offsets in the original input to remain unaffected.&lt;/p&gt;
-
-&lt;h3 id=&#34;html:332c3eea69ab462e14d779b7c7983cd1&#34;&gt;HTML&lt;/h3&gt;
-
-&lt;p&gt;The html character filter attempts to identify HTML tags from the input text and replace them with spaces.  The current implementation is an instance of the Regular Expression character filter.&lt;/p&gt;
-
-&lt;h3 id=&#34;zero-width-non-joiner:332c3eea69ab462e14d779b7c7983cd1&#34;&gt;Zero-width Non-Joiner&lt;/h3&gt;
-
-&lt;p&gt;The zero-width non-joiner character filter replaces zero-width non-joiner characters with a space.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Building</title>
-      <link>http://www.blevesearch.com/docs/Building/</link>
-      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
-      
-      <guid>http://www.blevesearch.com/docs/Building/</guid>
-      <description>
-
-&lt;p&gt;The core of bleve can be built without any C/C++ libraries.  This means you can get and use bleve with:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;go get github.com/blevesearch/bleve/...
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;However, some of the more advanced functionality depends on C/C++ libraries.  The code using these libraries can be enabled by specifying the correct build tag.&lt;/p&gt;
-
-&lt;p&gt;In general, bleve expects these libraries to be built and installed in the standard system locations.  If not, it is up to you to set the appropriate CGO_&amp;hellip; environment variables so that the libraries and headers can be found.&lt;/p&gt;
-
-&lt;h2 id=&#34;leveldb:140c58546f80295ba58ab4d2981832fc&#34;&gt;LevelDB&lt;/h2&gt;
-
-&lt;p&gt;Bleve supports using &lt;a href=&#34;https://code.google.com/p/leveldb/&#34;&gt;LevelDB&lt;/a&gt; as a KVStore implementation.  At this time, this is the fastest KVStore implementation available for bleve.  So if maximum performance is your goal, consider building with support for LevelDB.&lt;/p&gt;
-
-&lt;p&gt;To include support for the leveldb KVStore implementation include the build tag:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;-tags leveldb&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;icu:140c58546f80295ba58ab4d2981832fc&#34;&gt;ICU&lt;/h2&gt;
-
-&lt;p&gt;Bleve supports using the &lt;a href=&#34;http://site.icu-project.org/&#34;&gt;ICU&lt;/a&gt; project to tokenize words using their implementation of the standard for &lt;a href=&#34;http://www.unicode.org/reports/tr29/&#34;&gt;Unicode Text Segmentation at Word Boundaries&lt;/a&gt;.  Some of the language specific analyzers depend on this tokenizer.&lt;/p&gt;
-
-&lt;p&gt;NOTE: It is recommended to get the most recent version of ICU possible.  Older versions often included with distributions do not support language based tokenization.&lt;/p&gt;
-
-&lt;p&gt;To include support for the analysis components requiring ICU, include the build tag:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;-tags icu&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;libstemmer:140c58546f80295ba58ab4d2981832fc&#34;&gt;libstemmer&lt;/h2&gt;
-
-&lt;p&gt;Bleve supports using the &lt;a href=&#34;http://snowball.tartarus.org/download.php&#34;&gt;libstemmer&lt;/a&gt; library to stem words for many languages.  Many of the language specific analyzers depend on this library.&lt;/p&gt;
-
-&lt;p&gt;To include support for the analysis components requiring libstemmer, include the build tag:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;-tags libstemmer&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;cld2:140c58546f80295ba58ab4d2981832fc&#34;&gt;cld2&lt;/h2&gt;
-
-&lt;p&gt;Bleve supports using the &lt;a href=&#34;https://code.google.com/p/cld2/&#34;&gt;cld2&lt;/a&gt; library to determine the language of a sample of text.  This is implemented as a token filter which will return the result as a ISO 639 language code.&lt;/p&gt;
-
-&lt;p&gt;To include support for the detect_lang token filter, include the build tag:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;-tags cld2&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;short-cut-to-include-all-the-optional-dependencies:140c58546f80295ba58ab4d2981832fc&#34;&gt;Short-cut to include all the optional dependencies&lt;/h2&gt;
-
-&lt;p&gt;Building with multiple build tags can be cumbersome:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;-tags &#39;leveldb icu libstemmer cld2&#39;&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;As a shortcut you can instead use:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;-tags full&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;platform-specific-instructions:140c58546f80295ba58ab4d2981832fc&#34;&gt;Platform Specific Instructions&lt;/h2&gt;
-
-&lt;p&gt;The following sections are user-contributed instructions for satisfying all the dependencies on particular platforms.&lt;/p&gt;
-
-&lt;h3 id=&#34;ubuntu-14-04-lts-trusty-tahr:140c58546f80295ba58ab4d2981832fc&#34;&gt;Ubuntu 14.04 LTS (Trusty Tahr)&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;$ sudo apt-get install libleveldb-dev libstemmer-dev libicu-dev svn build-essential
-$ go get -u -v  github.com/blevesearch/bleve
-$ cd $GOPATH/src/github.com/blevesearch/bleve/analysis/token_filters/cld2
-$ svn co http://cld2.googlecode.com/svn/trunk cld2-read-only
-$ cd cld2-read-only/internal/
-$ ./compile_libs.sh
-$ sudo cp *.so /usr/local/lib
-$ go get -u -v -tags full github.com/blevesearch/bleve
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;os-x-hacky-but-similar-to-ubuntu-14-04:140c58546f80295ba58ab4d2981832fc&#34;&gt;OS X (hacky, but similar to Ubuntu 14.04)&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;$ brew install leveldb icu4c svn # etc?
-$ export CGO_LDFLAGS=-L/usr/local/opt/icu4c/lib
-$  export CGO_CFLAGS=-I/usr/local/opt/icu4c/include
-$ go get -u -v  github.com/blevesearch/bleve
-$ cd $GOPATH/src/github.com/blevesearch/bleve/analysis/token_filters/cld2
-$ svn co http://cld2.googlecode.com/svn/trunk cld2-read-only
-$ cd cld2-read-only/internal/
-# if you feel gutsy run:
-$ perl -p -i -e &#39;s/soname=/install_name,/&#39; compile_libs.sh
-# otherwise, just change soname= to install_name, in the two spots in compile_libs.sh
-$ ./compile_libs.sh
-$ sudo cp *.so /usr/local/lib
-$ go get -u -v -tags full github.com/blevesearch/bleve
-&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     

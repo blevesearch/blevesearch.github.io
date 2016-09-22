@@ -169,6 +169,18 @@
 		                    
 								
                 					
+										<li><a href="/docs/Sorting/">Sorting</a></li>
+									
+		                    	
+		                    
+								
+                					
+										<li><a href="/docs/IndexAlias/">Index Aliases</a></li>
+									
+		                    	
+		                    
+								
+                					
 										<li><a href="/docs/Example-Applications/">Example Applications</a></li>
 									
 		                    	
@@ -226,6 +238,12 @@
 								
                 					
 										<li><a href="/docs/Building/">Building</a></li>
+									
+		                    	
+		                    
+								
+                					
+										<li><a href="/docs/Blevex/">Using blevex packages</a></li>
 									
 		                    	
 		                    
@@ -301,6 +319,27 @@
 <p>You can perform numeric ranges by using the &gt;, &gt;=, &lt;, and &lt;= operators, followed by a numeric value.</p>
 
 <p>Example: <code>abv:&gt;10</code> will perform an <a href="/docs/Query/#numeric-range:8f767fbc41af8ff1ddcf4c60ed8c0fe9">Numeric Range Query</a> on the <code>abv</code> field for values greater than ten.</p>
+
+<h3 id="date-ranges:da355926c964f14ad0baf9b0b2a9527e">Date Ranges</h3>
+
+<p>You can perform date range searches by using the &gt;, &gt;=, &lt;, and &lt;= operators, followed by a date value in quotes.</p>
+
+<p>Example: <code>created:&gt;&quot;2016-09-21&quot;</code> will perform an <a href="/docs/Query/#date-range:8f767fbc41af8ff1ddcf4c60ed8c0fe9">Date Range Query</a> on the <code>created</code> field for values after September 21, 2016.</p>
+
+<h3 id="escaping:da355926c964f14ad0baf9b0b2a9527e">Escaping</h3>
+
+<p>The following quoted string enumerates the characters which may be escaped:</p>
+
+<pre><code>&quot;+-=&amp;|&gt;&lt;!(){}[]^\&quot;~*?:\\/ &quot;
+</code></pre>
+
+<p>NOTE: this list contains the space character.</p>
+
+<p>In order to escape these characters, they are prefixed with the \ (backslash) character.  In all cases, using the escaped version produces the character itself and is not interpreted by the lexer.</p>
+
+<p>Example: <code>my\ name</code> will be interpreted as a single argument to a match query with the value &ldquo;my name&rdquo;.</p>
+
+<p>Example: <code>&quot;contains a\&quot; character&quot;</code> will be interpreted as a single argument to a phrase query with the value <code>contains a &quot; character</code>.</p>
 
 	</div>
 </div>
