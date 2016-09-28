@@ -32,6 +32,89 @@ the &lt;a href=&#34;https://www.meetup.com/Zurich-Gophers/events/233262687/&#34;
     </item>
     
     <item>
+      <title>Using blevex packages</title>
+      <link>http://www.blevesearch.com/docs/Blevex/</link>
+      <pubDate>Wed, 21 Sep 2016 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/Blevex/</guid>
+      <description>
+
+&lt;p&gt;The &lt;a href=&#34;https://github.com/blevesearch/blevex&#34;&gt;blevex&lt;/a&gt; repository contains optional add-ons to bleve which cannot be a part of the main repository for the following reasons:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;C dependency&lt;/li&gt;
+&lt;li&gt;Does not fully satisfy interface contracts&lt;/li&gt;
+&lt;li&gt;Experimental in nature&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;using-blevex-packages:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;Using blevex packages&lt;/h3&gt;
+
+&lt;p&gt;Bleve does not directly import any of the sub-packages with the blevex repository.  If your application would like to use one of these packages, they can either import the package directly, or import the bleve config package, which then adds the ability to include blevex packages through common build-tags.&lt;/p&gt;
+
+&lt;p&gt;For example, if your application adds:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;import(
+  _ &amp;quot;github.com/blevesearch/bleve/config&amp;quot;
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then when you build your application, it will automatically recognize a common set of build tags, which currently includes:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;cellar&lt;/li&gt;
+&lt;li&gt;cld2&lt;/li&gt;
+&lt;li&gt;cznicb&lt;/li&gt;
+&lt;li&gt;forestdb&lt;/li&gt;
+&lt;li&gt;icu&lt;/li&gt;
+&lt;li&gt;kagome&lt;/li&gt;
+&lt;li&gt;leveldb&lt;/li&gt;
+&lt;li&gt;libstemmer&lt;/li&gt;
+&lt;li&gt;rocksdb&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;kv-stores:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;KV Stores&lt;/h3&gt;
+
+&lt;h4 id=&#34;cellar:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;cellar&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/couchbaselabs/cellar&#34;&gt;Cellar&lt;/a&gt; is an experimental KVStore implementation.&lt;/p&gt;
+
+&lt;h4 id=&#34;cznicb:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;cznicb&lt;/h4&gt;
+
+&lt;p&gt;Bleve supports using &lt;a href=&#34;https://github.com/cznic/b&#34;&gt;cznic/b&lt;/a&gt; as a KVStore implementation.  Although this implementation is pure Go, it does not offer reader isolation, so it does not fully satisfy the bleve interface requirements.  Under certain restrictions it can still be used safely.&lt;/p&gt;
+
+&lt;h4 id=&#34;forestdb:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;forestdb&lt;/h4&gt;
+
+&lt;p&gt;Bleve supports using &lt;a href=&#34;https://github.com/couchbase/forestdb&#34;&gt;ForestDB&lt;/a&gt; as a KVStore implementation.  This requires a C/C++ dependency, please see &lt;a href=&#34;http://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4 id=&#34;leveldb:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;leveldb&lt;/h4&gt;
+
+&lt;p&gt;Bleve supports using &lt;a href=&#34;https://code.google.com/p/leveldb/&#34;&gt;LevelDB&lt;/a&gt; as a KVStore implementation.  This requires a C/C++ dependency, please see &lt;a href=&#34;http://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4 id=&#34;rocksdb:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;rocksdb&lt;/h4&gt;
+
+&lt;p&gt;Bleve supports using &lt;a href=&#34;https://github.com/facebook/rocksdb&#34;&gt;RocksDB&lt;/a&gt; as a KVStore implementation.  This requires a C/C++ dependency, please see &lt;a href=&#34;http://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;tokenizers:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;Tokenizers&lt;/h3&gt;
+
+&lt;h4 id=&#34;icu:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;ICU&lt;/h4&gt;
+
+&lt;p&gt;Bleve supports using the &lt;a href=&#34;http://site.icu-project.org/&#34;&gt;ICU&lt;/a&gt; project to tokenize words.  For most languages Bleve&amp;rsquo;s built-in unicode segmentation will work fine.  However, languages which require dictionary-based segmentation may still require this library.  This requires a C/C++ dependency, please see &lt;a href=&#34;http://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;NOTE: It is recommended to get the most recent version of ICU possible.  Older versions often included with distributions do not support language based tokenization.&lt;/p&gt;
+
+&lt;h3 id=&#34;token-filters:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;Token Filters&lt;/h3&gt;
+
+&lt;h4 id=&#34;detect-lang:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;detect_lang&lt;/h4&gt;
+
+&lt;p&gt;Bleve supports using the &lt;a href=&#34;https://code.google.com/p/cld2/&#34;&gt;cld2&lt;/a&gt; library to determine the language of a sample of text.  This is implemented as a token filter which will return the result as a ISO 639 language code.  This requires a C/C++ dependency, please see &lt;a href=&#34;http://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4 id=&#34;stemmer-filter:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;stemmer_filter&lt;/h4&gt;
+
+&lt;p&gt;Bleve supports using the &lt;a href=&#34;http://snowball.tartarus.org/download.php&#34;&gt;libstemmer&lt;/a&gt; library to stem words for many languages.  Many of the language specific analyzers depend on this library.  This requires a C/C++ dependency, please see &lt;a href=&#34;http://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Index Aliases</title>
       <link>http://www.blevesearch.com/docs/IndexAlias/</link>
       <pubDate>Wed, 21 Sep 2016 10:25:38 -0400</pubDate>
@@ -125,89 +208,6 @@ Swap will atomically add/remove the provided indexes.  (all other ops, like sear
 &lt;li&gt;Control which value for multi-value fields should be used for sorting&lt;/li&gt;
 &lt;li&gt;Force handling field values as a particular type (defaults to auto)&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Using blevex packages</title>
-      <link>http://www.blevesearch.com/docs/Blevex/</link>
-      <pubDate>Wed, 21 Sep 2016 10:25:38 -0400</pubDate>
-      
-      <guid>http://www.blevesearch.com/docs/Blevex/</guid>
-      <description>
-
-&lt;p&gt;The &lt;a href=&#34;https://github.com/blevesearch/blevex&#34;&gt;blevex&lt;/a&gt; repository contains optional add-ons to bleve which cannot be a part of the main repository for the following reasons:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;C dependency&lt;/li&gt;
-&lt;li&gt;Does not fully satisfy interface contracts&lt;/li&gt;
-&lt;li&gt;Experimental in nature&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;using-blevex-packages:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;Using blevex packages&lt;/h3&gt;
-
-&lt;p&gt;Bleve does not directly import any of the sub-packages with the blevex repository.  If your application would like to use one of these packages, they can either import the package directly, or import the bleve config package, which then adds the ability to include blevex packages through common build-tags.&lt;/p&gt;
-
-&lt;p&gt;For example, if your application adds:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;import(
-  _ &amp;quot;github.com/blevesearch/bleve/config&amp;quot;
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Then when you build your application, it will automatically recognize a common set of build tags, which currently includes:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;cellar&lt;/li&gt;
-&lt;li&gt;cld2&lt;/li&gt;
-&lt;li&gt;cznicb&lt;/li&gt;
-&lt;li&gt;forestdb&lt;/li&gt;
-&lt;li&gt;icu&lt;/li&gt;
-&lt;li&gt;kagome&lt;/li&gt;
-&lt;li&gt;leveldb&lt;/li&gt;
-&lt;li&gt;libstemmer&lt;/li&gt;
-&lt;li&gt;rocksdb&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;kv-stores:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;KV Stores&lt;/h3&gt;
-
-&lt;h4 id=&#34;cellar:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;cellar&lt;/h4&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/couchbaselabs/cellar&#34;&gt;Cellar&lt;/a&gt; is an experimental KVStore implementation.&lt;/p&gt;
-
-&lt;h4 id=&#34;cznicb:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;cznicb&lt;/h4&gt;
-
-&lt;p&gt;Bleve supports using &lt;a href=&#34;https://github.com/cznic/b&#34;&gt;cznic/b&lt;/a&gt; as a KVStore implementation.  Although this implementation is pure Go, it does not offer reader isolation, so it does not fully satisfy the bleve interface requirements.  Under certain restrictions it can still be used safely.&lt;/p&gt;
-
-&lt;h4 id=&#34;forestdb:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;forestdb&lt;/h4&gt;
-
-&lt;p&gt;Bleve supports using &lt;a href=&#34;https://github.com/couchbase/forestdb&#34;&gt;ForestDB&lt;/a&gt; as a KVStore implementation.  This requires a C/C++ dependency, please see &lt;a href=&#34;http://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h4 id=&#34;leveldb:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;leveldb&lt;/h4&gt;
-
-&lt;p&gt;Bleve supports using &lt;a href=&#34;https://code.google.com/p/leveldb/&#34;&gt;LevelDB&lt;/a&gt; as a KVStore implementation.  This requires a C/C++ dependency, please see &lt;a href=&#34;http://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h4 id=&#34;rocksdb:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;rocksdb&lt;/h4&gt;
-
-&lt;p&gt;Bleve supports using &lt;a href=&#34;https://github.com/facebook/rocksdb&#34;&gt;RocksDB&lt;/a&gt; as a KVStore implementation.  This requires a C/C++ dependency, please see &lt;a href=&#34;http://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;tokenizers:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;Tokenizers&lt;/h3&gt;
-
-&lt;h4 id=&#34;icu:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;ICU&lt;/h4&gt;
-
-&lt;p&gt;Bleve supports using the &lt;a href=&#34;http://site.icu-project.org/&#34;&gt;ICU&lt;/a&gt; project to tokenize words.  For most languages Bleve&amp;rsquo;s built-in unicode segmentation will work fine.  However, languages which require dictionary-based segmentation may still require this library.  This requires a C/C++ dependency, please see &lt;a href=&#34;http://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;NOTE: It is recommended to get the most recent version of ICU possible.  Older versions often included with distributions do not support language based tokenization.&lt;/p&gt;
-
-&lt;h3 id=&#34;token-filters:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;Token Filters&lt;/h3&gt;
-
-&lt;h4 id=&#34;detect-lang:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;detect_lang&lt;/h4&gt;
-
-&lt;p&gt;Bleve supports using the &lt;a href=&#34;https://code.google.com/p/cld2/&#34;&gt;cld2&lt;/a&gt; library to determine the language of a sample of text.  This is implemented as a token filter which will return the result as a ISO 639 language code.  This requires a C/C++ dependency, please see &lt;a href=&#34;http://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h4 id=&#34;stemmer-filter:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;stemmer_filter&lt;/h4&gt;
-
-&lt;p&gt;Bleve supports using the &lt;a href=&#34;http://snowball.tartarus.org/download.php&#34;&gt;libstemmer&lt;/a&gt; library to stem words for many languages.  Many of the language specific analyzers depend on this library.  This requires a C/C++ dependency, please see &lt;a href=&#34;http://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -1027,28 +1027,82 @@ search.js is our custom code to bind everything together.&lt;/p&gt;&lt;/li&gt;
     </item>
     
     <item>
-      <title>Community</title>
-      <link>http://www.blevesearch.com/community/</link>
+      <title>Analyzers</title>
+      <link>http://www.blevesearch.com/docs/Analyzers/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/community/</guid>
+      <guid>http://www.blevesearch.com/docs/Analyzers/</guid>
       <description>
 
-&lt;h3 id=&#34;twitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Twitter&lt;/h3&gt;
+&lt;h2 id=&#34;general-purpose-analyzers:aa66feb1a6a343065211b619ad078082&#34;&gt;General Purpose Analyzers&lt;/h2&gt;
 
-&lt;p&gt;Follow @blevesearch on &lt;a href=&#34;https://twitter.com/blevesearch&#34;&gt;twitter&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;keyword:aa66feb1a6a343065211b619ad078082&#34;&gt;Keyword&lt;/h3&gt;
 
-&lt;h3 id=&#34;irc:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;IRC&lt;/h3&gt;
+&lt;p&gt;The Keyword Analyzer does not perform any analysis on the input text.  It creates a single token representing the entire input.  This is useful for fields where you only want exact matches.  For example, a field containing keywords or tags that may contain spaces that another analyzer might interpret as token boundaries.&lt;/p&gt;
 
-&lt;p&gt;Join the #bleve channel on &lt;a href=&#34;https://freenode.net/&#34;&gt;freenode&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;simple:aa66feb1a6a343065211b619ad078082&#34;&gt;Simple&lt;/h3&gt;
 
-&lt;h3 id=&#34;google-group:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Google Group&lt;/h3&gt;
+&lt;p&gt;The simple analyzer performs only minimal analysis on the input.&lt;/p&gt;
 
-&lt;p&gt;Discuss use and development of bleve is in &lt;a href=&#34;https://groups.google.com/forum/#!forum/bleve&#34;&gt;this google group&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Tokenizer - &lt;a href=&#34;http://www.blevesearch.com/docs/Tokenizers/#unicode:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Unicode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Token Filters
 
-&lt;h3 id=&#34;gitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Gitter&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#lowercase:c38efc402d8771527a225c32b59be157&#34;&gt;Lowercase&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;Join the conversation on &lt;a href=&#34;https://gitter.im/blevesearch/bleve&#34;&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;standard:aa66feb1a6a343065211b619ad078082&#34;&gt;Standard&lt;/h3&gt;
+
+&lt;p&gt;The Standard Analyzer is like the Simple Analyzer but also adds English stop word removal.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Tokenizer - &lt;a href=&#34;http://www.blevesearch.com/docs/Tokenizers/#unicode:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Unicode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Token Filters
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#lowercase:c38efc402d8771527a225c32b59be157&#34;&gt;Lowercase&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;English &lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#stop-token:c38efc402d8771527a225c32b59be157&#34;&gt;Stop Token&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;detect-language:aa66feb1a6a343065211b619ad078082&#34;&gt;Detect Language&lt;/h3&gt;
+
+&lt;p&gt;The Detect Language Analyzer is used to examine input text, use heuristics to determine a best guess at the language, and index the ISO 639 Language Code.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Tokenizer - &lt;a href=&#34;http://www.blevesearch.com/docs/Tokenizers/#single-token:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Single&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Token Filters
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#lowercase:c38efc402d8771527a225c32b59be157&#34;&gt;Lowercase&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#cld2:c38efc402d8771527a225c32b59be157&#34;&gt;CLD2&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;language-specific-analyzers:aa66feb1a6a343065211b619ad078082&#34;&gt;Language Specific Analyzers&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Danish&lt;/li&gt;
+&lt;li&gt;Dutch&lt;/li&gt;
+&lt;li&gt;English&lt;/li&gt;
+&lt;li&gt;Finnish&lt;/li&gt;
+&lt;li&gt;French&lt;/li&gt;
+&lt;li&gt;Hungarian&lt;/li&gt;
+&lt;li&gt;Italian&lt;/li&gt;
+&lt;li&gt;German&lt;/li&gt;
+&lt;li&gt;Norwegian&lt;/li&gt;
+&lt;li&gt;Persian&lt;/li&gt;
+&lt;li&gt;Portuguese&lt;/li&gt;
+&lt;li&gt;Romanian&lt;/li&gt;
+&lt;li&gt;Russian&lt;/li&gt;
+&lt;li&gt;Sorani&lt;/li&gt;
+&lt;li&gt;Spanish&lt;/li&gt;
+&lt;li&gt;Swedish&lt;/li&gt;
+&lt;li&gt;Thai&lt;/li&gt;
+&lt;li&gt;Turkish&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
