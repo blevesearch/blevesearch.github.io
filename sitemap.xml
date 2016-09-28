@@ -173,12 +173,12 @@
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/community/</loc>
+    <loc>http://www.blevesearch.com/docs/bleve/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/docs/bleve/</loc>
+    <loc>http://www.blevesearch.com/community/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
@@ -198,11 +198,7 @@
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/docs/bleve_count/</loc>
-  </url>
-  
-  <url>
-    <loc>http://www.blevesearch.com/docs/bleve_dump/</loc>
+    <loc>http://www.blevesearch.com/docs/bleve_bulk/</loc>
   </url>
   
   <url>
@@ -210,11 +206,15 @@
   </url>
   
   <url>
+    <loc>http://www.blevesearch.com/docs/bleve_count/</loc>
+  </url>
+  
+  <url>
     <loc>http://www.blevesearch.com/docs/bleve_dictionary/</loc>
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/docs/bleve_bulk/</loc>
+    <loc>http://www.blevesearch.com/docs/bleve_dump/</loc>
   </url>
   
   <url>
