@@ -6,7 +6,7 @@
     <description>Recent content in Docs on Bleve</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>© &lt;a href=&#34;http://couchbase.com/&#34;&gt;Couchbase&lt;/a&gt; 2015</copyright>
+    <copyright>© &lt;a href=&#34;http://couchbase.com/&#34;&gt;Couchbase&lt;/a&gt; 2015-2016</copyright>
     <lastBuildDate>Wed, 21 Sep 2016 10:25:38 -0400</lastBuildDate>
     <atom:link href="http://www.blevesearch.com/docs/index.xml" rel="self" type="application/rss+xml" />
     
@@ -724,7 +724,8 @@ func main() {
 
 &lt;p&gt;By default it produces output that looks like:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://www.blevesearch.com/img/docs/highlight-html.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.blevesearch.com/img/docs/highlight-html.png&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
 
 &lt;h4 id=&#34;ansi:8a6c01a638330ec98d137a89109c86d0&#34;&gt;ANSI&lt;/h4&gt;
 
@@ -732,7 +733,8 @@ func main() {
 
 &lt;p&gt;By default it produces output that looks like:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://www.blevesearch.com/img/docs/highlight-ansi.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://www.blevesearch.com/img/docs/highlight-ansi.png&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
 </description>
     </item>
     
