@@ -83,12 +83,12 @@
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/docs/Applications-using-bleve/</loc>
+    <loc>http://www.blevesearch.com/docs/Building/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/docs/Building/</loc>
+    <loc>http://www.blevesearch.com/docs/Applications-using-bleve/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
@@ -123,12 +123,17 @@
   </url>
   
   <url>
+    <loc>http://www.blevesearch.com/docs/Index-Mapping/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.blevesearch.com/docs/Home/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/docs/Index-Mapping/</loc>
+    <loc>http://www.blevesearch.com/docs/Query-String-Query/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
@@ -143,11 +148,6 @@
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/docs/Query-String-Query/</loc>
-    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://www.blevesearch.com/docs/Query/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
@@ -158,12 +158,12 @@
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/docs/Terminology/</loc>
+    <loc>http://www.blevesearch.com/docs/Text-Analysis/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/docs/Text-Analysis/</loc>
+    <loc>http://www.blevesearch.com/docs/Terminology/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
@@ -198,6 +198,10 @@
   </url>
   
   <url>
+    <loc>http://www.blevesearch.com/docs/bleve_dictionary/</loc>
+  </url>
+  
+  <url>
     <loc>http://www.blevesearch.com/docs/bleve_bulk/</loc>
   </url>
   
@@ -210,15 +214,15 @@
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/docs/bleve_dictionary/</loc>
-  </url>
-  
-  <url>
     <loc>http://www.blevesearch.com/docs/bleve_dump/</loc>
   </url>
   
   <url>
     <loc>http://www.blevesearch.com/docs/bleve_dump_doc/</loc>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/bleve_mapping/</loc>
   </url>
   
   <url>
@@ -231,10 +235,6 @@
   
   <url>
     <loc>http://www.blevesearch.com/docs/bleve_index/</loc>
-  </url>
-  
-  <url>
-    <loc>http://www.blevesearch.com/docs/bleve_mapping/</loc>
   </url>
   
   <url>
