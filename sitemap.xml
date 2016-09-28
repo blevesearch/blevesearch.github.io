@@ -73,22 +73,7 @@
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/community/</loc>
-    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://www.blevesearch.com/docs/Analyzers/</loc>
-    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.blevesearch.com/docs/Character-Filters/</loc>
-    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.blevesearch.com/docs/Applications-using-bleve/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
@@ -98,12 +83,32 @@
   </url>
   
   <url>
+    <loc>http://www.blevesearch.com/docs/Applications-using-bleve/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/Character-Filters/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.blevesearch.com/docs/Contributing/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
+    <loc>http://www.blevesearch.com/docs/Getting%20Started/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.blevesearch.com/docs/Disabling%20Sections%20of%20Documents/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/Example-Applications/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
@@ -118,22 +123,22 @@
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/docs/Example-Applications/</loc>
-    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.blevesearch.com/docs/Getting%20Started/</loc>
-    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://www.blevesearch.com/docs/Index-Mapping/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
+    <loc>http://www.blevesearch.com/docs/Package-Structure/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.blevesearch.com/docs/Pronunciation/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/Result-Faceting/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
@@ -148,21 +153,6 @@
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/docs/Package-Structure/</loc>
-    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.blevesearch.com/docs/Result-Faceting/</loc>
-    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.blevesearch.com/docs/Token-Filters/</loc>
-    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://www.blevesearch.com/docs/Terminology/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
@@ -173,12 +163,22 @@
   </url>
   
   <url>
+    <loc>http://www.blevesearch.com/docs/Text-Analysis/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/Token-Filters/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.blevesearch.com/docs/bleve/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/docs/Text-Analysis/</loc>
+    <loc>http://www.blevesearch.com/community/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
@@ -198,6 +198,14 @@
   </url>
   
   <url>
+    <loc>http://www.blevesearch.com/docs/bleve_bulk/</loc>
+  </url>
+  
+  <url>
+    <loc>http://www.blevesearch.com/docs/bleve_dictionary/</loc>
+  </url>
+  
+  <url>
     <loc>http://www.blevesearch.com/docs/bleve_count/</loc>
   </url>
   
@@ -206,15 +214,7 @@
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/docs/bleve_bulk/</loc>
-  </url>
-  
-  <url>
     <loc>http://www.blevesearch.com/docs/bleve_dump/</loc>
-  </url>
-  
-  <url>
-    <loc>http://www.blevesearch.com/docs/bleve_fields/</loc>
   </url>
   
   <url>
@@ -222,11 +222,11 @@
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/docs/bleve_dump_fields/</loc>
+    <loc>http://www.blevesearch.com/docs/bleve_index/</loc>
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/docs/bleve_index/</loc>
+    <loc>http://www.blevesearch.com/docs/bleve_dump_fields/</loc>
   </url>
   
   <url>
@@ -234,7 +234,7 @@
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/docs/bleve_dictionary/</loc>
+    <loc>http://www.blevesearch.com/docs/bleve_query/</loc>
   </url>
   
   <url>
@@ -242,7 +242,7 @@
   </url>
   
   <url>
-    <loc>http://www.blevesearch.com/docs/bleve_query/</loc>
+    <loc>http://www.blevesearch.com/docs/bleve_fields/</loc>
   </url>
   
 </urlset>
