@@ -1027,86 +1027,6 @@ search.js is our custom code to bind everything together.&lt;/p&gt;&lt;/li&gt;
     </item>
     
     <item>
-      <title>Analyzers</title>
-      <link>http://www.blevesearch.com/docs/Analyzers/</link>
-      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
-      
-      <guid>http://www.blevesearch.com/docs/Analyzers/</guid>
-      <description>
-
-&lt;h2 id=&#34;general-purpose-analyzers:aa66feb1a6a343065211b619ad078082&#34;&gt;General Purpose Analyzers&lt;/h2&gt;
-
-&lt;h3 id=&#34;keyword:aa66feb1a6a343065211b619ad078082&#34;&gt;Keyword&lt;/h3&gt;
-
-&lt;p&gt;The Keyword Analyzer does not perform any analysis on the input text.  It creates a single token representing the entire input.  This is useful for fields where you only want exact matches.  For example, a field containing keywords or tags that may contain spaces that another analyzer might interpret as token boundaries.&lt;/p&gt;
-
-&lt;h3 id=&#34;simple:aa66feb1a6a343065211b619ad078082&#34;&gt;Simple&lt;/h3&gt;
-
-&lt;p&gt;The simple analyzer performs only minimal analysis on the input.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Tokenizer - &lt;a href=&#34;http://www.blevesearch.com/docs/Tokenizers/#unicode:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Unicode&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Token Filters
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#lowercase:c38efc402d8771527a225c32b59be157&#34;&gt;Lowercase&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;standard:aa66feb1a6a343065211b619ad078082&#34;&gt;Standard&lt;/h3&gt;
-
-&lt;p&gt;The Standard Analyzer is like the Simple Analyzer but also adds English stop word removal.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Tokenizer - &lt;a href=&#34;http://www.blevesearch.com/docs/Tokenizers/#unicode:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Unicode&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Token Filters
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#lowercase:c38efc402d8771527a225c32b59be157&#34;&gt;Lowercase&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;English &lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#stop-token:c38efc402d8771527a225c32b59be157&#34;&gt;Stop Token&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;detect-language:aa66feb1a6a343065211b619ad078082&#34;&gt;Detect Language&lt;/h3&gt;
-
-&lt;p&gt;The Detect Language Analyzer is used to examine input text, use heuristics to determine a best guess at the language, and index the ISO 639 Language Code.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Tokenizer - &lt;a href=&#34;http://www.blevesearch.com/docs/Tokenizers/#single-token:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Single&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Token Filters
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#lowercase:c38efc402d8771527a225c32b59be157&#34;&gt;Lowercase&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#cld2:c38efc402d8771527a225c32b59be157&#34;&gt;CLD2&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;language-specific-analyzers:aa66feb1a6a343065211b619ad078082&#34;&gt;Language Specific Analyzers&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Danish&lt;/li&gt;
-&lt;li&gt;Dutch&lt;/li&gt;
-&lt;li&gt;English&lt;/li&gt;
-&lt;li&gt;Finnish&lt;/li&gt;
-&lt;li&gt;French&lt;/li&gt;
-&lt;li&gt;Hungarian&lt;/li&gt;
-&lt;li&gt;Italian&lt;/li&gt;
-&lt;li&gt;German&lt;/li&gt;
-&lt;li&gt;Norwegian&lt;/li&gt;
-&lt;li&gt;Persian&lt;/li&gt;
-&lt;li&gt;Portuguese&lt;/li&gt;
-&lt;li&gt;Romanian&lt;/li&gt;
-&lt;li&gt;Russian&lt;/li&gt;
-&lt;li&gt;Sorani&lt;/li&gt;
-&lt;li&gt;Spanish&lt;/li&gt;
-&lt;li&gt;Swedish&lt;/li&gt;
-&lt;li&gt;Thai&lt;/li&gt;
-&lt;li&gt;Turkish&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Community</title>
       <link>http://www.blevesearch.com/community/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
@@ -1129,6 +1049,53 @@ search.js is our custom code to bind everything together.&lt;/p&gt;&lt;/li&gt;
 &lt;h3 id=&#34;gitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Gitter&lt;/h3&gt;
 
 &lt;p&gt;Join the conversation on &lt;a href=&#34;https://gitter.im/blevesearch/bleve&#34;&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Building</title>
+      <link>http://www.blevesearch.com/docs/Building/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/Building/</guid>
+      <description>
+
+&lt;p&gt;Some of the &lt;a href=&#34;http://www.blevesearch.com/docs/Blevex/&#34;&gt;blevex&lt;/a&gt; packages require C/C++ libraries.&lt;/p&gt;
+
+&lt;p&gt;In general, bleve expects these libraries to be built and installed in the standard system locations.  If not, it is up to you to set the appropriate CGO_&amp;hellip; environment variables so that the libraries and headers can be found.&lt;/p&gt;
+
+&lt;h2 id=&#34;platform-specific-instructions:140c58546f80295ba58ab4d2981832fc&#34;&gt;Platform Specific Instructions&lt;/h2&gt;
+
+&lt;p&gt;The following sections are user-contributed instructions for satisfying dependencies on particular platforms.&lt;/p&gt;
+
+&lt;h3 id=&#34;ubuntu-14-04-lts-trusty-tahr:140c58546f80295ba58ab4d2981832fc&#34;&gt;Ubuntu 14.04 LTS (Trusty Tahr)&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;$ sudo apt-get install libleveldb-dev libstemmer-dev libicu-dev svn build-essential
+$ go get -u -v  github.com/blevesearch/bleve
+$ cd $GOPATH/src/github.com/blevesearch/bleve/analysis/token_filters/cld2
+$ svn co http://cld2.googlecode.com/svn/trunk cld2-read-only
+$ cd cld2-read-only/internal/
+$ ./compile_libs.sh
+$ sudo cp *.so /usr/local/lib
+$ go get -u -v -tags full github.com/blevesearch/bleve
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;os-x-hacky-but-similar-to-ubuntu-14-04:140c58546f80295ba58ab4d2981832fc&#34;&gt;OS X (hacky, but similar to Ubuntu 14.04)&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew install leveldb icu4c svn # etc?
+$ export CGO_LDFLAGS=-L/usr/local/opt/icu4c/lib
+$  export CGO_CFLAGS=-I/usr/local/opt/icu4c/include
+$ go get -u -v  github.com/blevesearch/bleve
+$ cd $GOPATH/src/github.com/blevesearch/bleve/analysis/token_filters/cld2
+$ svn co http://cld2.googlecode.com/svn/trunk cld2-read-only
+$ cd cld2-read-only/internal/
+# if you feel gutsy run:
+$ perl -p -i -e &#39;s/soname=/install_name,/&#39; compile_libs.sh
+# otherwise, just change soname= to install_name, in the two spots in compile_libs.sh
+$ ./compile_libs.sh
+$ sudo cp *.so /usr/local/lib
+$ go get -u -v -tags full github.com/blevesearch/bleve
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
