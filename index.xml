@@ -32,6 +32,52 @@ the &lt;a href=&#34;https://www.meetup.com/Zurich-Gophers/events/233262687/&#34;
     </item>
     
     <item>
+      <title>Index Aliases</title>
+      <link>http://www.blevesearch.com/docs/IndexAlias/</link>
+      <pubDate>Wed, 21 Sep 2016 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/IndexAlias/</guid>
+      <description>
+
+&lt;p&gt;Bleve has a powerful feature called an &lt;code&gt;IndexAlias&lt;/code&gt;.  The IndexAlias can be used to search an index, with the additional ability to atomically switch the underlying physical index.  IndexAliases can also be search to search across multiple indexes at the same time and correctly merge the results.&lt;/p&gt;
+
+&lt;h3 id=&#34;indexalias-interface:6dfd36eb1af3597f02acd82624b49c37&#34;&gt;IndexAlias Interface&lt;/h3&gt;
+
+&lt;p&gt;First, its useful to note that thanks to Go interfaces, an IndexAlias is also an Index.  This means that in general you work with an IndexAlias just as you would work with an Index.  The alias concept also adds 3 methods:  Add(), Remove(), and Swap()&lt;/p&gt;
+
+&lt;p&gt;Add, will add one or more indexes to the alias.
+Remove will remove one or more indexes from the alias.
+Swap will atomically add/remove the provided indexes.  (all other ops, like search will see the alias before or after all adds/removes are done)&lt;/p&gt;
+
+&lt;h3 id=&#34;switching-indexes-with-zero-downtime:6dfd36eb1af3597f02acd82624b49c37&#34;&gt;Switching Indexes with Zero Downtime&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Create a new Index&lt;/li&gt;
+&lt;li&gt;Create an IndexAlias pointing to the Index&lt;/li&gt;
+&lt;li&gt;Write your application to query the IndexAlias&lt;/li&gt;
+&lt;li&gt;&amp;hellip;At some later time, create a new Index&lt;/li&gt;
+&lt;li&gt;Call Swap() on the IndexAlias passing in the new Index&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Your application will safely switch to searching the new index.&lt;/p&gt;
+
+&lt;h3 id=&#34;searching-across-multiple-indexes:6dfd36eb1af3597f02acd82624b49c37&#34;&gt;Searching Across Multiple Indexes&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Create more than one Index&lt;/li&gt;
+&lt;li&gt;Create the IndexAlias pointing to these indexes&lt;/li&gt;
+&lt;li&gt;Writer your application to invoke Search() on the IndexAlias&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Your application will search across all the underlying indexes at the same time, and the results will be merged together into a single result.&lt;/p&gt;
+
+&lt;h4 id=&#34;limitations:6dfd36eb1af3597f02acd82624b49c37&#34;&gt;Limitations&lt;/h4&gt;
+
+&lt;p&gt;When and IndexAlias points to multiple indexes not all operations are supported.  Only operations which can be invoked on all the child indexes and have their responses aggregated are supported.  Operations that are not supported return &lt;code&gt;bleve.ErrorAliasMulti&lt;/code&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Using blevex packages</title>
       <link>http://www.blevesearch.com/docs/Blevex/</link>
       <pubDate>Wed, 21 Sep 2016 10:25:38 -0400</pubDate>
@@ -111,52 +157,6 @@ the &lt;a href=&#34;https://www.meetup.com/Zurich-Gophers/events/233262687/&#34;
 &lt;h4 id=&#34;stemmer-filter:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;stemmer_filter&lt;/h4&gt;
 
 &lt;p&gt;Bleve supports using the &lt;a href=&#34;http://snowball.tartarus.org/download.php&#34;&gt;libstemmer&lt;/a&gt; library to stem words for many languages.  Many of the language specific analyzers depend on this library.  This requires a C/C++ dependency, please see &lt;a href=&#34;http://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Index Aliases</title>
-      <link>http://www.blevesearch.com/docs/IndexAlias/</link>
-      <pubDate>Wed, 21 Sep 2016 10:25:38 -0400</pubDate>
-      
-      <guid>http://www.blevesearch.com/docs/IndexAlias/</guid>
-      <description>
-
-&lt;p&gt;Bleve has a powerful feature called an &lt;code&gt;IndexAlias&lt;/code&gt;.  The IndexAlias can be used to search an index, with the additional ability to atomically switch the underlying physical index.  IndexAliases can also be search to search across multiple indexes at the same time and correctly merge the results.&lt;/p&gt;
-
-&lt;h3 id=&#34;indexalias-interface:6dfd36eb1af3597f02acd82624b49c37&#34;&gt;IndexAlias Interface&lt;/h3&gt;
-
-&lt;p&gt;First, its useful to note that thanks to Go interfaces, an IndexAlias is also an Index.  This means that in general you work with an IndexAlias just as you would work with an Index.  The alias concept also adds 3 methods:  Add(), Remove(), and Swap()&lt;/p&gt;
-
-&lt;p&gt;Add, will add one or more indexes to the alias.
-Remove will remove one or more indexes from the alias.
-Swap will atomically add/remove the provided indexes.  (all other ops, like search will see the alias before or after all adds/removes are done)&lt;/p&gt;
-
-&lt;h3 id=&#34;switching-indexes-with-zero-downtime:6dfd36eb1af3597f02acd82624b49c37&#34;&gt;Switching Indexes with Zero Downtime&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Create a new Index&lt;/li&gt;
-&lt;li&gt;Create an IndexAlias pointing to the Index&lt;/li&gt;
-&lt;li&gt;Write your application to query the IndexAlias&lt;/li&gt;
-&lt;li&gt;&amp;hellip;At some later time, create a new Index&lt;/li&gt;
-&lt;li&gt;Call Swap() on the IndexAlias passing in the new Index&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Your application will safely switch to searching the new index.&lt;/p&gt;
-
-&lt;h3 id=&#34;searching-across-multiple-indexes:6dfd36eb1af3597f02acd82624b49c37&#34;&gt;Searching Across Multiple Indexes&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Create more than one Index&lt;/li&gt;
-&lt;li&gt;Create the IndexAlias pointing to these indexes&lt;/li&gt;
-&lt;li&gt;Writer your application to invoke Search() on the IndexAlias&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Your application will search across all the underlying indexes at the same time, and the results will be merged together into a single result.&lt;/p&gt;
-
-&lt;h4 id=&#34;limitations:6dfd36eb1af3597f02acd82624b49c37&#34;&gt;Limitations&lt;/h4&gt;
-
-&lt;p&gt;When and IndexAlias points to multiple indexes not all operations are supported.  Only operations which can be invoked on all the child indexes and have their responses aggregated are supported.  Operations that are not supported return &lt;code&gt;bleve.ErrorAliasMulti&lt;/code&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -1053,82 +1053,49 @@ search.js is our custom code to bind everything together.&lt;/p&gt;&lt;/li&gt;
     </item>
     
     <item>
-      <title>Analyzers</title>
-      <link>http://www.blevesearch.com/docs/Analyzers/</link>
+      <title>Building</title>
+      <link>http://www.blevesearch.com/docs/Building/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/docs/Analyzers/</guid>
+      <guid>http://www.blevesearch.com/docs/Building/</guid>
       <description>
 
-&lt;h2 id=&#34;general-purpose-analyzers:aa66feb1a6a343065211b619ad078082&#34;&gt;General Purpose Analyzers&lt;/h2&gt;
+&lt;p&gt;Some of the &lt;a href=&#34;http://www.blevesearch.com/docs/Blevex/&#34;&gt;blevex&lt;/a&gt; packages require C/C++ libraries.&lt;/p&gt;
 
-&lt;h3 id=&#34;keyword:aa66feb1a6a343065211b619ad078082&#34;&gt;Keyword&lt;/h3&gt;
+&lt;p&gt;In general, bleve expects these libraries to be built and installed in the standard system locations.  If not, it is up to you to set the appropriate CGO_&amp;hellip; environment variables so that the libraries and headers can be found.&lt;/p&gt;
 
-&lt;p&gt;The Keyword Analyzer does not perform any analysis on the input text.  It creates a single token representing the entire input.  This is useful for fields where you only want exact matches.  For example, a field containing keywords or tags that may contain spaces that another analyzer might interpret as token boundaries.&lt;/p&gt;
+&lt;h2 id=&#34;platform-specific-instructions:140c58546f80295ba58ab4d2981832fc&#34;&gt;Platform Specific Instructions&lt;/h2&gt;
 
-&lt;h3 id=&#34;simple:aa66feb1a6a343065211b619ad078082&#34;&gt;Simple&lt;/h3&gt;
+&lt;p&gt;The following sections are user-contributed instructions for satisfying dependencies on particular platforms.&lt;/p&gt;
 
-&lt;p&gt;The simple analyzer performs only minimal analysis on the input.&lt;/p&gt;
+&lt;h3 id=&#34;ubuntu-14-04-lts-trusty-tahr:140c58546f80295ba58ab4d2981832fc&#34;&gt;Ubuntu 14.04 LTS (Trusty Tahr)&lt;/h3&gt;
 
-&lt;ul&gt;
-&lt;li&gt;Tokenizer - &lt;a href=&#34;http://www.blevesearch.com/docs/Tokenizers/#unicode:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Unicode&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Token Filters
+&lt;pre&gt;&lt;code&gt;$ sudo apt-get install libleveldb-dev libstemmer-dev libicu-dev svn build-essential
+$ go get -u -v  github.com/blevesearch/bleve
+$ cd $GOPATH/src/github.com/blevesearch/bleve/analysis/token_filters/cld2
+$ svn co http://cld2.googlecode.com/svn/trunk cld2-read-only
+$ cd cld2-read-only/internal/
+$ ./compile_libs.sh
+$ sudo cp *.so /usr/local/lib
+$ go get -u -v -tags full github.com/blevesearch/bleve
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#lowercase:c38efc402d8771527a225c32b59be157&#34;&gt;Lowercase&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h3 id=&#34;os-x-hacky-but-similar-to-ubuntu-14-04:140c58546f80295ba58ab4d2981832fc&#34;&gt;OS X (hacky, but similar to Ubuntu 14.04)&lt;/h3&gt;
 
-&lt;h3 id=&#34;standard:aa66feb1a6a343065211b619ad078082&#34;&gt;Standard&lt;/h3&gt;
-
-&lt;p&gt;The Standard Analyzer is like the Simple Analyzer but also adds English stop word removal.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Tokenizer - &lt;a href=&#34;http://www.blevesearch.com/docs/Tokenizers/#unicode:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Unicode&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Token Filters
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#lowercase:c38efc402d8771527a225c32b59be157&#34;&gt;Lowercase&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;English &lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#stop-token:c38efc402d8771527a225c32b59be157&#34;&gt;Stop Token&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;detect-language:aa66feb1a6a343065211b619ad078082&#34;&gt;Detect Language&lt;/h3&gt;
-
-&lt;p&gt;The Detect Language Analyzer is used to examine input text, use heuristics to determine a best guess at the language, and index the ISO 639 Language Code.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Tokenizer - &lt;a href=&#34;http://www.blevesearch.com/docs/Tokenizers/#single-token:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Single&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Token Filters
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#lowercase:c38efc402d8771527a225c32b59be157&#34;&gt;Lowercase&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#cld2:c38efc402d8771527a225c32b59be157&#34;&gt;CLD2&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;language-specific-analyzers:aa66feb1a6a343065211b619ad078082&#34;&gt;Language Specific Analyzers&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Danish&lt;/li&gt;
-&lt;li&gt;Dutch&lt;/li&gt;
-&lt;li&gt;English&lt;/li&gt;
-&lt;li&gt;Finnish&lt;/li&gt;
-&lt;li&gt;French&lt;/li&gt;
-&lt;li&gt;Hungarian&lt;/li&gt;
-&lt;li&gt;Italian&lt;/li&gt;
-&lt;li&gt;German&lt;/li&gt;
-&lt;li&gt;Norwegian&lt;/li&gt;
-&lt;li&gt;Persian&lt;/li&gt;
-&lt;li&gt;Portuguese&lt;/li&gt;
-&lt;li&gt;Romanian&lt;/li&gt;
-&lt;li&gt;Russian&lt;/li&gt;
-&lt;li&gt;Sorani&lt;/li&gt;
-&lt;li&gt;Spanish&lt;/li&gt;
-&lt;li&gt;Swedish&lt;/li&gt;
-&lt;li&gt;Thai&lt;/li&gt;
-&lt;li&gt;Turkish&lt;/li&gt;
-&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;$ brew install leveldb icu4c svn # etc?
+$ export CGO_LDFLAGS=-L/usr/local/opt/icu4c/lib
+$  export CGO_CFLAGS=-I/usr/local/opt/icu4c/include
+$ go get -u -v  github.com/blevesearch/bleve
+$ cd $GOPATH/src/github.com/blevesearch/bleve/analysis/token_filters/cld2
+$ svn co http://cld2.googlecode.com/svn/trunk cld2-read-only
+$ cd cld2-read-only/internal/
+# if you feel gutsy run:
+$ perl -p -i -e &#39;s/soname=/install_name,/&#39; compile_libs.sh
+# otherwise, just change soname= to install_name, in the two spots in compile_libs.sh
+$ ./compile_libs.sh
+$ sudo cp *.so /usr/local/lib
+$ go get -u -v -tags full github.com/blevesearch/bleve
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
