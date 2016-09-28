@@ -1027,82 +1027,28 @@ search.js is our custom code to bind everything together.&lt;/p&gt;&lt;/li&gt;
     </item>
     
     <item>
-      <title>Analyzers</title>
-      <link>http://www.blevesearch.com/docs/Analyzers/</link>
+      <title>Community</title>
+      <link>http://www.blevesearch.com/community/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/docs/Analyzers/</guid>
+      <guid>http://www.blevesearch.com/community/</guid>
       <description>
 
-&lt;h2 id=&#34;general-purpose-analyzers:aa66feb1a6a343065211b619ad078082&#34;&gt;General Purpose Analyzers&lt;/h2&gt;
+&lt;h3 id=&#34;twitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Twitter&lt;/h3&gt;
 
-&lt;h3 id=&#34;keyword:aa66feb1a6a343065211b619ad078082&#34;&gt;Keyword&lt;/h3&gt;
+&lt;p&gt;Follow @blevesearch on &lt;a href=&#34;https://twitter.com/blevesearch&#34;&gt;twitter&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;The Keyword Analyzer does not perform any analysis on the input text.  It creates a single token representing the entire input.  This is useful for fields where you only want exact matches.  For example, a field containing keywords or tags that may contain spaces that another analyzer might interpret as token boundaries.&lt;/p&gt;
+&lt;h3 id=&#34;irc:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;IRC&lt;/h3&gt;
 
-&lt;h3 id=&#34;simple:aa66feb1a6a343065211b619ad078082&#34;&gt;Simple&lt;/h3&gt;
+&lt;p&gt;Join the #bleve channel on &lt;a href=&#34;https://freenode.net/&#34;&gt;freenode&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;The simple analyzer performs only minimal analysis on the input.&lt;/p&gt;
+&lt;h3 id=&#34;google-group:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Google Group&lt;/h3&gt;
 
-&lt;ul&gt;
-&lt;li&gt;Tokenizer - &lt;a href=&#34;http://www.blevesearch.com/docs/Tokenizers/#unicode:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Unicode&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Token Filters
+&lt;p&gt;Discuss use and development of bleve is in &lt;a href=&#34;https://groups.google.com/forum/#!forum/bleve&#34;&gt;this google group&lt;/a&gt;.&lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#lowercase:c38efc402d8771527a225c32b59be157&#34;&gt;Lowercase&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h3 id=&#34;gitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Gitter&lt;/h3&gt;
 
-&lt;h3 id=&#34;standard:aa66feb1a6a343065211b619ad078082&#34;&gt;Standard&lt;/h3&gt;
-
-&lt;p&gt;The Standard Analyzer is like the Simple Analyzer but also adds English stop word removal.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Tokenizer - &lt;a href=&#34;http://www.blevesearch.com/docs/Tokenizers/#unicode:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Unicode&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Token Filters
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#lowercase:c38efc402d8771527a225c32b59be157&#34;&gt;Lowercase&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;English &lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#stop-token:c38efc402d8771527a225c32b59be157&#34;&gt;Stop Token&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;detect-language:aa66feb1a6a343065211b619ad078082&#34;&gt;Detect Language&lt;/h3&gt;
-
-&lt;p&gt;The Detect Language Analyzer is used to examine input text, use heuristics to determine a best guess at the language, and index the ISO 639 Language Code.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Tokenizer - &lt;a href=&#34;http://www.blevesearch.com/docs/Tokenizers/#single-token:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Single&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Token Filters
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#lowercase:c38efc402d8771527a225c32b59be157&#34;&gt;Lowercase&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#cld2:c38efc402d8771527a225c32b59be157&#34;&gt;CLD2&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;language-specific-analyzers:aa66feb1a6a343065211b619ad078082&#34;&gt;Language Specific Analyzers&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Danish&lt;/li&gt;
-&lt;li&gt;Dutch&lt;/li&gt;
-&lt;li&gt;English&lt;/li&gt;
-&lt;li&gt;Finnish&lt;/li&gt;
-&lt;li&gt;French&lt;/li&gt;
-&lt;li&gt;Hungarian&lt;/li&gt;
-&lt;li&gt;Italian&lt;/li&gt;
-&lt;li&gt;German&lt;/li&gt;
-&lt;li&gt;Norwegian&lt;/li&gt;
-&lt;li&gt;Persian&lt;/li&gt;
-&lt;li&gt;Portuguese&lt;/li&gt;
-&lt;li&gt;Romanian&lt;/li&gt;
-&lt;li&gt;Russian&lt;/li&gt;
-&lt;li&gt;Sorani&lt;/li&gt;
-&lt;li&gt;Spanish&lt;/li&gt;
-&lt;li&gt;Swedish&lt;/li&gt;
-&lt;li&gt;Thai&lt;/li&gt;
-&lt;li&gt;Turkish&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;Join the conversation on &lt;a href=&#34;https://gitter.im/blevesearch/bleve&#34;&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
