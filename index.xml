@@ -115,6 +115,57 @@ the &lt;a href=&#34;https://www.meetup.com/Zurich-Gophers/events/233262687/&#34;
     </item>
     
     <item>
+      <title>Sorting</title>
+      <link>http://www.blevesearch.com/docs/Sorting/</link>
+      <pubDate>Wed, 21 Sep 2016 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/Sorting/</guid>
+      <description>
+
+&lt;p&gt;Bleve now gives you the ability to customize the order of your search results.&lt;/p&gt;
+
+&lt;p&gt;The default behavior is to sort results by relevance, with the highest scoring results first.&lt;/p&gt;
+
+&lt;h3 id=&#34;simple-api:fe8eddd7d5918bd09eccd8eff0078748&#34;&gt;Simple API&lt;/h3&gt;
+
+&lt;p&gt;The simple API adds a &lt;code&gt;SortBy()&lt;/code&gt; method to the SearchRequest.  Here is an example which sorts by the field &lt;code&gt;age&lt;/code&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;searchRequest.SortBy([]string{&amp;quot;age&amp;quot;})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The argument is an array of strings.  Each string refers to the name of a field.  The names of fields can be prefixed with the &lt;code&gt;-&lt;/code&gt; character, which will cause that field to be reversed (descending order).  Items will first be sorted by the first field.  Any items with the same value for that field, are then also sorted by the next field, and so on.  All fields in the sort order &lt;strong&gt;MUST&lt;/strong&gt; be indexed.&lt;/p&gt;
+
+&lt;p&gt;There are two special fields defined for use:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;_id&lt;/code&gt; - refers to the document identifier&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;_score&lt;/code&gt; - refers to the relevance score computed by Bleve&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Here is a more complex example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;searchRequest.SortBy([]string{&amp;quot;age&amp;quot;, &amp;quot;-_score&amp;quot;, &amp;quot;_id&amp;quot;})
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will first sort results by the &amp;ldquo;age&amp;rdquo; field.  If two documents have the same value for this field, they will then be sorted by the score descending, finally, if documents have the same age and score, they will be sorted by document ID ascending.&lt;/p&gt;
+
+&lt;h3 id=&#34;advanced-api:fe8eddd7d5918bd09eccd8eff0078748&#34;&gt;Advanced API&lt;/h3&gt;
+
+&lt;p&gt;The simple API works for most cases, but there are some which require the advanced API.  In these cases you must import the bleve &lt;code&gt;search&lt;/code&gt; sub-package, and build a &lt;code&gt;search.SortOrder&lt;/code&gt; object.  This is a slice of &lt;code&gt;search.SearchSort&lt;/code&gt; objects.  Today there are three implementations available, SortField, SortScore, and SortDocID.&lt;/p&gt;
+
+&lt;p&gt;By building these structures manually, you can avoid ambiguities and limitations of the simple API.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Sort by fields which happen to start with &lt;code&gt;-&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Sort by fields which happen to conflict with &lt;code&gt;_id&lt;/code&gt; or &lt;code&gt;_score&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Control whether documents missing a field value should sort first or last&lt;/li&gt;
+&lt;li&gt;Control which value for multi-value fields should be used for sorting&lt;/li&gt;
+&lt;li&gt;Force handling field values as a particular type (defaults to auto)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Index Aliases</title>
       <link>http://www.blevesearch.com/docs/IndexAlias/</link>
       <pubDate>Wed, 21 Sep 2016 10:25:38 -0400</pubDate>
@@ -157,57 +208,6 @@ Swap will atomically add/remove the provided indexes.  (all other ops, like sear
 &lt;h4 id=&#34;limitations:6dfd36eb1af3597f02acd82624b49c37&#34;&gt;Limitations&lt;/h4&gt;
 
 &lt;p&gt;When and IndexAlias points to multiple indexes not all operations are supported.  Only operations which can be invoked on all the child indexes and have their responses aggregated are supported.  Operations that are not supported return &lt;code&gt;bleve.ErrorAliasMulti&lt;/code&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Sorting</title>
-      <link>http://www.blevesearch.com/docs/Sorting/</link>
-      <pubDate>Wed, 21 Sep 2016 10:25:38 -0400</pubDate>
-      
-      <guid>http://www.blevesearch.com/docs/Sorting/</guid>
-      <description>
-
-&lt;p&gt;Bleve now gives you the ability to customize the order of your search results.&lt;/p&gt;
-
-&lt;p&gt;The default behavior is to sort results by relevance, with the highest scoring results first.&lt;/p&gt;
-
-&lt;h3 id=&#34;simple-api:fe8eddd7d5918bd09eccd8eff0078748&#34;&gt;Simple API&lt;/h3&gt;
-
-&lt;p&gt;The simple API adds a &lt;code&gt;SortBy()&lt;/code&gt; method to the SearchRequest.  Here is an example which sorts by the field &lt;code&gt;age&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;searchRequest.SortBy([]string{&amp;quot;age&amp;quot;})
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The argument is an array of strings.  Each string refers to the name of a field.  The names of fields can be prefixed with the &lt;code&gt;-&lt;/code&gt; character, which will cause that field to be reversed (descending order).  Items will first be sorted by the first field.  Any items with the same value for that field, are then also sorted by the next field, and so on.  All fields in the sort order &lt;strong&gt;MUST&lt;/strong&gt; be indexed.&lt;/p&gt;
-
-&lt;p&gt;There are two special fields defined for use:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;_id&lt;/code&gt; - refers to the document identifier&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;_score&lt;/code&gt; - refers to the relevance score computed by Bleve&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Here is a more complex example:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;searchRequest.SortBy([]string{&amp;quot;age&amp;quot;, &amp;quot;-_score&amp;quot;, &amp;quot;_id})
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This will first sort results by the &amp;ldquo;age&amp;rdquo; field.  If two documents have the same value for this field, they will then be sorted by the score descending, finally, if documents have the same age and score, they will be sorted by document ID ascending.&lt;/p&gt;
-
-&lt;h3 id=&#34;advanced-api:fe8eddd7d5918bd09eccd8eff0078748&#34;&gt;Advanced API&lt;/h3&gt;
-
-&lt;p&gt;The simple API works for most cases, but there are some which require the advanced API.  In these cases you must import the bleve &lt;code&gt;search&lt;/code&gt; sub-package, and build a &lt;code&gt;search.SortOrder&lt;/code&gt; object.  This is a slice of &lt;code&gt;search.SearchSort&lt;/code&gt; objects.  Today there are three implementations available, SortField, SortScore, and SortDocID.&lt;/p&gt;
-
-&lt;p&gt;By building these structures manually, you can avoid ambiguities and limitations of the simple API.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Sort by fields which happen to start with &lt;code&gt;-&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Sort by fields which happen to conflict with &lt;code&gt;_id&lt;/code&gt; or &lt;code&gt;_score&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Control whether documents missing a field value should sort first or last&lt;/li&gt;
-&lt;li&gt;Control which value for multi-value fields should be used for sorting&lt;/li&gt;
-&lt;li&gt;Force handling field values as a particular type (defaults to auto)&lt;/li&gt;
-&lt;/ul&gt;
 </description>
     </item>
     

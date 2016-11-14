@@ -86,7 +86,7 @@ Swap will atomically add/remove the provided indexes.  (all other ops, like sear
 
 &lt;p&gt;Here is a more complex example:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;searchRequest.SortBy([]string{&amp;quot;age&amp;quot;, &amp;quot;-_score&amp;quot;, &amp;quot;_id})
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;searchRequest.SortBy([]string{&amp;quot;age&amp;quot;, &amp;quot;-_score&amp;quot;, &amp;quot;_id&amp;quot;})
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This will first sort results by the &amp;ldquo;age&amp;rdquo; field.  If two documents have the same value for this field, they will then be sorted by the score descending, finally, if documents have the same age and score, they will be sorted by document ID ascending.&lt;/p&gt;

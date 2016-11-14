@@ -300,7 +300,7 @@
 
 <p>Here is a more complex example:</p>
 
-<pre><code class="language-go">searchRequest.SortBy([]string{&quot;age&quot;, &quot;-_score&quot;, &quot;_id})
+<pre><code class="language-go">searchRequest.SortBy([]string{&quot;age&quot;, &quot;-_score&quot;, &quot;_id&quot;})
 </code></pre>
 
 <p>This will first sort results by the &ldquo;age&rdquo; field.  If two documents have the same value for this field, they will then be sorted by the score descending, finally, if documents have the same age and score, they will be sorted by document ID ascending.</p>
