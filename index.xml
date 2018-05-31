@@ -115,6 +115,52 @@ the &lt;a href=&#34;https://www.meetup.com/Zurich-Gophers/events/233262687/&#34;
     </item>
     
     <item>
+      <title>Index Aliases</title>
+      <link>http://www.blevesearch.com/docs/IndexAlias/</link>
+      <pubDate>Wed, 21 Sep 2016 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/docs/IndexAlias/</guid>
+      <description>
+
+&lt;p&gt;Bleve has a powerful feature called an &lt;code&gt;IndexAlias&lt;/code&gt;.  The IndexAlias can be used to search an index, with the additional ability to atomically switch the underlying physical index.  IndexAliases can also be search to search across multiple indexes at the same time and correctly merge the results.&lt;/p&gt;
+
+&lt;h3 id=&#34;indexalias-interface:6dfd36eb1af3597f02acd82624b49c37&#34;&gt;IndexAlias Interface&lt;/h3&gt;
+
+&lt;p&gt;First, its useful to note that thanks to Go interfaces, an IndexAlias is also an Index.  This means that in general you work with an IndexAlias just as you would work with an Index.  The alias concept also adds 3 methods:  Add(), Remove(), and Swap()&lt;/p&gt;
+
+&lt;p&gt;Add, will add one or more indexes to the alias.
+Remove will remove one or more indexes from the alias.
+Swap will atomically add/remove the provided indexes.  (all other ops, like search will see the alias before or after all adds/removes are done)&lt;/p&gt;
+
+&lt;h3 id=&#34;switching-indexes-with-zero-downtime:6dfd36eb1af3597f02acd82624b49c37&#34;&gt;Switching Indexes with Zero Downtime&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Create a new Index&lt;/li&gt;
+&lt;li&gt;Create an IndexAlias pointing to the Index&lt;/li&gt;
+&lt;li&gt;Write your application to query the IndexAlias&lt;/li&gt;
+&lt;li&gt;&amp;hellip;At some later time, create a new Index&lt;/li&gt;
+&lt;li&gt;Call Swap() on the IndexAlias passing in the new Index&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Your application will safely switch to searching the new index.&lt;/p&gt;
+
+&lt;h3 id=&#34;searching-across-multiple-indexes:6dfd36eb1af3597f02acd82624b49c37&#34;&gt;Searching Across Multiple Indexes&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Create more than one Index&lt;/li&gt;
+&lt;li&gt;Create the IndexAlias pointing to these indexes&lt;/li&gt;
+&lt;li&gt;Writer your application to invoke Search() on the IndexAlias&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Your application will search across all the underlying indexes at the same time, and the results will be merged together into a single result.&lt;/p&gt;
+
+&lt;h4 id=&#34;limitations:6dfd36eb1af3597f02acd82624b49c37&#34;&gt;Limitations&lt;/h4&gt;
+
+&lt;p&gt;When and IndexAlias points to multiple indexes not all operations are supported.  Only operations which can be invoked on all the child indexes and have their responses aggregated are supported.  Operations that are not supported return &lt;code&gt;bleve.ErrorAliasMulti&lt;/code&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Sorting</title>
       <link>http://www.blevesearch.com/docs/Sorting/</link>
       <pubDate>Wed, 21 Sep 2016 10:25:38 -0400</pubDate>
@@ -162,52 +208,6 @@ the &lt;a href=&#34;https://www.meetup.com/Zurich-Gophers/events/233262687/&#34;
 &lt;li&gt;Control which value for multi-value fields should be used for sorting&lt;/li&gt;
 &lt;li&gt;Force handling field values as a particular type (defaults to auto)&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Index Aliases</title>
-      <link>http://www.blevesearch.com/docs/IndexAlias/</link>
-      <pubDate>Wed, 21 Sep 2016 10:25:38 -0400</pubDate>
-      
-      <guid>http://www.blevesearch.com/docs/IndexAlias/</guid>
-      <description>
-
-&lt;p&gt;Bleve has a powerful feature called an &lt;code&gt;IndexAlias&lt;/code&gt;.  The IndexAlias can be used to search an index, with the additional ability to atomically switch the underlying physical index.  IndexAliases can also be search to search across multiple indexes at the same time and correctly merge the results.&lt;/p&gt;
-
-&lt;h3 id=&#34;indexalias-interface:6dfd36eb1af3597f02acd82624b49c37&#34;&gt;IndexAlias Interface&lt;/h3&gt;
-
-&lt;p&gt;First, its useful to note that thanks to Go interfaces, an IndexAlias is also an Index.  This means that in general you work with an IndexAlias just as you would work with an Index.  The alias concept also adds 3 methods:  Add(), Remove(), and Swap()&lt;/p&gt;
-
-&lt;p&gt;Add, will add one or more indexes to the alias.
-Remove will remove one or more indexes from the alias.
-Swap will atomically add/remove the provided indexes.  (all other ops, like search will see the alias before or after all adds/removes are done)&lt;/p&gt;
-
-&lt;h3 id=&#34;switching-indexes-with-zero-downtime:6dfd36eb1af3597f02acd82624b49c37&#34;&gt;Switching Indexes with Zero Downtime&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Create a new Index&lt;/li&gt;
-&lt;li&gt;Create an IndexAlias pointing to the Index&lt;/li&gt;
-&lt;li&gt;Write your application to query the IndexAlias&lt;/li&gt;
-&lt;li&gt;&amp;hellip;At some later time, create a new Index&lt;/li&gt;
-&lt;li&gt;Call Swap() on the IndexAlias passing in the new Index&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Your application will safely switch to searching the new index.&lt;/p&gt;
-
-&lt;h3 id=&#34;searching-across-multiple-indexes:6dfd36eb1af3597f02acd82624b49c37&#34;&gt;Searching Across Multiple Indexes&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Create more than one Index&lt;/li&gt;
-&lt;li&gt;Create the IndexAlias pointing to these indexes&lt;/li&gt;
-&lt;li&gt;Writer your application to invoke Search() on the IndexAlias&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Your application will search across all the underlying indexes at the same time, and the results will be merged together into a single result.&lt;/p&gt;
-
-&lt;h4 id=&#34;limitations:6dfd36eb1af3597f02acd82624b49c37&#34;&gt;Limitations&lt;/h4&gt;
-
-&lt;p&gt;When and IndexAlias points to multiple indexes not all operations are supported.  Only operations which can be invoked on all the child indexes and have their responses aggregated are supported.  Operations that are not supported return &lt;code&gt;bleve.ErrorAliasMulti&lt;/code&gt;.&lt;/p&gt;
 </description>
     </item>
     
@@ -1027,32 +1027,6 @@ search.js is our custom code to bind everything together.&lt;/p&gt;&lt;/li&gt;
     </item>
     
     <item>
-      <title>Community</title>
-      <link>http://www.blevesearch.com/community/</link>
-      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
-      
-      <guid>http://www.blevesearch.com/community/</guid>
-      <description>
-
-&lt;h3 id=&#34;twitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Twitter&lt;/h3&gt;
-
-&lt;p&gt;Follow @blevesearch on &lt;a href=&#34;https://twitter.com/blevesearch&#34;&gt;twitter&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;irc:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;IRC&lt;/h3&gt;
-
-&lt;p&gt;Join the #bleve channel on &lt;a href=&#34;https://freenode.net/&#34;&gt;freenode&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;google-group:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Google Group&lt;/h3&gt;
-
-&lt;p&gt;Discuss use and development of bleve is in &lt;a href=&#34;https://groups.google.com/forum/#!forum/bleve&#34;&gt;this google group&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;gitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Gitter&lt;/h3&gt;
-
-&lt;p&gt;Join the conversation on &lt;a href=&#34;https://gitter.im/blevesearch/bleve&#34;&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Analyzers</title>
       <link>http://www.blevesearch.com/docs/Analyzers/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
@@ -1129,6 +1103,32 @@ search.js is our custom code to bind everything together.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;Thai&lt;/li&gt;
 &lt;li&gt;Turkish&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Community</title>
+      <link>http://www.blevesearch.com/community/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>http://www.blevesearch.com/community/</guid>
+      <description>
+
+&lt;h3 id=&#34;twitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Twitter&lt;/h3&gt;
+
+&lt;p&gt;Follow @blevesearch on &lt;a href=&#34;https://twitter.com/blevesearch&#34;&gt;twitter&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;irc:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;IRC&lt;/h3&gt;
+
+&lt;p&gt;Join the #bleve channel on &lt;a href=&#34;https://freenode.net/&#34;&gt;freenode&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;google-group:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Google Group&lt;/h3&gt;
+
+&lt;p&gt;Discuss use and development of bleve is in &lt;a href=&#34;https://groups.google.com/forum/#!forum/bleve&#34;&gt;this google group&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;gitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Gitter&lt;/h3&gt;
+
+&lt;p&gt;Join the conversation on &lt;a href=&#34;https://gitter.im/blevesearch/bleve&#34;&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     

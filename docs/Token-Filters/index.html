@@ -283,7 +283,7 @@
 <pre><code>var m *IndexMapping = index.Mapping()
 err := m.AddCustomTokenFilter(&quot;color_stop_filter&quot;, map[string]interface{}{
     &quot;type&quot;: stop_tokens_filter.Name,
-    &quot;tokens&quot;: []interface{
+    &quot;tokens&quot;: []interface{}{
         &quot;red&quot;,
         &quot;green&quot;,
         &quot;blue&quot;,

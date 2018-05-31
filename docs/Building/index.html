@@ -300,13 +300,13 @@ $ go get -u -v -tags full github.com/blevesearch/bleve
 
 <h3 id="os-x-hacky-but-similar-to-ubuntu-14-04:140c58546f80295ba58ab4d2981832fc">OS X (hacky, but similar to Ubuntu 14.04)</h3>
 
-<pre><code>$ brew install leveldb icu4c git # etc?
+<pre><code>$ brew install leveldb icu4c svn # etc?
 $ export CGO_LDFLAGS=-L/usr/local/opt/icu4c/lib
-$ export CGO_CFLAGS=-I/usr/local/opt/icu4c/include
-$ go get -u -v github.com/blevesearch/cld2
-$ cd $GOPATH/src/github.com/blevesearch/cld2
-$ git clone https://github.com/CLD2Owners/cld2.git
-$ cd cld2/internal
+$  export CGO_CFLAGS=-I/usr/local/opt/icu4c/include
+$ go get -u -v  github.com/blevesearch/bleve
+$ cd $GOPATH/src/github.com/blevesearch/bleve/analysis/token_filters/cld2
+$ svn co http://cld2.googlecode.com/svn/trunk cld2-read-only
+$ cd cld2-read-only/internal/
 # if you feel gutsy run:
 $ perl -p -i -e 's/soname=/install_name,/' compile_libs.sh
 # otherwise, just change soname= to install_name, in the two spots in compile_libs.sh
