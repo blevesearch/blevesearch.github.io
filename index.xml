@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Bleve</title>
-    <link>http://www.blevesearch.com/</link>
+    <link>https://www.blevesearch.com/</link>
     <description>Recent content on Bleve</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© &lt;a href=&#34;http://couchbase.com/&#34;&gt;Couchbase&lt;/a&gt; 2015-2016</copyright>
     <lastBuildDate>Thu, 20 Oct 2016 10:25:38 -0400</lastBuildDate>
-    <atom:link href="http://www.blevesearch.com/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://www.blevesearch.com/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Zürich Gophers</title>
-      <link>http://www.blevesearch.com/events/meetupZurich2016/</link>
+      <link>https://www.blevesearch.com/events/meetupZurich2016/</link>
       <pubDate>Thu, 20 Oct 2016 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/events/meetupZurich2016/</guid>
+      <guid>https://www.blevesearch.com/events/meetupZurich2016/</guid>
       <description>&lt;p&gt;My first time to Zürich!  I&amp;rsquo;m now confirmed to be speaking about Bleve at
 the &lt;a href=&#34;https://www.meetup.com/Zurich-Gophers/events/233262687/&#34;&gt;Zürich Gophers meetup&lt;/a&gt;.&lt;/p&gt;
 </description>
@@ -23,20 +23,20 @@ the &lt;a href=&#34;https://www.meetup.com/Zurich-Gophers/events/233262687/&#34;
     
     <item>
       <title>Golang Paris</title>
-      <link>http://www.blevesearch.com/events/meetupParis2016/</link>
+      <link>https://www.blevesearch.com/events/meetupParis2016/</link>
       <pubDate>Sun, 09 Oct 2016 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/events/meetupParis2016/</guid>
+      <guid>https://www.blevesearch.com/events/meetupParis2016/</guid>
       <description>&lt;p&gt;I&amp;rsquo;m now confirmed to be speaking about Bleve at the &lt;a href=&#34;http://www.meetup.com/Golang-Paris/events/234263218/&#34;&gt;The GIG : Gathering of International Gophers&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Using blevex packages</title>
-      <link>http://www.blevesearch.com/docs/Blevex/</link>
+      <link>https://www.blevesearch.com/docs/Blevex/</link>
       <pubDate>Wed, 21 Sep 2016 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/docs/Blevex/</guid>
+      <guid>https://www.blevesearch.com/docs/Blevex/</guid>
       <description>
 
 &lt;p&gt;The &lt;a href=&#34;https://github.com/blevesearch/blevex&#34;&gt;blevex&lt;/a&gt; repository contains optional add-ons to bleve which cannot be a part of the main repository for the following reasons:&lt;/p&gt;
@@ -84,21 +84,21 @@ the &lt;a href=&#34;https://www.meetup.com/Zurich-Gophers/events/233262687/&#34;
 
 &lt;h4 id=&#34;forestdb:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;forestdb&lt;/h4&gt;
 
-&lt;p&gt;Bleve supports using &lt;a href=&#34;https://github.com/couchbase/forestdb&#34;&gt;ForestDB&lt;/a&gt; as a KVStore implementation.  This requires a C/C++ dependency, please see &lt;a href=&#34;http://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Bleve supports using &lt;a href=&#34;https://github.com/couchbase/forestdb&#34;&gt;ForestDB&lt;/a&gt; as a KVStore implementation.  This requires a C/C++ dependency, please see &lt;a href=&#34;https://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h4 id=&#34;leveldb:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;leveldb&lt;/h4&gt;
 
-&lt;p&gt;Bleve supports using &lt;a href=&#34;https://code.google.com/p/leveldb/&#34;&gt;LevelDB&lt;/a&gt; as a KVStore implementation.  This requires a C/C++ dependency, please see &lt;a href=&#34;http://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Bleve supports using &lt;a href=&#34;https://code.google.com/p/leveldb/&#34;&gt;LevelDB&lt;/a&gt; as a KVStore implementation.  This requires a C/C++ dependency, please see &lt;a href=&#34;https://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h4 id=&#34;rocksdb:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;rocksdb&lt;/h4&gt;
 
-&lt;p&gt;Bleve supports using &lt;a href=&#34;https://github.com/facebook/rocksdb&#34;&gt;RocksDB&lt;/a&gt; as a KVStore implementation.  This requires a C/C++ dependency, please see &lt;a href=&#34;http://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Bleve supports using &lt;a href=&#34;https://github.com/facebook/rocksdb&#34;&gt;RocksDB&lt;/a&gt; as a KVStore implementation.  This requires a C/C++ dependency, please see &lt;a href=&#34;https://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h3 id=&#34;tokenizers:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;Tokenizers&lt;/h3&gt;
 
 &lt;h4 id=&#34;icu:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;ICU&lt;/h4&gt;
 
-&lt;p&gt;Bleve supports using the &lt;a href=&#34;http://site.icu-project.org/&#34;&gt;ICU&lt;/a&gt; project to tokenize words.  For most languages Bleve&amp;rsquo;s built-in unicode segmentation will work fine.  However, languages which require dictionary-based segmentation may still require this library.  This requires a C/C++ dependency, please see &lt;a href=&#34;http://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Bleve supports using the &lt;a href=&#34;http://site.icu-project.org/&#34;&gt;ICU&lt;/a&gt; project to tokenize words.  For most languages Bleve&amp;rsquo;s built-in unicode segmentation will work fine.  However, languages which require dictionary-based segmentation may still require this library.  This requires a C/C++ dependency, please see &lt;a href=&#34;https://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;NOTE: It is recommended to get the most recent version of ICU possible.  Older versions often included with distributions do not support language based tokenization.&lt;/p&gt;
 
@@ -106,20 +106,20 @@ the &lt;a href=&#34;https://www.meetup.com/Zurich-Gophers/events/233262687/&#34;
 
 &lt;h4 id=&#34;detect-lang:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;detect_lang&lt;/h4&gt;
 
-&lt;p&gt;Bleve supports using the &lt;a href=&#34;https://code.google.com/p/cld2/&#34;&gt;cld2&lt;/a&gt; library to determine the language of a sample of text.  This is implemented as a token filter which will return the result as a ISO 639 language code.  This requires a C/C++ dependency, please see &lt;a href=&#34;http://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Bleve supports using the &lt;a href=&#34;https://code.google.com/p/cld2/&#34;&gt;cld2&lt;/a&gt; library to determine the language of a sample of text.  This is implemented as a token filter which will return the result as a ISO 639 language code.  This requires a C/C++ dependency, please see &lt;a href=&#34;https://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h4 id=&#34;stemmer-filter:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;stemmer_filter&lt;/h4&gt;
 
-&lt;p&gt;Bleve supports using the &lt;a href=&#34;http://snowball.tartarus.org/download.php&#34;&gt;libstemmer&lt;/a&gt; library to stem words for many languages.  Many of the language specific analyzers depend on this library.  This requires a C/C++ dependency, please see &lt;a href=&#34;http://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Bleve supports using the &lt;a href=&#34;http://snowball.tartarus.org/download.php&#34;&gt;libstemmer&lt;/a&gt; library to stem words for many languages.  Many of the language specific analyzers depend on this library.  This requires a C/C++ dependency, please see &lt;a href=&#34;https://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Index Aliases</title>
-      <link>http://www.blevesearch.com/docs/IndexAlias/</link>
+      <link>https://www.blevesearch.com/docs/IndexAlias/</link>
       <pubDate>Wed, 21 Sep 2016 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/docs/IndexAlias/</guid>
+      <guid>https://www.blevesearch.com/docs/IndexAlias/</guid>
       <description>
 
 &lt;p&gt;Bleve has a powerful feature called an &lt;code&gt;IndexAlias&lt;/code&gt;.  The IndexAlias can be used to search an index, with the additional ability to atomically switch the underlying physical index.  IndexAliases can also be search to search across multiple indexes at the same time and correctly merge the results.&lt;/p&gt;
@@ -162,10 +162,10 @@ Swap will atomically add/remove the provided indexes.  (all other ops, like sear
     
     <item>
       <title>Sorting</title>
-      <link>http://www.blevesearch.com/docs/Sorting/</link>
+      <link>https://www.blevesearch.com/docs/Sorting/</link>
       <pubDate>Wed, 21 Sep 2016 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/docs/Sorting/</guid>
+      <guid>https://www.blevesearch.com/docs/Sorting/</guid>
       <description>
 
 &lt;p&gt;Bleve now gives you the ability to customize the order of your search results.&lt;/p&gt;
@@ -213,10 +213,10 @@ Swap will atomically add/remove the provided indexes.  (all other ops, like sear
     
     <item>
       <title>dotGo</title>
-      <link>http://www.blevesearch.com/events/dotGo2015/</link>
+      <link>https://www.blevesearch.com/events/dotGo2015/</link>
       <pubDate>Mon, 09 Nov 2015 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/events/dotGo2015/</guid>
+      <guid>https://www.blevesearch.com/events/dotGo2015/</guid>
       <description>&lt;p&gt;We&amp;rsquo;re back!  I tried something a little bit different in this talk, I explored the unique way that contributors have shaped the project.  The dotGo conference delivered a day full of great talks, I encourage you to &lt;a href=&#34;http://www.thedotpost.com/conference/dotgo-2015&#34;&gt;check out all of them&lt;/a&gt;!&lt;/p&gt;
 
 &lt;p&gt;Discussion @ &lt;a href=&#34;http://www.thedotpost.com/2015/11/marty-schoch-a-tour-of-the-bleve&#34;&gt;The dot Post&lt;/a&gt;&lt;/p&gt;
@@ -236,10 +236,10 @@ Swap will atomically add/remove the provided indexes.  (all other ops, like sear
     
     <item>
       <title>Index Structure</title>
-      <link>http://www.blevesearch.com/docs/Index-Structure/</link>
+      <link>https://www.blevesearch.com/docs/Index-Structure/</link>
       <pubDate>Fri, 09 Oct 2015 00:00:00 +0100</pubDate>
       
-      <guid>http://www.blevesearch.com/docs/Index-Structure/</guid>
+      <guid>https://www.blevesearch.com/docs/Index-Structure/</guid>
       <description>
 
 &lt;p&gt;Bleve default index, called &amp;ldquo;upside_down&amp;rdquo; is stored in a single key/value store
@@ -363,10 +363,10 @@ in lexicographic byte order.&lt;/p&gt;
     
     <item>
       <title>Deferred Cleanup, Checking Errors, and Potential Problems</title>
-      <link>http://www.blevesearch.com/news/Deferred-Cleanup,-Checking-Errors,-and-Potential-Problems/</link>
+      <link>https://www.blevesearch.com/news/Deferred-Cleanup,-Checking-Errors,-and-Potential-Problems/</link>
       <pubDate>Mon, 28 Sep 2015 10:40:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/news/Deferred-Cleanup,-Checking-Errors,-and-Potential-Problems/</guid>
+      <guid>https://www.blevesearch.com/news/Deferred-Cleanup,-Checking-Errors,-and-Potential-Problems/</guid>
       <description>
 
 &lt;p&gt;The &lt;em&gt;defer&lt;/em&gt; statement in Go is frequently used to ensure that once a resource has been acquired, it will be properly cleaned up.  In its simplest form it works exactly as you expect.  But, as you move to more advanced usages there are some things to watch out for.  I&amp;rsquo;d like to share one that I recently ran into while writing Bleve test cases.&lt;/p&gt;
@@ -600,10 +600,10 @@ func Close(c io.Closer) {
     
     <item>
       <title>Faster Tokenization with Ragel generated FSM</title>
-      <link>http://www.blevesearch.com/news/Faster-Tokenization-with-Ragel-generated-FSM/</link>
+      <link>https://www.blevesearch.com/news/Faster-Tokenization-with-Ragel-generated-FSM/</link>
       <pubDate>Tue, 08 Sep 2015 10:40:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/news/Faster-Tokenization-with-Ragel-generated-FSM/</guid>
+      <guid>https://www.blevesearch.com/news/Faster-Tokenization-with-Ragel-generated-FSM/</guid>
       <description>
 
 &lt;p&gt;Text processed by Bleve must first go through the process of tokenization.  Read on to learn how we sped up the process by a factor of 2x by introducing an FSM generated by &lt;a href=&#34;https://www.colm.net/open-source/ragel/&#34;&gt;Ragel&lt;/a&gt;.&lt;/p&gt;
@@ -804,10 +804,10 @@ ok  	github.com/blevesearch/segment	0.239s
     
     <item>
       <title>Site Search is Back!</title>
-      <link>http://www.blevesearch.com/news/Site-Search/</link>
+      <link>https://www.blevesearch.com/news/Site-Search/</link>
       <pubDate>Tue, 14 Jul 2015 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/news/Site-Search/</guid>
+      <guid>https://www.blevesearch.com/news/Site-Search/</guid>
       <description>
 
 &lt;p&gt;We recently re-launched the Bleve website using Hugo, and we temporarily lost the ability to search the site.  Today, we bring back search, and show you how you can add search to your Hugo site.&lt;/p&gt;
@@ -938,10 +938,10 @@ search.js is our custom code to bind everything together.&lt;/p&gt;&lt;/li&gt;
     
     <item>
       <title>GopherCon Lightning Talk</title>
-      <link>http://www.blevesearch.com/events/gopherCon2015/</link>
+      <link>https://www.blevesearch.com/events/gopherCon2015/</link>
       <pubDate>Fri, 10 Jul 2015 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/events/gopherCon2015/</guid>
+      <guid>https://www.blevesearch.com/events/gopherCon2015/</guid>
       <description>&lt;p&gt;The GopherCon lightning talk was a success!  It was great to meet so many Bleve users at GopherCon.&lt;/p&gt;
 
 &lt;ul&gt;
@@ -958,10 +958,10 @@ search.js is our custom code to bind everything together.&lt;/p&gt;&lt;/li&gt;
     
     <item>
       <title>Site Migrated to Hugo</title>
-      <link>http://www.blevesearch.com/news/Site-Migrated-to-Hugo/</link>
+      <link>https://www.blevesearch.com/news/Site-Migrated-to-Hugo/</link>
       <pubDate>Thu, 02 Jul 2015 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/news/Site-Migrated-to-Hugo/</guid>
+      <guid>https://www.blevesearch.com/news/Site-Migrated-to-Hugo/</guid>
       <description>
 
 &lt;p&gt;You may notice the site looks a little different today.  We&amp;rsquo;ve just launched a version of the site built with &lt;a href=&#34;http://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;.  The site is functional, but still also very much a work in progress.  Don&amp;rsquo;t hesitate to report any problems you find.&lt;/p&gt;
@@ -982,10 +982,10 @@ search.js is our custom code to bind everything together.&lt;/p&gt;&lt;/li&gt;
     
     <item>
       <title>Videos</title>
-      <link>http://www.blevesearch.com/videos/</link>
+      <link>https://www.blevesearch.com/videos/</link>
       <pubDate>Thu, 25 Jun 2015 12:25:45 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/videos/</guid>
+      <guid>https://www.blevesearch.com/videos/</guid>
       <description>
 
 &lt;h3 id=&#34;fosdem-2015:a45b24697a235d080c581c0ce5a9b90b&#34;&gt;FOSDEM 2015&lt;/h3&gt;
@@ -1027,11 +1027,37 @@ search.js is our custom code to bind everything together.&lt;/p&gt;&lt;/li&gt;
     </item>
     
     <item>
-      <title>Analyzers</title>
-      <link>http://www.blevesearch.com/docs/Analyzers/</link>
+      <title>Community</title>
+      <link>https://www.blevesearch.com/community/</link>
       <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/docs/Analyzers/</guid>
+      <guid>https://www.blevesearch.com/community/</guid>
+      <description>
+
+&lt;h3 id=&#34;twitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Twitter&lt;/h3&gt;
+
+&lt;p&gt;Follow @blevesearch on &lt;a href=&#34;https://twitter.com/blevesearch&#34;&gt;twitter&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;irc:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;IRC&lt;/h3&gt;
+
+&lt;p&gt;Join the #bleve channel on &lt;a href=&#34;https://freenode.net/&#34;&gt;freenode&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;google-group:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Google Group&lt;/h3&gt;
+
+&lt;p&gt;Discuss use and development of bleve is in &lt;a href=&#34;https://groups.google.com/forum/#!forum/bleve&#34;&gt;this google group&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;gitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Gitter&lt;/h3&gt;
+
+&lt;p&gt;Join the conversation on &lt;a href=&#34;https://gitter.im/blevesearch/bleve&#34;&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Analyzers</title>
+      <link>https://www.blevesearch.com/docs/Analyzers/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>https://www.blevesearch.com/docs/Analyzers/</guid>
       <description>
 
 &lt;h2 id=&#34;general-purpose-analyzers:aa66feb1a6a343065211b619ad078082&#34;&gt;General Purpose Analyzers&lt;/h2&gt;
@@ -1045,11 +1071,11 @@ search.js is our custom code to bind everything together.&lt;/p&gt;&lt;/li&gt;
 &lt;p&gt;The simple analyzer performs only minimal analysis on the input.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Tokenizer - &lt;a href=&#34;http://www.blevesearch.com/docs/Tokenizers/#unicode:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Unicode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Tokenizer - &lt;a href=&#34;https://www.blevesearch.com/docs/Tokenizers/#unicode:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Unicode&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Token Filters
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#lowercase:c38efc402d8771527a225c32b59be157&#34;&gt;Lowercase&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.blevesearch.com/docs/Token-Filters/#lowercase:c38efc402d8771527a225c32b59be157&#34;&gt;Lowercase&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -1058,12 +1084,12 @@ search.js is our custom code to bind everything together.&lt;/p&gt;&lt;/li&gt;
 &lt;p&gt;The Standard Analyzer is like the Simple Analyzer but also adds English stop word removal.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Tokenizer - &lt;a href=&#34;http://www.blevesearch.com/docs/Tokenizers/#unicode:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Unicode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Tokenizer - &lt;a href=&#34;https://www.blevesearch.com/docs/Tokenizers/#unicode:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Unicode&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Token Filters
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#lowercase:c38efc402d8771527a225c32b59be157&#34;&gt;Lowercase&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;English &lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#stop-token:c38efc402d8771527a225c32b59be157&#34;&gt;Stop Token&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.blevesearch.com/docs/Token-Filters/#lowercase:c38efc402d8771527a225c32b59be157&#34;&gt;Lowercase&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;English &lt;a href=&#34;https://www.blevesearch.com/docs/Token-Filters/#stop-token:c38efc402d8771527a225c32b59be157&#34;&gt;Stop Token&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -1072,12 +1098,12 @@ search.js is our custom code to bind everything together.&lt;/p&gt;&lt;/li&gt;
 &lt;p&gt;The Detect Language Analyzer is used to examine input text, use heuristics to determine a best guess at the language, and index the ISO 639 Language Code.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Tokenizer - &lt;a href=&#34;http://www.blevesearch.com/docs/Tokenizers/#single-token:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Single&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Tokenizer - &lt;a href=&#34;https://www.blevesearch.com/docs/Tokenizers/#single-token:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Single&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Token Filters
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#lowercase:c38efc402d8771527a225c32b59be157&#34;&gt;Lowercase&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.blevesearch.com/docs/Token-Filters/#cld2:c38efc402d8771527a225c32b59be157&#34;&gt;CLD2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.blevesearch.com/docs/Token-Filters/#lowercase:c38efc402d8771527a225c32b59be157&#34;&gt;Lowercase&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.blevesearch.com/docs/Token-Filters/#cld2:c38efc402d8771527a225c32b59be157&#34;&gt;CLD2&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -1103,32 +1129,6 @@ search.js is our custom code to bind everything together.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;Thai&lt;/li&gt;
 &lt;li&gt;Turkish&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Community</title>
-      <link>http://www.blevesearch.com/community/</link>
-      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
-      
-      <guid>http://www.blevesearch.com/community/</guid>
-      <description>
-
-&lt;h3 id=&#34;twitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Twitter&lt;/h3&gt;
-
-&lt;p&gt;Follow @blevesearch on &lt;a href=&#34;https://twitter.com/blevesearch&#34;&gt;twitter&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;irc:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;IRC&lt;/h3&gt;
-
-&lt;p&gt;Join the #bleve channel on &lt;a href=&#34;https://freenode.net/&#34;&gt;freenode&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;google-group:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Google Group&lt;/h3&gt;
-
-&lt;p&gt;Discuss use and development of bleve is in &lt;a href=&#34;https://groups.google.com/forum/#!forum/bleve&#34;&gt;this google group&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;gitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Gitter&lt;/h3&gt;
-
-&lt;p&gt;Join the conversation on &lt;a href=&#34;https://gitter.im/blevesearch/bleve&#34;&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     

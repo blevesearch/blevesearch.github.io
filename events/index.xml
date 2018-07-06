@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Events on Bleve</title>
-    <link>http://www.blevesearch.com/events/</link>
+    <link>https://www.blevesearch.com/events/</link>
     <description>Recent content in Events on Bleve</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© &lt;a href=&#34;http://couchbase.com/&#34;&gt;Couchbase&lt;/a&gt; 2015-2016</copyright>
     <lastBuildDate>Thu, 20 Oct 2016 10:25:38 -0400</lastBuildDate>
-    <atom:link href="http://www.blevesearch.com/events/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://www.blevesearch.com/events/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Zürich Gophers</title>
-      <link>http://www.blevesearch.com/events/meetupZurich2016/</link>
+      <link>https://www.blevesearch.com/events/meetupZurich2016/</link>
       <pubDate>Thu, 20 Oct 2016 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/events/meetupZurich2016/</guid>
+      <guid>https://www.blevesearch.com/events/meetupZurich2016/</guid>
       <description>&lt;p&gt;My first time to Zürich!  I&amp;rsquo;m now confirmed to be speaking about Bleve at
 the &lt;a href=&#34;https://www.meetup.com/Zurich-Gophers/events/233262687/&#34;&gt;Zürich Gophers meetup&lt;/a&gt;.&lt;/p&gt;
 </description>
@@ -23,20 +23,20 @@ the &lt;a href=&#34;https://www.meetup.com/Zurich-Gophers/events/233262687/&#34;
     
     <item>
       <title>Golang Paris</title>
-      <link>http://www.blevesearch.com/events/meetupParis2016/</link>
+      <link>https://www.blevesearch.com/events/meetupParis2016/</link>
       <pubDate>Sun, 09 Oct 2016 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/events/meetupParis2016/</guid>
+      <guid>https://www.blevesearch.com/events/meetupParis2016/</guid>
       <description>&lt;p&gt;I&amp;rsquo;m now confirmed to be speaking about Bleve at the &lt;a href=&#34;http://www.meetup.com/Golang-Paris/events/234263218/&#34;&gt;The GIG : Gathering of International Gophers&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>dotGo</title>
-      <link>http://www.blevesearch.com/events/dotGo2015/</link>
+      <link>https://www.blevesearch.com/events/dotGo2015/</link>
       <pubDate>Mon, 09 Nov 2015 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/events/dotGo2015/</guid>
+      <guid>https://www.blevesearch.com/events/dotGo2015/</guid>
       <description>&lt;p&gt;We&amp;rsquo;re back!  I tried something a little bit different in this talk, I explored the unique way that contributors have shaped the project.  The dotGo conference delivered a day full of great talks, I encourage you to &lt;a href=&#34;http://www.thedotpost.com/conference/dotgo-2015&#34;&gt;check out all of them&lt;/a&gt;!&lt;/p&gt;
 
 &lt;p&gt;Discussion @ &lt;a href=&#34;http://www.thedotpost.com/2015/11/marty-schoch-a-tour-of-the-bleve&#34;&gt;The dot Post&lt;/a&gt;&lt;/p&gt;
@@ -56,10 +56,10 @@ the &lt;a href=&#34;https://www.meetup.com/Zurich-Gophers/events/233262687/&#34;
     
     <item>
       <title>GopherCon Lightning Talk</title>
-      <link>http://www.blevesearch.com/events/gopherCon2015/</link>
+      <link>https://www.blevesearch.com/events/gopherCon2015/</link>
       <pubDate>Fri, 10 Jul 2015 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/events/gopherCon2015/</guid>
+      <guid>https://www.blevesearch.com/events/gopherCon2015/</guid>
       <description>&lt;p&gt;The GopherCon lightning talk was a success!  It was great to meet so many Bleve users at GopherCon.&lt;/p&gt;
 
 &lt;ul&gt;
@@ -76,10 +76,10 @@ the &lt;a href=&#34;https://www.meetup.com/Zurich-Gophers/events/233262687/&#34;
     
     <item>
       <title>GopherCon India</title>
-      <link>http://www.blevesearch.com/events/gopherConIndia2015/</link>
+      <link>https://www.blevesearch.com/events/gopherConIndia2015/</link>
       <pubDate>Fri, 20 Feb 2015 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/events/gopherConIndia2015/</guid>
+      <guid>https://www.blevesearch.com/events/gopherConIndia2015/</guid>
       <description>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://sourcegraph.com/blog/live/gopherconindia/113241457917&#34;&gt;Transcript&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/gopherconindia/talks/blob/master/2015/marty-schoch/bleve.pdf&#34;&gt;Slides&lt;/a&gt;&lt;/li&gt;
@@ -97,10 +97,10 @@ the &lt;a href=&#34;https://www.meetup.com/Zurich-Gophers/events/233262687/&#34;
     
     <item>
       <title>FOSDEM</title>
-      <link>http://www.blevesearch.com/events/fosdem2015/</link>
+      <link>https://www.blevesearch.com/events/fosdem2015/</link>
       <pubDate>Sun, 01 Feb 2015 10:25:38 -0400</pubDate>
       
-      <guid>http://www.blevesearch.com/events/fosdem2015/</guid>
+      <guid>https://www.blevesearch.com/events/fosdem2015/</guid>
       <description>&lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/blevesearch/fosdem15/blob/master/bleve-fosdem15.pdf&#34;&gt;Slides&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Video:&lt;/li&gt;
