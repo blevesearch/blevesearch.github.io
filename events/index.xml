@@ -11,14 +11,16 @@
     <atom:link href="https://www.blevesearch.com/events/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>GopherCon UK 2018</title>
+      <title>GopherCon UK</title>
       <link>https://www.blevesearch.com/events/gopherConUk2018/</link>
       <pubDate>Fri, 03 Aug 2018 10:25:38 -0400</pubDate>
       
       <guid>https://www.blevesearch.com/events/gopherConUk2018/</guid>
       <description>&lt;p&gt;Scorch! a New Index for Bleve&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://www.gophercon.co.uk/schedule/&#34;&gt;https://www.gophercon.co.uk/schedule/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Bleve, an open-source full-text search library for Go, has moved beyond the general-purpose key/value store and now implements its own custom binary index format named Scorch. Learn about the data-structures and Go libraries we&amp;rsquo;ve chosen to build this solution.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.gophercon.co.uk/&#34;&gt;GopherCon UK&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
