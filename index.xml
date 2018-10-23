@@ -7,8 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© &lt;a href=&#34;http://couchbase.com/&#34;&gt;Couchbase&lt;/a&gt; 2015-2016</copyright>
-    <lastBuildDate>Fri, 03 Aug 2018 10:25:38 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 29 Oct 2018 10:25:38 -0400</lastBuildDate>
     <atom:link href="https://www.blevesearch.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Go Israel Meetup</title>
+      <link>https://www.blevesearch.com/events/goIsrael2018/</link>
+      <pubDate>Mon, 29 Oct 2018 10:25:38 -0400</pubDate>
+      
+      <guid>https://www.blevesearch.com/events/goIsrael2018/</guid>
+      <description>&lt;p&gt;Bleve&lt;/p&gt;
+
+&lt;p&gt;In this talk we&amp;rsquo;ll start with an overview of the functionality provided by Bleve. Next we&amp;rsquo;ll look at some examples of how you can integrate Bleve with your Go applications. Finally, we&amp;rsquo;ll talk about Scorch, the latest index scheme used by Bleve, and how it fits into the future of the project.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.meetup.com/Go-Israel/events/255070274/&#34;&gt;Go Israel&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>GopherCon UK</title>
@@ -1037,32 +1051,6 @@ search.js is our custom code to bind everything together.&lt;/p&gt;&lt;/li&gt;
 	&lt;iframe class=&#34;youtube-player&#34; type=&#34;text/html&#34; width=&#34;640&#34; height=&#34;385&#34; src=&#34;http://www.youtube.com/embed/DfbRTXE5n4Y&#34; allowfullscreen frameborder=&#34;0&#34;&gt;
 	&lt;/iframe&gt;
 &lt;/div&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Community</title>
-      <link>https://www.blevesearch.com/community/</link>
-      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
-      
-      <guid>https://www.blevesearch.com/community/</guid>
-      <description>
-
-&lt;h3 id=&#34;twitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Twitter&lt;/h3&gt;
-
-&lt;p&gt;Follow @blevesearch on &lt;a href=&#34;https://twitter.com/blevesearch&#34;&gt;twitter&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;irc:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;IRC&lt;/h3&gt;
-
-&lt;p&gt;Join the #bleve channel on &lt;a href=&#34;https://freenode.net/&#34;&gt;freenode&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;google-group:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Google Group&lt;/h3&gt;
-
-&lt;p&gt;Discuss use and development of bleve is in &lt;a href=&#34;https://groups.google.com/forum/#!forum/bleve&#34;&gt;this google group&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h3 id=&#34;gitter:f3b3effc19b97b19aaf2ce392427d255&#34;&gt;Gitter&lt;/h3&gt;
-
-&lt;p&gt;Join the conversation on &lt;a href=&#34;https://gitter.im/blevesearch/bleve&#34;&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     

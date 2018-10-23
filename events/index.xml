@@ -7,8 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© &lt;a href=&#34;http://couchbase.com/&#34;&gt;Couchbase&lt;/a&gt; 2015-2016</copyright>
-    <lastBuildDate>Fri, 03 Aug 2018 10:25:38 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 29 Oct 2018 10:25:38 -0400</lastBuildDate>
     <atom:link href="https://www.blevesearch.com/events/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Go Israel Meetup</title>
+      <link>https://www.blevesearch.com/events/goIsrael2018/</link>
+      <pubDate>Mon, 29 Oct 2018 10:25:38 -0400</pubDate>
+      
+      <guid>https://www.blevesearch.com/events/goIsrael2018/</guid>
+      <description>&lt;p&gt;Bleve&lt;/p&gt;
+
+&lt;p&gt;In this talk we&amp;rsquo;ll start with an overview of the functionality provided by Bleve. Next we&amp;rsquo;ll look at some examples of how you can integrate Bleve with your Go applications. Finally, we&amp;rsquo;ll talk about Scorch, the latest index scheme used by Bleve, and how it fits into the future of the project.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.meetup.com/Go-Israel/events/255070274/&#34;&gt;Go Israel&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>GopherCon UK</title>
