@@ -1036,7 +1036,7 @@ search.js is our custom code to bind everything together.&lt;/p&gt;&lt;/li&gt;
 
 &lt;h3 id=&#34;bleve-analysis-wizard:a45b24697a235d080c581c0ce5a9b90b&#34;&gt;Bleve Analysis Wizard&lt;/h3&gt;
 
-&lt;p&gt;The &lt;a href=&#34;http://analysis.blevesearch.com/&#34;&gt;Bleve Text Analysis Wizard&lt;/a&gt; is a tool to help users experiment with the effects different analyzers have on their text.  Below is a short video showing how the tool works.&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&#34;http://bleveanalysis.couchbase.com/&#34;&gt;Bleve Text Analysis Wizard&lt;/a&gt; is a tool to help users experiment with the effects different analyzers have on their text.  Below is a short video showing how the tool works.&lt;/p&gt;
 
 &lt;p&gt;&lt;div class=&#34;embed video-player&#34;&gt;
 	&lt;iframe class=&#34;youtube-player&#34; type=&#34;text/html&#34; width=&#34;640&#34; height=&#34;385&#34; src=&#34;http://www.youtube.com/embed/CEfaIlzki5U&#34; allowfullscreen frameborder=&#34;0&#34;&gt;
