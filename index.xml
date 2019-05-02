@@ -150,7 +150,7 @@ the &lt;a href=&#34;https://www.meetup.com/Zurich-Gophers/events/233262687/&#34;
       <guid>https://www.blevesearch.com/docs/IndexAlias/</guid>
       <description>
 
-&lt;p&gt;Bleve has a powerful feature called an &lt;code&gt;IndexAlias&lt;/code&gt;.  The IndexAlias can be used to search an index, with the additional ability to atomically switch the underlying physical index.  IndexAliases can also be search to search across multiple indexes at the same time and correctly merge the results.&lt;/p&gt;
+&lt;p&gt;Bleve has a powerful feature called an &lt;code&gt;IndexAlias&lt;/code&gt;.  The IndexAlias can be used to search an index, with the additional ability to atomically switch the underlying physical index.  IndexAliases can also be used to search across multiple indexes at the same time and correctly merge the results.&lt;/p&gt;
 
 &lt;h3 id=&#34;indexalias-interface:6dfd36eb1af3597f02acd82624b49c37&#34;&gt;IndexAlias Interface&lt;/h3&gt;
 
