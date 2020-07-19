@@ -278,7 +278,7 @@
 
 		
 
-<p>In bleve, the IndexMapping describes how to your data model should be indexed.</p>
+<p>In bleve, the IndexMapping describes how your data model should be indexed.</p>
 
 <h2 id="default-indexmapping:fac957943db74e6a57605072a04b8308">Default IndexMapping</h2>
 
@@ -322,7 +322,7 @@ nameFieldMapping.Analyzer = &quot;en&quot;
 blogMapping.AddFieldMappingsAt(&quot;name&quot;, nameFieldMapping)
 </code></pre>
 
-<p>Now let&rsquo;s say our blog documents have a nested structure describing the <code>author</code> field field <code>name</code> and <code>email</code>.  This time lets say we want index (default) but not store the author name.  And we want to exclude the email address from the <code>_all</code> field.</p>
+<p>Now let&rsquo;s say our blog documents have a nested structure describing the <code>author</code> field using sub-fields <code>name</code> and <code>email</code>.  This time lets say we want index (default) but not store the author name.  And we want to exclude the email address from the <code>_all</code> field.</p>
 
 <pre><code class="language-go">author := bleve.NewDocumentMapping()
 authorNameFieldMapping := bleve.NewTextFieldMapping()
@@ -340,7 +340,7 @@ blog.AddSubDocumentMapping(&quot;author&quot;, author)
 <li>Index - index this field, defaults to true</li>
 <li>Store - store this field, defaults to true</li>
 <li>IncludeTermVectors - include term vectors for this field, defaults to true</li>
-<li>IncludeInAll - includes this field in the compostie field named <code>_all</code>, defaults to true</li>
+<li>IncludeInAll - includes this field in the composite field named <code>_all</code>, defaults to true</li>
 </ul>
 
 <h2 id="text-field-specific-options:fac957943db74e6a57605072a04b8308">Text Field specific options</h2>
