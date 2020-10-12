@@ -336,7 +336,7 @@ in lexicographic byte order.&lt;/p&gt;
 &lt;p&gt;The simple analyzer performs only minimal analysis on the input.&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Tokenizer - &lt;a href=&#34;https://www.blevesearch.com/docs/Tokenizers/#unicode:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Unicode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Tokenizer - &lt;a href=&#34;https://www.blevesearch.com/docs/Tokenizers/#letter:7d5ef314ed49959990583aa48ce5f86b&#34;&gt;Letter&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Token Filters
 
 &lt;ul&gt;
