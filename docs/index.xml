@@ -493,7 +493,7 @@ $ go get -u -v -tags full github.com/blevesearch/bleve
 import (
 	&amp;quot;fmt&amp;quot;
 
-	&amp;quot;github.com/blevesearch/bleve&amp;quot;
+	&amp;quot;github.com/blevesearch/bleve/v2&amp;quot;
 )
 
 func main() {
