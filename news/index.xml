@@ -7,8 +7,38 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© &lt;a href=&#34;http://couchbase.com/&#34;&gt;Couchbase&lt;/a&gt; 2015-2020</copyright>
-    <lastBuildDate>Sat, 16 Mar 2019 14:32:38 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 13 Jan 2021 14:32:38 -0400</lastBuildDate>
     <atom:link href="https://www.blevesearch.com/news/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Bleve v2.0.0 Released</title>
+      <link>https://www.blevesearch.com/news/Bleve-v2.0.0-Released/</link>
+      <pubDate>Wed, 13 Jan 2021 14:32:38 -0400</pubDate>
+      
+      <guid>https://www.blevesearch.com/news/Bleve-v2.0.0-Released/</guid>
+      <description>
+
+&lt;p&gt;This release is a new major version because it contains breaking changes to the package API. For complete details of the contents and reasoning behind these changes, please see: &lt;a href=&#34;https://github.com/blevesearch/bleve/issues/1495&#34;&gt;#1495&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;highlights:922a362fcf856a63c6c490d962acf217&#34;&gt;Highlights&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Remove circular dependency between Bleve and Zap modules&lt;/li&gt;
+&lt;li&gt;Make Scorch and Zap v15 the default index/segment type when using the New() method&lt;/li&gt;
+&lt;li&gt;New option to disable freq/norm information for a field&lt;/li&gt;
+&lt;li&gt;Types corrected for MatchQueryOperatorOr and MatchQueryOperatorAnd (see #1410)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;deprecated-features-may-be-removed-in-the-future:922a362fcf856a63c6c490d962acf217&#34;&gt;Deprecated features (may be removed in the future)&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;upsidedown index format and all key/value adapters&lt;/li&gt;
+&lt;li&gt;HTTP sub-package&lt;/li&gt;
+&lt;li&gt;bleve command-line tool sub-commands: bulk, create, index, dump&lt;/li&gt;
+&lt;li&gt;config sub-package&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Request For Comments – A plan to release v1.0.0 and adopt Go modules</title>

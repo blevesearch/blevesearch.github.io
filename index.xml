@@ -7,8 +7,38 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© &lt;a href=&#34;http://couchbase.com/&#34;&gt;Couchbase&lt;/a&gt; 2015-2020</copyright>
-    <lastBuildDate>Sat, 16 Mar 2019 14:32:38 -0400</lastBuildDate>
+    <lastBuildDate>Wed, 13 Jan 2021 14:32:38 -0400</lastBuildDate>
     <atom:link href="https://www.blevesearch.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Bleve v2.0.0 Released</title>
+      <link>https://www.blevesearch.com/news/Bleve-v2.0.0-Released/</link>
+      <pubDate>Wed, 13 Jan 2021 14:32:38 -0400</pubDate>
+      
+      <guid>https://www.blevesearch.com/news/Bleve-v2.0.0-Released/</guid>
+      <description>
+
+&lt;p&gt;This release is a new major version because it contains breaking changes to the package API. For complete details of the contents and reasoning behind these changes, please see: &lt;a href=&#34;https://github.com/blevesearch/bleve/issues/1495&#34;&gt;#1495&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;highlights:922a362fcf856a63c6c490d962acf217&#34;&gt;Highlights&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Remove circular dependency between Bleve and Zap modules&lt;/li&gt;
+&lt;li&gt;Make Scorch and Zap v15 the default index/segment type when using the New() method&lt;/li&gt;
+&lt;li&gt;New option to disable freq/norm information for a field&lt;/li&gt;
+&lt;li&gt;Types corrected for MatchQueryOperatorOr and MatchQueryOperatorAnd (see #1410)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;deprecated-features-may-be-removed-in-the-future:922a362fcf856a63c6c490d962acf217&#34;&gt;Deprecated features (may be removed in the future)&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;upsidedown index format and all key/value adapters&lt;/li&gt;
+&lt;li&gt;HTTP sub-package&lt;/li&gt;
+&lt;li&gt;bleve command-line tool sub-commands: bulk, create, index, dump&lt;/li&gt;
+&lt;li&gt;config sub-package&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Request For Comments – A plan to release v1.0.0 and adopt Go modules</title>
@@ -857,52 +887,6 @@ search.js is our custom code to bind everything together.&lt;/p&gt;&lt;/li&gt;
 &lt;h3 id=&#34;what-about-search:871bbe6ca1368764a58ff754bed0e978&#34;&gt;What about Search?&lt;/h3&gt;
 
 &lt;p&gt;Previously we offered an integrated github wiki search on the website, and as of today that is now missing.  However, stay tuned for future announcements!  Bleve site and documentation search will be back.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Videos</title>
-      <link>https://www.blevesearch.com/videos/</link>
-      <pubDate>Thu, 25 Jun 2015 12:25:45 -0400</pubDate>
-      
-      <guid>https://www.blevesearch.com/videos/</guid>
-      <description>
-
-&lt;h3 id=&#34;fosdem-2015:a45b24697a235d080c581c0ce5a9b90b&#34;&gt;FOSDEM 2015&lt;/h3&gt;
-
-&lt;p&gt;An introduction to the Bleve project given at the Go Devroom at FOSDEM 2015.&lt;/p&gt;
-
-&lt;p&gt;&lt;div class=&#34;embed video-player&#34;&gt;
-	&lt;iframe class=&#34;youtube-player&#34; type=&#34;text/html&#34; width=&#34;640&#34; height=&#34;385&#34; src=&#34;http://www.youtube.com/embed/Vhc_1Ta3Mi0&#34; allowfullscreen frameborder=&#34;0&#34;&gt;
-	&lt;/iframe&gt;
-&lt;/div&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;gophercon-india-2015:a45b24697a235d080c581c0ce5a9b90b&#34;&gt;GopherCon India 2015&lt;/h3&gt;
-
-&lt;p&gt;An introduction to the Bleve project given at GopherCon India in Bengaluru.&lt;/p&gt;
-
-&lt;p&gt;&lt;div class=&#34;embed video-player&#34;&gt;
-	&lt;iframe class=&#34;youtube-player&#34; type=&#34;text/html&#34; width=&#34;640&#34; height=&#34;385&#34; src=&#34;http://www.youtube.com/embed/uEhs_xrWJNw&#34; allowfullscreen frameborder=&#34;0&#34;&gt;
-	&lt;/iframe&gt;
-&lt;/div&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;bleve-analysis-wizard:a45b24697a235d080c581c0ce5a9b90b&#34;&gt;Bleve Analysis Wizard&lt;/h3&gt;
-
-&lt;p&gt;The &lt;a href=&#34;http://bleveanalysis.couchbase.com/&#34;&gt;Bleve Text Analysis Wizard&lt;/a&gt; is a tool to help users experiment with the effects different analyzers have on their text.  Below is a short video showing how the tool works.&lt;/p&gt;
-
-&lt;p&gt;&lt;div class=&#34;embed video-player&#34;&gt;
-	&lt;iframe class=&#34;youtube-player&#34; type=&#34;text/html&#34; width=&#34;640&#34; height=&#34;385&#34; src=&#34;http://www.youtube.com/embed/CEfaIlzki5U&#34; allowfullscreen frameborder=&#34;0&#34;&gt;
-	&lt;/iframe&gt;
-&lt;/div&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;bleve-explorer:a45b24697a235d080c581c0ce5a9b90b&#34;&gt;Bleve Explorer&lt;/h3&gt;
-
-&lt;p&gt;The &lt;a href=&#34;https://github.com/blevesearch/bleve-explorer&#34;&gt;Bleve Explorer&lt;/a&gt; is an example application to show how to integrate bleve with an HTTP/REST/JSON interface.  Below is a short video showing how the application works.&lt;/p&gt;
-
-&lt;p&gt;&lt;div class=&#34;embed video-player&#34;&gt;
-	&lt;iframe class=&#34;youtube-player&#34; type=&#34;text/html&#34; width=&#34;640&#34; height=&#34;385&#34; src=&#34;http://www.youtube.com/embed/DfbRTXE5n4Y&#34; allowfullscreen frameborder=&#34;0&#34;&gt;
-	&lt;/iframe&gt;
-&lt;/div&gt;&lt;/p&gt;
 </description>
     </item>
     
