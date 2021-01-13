@@ -259,12 +259,6 @@
 									
 		                    	
 		                    
-								
-                					
-										<li><a href="/docs/Index-Structure/">Index Structure</a></li>
-									
-		                    	
-		                    
 						</ul>
 					</li>
 					
@@ -326,15 +320,13 @@
 
 <h2 id="index:e80311509887e73e2307678fbd80d4dd">Index</h2>
 
-<p>The index package contains all of the code related to putting bits on disk in such a way to facilitate searching later.</p>
-
-<h4 id="store:e80311509887e73e2307678fbd80d4dd">Store</h4>
-
-<p>The store package defines an general KV store interface.  This interface allows index implementations to plug in alternative KV stores easily.</p>
-
 <h4 id="upside-down:e80311509887e73e2307678fbd80d4dd">upside_down</h4>
 
-<p>The upside_down package is the inverted index implementation.  It can use any Store implementation.  This has all of the details around how individual rows are encoded.</p>
+<p>The upside_down package is the original inverted index implementation.  It can use any Store implementation.  This has all of the details around how individual rows are encoded.  This implementation is now deprecated.</p>
+
+<h4 id="scorch:e80311509887e73e2307678fbd80d4dd">scorch</h4>
+
+<p>The index implementation recommended for production use.</p>
 
 <h2 id="http:e80311509887e73e2307678fbd80d4dd">HTTP</h2>
 
@@ -367,10 +359,6 @@
 <h4 id="searchers:e80311509887e73e2307678fbd80d4dd">Searchers</h4>
 
 <p>The searchers package contain the actual searcher implementations.</p>
-
-<h2 id="utils:e80311509887e73e2307678fbd80d4dd">Utils</h2>
-
-<p>This package contains all of the command-line utilities.</p>
 
 	</div>
 </div>

@@ -125,42 +125,13 @@ Swap will atomically add/remove the provided indexes.  (all other ops, like sear
 
 &lt;h3 id=&#34;using-blevex-packages:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;Using blevex packages&lt;/h3&gt;
 
-&lt;p&gt;Bleve does not directly import any of the sub-packages with the blevex repository.  If your application would like to use one of these packages, they can either import the package directly, or import the bleve config package, which then adds the ability to include blevex packages through common build-tags.&lt;/p&gt;
-
-&lt;p&gt;For example, if your application adds:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;import(
-  _ &amp;quot;github.com/blevesearch/bleve/config&amp;quot;
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Then when you build your application, it will automatically recognize a common set of build tags, which currently includes:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;cellar&lt;/li&gt;
-&lt;li&gt;cld2&lt;/li&gt;
-&lt;li&gt;cznicb&lt;/li&gt;
-&lt;li&gt;forestdb&lt;/li&gt;
-&lt;li&gt;icu&lt;/li&gt;
-&lt;li&gt;kagome&lt;/li&gt;
-&lt;li&gt;leveldb&lt;/li&gt;
-&lt;li&gt;libstemmer&lt;/li&gt;
-&lt;li&gt;rocksdb&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;Bleve does not directly import any of the sub-packages with the blevex repository.  If your application would like to use one of these packages, they should import the package directly.&lt;/p&gt;
 
 &lt;h3 id=&#34;kv-stores:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;KV Stores&lt;/h3&gt;
-
-&lt;h4 id=&#34;cellar:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;cellar&lt;/h4&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/couchbaselabs/cellar&#34;&gt;Cellar&lt;/a&gt; is an experimental KVStore implementation.&lt;/p&gt;
 
 &lt;h4 id=&#34;cznicb:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;cznicb&lt;/h4&gt;
 
 &lt;p&gt;Bleve supports using &lt;a href=&#34;https://github.com/cznic/b&#34;&gt;cznic/b&lt;/a&gt; as a KVStore implementation.  Although this implementation is pure Go, it does not offer reader isolation, so it does not fully satisfy the bleve interface requirements.  Under certain restrictions it can still be used safely.&lt;/p&gt;
-
-&lt;h4 id=&#34;forestdb:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;forestdb&lt;/h4&gt;
-
-&lt;p&gt;Bleve supports using &lt;a href=&#34;https://github.com/couchbase/forestdb&#34;&gt;ForestDB&lt;/a&gt; as a KVStore implementation.  This requires a C/C++ dependency, please see &lt;a href=&#34;https://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h4 id=&#34;leveldb:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;leveldb&lt;/h4&gt;
 
@@ -180,140 +151,9 @@ Swap will atomically add/remove the provided indexes.  (all other ops, like sear
 
 &lt;h3 id=&#34;token-filters:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;Token Filters&lt;/h3&gt;
 
-&lt;h4 id=&#34;detect-lang:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;detect_lang&lt;/h4&gt;
-
-&lt;p&gt;Bleve supports using the &lt;a href=&#34;https://code.google.com/p/cld2/&#34;&gt;cld2&lt;/a&gt; library to determine the language of a sample of text.  This is implemented as a token filter which will return the result as a ISO 639 language code.  This requires a C/C++ dependency, please see &lt;a href=&#34;https://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt;.&lt;/p&gt;
-
 &lt;h4 id=&#34;stemmer-filter:34a97ce3c17c3c82af8fae1291afb5f9&#34;&gt;stemmer_filter&lt;/h4&gt;
 
 &lt;p&gt;Bleve supports using the &lt;a href=&#34;http://snowball.tartarus.org/download.php&#34;&gt;libstemmer&lt;/a&gt; library to stem words for many languages.  Many of the language specific analyzers depend on this library.  This requires a C/C++ dependency, please see &lt;a href=&#34;https://www.blevesearch.com/docs/Building/&#34;&gt;Building&lt;/a&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Index Structure</title>
-      <link>https://www.blevesearch.com/docs/Index-Structure/</link>
-      <pubDate>Fri, 09 Oct 2015 00:00:00 +0100</pubDate>
-      
-      <guid>https://www.blevesearch.com/docs/Index-Structure/</guid>
-      <description>
-
-&lt;p&gt;Bleve default index, called &amp;ldquo;upside_down&amp;rdquo; is stored in a single key/value store
-table. The store must be able to enumerate its entries starting at a given key,
-in lexicographic byte order.&lt;/p&gt;
-
-&lt;p&gt;Index key and values are handled as byte arrays and are called rows (see &lt;code&gt;index/upside_down/row.go&lt;/code&gt; for details). To store different row types in a single table, bleve prefixes their keys with a single byte, for instance the term frequency keys start with a &amp;rsquo;t&amp;rsquo;. The following sections describe the data structures stored in the index with pseudo-Go code for value layout.&lt;/p&gt;
-
-&lt;h3 id=&#34;version-row:c0e4a9c5fa2f1af4fb6097ff3abb8877&#34;&gt;Version Row&lt;/h3&gt;
-
-&lt;p&gt;Key: &lt;code&gt;&amp;quot;v&amp;quot;&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Value:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;struct {
-	Version uint8
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Only one version row exists in the index and is used to check version compatibility&lt;/p&gt;
-
-&lt;h3 id=&#34;field-rows:c0e4a9c5fa2f1af4fb6097ff3abb8877&#34;&gt;Field Rows&lt;/h3&gt;
-
-&lt;p&gt;Key: (&lt;code&gt;&amp;quot;f&amp;quot;&lt;/code&gt;, &lt;code&gt;fieldIndex&lt;/code&gt;)&lt;/p&gt;
-
-&lt;p&gt;Value:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;struct {
-	Name string
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;They map field qualified names to internal integer indices. The field names are only used or displayed at API level, bleve uses the indices everywhere internally.&lt;/p&gt;
-
-&lt;h3 id=&#34;dictionary-rows:c0e4a9c5fa2f1af4fb6097ff3abb8877&#34;&gt;Dictionary Rows&lt;/h3&gt;
-
-&lt;p&gt;Key: (&lt;code&gt;&amp;quot;d&amp;quot;&lt;/code&gt;, &lt;code&gt;fieldIndex&lt;/code&gt;, &lt;code&gt;term&lt;/code&gt;)&lt;/p&gt;
-
-&lt;p&gt;Value:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;struct {
-	Count uint64
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Dictionary rows index (field, term) pairs and count the number of documents containing them. Range queries over terms of a given field, which includes prefix queries, are implemented by seeking over dictionary rows first.&lt;/p&gt;
-
-&lt;h3 id=&#34;term-frequency-rows:c0e4a9c5fa2f1af4fb6097ff3abb8877&#34;&gt;Term Frequency Rows&lt;/h3&gt;
-
-&lt;p&gt;Key: (&lt;code&gt;&amp;quot;t&amp;quot;&lt;/code&gt;, &lt;code&gt;fieldIndex&lt;/code&gt;, &lt;code&gt;term&lt;/code&gt;, &lt;code&gt;docId&lt;/code&gt;)&lt;/p&gt;
-
-&lt;p&gt;Value:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;type TermFrequencyRow struct {
-	Freq    uint64
-	Norm    float32
-	Vectors []struct{
-		Field          uint16
-		ArrayPositions []uint64
-		Pos            uint64
-		Start          uint64
-		End            uint64
-	}
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Term frequency rows store statistics about a term in a document field. Applications using result highlighting or phrase search must also record term locations by setting &lt;code&gt;IncludeTermVectors&lt;/code&gt; in the field mapping. Term locations are used to retrieve the term origin in the source document or measure terms proximity.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;Freq&lt;/code&gt; is the number of occurrences of the term in the field.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Norm&lt;/code&gt; is 1/sqrt(number of tokens in the field). This factor helps balancing scores of shorter documents which have lower term frequencies.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Vectors&lt;/code&gt; is filled if &lt;code&gt;IncludeTermVectors&lt;/code&gt; is set in the field mapping. Each element describes a single occurrence of the term in the source document. &lt;code&gt;Field&lt;/code&gt; is the field index, and is the same as in the row key except for composite fields where it references the source field (composite fields like &lt;code&gt;_all&lt;/code&gt; are made of the union of other fields). Because documents are structured as trees and intermediate elements can be arrays or slices, the field index is sometimes not enough to resolve a value. The indices of the value or some of its ancestors into those arrays or slices are also required. They are stored in &lt;code&gt;ArrayPositions&lt;/code&gt;. &lt;code&gt;Pos&lt;/code&gt; tells the entry is the &lt;code&gt;Pos&lt;/code&gt;-th occurrence of the term in the field (starting at 1). &lt;code&gt;Start&lt;/code&gt; and &lt;code&gt;End&lt;/code&gt; are the byte offsets of the source of the term in the field value.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;back-index-rows:c0e4a9c5fa2f1af4fb6097ff3abb8877&#34;&gt;Back Index Rows&lt;/h3&gt;
-
-&lt;p&gt;Key: (&lt;code&gt;&amp;quot;b&amp;quot;&lt;/code&gt;, &lt;code&gt;docId&lt;/code&gt;)&lt;/p&gt;
-
-&lt;p&gt;Value:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;struct {
-    Indexed []struct{
-		Term []byte
-		Field uint32
-	},
-	Stored []struct{
-		Field uint32
-		ArrayPositions []uint64
-	},
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Back index rows describe the indexed and stored terms of a document. &lt;code&gt;Field&lt;/code&gt; is the field index and &lt;code&gt;ArrayPositions&lt;/code&gt; is explained in Term frequency rows section.&lt;/p&gt;
-
-&lt;h3 id=&#34;stored-rows:c0e4a9c5fa2f1af4fb6097ff3abb8877&#34;&gt;Stored Rows&lt;/h3&gt;
-
-&lt;p&gt;Key: (&lt;code&gt;&amp;quot;s&amp;quot;&lt;/code&gt;, &lt;code&gt;docId&lt;/code&gt;, &lt;code&gt;fieldId&lt;/code&gt;, &lt;code&gt;arrayPositions&lt;/code&gt;)&lt;/p&gt;
-
-&lt;p&gt;Value:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;struct {
-	Value []byte
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Stored rows contains the values of document fields which mapping had the &lt;code&gt;Store&lt;/code&gt; property. &lt;code&gt;arrayPositions&lt;/code&gt; meaning is described in Term frequency rows section.&lt;/p&gt;
-
-&lt;h3 id=&#34;internal-rows:c0e4a9c5fa2f1af4fb6097ff3abb8877&#34;&gt;Internal Rows&lt;/h3&gt;
-
-&lt;p&gt;Key: (&lt;code&gt;&amp;quot;i&amp;quot;&lt;/code&gt;, &lt;code&gt;key&lt;/code&gt;)&lt;/p&gt;
-
-&lt;p&gt;Value:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;struct {
-    Value []byte
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Internal rows are used to store arbitrary data in the index.&lt;/p&gt;
 </description>
     </item>
     
@@ -472,6 +312,8 @@ in lexicographic byte order.&lt;/p&gt;
       
       <guid>https://www.blevesearch.com/docs/Building/</guid>
       <description>
+
+&lt;h2 id=&#34;the-instructions-on-this-page-are-no-longer-applicable-to-bleve-v2:140c58546f80295ba58ab4d2981832fc&#34;&gt;The instructions on this page are no longer applicable to bleve v2&lt;/h2&gt;
 
 &lt;p&gt;Some of the &lt;a href=&#34;https://www.blevesearch.com/docs/Blevex/&#34;&gt;blevex&lt;/a&gt; packages require C/C++ libraries.&lt;/p&gt;
 
@@ -637,16 +479,14 @@ $ go get -u -v -tags full github.com/blevesearch/bleve
       <guid>https://www.blevesearch.com/docs/Getting%20Started/</guid>
       <description>
 
-&lt;p&gt;The simplest way to get started with bleve is to use the standard go get operation:&lt;/p&gt;
+&lt;p&gt;The simplest way to get started with bleve is to create a new module:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;go get github.com/blevesearch/bleve/...
+&lt;pre&gt;&lt;code&gt;go mod init &amp;lt;your application&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This will build a pure Go version of bleve and install the command-line utility.&lt;/p&gt;
 
 &lt;h3 id=&#34;your-first-bleve-program:fea031cc8a84a77f907665d305d10e43&#34;&gt;Your first bleve program&lt;/h3&gt;
 
-&lt;p&gt;Create a new package, edit main.go and paste:&lt;/p&gt;
+&lt;p&gt;Edit main.go and paste:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
 
@@ -766,6 +606,72 @@ func main() {
 personMapping := bleve.NewDocumentMapping()
 personMapping.AddSubDocumentMapping(&amp;quot;Addr&amp;quot;, addressMapping)
 &lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Include Facets in Results</title>
+      <link>https://www.blevesearch.com/docs/Result-Faceting/</link>
+      <pubDate>Tue, 23 Jun 2015 10:25:38 -0400</pubDate>
+      
+      <guid>https://www.blevesearch.com/docs/Result-Faceting/</guid>
+      <description>
+
+&lt;p&gt;Facets allow you to include aggregated information about the documents matching your query.&lt;/p&gt;
+
+&lt;h3 id=&#34;terms-facet:8e50022d01ca401f0717d155b0a98a62&#34;&gt;Terms Facet&lt;/h3&gt;
+
+&lt;p&gt;In the beer-sample dataset each beer is assigned a style.  This would be a common field to produce a facet on since it has low cardinality and can be helpful in refining your search.  To start, each facet requires a name and a size.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;    stylesFacet := bleve.NewFacetRequest(&amp;quot;style&amp;quot;, 3)
+    searchRequest.AddFacet(&amp;quot;styles&amp;quot;, stylesFacet)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here we have named the facet &lt;code&gt;styles&lt;/code&gt; and requested the result to include the top 3 categories or buckets in the facet.  We have set the field to &lt;code&gt;style&lt;/code&gt; which corresponds to the name we used when mapping the data.&lt;/p&gt;
+
+&lt;p&gt;Without providing any other configuration options this will produce what is known as a Terms Facet.  That means each term indexed for this field is treated as a unique bucket.  For each result document, we include the document in the appropriate bucket, as determined by the configured field.  (For the results to make the most sense, this type of facet is normally used for fields indexed as a single term)&lt;/p&gt;
+
+&lt;h3 id=&#34;numeric-range-facet:8e50022d01ca401f0717d155b0a98a62&#34;&gt;Numeric Range Facet&lt;/h3&gt;
+
+&lt;p&gt;In the beer-sample dataset each beer has a numeric &lt;code&gt;abv&lt;/code&gt; or alcohol by volume field.  With numeric range facets we can defined buckets to be bounded by numeric ranges.  In this example we define 3 buckets which cover all numeric values, corresponding to low, medium, and high alcohol content.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;    var lowToMidAbv = 3.5
+    var midToHighAbv = 9.0
+    abvFacet := bleve.NewFacetRequest(&amp;quot;abv&amp;quot;, 3)
+    abvFacet.AddNumericRange(&amp;quot;low&amp;quot;, nil, &amp;amp;lowToMidAbv)
+    abvFacet.AddNumericRange(&amp;quot;medium&amp;quot;, &amp;amp;lowToMidAbv, &amp;amp;midToHighAbv)
+    abvFacet.AddNumericRange(&amp;quot;high&amp;quot;, &amp;amp;midToHighAbv, nil)
+    searchRequest.AddFacet(&amp;quot;abv&amp;quot;, abvFacet)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;datetime-range-facet:8e50022d01ca401f0717d155b0a98a62&#34;&gt;DateTime Range Facet&lt;/h3&gt;
+
+&lt;p&gt;In the beer-sample dataset each beer and brewery has a date &lt;code&gt;updated&lt;/code&gt; describing when the document was updated.  With date range facets we can defined buckets to be bounded by date ranges.  In this example we define 2 buckets which cover all date values, corresponding to those updated this year, and those updated prior to that.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;    var cutOffDate = time.Now().Add(-365*24*time.Hour)
+    updatedFacet := bleve.NewFacetRequest(&amp;quot;updated&amp;quot;, 2)
+    updatedFacet.AddDateTimeRange(&amp;quot;old&amp;quot;, time.Unix(0, 0), cutOffDate)
+    updatedFacet.AddDateTimeRange(&amp;quot;new&amp;quot;, cutOffDate, time.Unix(999999999, 999999999))
+    searchRequest.AddFacet(&amp;quot;updated&amp;quot;, updatedFacet)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;facet-results:8e50022d01ca401f0717d155b0a98a62&#34;&gt;Facet Results&lt;/h3&gt;
+
+&lt;p&gt;For each facet you build, a FacetResult is returned containing the following:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Field - the name of the field the facet was built on&lt;/li&gt;
+&lt;li&gt;Total - the total number of values encountered (if each document had one term, this should match the total number of documents in the search result)&lt;/li&gt;
+&lt;li&gt;Missing - the number of documents which do not have any value for this field&lt;/li&gt;
+&lt;li&gt;Other - the number of documents for which a value exists, but it was not in the top N number of facet buckets requested&lt;/li&gt;
+&lt;li&gt;Array of Facets - each Facet contains the count indicating the number of items in this facet range/bucket
+
+&lt;ul&gt;
+&lt;li&gt;Term - Terms Facets include the name of the term&lt;/li&gt;
+&lt;li&gt;Numeric Range - Numeric Range Facets include the range for this bucket&lt;/li&gt;
+&lt;li&gt;DateTime Range - DateTime Range Facets include the datetime range for this bucket&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     

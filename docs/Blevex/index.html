@@ -259,12 +259,6 @@
 									
 		                    	
 		                    
-								
-                					
-										<li><a href="/docs/Index-Structure/">Index Structure</a></li>
-									
-		                    	
-		                    
 						</ul>
 					</li>
 					
@@ -288,42 +282,13 @@
 
 <h3 id="using-blevex-packages:34a97ce3c17c3c82af8fae1291afb5f9">Using blevex packages</h3>
 
-<p>Bleve does not directly import any of the sub-packages with the blevex repository.  If your application would like to use one of these packages, they can either import the package directly, or import the bleve config package, which then adds the ability to include blevex packages through common build-tags.</p>
-
-<p>For example, if your application adds:</p>
-
-<pre><code class="language-go">import(
-  _ &quot;github.com/blevesearch/bleve/config&quot;
-)
-</code></pre>
-
-<p>Then when you build your application, it will automatically recognize a common set of build tags, which currently includes:</p>
-
-<ul>
-<li>cellar</li>
-<li>cld2</li>
-<li>cznicb</li>
-<li>forestdb</li>
-<li>icu</li>
-<li>kagome</li>
-<li>leveldb</li>
-<li>libstemmer</li>
-<li>rocksdb</li>
-</ul>
+<p>Bleve does not directly import any of the sub-packages with the blevex repository.  If your application would like to use one of these packages, they should import the package directly.</p>
 
 <h3 id="kv-stores:34a97ce3c17c3c82af8fae1291afb5f9">KV Stores</h3>
-
-<h4 id="cellar:34a97ce3c17c3c82af8fae1291afb5f9">cellar</h4>
-
-<p><a href="https://github.com/couchbaselabs/cellar">Cellar</a> is an experimental KVStore implementation.</p>
 
 <h4 id="cznicb:34a97ce3c17c3c82af8fae1291afb5f9">cznicb</h4>
 
 <p>Bleve supports using <a href="https://github.com/cznic/b">cznic/b</a> as a KVStore implementation.  Although this implementation is pure Go, it does not offer reader isolation, so it does not fully satisfy the bleve interface requirements.  Under certain restrictions it can still be used safely.</p>
-
-<h4 id="forestdb:34a97ce3c17c3c82af8fae1291afb5f9">forestdb</h4>
-
-<p>Bleve supports using <a href="https://github.com/couchbase/forestdb">ForestDB</a> as a KVStore implementation.  This requires a C/C++ dependency, please see <a href="/docs/Building/">Building</a>.</p>
 
 <h4 id="leveldb:34a97ce3c17c3c82af8fae1291afb5f9">leveldb</h4>
 
@@ -342,10 +307,6 @@
 <p>NOTE: It is recommended to get the most recent version of ICU possible.  Older versions often included with distributions do not support language based tokenization.</p>
 
 <h3 id="token-filters:34a97ce3c17c3c82af8fae1291afb5f9">Token Filters</h3>
-
-<h4 id="detect-lang:34a97ce3c17c3c82af8fae1291afb5f9">detect_lang</h4>
-
-<p>Bleve supports using the <a href="https://code.google.com/p/cld2/">cld2</a> library to determine the language of a sample of text.  This is implemented as a token filter which will return the result as a ISO 639 language code.  This requires a C/C++ dependency, please see <a href="/docs/Building/">Building</a>.</p>
 
 <h4 id="stemmer-filter:34a97ce3c17c3c82af8fae1291afb5f9">stemmer_filter</h4>
 

@@ -259,12 +259,6 @@
 									
 		                    	
 		                    
-								
-                					
-										<li><a href="/docs/Index-Structure/">Index Structure</a></li>
-									
-		                    	
-		                    
 						</ul>
 					</li>
 					
@@ -278,16 +272,14 @@
 
 		
 
-<p>The simplest way to get started with bleve is to use the standard go get operation:</p>
+<p>The simplest way to get started with bleve is to create a new module:</p>
 
-<pre><code>go get github.com/blevesearch/bleve/...
+<pre><code>go mod init &lt;your application&gt;
 </code></pre>
-
-<p>This will build a pure Go version of bleve and install the command-line utility.</p>
 
 <h3 id="your-first-bleve-program:fea031cc8a84a77f907665d305d10e43">Your first bleve program</h3>
 
-<p>Create a new package, edit main.go and paste:</p>
+<p>Edit main.go and paste:</p>
 
 <pre><code class="language-go">package main
 
