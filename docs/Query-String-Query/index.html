@@ -283,6 +283,16 @@
 
 <p>Example: <code>description:water</code> will perform a <a href="/docs/Query/#match:8f767fbc41af8ff1ddcf4c60ed8c0fe9">Match Query</a> for the term <code>water</code>, in the <code>description</code> field.</p>
 
+<h3 id="regular-expressions:da355926c964f14ad0baf9b0b2a9527e">Regular Expressions</h3>
+
+<p>You can use regular expressions in addition to using terms by wrapping the expression in forward slashes (<code>/</code>).</p>
+
+<p>Example: <code>/light (beer|wine)/</code> will perform a regular expression against the terms in document.</p>
+
+<p>The regular expressions can also be used with field scoping.</p>
+
+<p>Example: <code>description:/wat.*/</code></p>
+
 <h3 id="required-optional-and-exclusion:da355926c964f14ad0baf9b0b2a9527e">Required, Optional, and Exclusion</h3>
 
 <p>When your query string includes multiple items, by default these are placed into the SHOULD clause of a <a href="/docs/Query/#boolean:8f767fbc41af8ff1ddcf4c60ed8c0fe9">Boolean Query</a>.</p>
