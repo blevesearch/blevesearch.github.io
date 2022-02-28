@@ -113,7 +113,7 @@
   </url>
   
   <url>
-    <loc>https://www.blevesearch.com/docs/Contributing/</loc>
+    <loc>https://www.blevesearch.com/docs/Getting%20Started/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
@@ -128,6 +128,11 @@
   </url>
   
   <url>
+    <loc>https://www.blevesearch.com/docs/Contributing/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.blevesearch.com/docs/Example-Applications/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
@@ -138,12 +143,12 @@
   </url>
   
   <url>
-    <loc>https://www.blevesearch.com/docs/Getting%20Started/</loc>
+    <loc>https://www.blevesearch.com/docs/Index-Mapping/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://www.blevesearch.com/docs/Index-Mapping/</loc>
+    <loc>https://www.blevesearch.com/docs/Query-String-Query/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
@@ -158,7 +163,7 @@
   </url>
   
   <url>
-    <loc>https://www.blevesearch.com/docs/Query-String-Query/</loc>
+    <loc>https://www.blevesearch.com/docs/Result-Faceting/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
@@ -168,7 +173,7 @@
   </url>
   
   <url>
-    <loc>https://www.blevesearch.com/docs/Result-Faceting/</loc>
+    <loc>https://www.blevesearch.com/docs/Terminology/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
@@ -178,22 +183,17 @@
   </url>
   
   <url>
+    <loc>https://www.blevesearch.com/docs/bleve/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.blevesearch.com/docs/Token-Filters/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://www.blevesearch.com/docs/Terminology/</loc>
-    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.blevesearch.com/docs/Tokenizers/</loc>
-    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.blevesearch.com/docs/bleve/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
@@ -213,7 +213,7 @@
   </url>
   
   <url>
-    <loc>https://www.blevesearch.com/docs/bleve_count/</loc>
+    <loc>https://www.blevesearch.com/docs/bleve_bulk/</loc>
   </url>
   
   <url>
@@ -221,11 +221,11 @@
   </url>
   
   <url>
-    <loc>https://www.blevesearch.com/docs/bleve_create/</loc>
+    <loc>https://www.blevesearch.com/docs/bleve_count/</loc>
   </url>
   
   <url>
-    <loc>https://www.blevesearch.com/docs/bleve_bulk/</loc>
+    <loc>https://www.blevesearch.com/docs/bleve_create/</loc>
   </url>
   
   <url>
@@ -237,7 +237,11 @@
   </url>
   
   <url>
-    <loc>https://www.blevesearch.com/docs/bleve_mapping/</loc>
+    <loc>https://www.blevesearch.com/docs/bleve_dump_fields/</loc>
+  </url>
+  
+  <url>
+    <loc>https://www.blevesearch.com/docs/bleve_fields/</loc>
   </url>
   
   <url>
@@ -245,7 +249,7 @@
   </url>
   
   <url>
-    <loc>https://www.blevesearch.com/docs/bleve_dump_fields/</loc>
+    <loc>https://www.blevesearch.com/docs/bleve_mapping/</loc>
   </url>
   
   <url>
@@ -254,10 +258,6 @@
   
   <url>
     <loc>https://www.blevesearch.com/docs/bleve_registry/</loc>
-  </url>
-  
-  <url>
-    <loc>https://www.blevesearch.com/docs/bleve_fields/</loc>
   </url>
   
 </urlset>
