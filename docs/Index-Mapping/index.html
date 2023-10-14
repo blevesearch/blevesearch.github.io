@@ -279,7 +279,7 @@
 <p>How does bleve know what type a document is?</p>
 
 <ol>
-<li>If your object implements the interface <code>bleve.Classifier</code> then bleve will use string returned by its <code>Type()</code> method.</li>
+<li>If your object implements the interface <code>bleve/mapping.Classifier</code> then bleve will use string returned by its <code>Type()</code> method.</li>
 <li>The IndexMapping has a setting called <code>TypeField</code>.  You can set this to any document path, and if the value at that path is a string, that value will be used as the typed field.  If you did not customize this setting the default is set to &ldquo;_type&rdquo;.</li>
 <li>If no type can be determined from 1 or 2, the type is set to the IndexMapping&rsquo;s <code>DefaultType</code>.  If you did not customize this setting the default is set to &ldquo;_default&rdquo;.</li>
 </ol>
