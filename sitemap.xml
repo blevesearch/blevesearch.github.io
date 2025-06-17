@@ -88,12 +88,12 @@
   </url>
   
   <url>
-    <loc>https://blevesearch.com/community/</loc>
+    <loc>https://blevesearch.com/docs/Analyzers/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://blevesearch.com/docs/Analyzers/</loc>
+    <loc>https://blevesearch.com/community/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
@@ -128,17 +128,17 @@
   </url>
   
   <url>
-    <loc>https://blevesearch.com/docs/Highlight%20Matches%20in%20Results/</loc>
-    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://blevesearch.com/docs/Example-Applications/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://blevesearch.com/docs/Home/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blevesearch.com/docs/Highlight%20Matches%20in%20Results/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
@@ -163,22 +163,22 @@
   </url>
   
   <url>
-    <loc>https://blevesearch.com/docs/Query/</loc>
-    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://blevesearch.com/docs/Result-Faceting/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://blevesearch.com/docs/Terminology/</loc>
+    <loc>https://blevesearch.com/docs/Query/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://blevesearch.com/docs/Text-Analysis/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blevesearch.com/docs/Terminology/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
@@ -221,11 +221,11 @@
   </url>
   
   <url>
-    <loc>https://blevesearch.com/docs/bleve_dictionary/</loc>
+    <loc>https://blevesearch.com/docs/bleve_create/</loc>
   </url>
   
   <url>
-    <loc>https://blevesearch.com/docs/bleve_create/</loc>
+    <loc>https://blevesearch.com/docs/bleve_dictionary/</loc>
   </url>
   
   <url>
@@ -245,11 +245,11 @@
   </url>
   
   <url>
-    <loc>https://blevesearch.com/docs/bleve_mapping/</loc>
+    <loc>https://blevesearch.com/docs/bleve_index/</loc>
   </url>
   
   <url>
-    <loc>https://blevesearch.com/docs/bleve_index/</loc>
+    <loc>https://blevesearch.com/docs/bleve_mapping/</loc>
   </url>
   
   <url>
