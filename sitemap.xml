@@ -98,12 +98,12 @@
   </url>
   
   <url>
-    <loc>https://blevesearch.com/docs/Applications-using-bleve/</loc>
+    <loc>https://blevesearch.com/docs/Building/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://blevesearch.com/docs/Building/</loc>
+    <loc>https://blevesearch.com/docs/Applications-using-bleve/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
@@ -118,12 +118,17 @@
   </url>
   
   <url>
+    <loc>https://blevesearch.com/docs/Getting%20Started/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://blevesearch.com/docs/Disabling%20Sections%20of%20Documents/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://blevesearch.com/docs/Getting%20Started/</loc>
+    <loc>https://blevesearch.com/docs/Highlight%20Matches%20in%20Results/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
@@ -134,11 +139,6 @@
   
   <url>
     <loc>https://blevesearch.com/docs/Home/</loc>
-    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blevesearch.com/docs/Highlight%20Matches%20in%20Results/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
@@ -158,6 +158,11 @@
   </url>
   
   <url>
+    <loc>https://blevesearch.com/docs/Query/</loc>
+    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://blevesearch.com/docs/Query-String-Query/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
@@ -168,7 +173,7 @@
   </url>
   
   <url>
-    <loc>https://blevesearch.com/docs/Query/</loc>
+    <loc>https://blevesearch.com/docs/Terminology/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
@@ -178,17 +183,12 @@
   </url>
   
   <url>
-    <loc>https://blevesearch.com/docs/Terminology/</loc>
+    <loc>https://blevesearch.com/docs/Tokenizers/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
   <url>
     <loc>https://blevesearch.com/docs/Token-Filters/</loc>
-    <lastmod>2015-06-23T10:25:38-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blevesearch.com/docs/Tokenizers/</loc>
     <lastmod>2015-06-23T10:25:38-04:00</lastmod>
   </url>
   
